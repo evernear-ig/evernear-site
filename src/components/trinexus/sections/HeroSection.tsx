@@ -142,10 +142,10 @@ export function HeroSection() {
             <text x="250" y="36" textAnchor="middle">
               PARAGUAY
             </text>
-            <text x="440" y="432" textAnchor="middle">
+            <text x="440" y="424" textAnchor="middle">
               {String(t("c.br.up"))}
             </text>
-            <text x="60" y="432" textAnchor="middle">
+            <text x="60" y="424" textAnchor="middle">
               ARGENTINA
             </text>
             <text
