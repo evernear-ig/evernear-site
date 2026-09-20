@@ -22,6 +22,12 @@ const CITY_ARIA: Record<CityId, string> = {
   pi: "Puerto Iguazú, Argentina",
 };
 
+const CITY_POS: Record<CityId, { cx: number; cy: number; tx: number; ty: number }> = {
+  cde: { cx: 175, cy: 255, tx: 70, ty: 243 },
+  foz: { cx: 360, cy: 240, tx: 372, ty: 243 },
+  pi: { cx: 375, cy: 398, tx: 288, ty: 415 },
+};
+
 export function BorderSection() {
   const { t } = useI18n();
   const mapRef = useRef<SVGSVGElement>(null);
@@ -148,33 +154,20 @@ export function BorderSection() {
               <text className="lbl" x="400" y="80">
                 {String(t("c.br.up"))}
               </text>
-              <text className="lbl" x="70" y="470">
+              <text className="lbl" x="400" y="470">
                 ARGENTINA
               </text>
-              <line
-                className={`link${displayCity === "cde" ? " on" : ""}`}
-                data-city="cde"
-                x1="175"
-                y1="255"
-                x2="262"
-                y2="322"
-              />
-              <line
-                className={`link${displayCity === "foz" ? " on" : ""}`}
-                data-city="foz"
-                x1="360"
-                y1="240"
-                x2="262"
-                y2="322"
-              />
-              <line
-                className={`link${displayCity === "pi" ? " on" : ""}`}
-                data-city="pi"
-                x1="215"
-                y1="395"
-                x2="262"
-                y2="322"
-              />
+              {(["cde", "foz", "pi"] as const).map((city) => (
+                <line
+                  key={`link-${city}`}
+                  className={`link${displayCity === city ? " on" : ""}`}
+                  data-city={city}
+                  x1={CITY_POS[city].cx}
+                  y1={CITY_POS[city].cy}
+                  x2="262"
+                  y2="322"
+                />
+              ))}
               <circle className="mv m1" r="2.5" />
               <circle className="mv m2" r="2.5" />
               <circle className="mv m3" r="2.5" />
@@ -199,9 +192,9 @@ export function BorderSection() {
                     }
                   }}
                 >
-                  <circle className="cp" cx={city === "cde" ? 175 : city === "foz" ? 360 : 215} cy={city === "pi" ? 395 : city === "foz" ? 240 : 255} r="4" style={index ? { animationDelay: `${index * 1.2}s` } : undefined} />
-                  <circle className="dot" cx={city === "cde" ? 175 : city === "foz" ? 360 : 215} cy={city === "pi" ? 395 : city === "foz" ? 240 : 255} r="4" />
-                  <text x={city === "cde" ? 70 : city === "foz" ? 372 : 130} y={city === "pi" ? 416 : 243}>
+                  <circle className="cp" cx={CITY_POS[city].cx} cy={CITY_POS[city].cy} r="4" style={index ? { animationDelay: `${index * 1.2}s` } : undefined} />
+                  <circle className="dot" cx={CITY_POS[city].cx} cy={CITY_POS[city].cy} r="4" />
+                  <text x={CITY_POS[city].tx} y={CITY_POS[city].ty}>
                     {city === "cde"
                       ? "Ciudad del Este"
                       : city === "foz"
