@@ -17,7 +17,7 @@ export function ConnectSection() {
           <h2 className="h-xl">
             <T k="con.h" />
           </h2>
-          <p className="lead dim">
+          <p className="lead">
             <T k="con.lead" />
           </p>
           <div className="roles">

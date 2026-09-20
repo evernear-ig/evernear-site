@@ -22,7 +22,7 @@ export function AccessSection() {
           <h2 className="h-xl">
             <T k="acc.h" />
           </h2>
-          <p className="lead dim">
+          <p className="lead">
             <T k="acc.lead" />
           </p>
         </Reveal>

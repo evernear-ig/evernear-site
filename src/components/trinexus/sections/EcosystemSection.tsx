@@ -77,7 +77,7 @@ export function EcosystemSection() {
           <h2 className="h-xl">
             <THtml k="pil.h" />
           </h2>
-          <p className="lead dim">
+          <p className="lead">
             <T k="pil.lead" />
           </p>
         </Reveal>

@@ -83,7 +83,7 @@ export function HeroSection() {
           <h1 className="h-display" id="heroTitle">
             <TLines k="hero.title" />
           </h1>
-          <p className="lead dim">
+          <p className="lead">
             <T k="hero.sub" />
           </p>
           <div className="btns">

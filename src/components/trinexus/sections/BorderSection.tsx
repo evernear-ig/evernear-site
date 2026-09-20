@@ -86,7 +86,7 @@ export function BorderSection() {
           <h2 className="h-xl">
             <THtml k="border.h" />
           </h2>
-          <p className="lead dim">
+          <p className="lead">
             <T k="border.lead" />
           </p>
           <p>
