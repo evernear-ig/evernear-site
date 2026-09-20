@@ -90,9 +90,6 @@ export function BorderSection() {
           <p>
             <T k="border.p1" />
           </p>
-          <p>
-            <T k="border.p2" />
-          </p>
         </Reveal>
         <Reveal delay={1} className="b-map">
           <svg
