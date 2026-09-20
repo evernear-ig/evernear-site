@@ -17,8 +17,14 @@ const LAYERS = [
   { title: "TRINEXUS EVENTOS", body: "fut.summit", kind: "events" as const },
 ] as const;
 
-export function EcosystemLayersPanel() {
+type EcosystemLayersPanelProps = {
+  compact?: boolean;
+};
+
+export function EcosystemLayersPanel({ compact = false }: EcosystemLayersPanelProps) {
   const [events, setEvents] = useState<EventItem[]>([]);
+  const profileLimit = compact ? 2 : 3;
+  const eventLimit = compact ? 2 : 3;
 
   useEffect(() => {
     fetch("/api/events")
@@ -28,7 +34,7 @@ export function EcosystemLayersPanel() {
   }, []);
 
   return (
-    <div className="eco-layers">
+    <div className={`eco-layers${compact ? " eco-layers--compact" : ""}`}>
       {LAYERS.map((layer) => (
         <article key={layer.title} className="eco-layer">
           <h3>{layer.title}</h3>
@@ -37,7 +43,7 @@ export function EcosystemLayersPanel() {
           </p>
           {layer.kind === "id" && (
             <ul className="eco-layer-list">
-              {PROFILES.slice(0, 3).map((profile) => (
+              {PROFILES.slice(0, profileLimit).map((profile) => (
                 <li key={profile.id}>
                   <Link href={`/descubrimiento/personas/${profile.id}`}>
                     <strong>{profile.name}</strong>
@@ -47,10 +53,20 @@ export function EcosystemLayersPanel() {
               ))}
             </ul>
           )}
-          {layer.kind === "qr" && <EcosystemQrDemo />}
+          {layer.kind === "qr" && <EcosystemQrDemo compact={compact} />}
           {layer.kind === "map" && (
-            <ul className="eco-layer-map">
+            <ul className={`eco-layer-map${compact ? " eco-layer-map--compact" : ""}`}>
               {CITY_LIST.map((city) => {
+                if (compact) {
+                  return (
+                    <li key={city.id}>
+                      <Link href="/descubrimiento" className="eco-layer-city">
+                        <T k={`city.${city.id}.b`} />
+                      </Link>
+                    </li>
+                  );
+                }
+
                 const people = PROFILES.filter((p) => p.cityId === city.id).slice(0, 2);
                 return (
                   <li key={city.id}>
@@ -72,7 +88,7 @@ export function EcosystemLayersPanel() {
             </ul>
           )}
           {layer.kind === "hub" && (
-            <ul className="eco-layer-hub">
+            <ul className={`eco-layer-hub${compact ? " eco-layer-hub--chips" : ""}`}>
               {ECOSYSTEM_VERTICALS.map((vertical) => (
                 <li key={vertical.slug}>
                   <Link href={vertical.href}>
@@ -84,7 +100,7 @@ export function EcosystemLayersPanel() {
           )}
           {layer.kind === "events" && (
             <ul className="eco-layer-list">
-              {events.slice(0, 3).map((event) => (
+              {events.slice(0, eventLimit).map((event) => (
                 <li key={event.slug}>
                   <Link href={`/eventos/${event.slug}`}>
                     <strong>{event.title}</strong>
@@ -100,7 +116,7 @@ export function EcosystemLayersPanel() {
             </Link>
           )}
           {layer.kind === "map" && (
-            <Link href="/#border" className="eco-layer-link">
+            <Link href="/descubrimiento" className="eco-layer-link">
               <T k="fut.map.open" />
             </Link>
           )}

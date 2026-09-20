@@ -17,7 +17,11 @@ const DEMOS = [
   },
 ] as const;
 
-export function EcosystemQrDemo() {
+type EcosystemQrDemoProps = {
+  compact?: boolean;
+};
+
+export function EcosystemQrDemo({ compact = false }: EcosystemQrDemoProps) {
   const [activeToken, setActiveToken] = useState<string | null>(null);
   const [result, setResult] = useState<{
     count: number;
@@ -48,7 +52,7 @@ export function EcosystemQrDemo() {
   const activeDemo = DEMOS.find((demo) => demo.token === activeToken);
 
   return (
-    <div className="eco-layer-qr">
+    <div className={`eco-layer-qr${compact ? " eco-layer-qr--compact" : ""}`}>
       <div className="eco-layer-qr-actions">
         {DEMOS.map((demo) => (
           <button

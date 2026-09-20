@@ -2,16 +2,6 @@ import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T } from "@/components/trinexus/ui/T";
 
-const WHO = [
-  { key: "w.students" },
-  { key: "w.devs" },
-  { key: "w.ents" },
-  { key: "w.biz" },
-  { key: "w.unis" },
-  { key: "w.orgs" },
-  { text: "Builders" },
-] as const;
-
 const PARTNERS = [
   {
     title: "part.1",
@@ -52,28 +42,12 @@ export function FoundingSection() {
       </svg>
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         <Reveal className="founding-intro">
-          <div className="observer">
-            <span>
-              <T k="found.from" />
-            </span>
-            <i />
-            <b>
-              <T k="found.to" />
-            </b>
-          </div>
           <h2 className="h-xl">
             <T k="found.h" />
           </h2>
           <p className="lead founding-lead">
             <T k="found.lead" />
           </p>
-          <div className="who">
-            {WHO.map((item, index) => (
-              <span key={index}>
-                {"key" in item && item.key ? <T k={item.key} /> : item.text}
-              </span>
-            ))}
-          </div>
           <div className="btns">
             <JoinButton className="btn btn-green" />
           </div>
