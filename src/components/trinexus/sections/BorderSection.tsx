@@ -91,16 +91,17 @@ export function BorderSection() {
             <T k="border.p1" />
           </p>
         </Reveal>
-        <Reveal delay={1} className="b-map">
-          <svg
-            ref={mapRef}
-            className="border-map"
-            id="borderMap"
-            viewBox="0 0 560 520"
-            role="img"
-            aria-label={String(t("a11y.map"))}
-            onMouseLeave={handleMapLeave}
-          >
+        <div className="b-visual">
+          <div className="b-map-wrap">
+            <svg
+              ref={mapRef}
+              className="border-map"
+              id="borderMap"
+              viewBox="0 0 560 520"
+              role="img"
+              aria-label={String(t("a11y.map"))}
+              onMouseLeave={handleMapLeave}
+            >
             <defs>
               <clipPath id="c">
                 <rect width="560" height="520" />
@@ -222,10 +223,9 @@ export function BorderSection() {
                 TRINEXUS
               </text>
             </g>
-          </svg>
-        </Reveal>
-        <Reveal delay={2} className="b-info">
-          <div className="city-panel">
+            </svg>
+          </div>
+          <div className="city-panel border-city-panel">
             <div
               className="city-tabs"
               role="group"
@@ -244,7 +244,7 @@ export function BorderSection() {
                 </button>
               ))}
             </div>
-            <div className="city-photo" style={{ marginTop: "14px" }}>
+            <div className="city-photo">
               <div className="ph">
                 {CITY_TABS.map((tab) => (
                   <TrinexusPhoto
@@ -262,6 +262,8 @@ export function BorderSection() {
               </div>
             </div>
           </div>
+        </div>
+        <Reveal delay={1} className="b-facts">
           <div className="facts">
             <div>
               <strong>3</strong>
