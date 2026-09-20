@@ -1,21 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import {
+  NavDropdown,
+  useNavDropdown,
+} from "@/components/trinexus/layout/NavDropdown";
 import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
 import { useNavSolid } from "@/hooks/useNavSolid";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
 import { T } from "@/components/trinexus/ui/T";
-
-const ABOUT_SUB_LINKS = [
-  { href: "#border", key: "nav.border" },
-  { href: "#people", key: "nav.people" },
-  { href: "#next", key: "nav.next" },
-  { href: "#join", key: "nav.join" },
-] as const;
-
-const NAV_LINKS = [{ href: "#ecosystem", key: "nav.eco" }] as const;
+import {
+  ABOUT_NAV_LINKS,
+  ECOSYSTEM_NAV_LINKS,
+} from "@/lib/ecosystem/verticals";
 
 export function Header() {
   const { t } = useI18n();
@@ -23,19 +22,8 @@ export function Header() {
   const solid = useNavSolid();
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const aboutCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const openAboutMenu = () => {
-    if (aboutCloseTimer.current) {
-      clearTimeout(aboutCloseTimer.current);
-      aboutCloseTimer.current = null;
-    }
-    setAboutOpen(true);
-  };
-
-  const closeAboutMenu = () => {
-    aboutCloseTimer.current = setTimeout(() => setAboutOpen(false), 150);
-  };
+  const [ecoOpen, setEcoOpen] = useState(false);
+  const dropdown = useNavDropdown();
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -55,25 +43,23 @@ export function Header() {
   useEffect(() => {
     return () => {
       document.body.style.overflow = "";
-      if (aboutCloseTimer.current) clearTimeout(aboutCloseTimer.current);
+      dropdown.cleanup();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- cleanup on unmount only
   }, []);
 
   const onNavClick = () => {
     closeMenu();
     closeJoin();
     setAboutOpen(false);
+    setEcoOpen(false);
   };
 
   return (
     <>
       <header className={`nav${solid ? " solid" : ""}`} id="nav">
         <div className="wrap">
-          <a
-            href="#top"
-            className="logo"
-            aria-label={String(t("a11y.home"))}
-          >
+          <a href="/" className="logo" aria-label={String(t("a11y.home"))}>
             <svg viewBox="0 0 40 40" aria-hidden="true">
               <path
                 d="M20 5 L35 31 L5 31 Z"
@@ -90,55 +76,24 @@ export function Header() {
           </a>
           <nav aria-label={String(t("a11y.mainnav"))}>
             <ul className="nav-links">
-              <li
-                className={`nav-dropdown${aboutOpen ? " open" : ""}`}
-                onMouseEnter={openAboutMenu}
-                onMouseLeave={closeAboutMenu}
-              >
-                <a
-                  href="#top"
-                  className="nav-dropdown-trigger"
-                  aria-expanded={aboutOpen}
-                  aria-haspopup="true"
-                >
-                  <T k="nav.about" />
-                  <svg
-                    className="nav-dropdown-chevron"
-                    viewBox="0 0 12 12"
-                    width="10"
-                    height="10"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M2 4 L6 8 L10 4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
-                <ul
-                  className="nav-dropdown-menu"
-                  aria-label={String(t("a11y.aboutnav"))}
-                >
-                  {ABOUT_SUB_LINKS.map((link) => (
-                    <li key={link.href}>
-                      <a href={link.href} onClick={() => setAboutOpen(false)}>
-                        <T k={link.key} />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href}>
-                    <T k={link.key} />
-                  </a>
-                </li>
-              ))}
+              <NavDropdown
+                triggerHref="/"
+                triggerKey="nav.about"
+                subLinks={ABOUT_NAV_LINKS}
+                submenuAriaKey="a11y.aboutnav"
+                open={aboutOpen}
+                onOpen={() => dropdown.open(setAboutOpen)}
+                onClose={() => dropdown.scheduleClose(setAboutOpen)}
+              />
+              <NavDropdown
+                triggerHref="/ecosistema"
+                triggerKey="nav.eco"
+                subLinks={ECOSYSTEM_NAV_LINKS}
+                submenuAriaKey="a11y.ecosystemnav"
+                open={ecoOpen}
+                onOpen={() => dropdown.open(setEcoOpen)}
+                onClose={() => dropdown.scheduleClose(setEcoOpen)}
+              />
             </ul>
           </nav>
           <div className="nav-right">
@@ -161,21 +116,29 @@ export function Header() {
         </div>
       </header>
       <div className={`mobile-menu${menuOpen ? " open" : ""}`} id="mobileMenu">
-        <a href="#top" onClick={onNavClick}>
+        <a href="/" onClick={onNavClick}>
           <T k="nav.about" />
         </a>
         <div className="mobile-submenu" aria-label={String(t("a11y.aboutnav"))}>
-          {ABOUT_SUB_LINKS.map((link) => (
+          {ABOUT_NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href} onClick={onNavClick}>
               <T k={link.key} />
             </a>
           ))}
         </div>
-        {NAV_LINKS.map((link) => (
-          <a key={link.href} href={link.href} onClick={onNavClick}>
-            <T k={link.key} />
-          </a>
-        ))}
+        <a href="/ecosistema" onClick={onNavClick}>
+          <T k="nav.eco" />
+        </a>
+        <div
+          className="mobile-submenu"
+          aria-label={String(t("a11y.ecosystemnav"))}
+        >
+          {ECOSYSTEM_NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} onClick={onNavClick}>
+              <T k={link.key} />
+            </a>
+          ))}
+        </div>
         <LangSwitch />
         <JoinButton className="btn btn-green" onOpen={closeMenu} />
       </div>

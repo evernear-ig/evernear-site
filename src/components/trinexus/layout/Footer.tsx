@@ -3,19 +3,15 @@
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
 import { T } from "@/components/trinexus/ui/T";
-
-const ECO_LINKS = [
-  { href: "#about", key: "nav.about" },
-  { href: "#learn", key: "pil.learn" },
-  { href: "#connect", key: "pil.connect" },
-  { href: "#build", key: "pil.build" },
-  { href: "#access", key: "pil.access" },
-] as const;
+import {
+  ABOUT_NAV_LINKS,
+  ECOSYSTEM_NAV_LINKS,
+} from "@/lib/ecosystem/verticals";
 
 const COM_LINKS = [
-  { href: "#next", key: "foot.events" },
-  { href: "#join", key: "foot.com" },
-  { href: "#partners", key: "foot.partners" },
+  { href: "/#next", key: "foot.events" },
+  { href: "/#join", key: "foot.com" },
+  { href: "/#partners", key: "foot.partners" },
 ] as const;
 
 const SOCIAL = [
@@ -33,7 +29,7 @@ export function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <a href="#top" className="logo" aria-label={String(t("a11y.home"))}>
+            <a href="/" className="logo" aria-label={String(t("a11y.home"))}>
               <svg viewBox="0 0 40 40" aria-hidden="true">
                 <path
                   d="M20 5 L35 31 L5 31 Z"
@@ -61,10 +57,24 @@ export function Footer() {
           </div>
           <div>
             <h4>
+              <T k="nav.about" />
+            </h4>
+            <ul>
+              {ABOUT_NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href}>
+                    <T k={link.key} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4>
               <T k="foot.eco" />
             </h4>
             <ul>
-              {ECO_LINKS.map((link) => (
+              {ECOSYSTEM_NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a href={link.href}>
                     <T k={link.key} />
