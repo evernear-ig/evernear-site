@@ -185,6 +185,58 @@ export const IMAGES = {
       },
     },
   } satisfies ImageGroup,
+  ecosystem: {
+    tourism: {
+      u: "photo-1590246185449-e9e2ddd683bb",
+      pos: "50% 50%",
+      credit: "Christhian Gruhn",
+      alt: {
+        es: "Cascadas y selva en la Triple Frontera",
+        pt: "Cachoeiras e mata na Tríplice Fronteira",
+        en: "Waterfalls and rainforest in the Triple Border",
+      },
+    },
+    education: {
+      u: "photo-1623652554515-91c833e3080e",
+      pos: "50% 45%",
+      credit: "FORTYTWO",
+      alt: {
+        es: "Taller de aprendizaje colaborativo",
+        pt: "Workshop de aprendizagem colaborativa",
+        en: "Collaborative learning workshop",
+      },
+    },
+    discovery: {
+      u: "photo-1522071820081-009f0129c71c",
+      pos: "50% 45%",
+      credit: "Annie Spratt",
+      alt: {
+        es: "Personas conectando en la región",
+        pt: "Pessoas se conectando na região",
+        en: "People connecting across the region",
+      },
+    },
+    events: {
+      u: "photo-1649252504348-235b14c9cdb5",
+      pos: "50% 45%",
+      credit: "Giu Vicente",
+      alt: {
+        es: "Encuentro comunitario en la región",
+        pt: "Encontro comunitário na região",
+        en: "Community gathering in the region",
+      },
+    },
+    commerce: {
+      u: "photo-1556742049-0cfed4f6a45d",
+      pos: "50% 40%",
+      credit: "Clay Banks",
+      alt: {
+        es: "Comercio local en la Triple Frontera",
+        pt: "Comércio local na Tríplice Fronteira",
+        en: "Local business in the Triple Border",
+      },
+    },
+  } satisfies ImageGroup,
 };
 
 export function getImageSpec(key: string): ImageSpec | undefined {

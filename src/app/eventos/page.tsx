@@ -1,11 +1,10 @@
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
+import { EventsPageContent } from "@/components/ecosystem/EventsPageContent";
 
 export default function EventosPage() {
   return (
-    <VerticalPageShell
-      verticalSlug="eventos"
-      titleKey="eco.events.h"
-      leadKey="eco.events.lead"
-    />
+    <VerticalPageShell verticalSlug="eventos">
+      <EventsPageContent />
+    </VerticalPageShell>
   );
 }

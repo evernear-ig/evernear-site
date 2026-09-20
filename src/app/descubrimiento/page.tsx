@@ -1,11 +1,10 @@
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
+import { DiscoveryPageContent } from "@/components/ecosystem/DiscoveryPageContent";
 
 export default function DescubrimientoPage() {
   return (
-    <VerticalPageShell
-      verticalSlug="descubrimiento"
-      titleKey="eco.discovery.h"
-      leadKey="eco.discovery.lead"
-    />
+    <VerticalPageShell verticalSlug="descubrimiento">
+      <DiscoveryPageContent />
+    </VerticalPageShell>
   );
 }

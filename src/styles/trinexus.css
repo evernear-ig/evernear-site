@@ -3,6 +3,8 @@
   --space:#070B1A;--space-2:#0D1330;--space-3:#141B3D;
   --violet:#4B2FA6;--violet-deep:#2E1A6E;--violet-soft:#8A6DE6;
   --green:#2EE59D;--green-ink:#118C5B;
+  --eco-tourism:#1A8A6B;--eco-education:#2B6CB0;--eco-discovery:#4B2FA6;--eco-events:#D97706;--eco-commerce:#B45309;
+  --city-pi:#1A8A6B;--city-foz:#2B6CB0;--city-cde:#B45309;
   --white:#F6F7FB;--gray:#E4E7EF;--gray-2:#B8BDCB;
   --ink:#0B0F24;--ink-2:#4A5068;
   --line:rgba(255,255,255,.12);--line-dark:rgba(11,15,36,.12);
@@ -586,7 +588,6 @@ figcaption.ph-meta{margin-top:10px;color:var(--ink-2)}
 
 /* ecosystem product pages */
 .eco-page{flex:1;display:flex;flex-direction:column}
-.eco-hero{padding:140px 0 72px;min-height:auto}
 .eco-hero .lead{max-width:42em;margin-top:1.2em}
 .eco-breadcrumb{display:flex;align-items:center;gap:10px;margin-bottom:28px;font-family:var(--font-head);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-2)}
 .eco-breadcrumb a{color:var(--gray-2);transition:color .2s}
@@ -605,3 +606,90 @@ figcaption.ph-meta{margin-top:10px;color:var(--ink-2)}
 .eco-nav-links a{font-family:var(--font-head);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--line-dark);border-radius:999px;color:var(--ink-2);transition:border-color .2s,color .2s,background .2s}
 .eco-nav-links a:hover{border-color:var(--violet);color:var(--violet)}
 .eco-nav-links a.active{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.eco-hero{position:relative;overflow:hidden;padding:0;min-height:clamp(320px,45vw,480px);display:flex;align-items:flex-end}
+.eco-hero-bg{position:absolute;inset:0}
+.eco-hero-photo{position:absolute;inset:0}
+.eco-hero-photo .ph{height:100%;min-height:100%;aspect-ratio:auto;border:0}
+.eco-hero-photo img{width:100%;height:100%;object-fit:cover}
+.eco-hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,26,.4) 0%,rgba(7,11,26,.88) 100%)}
+.eco-hero-content{position:relative;padding:140px 0 56px;z-index:1}
+.eco-hero--tourism{border-top:4px solid var(--eco-tourism)}
+.eco-hero--education{border-top:4px solid var(--eco-education)}
+.eco-hero--discovery{border-top:4px solid var(--eco-discovery)}
+.eco-hero--events{border-top:4px solid var(--eco-events)}
+.eco-hero--commerce{border-top:4px solid var(--eco-commerce)}
+.city-tabs,.eco-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.city-tabs button,.eco-tabs button{font-family:var(--font-head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--line-dark);border-radius:999px;color:var(--ink-2);transition:all .2s}
+.city-tabs button:hover,.eco-tabs button:hover{border-color:var(--violet);color:var(--violet)}
+.city-tabs button.active,.eco-tabs button.active{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.city-panel-photo{margin-bottom:24px;border:1px solid var(--line-dark)}
+.city-panel-photo .ph{aspect-ratio:21/9;min-height:200px}
+.source-attribution{margin:24px 0;padding:20px;background:#EEF0F6;border-left:4px solid var(--eco-tourism)}
+.source-attribution p{font-size:.9rem;color:var(--ink-2);max-width:none;margin-top:8px}
+.source-note{font-size:.85rem!important;font-style:italic}
+.eco-badge{display:inline-block;font-family:var(--font-head);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.eco-badge--candidate{background:rgba(217,119,6,.15);color:#B45309}
+.eco-badge--confirmed{background:rgba(26,138,107,.15);color:var(--eco-tourism)}
+.eco-badge--unavailable{background:rgba(75,47,166,.1);color:var(--violet)}
+.tourism-links{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.tourism-links a{display:block;padding:14px 18px;border:1px solid var(--line-dark);font-family:var(--font-head);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;transition:border-color .2s,color .2s}
+.tourism-links a:hover{border-color:var(--eco-tourism);color:var(--eco-tourism)}
+.regional-block{margin-top:56px;padding-top:48px;border-top:1px solid var(--line-dark)}
+.eco-card-static{padding:24px;border:1px solid var(--line-dark);background:var(--white);height:100%}
+.eco-card-static h3{font-family:var(--font-head);font-size:1rem;text-transform:uppercase;margin-bottom:10px}
+.eco-card-static p{font-size:.92rem;color:var(--ink-2);max-width:none}
+.route-cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.city-badge{display:inline-block;font-family:var(--font-head);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--line-dark)}
+.city-badge--pi{border-color:var(--city-pi);color:var(--city-pi)}
+.city-badge--foz{border-color:var(--city-foz);color:var(--city-foz)}
+.city-badge--cde{border-color:var(--city-cde);color:var(--city-cde)}
+.eco-filters{display:flex;flex-wrap:wrap;gap:16px 24px;margin-bottom:32px}
+.eco-filter{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--ink-2)}
+.eco-filter select{padding:10px 14px;border:1px solid var(--line-dark);border-radius:8px;font:inherit;background:var(--white);min-width:160px}
+.eco-entity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:24px;list-style:none;margin:0;padding:0}
+.eco-entity-card{display:flex;flex-direction:column;border:1px solid var(--line-dark);background:var(--white);transition:transform .25s,box-shadow .25s,border-color .25s;height:100%;overflow:hidden}
+.eco-entity-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px -20px rgba(75,47,166,.2)}
+.eco-entity-card--tourism{border-top:3px solid var(--eco-tourism)}
+.eco-entity-card--education{border-top:3px solid var(--eco-education)}
+.eco-entity-card--discovery{border-top:3px solid var(--eco-discovery)}
+.eco-entity-card--events{border-top:3px solid var(--eco-events)}
+.eco-entity-card--commerce{border-top:3px solid var(--eco-commerce)}
+.eco-entity-card-img{aspect-ratio:16/9;overflow:hidden}
+.eco-entity-card-img .ph{height:100%;border:0;border-radius:0}
+.eco-entity-card-body{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.eco-entity-card h3{font-family:var(--font-head);font-size:1.05rem;text-transform:uppercase;letter-spacing:.02em}
+.eco-entity-sub{font-size:.88rem;color:var(--violet);max-width:none}
+.eco-entity-desc{font-size:.9rem;color:var(--ink-2);flex:1;max-width:none;line-height:1.5}
+.eco-entity-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.eco-entity-meta{font-size:.75rem;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em}
+.eco-entity-badge{display:inline-block;font-family:var(--font-head);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;background:var(--tint);color:var(--ink-2);border-radius:999px;align-self:flex-start}
+.eco-actions{margin-bottom:28px}
+.eco-detail{max-width:720px}
+.eco-detail-photo{margin-bottom:24px;border:1px solid var(--line-dark)}
+.eco-detail-photo .ph{aspect-ratio:16/9}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:20px 0 0;padding:0}
+.skill-tags li{font-size:.78rem;padding:6px 12px;background:var(--tint);border-radius:999px;color:var(--ink-2)}
+.eco-form{display:flex;flex-direction:column;gap:18px;max-width:480px}
+.eco-form label{display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--ink-2)}
+.eco-form input,.eco-form textarea,.eco-form select{padding:12px 14px;border:1px solid var(--line-dark);border-radius:8px;font:inherit}
+.form-ok{color:var(--green-ink);font-size:.9rem;margin-top:8px}
+.form-err{color:#c53030;font-size:.9rem;margin-top:8px}
+.promo-box{margin:24px 0;padding:20px;background:linear-gradient(135deg,rgba(180,83,9,.08),rgba(46,229,157,.08));border:1px solid var(--line-dark);border-left:4px solid var(--eco-commerce)}
+.promo-box p{max-width:none;margin-top:8px}
+.qr-block{margin:32px 0;padding:24px;background:var(--tint);border:1px solid var(--line-dark)}
+.qr-block h3{font-family:var(--font-head);font-size:1rem;text-transform:uppercase;margin-bottom:8px}
+.qr-url{margin-top:12px;font-size:.78rem;color:var(--ink-2);word-break:break-all}
+.qr-url code{font-family:monospace}
+.loyalty-bar{height:8px;background:var(--line-dark);border-radius:999px;margin:12px 0;overflow:hidden}
+.loyalty-fill{height:100%;background:var(--eco-commerce);border-radius:999px;transition:width .3s}
+.reward-msg{color:var(--green-ink);font-weight:600;margin:12px 0}
+.panfleto-page{display:flex;flex-direction:column;gap:48px}
+.panfleto-section h2{font-family:var(--font-head);font-size:1.2rem;text-transform:uppercase;margin-bottom:10px}
+.panfleto-preview h2{font-family:var(--font-head);font-size:1.1rem;text-transform:uppercase;margin-bottom:20px}
+.panfleto-email{background:var(--white);border:1px solid var(--line-dark);padding:28px;max-width:560px}
+.panfleto-email header{display:flex;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:2px solid var(--green)}
+.panfleto-email h3{font-size:.9rem;text-transform:uppercase;margin:20px 0 10px;color:var(--violet)}
+.panfleto-email ul{list-style:none;padding:0;margin:0}
+.panfleto-email li{padding:8px 0;border-bottom:1px solid var(--line-dark);font-size:.9rem;max-width:none}
+.qr-scan-page{max-width:480px;text-align:center;padding:40px 0}
+.scan-ok{color:var(--green-ink);font-size:1.1rem;margin:20px 0}

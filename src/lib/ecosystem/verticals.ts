@@ -5,6 +5,8 @@ export const ECOSYSTEM_VERTICALS = [
     navKey: "nav.tourism",
     titleKey: "eco.tourism.h",
     leadKey: "eco.tourism.lead",
+    accent: "tourism",
+    imageKey: "ecosystem.tourism",
   },
   {
     slug: "educacion",
@@ -12,6 +14,8 @@ export const ECOSYSTEM_VERTICALS = [
     navKey: "nav.education",
     titleKey: "eco.education.h",
     leadKey: "eco.education.lead",
+    accent: "education",
+    imageKey: "ecosystem.education",
   },
   {
     slug: "descubrimiento",
@@ -19,6 +23,8 @@ export const ECOSYSTEM_VERTICALS = [
     navKey: "nav.discovery",
     titleKey: "eco.discovery.h",
     leadKey: "eco.discovery.lead",
+    accent: "discovery",
+    imageKey: "ecosystem.discovery",
   },
   {
     slug: "eventos",
@@ -26,6 +32,8 @@ export const ECOSYSTEM_VERTICALS = [
     navKey: "nav.events",
     titleKey: "eco.events.h",
     leadKey: "eco.events.lead",
+    accent: "events",
+    imageKey: "ecosystem.events",
   },
   {
     slug: "comercios",
@@ -33,6 +41,8 @@ export const ECOSYSTEM_VERTICALS = [
     navKey: "nav.commerce",
     titleKey: "eco.commerce.h",
     leadKey: "eco.commerce.lead",
+    accent: "commerce",
+    imageKey: "ecosystem.commerce",
   },
 ] as const;
 
