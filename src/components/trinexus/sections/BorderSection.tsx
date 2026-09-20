@@ -3,7 +3,6 @@
 import { useCallback, useRef, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
@@ -80,7 +79,6 @@ export function BorderSection() {
 
   return (
     <section className="dark" id="border">
-      <Seam />
       <div className="wrap border-grid">
         <Reveal className="stack b-text">
           <h2 className="h-xl">

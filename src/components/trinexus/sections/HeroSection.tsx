@@ -159,7 +159,6 @@ export function HeroSection() {
           </svg>
         </div>
       </div>
-      <div className="scroll-hint" aria-hidden="true" />
     </section>
   );
 }
