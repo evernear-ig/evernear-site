@@ -1,6 +1,6 @@
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { T, THtml } from "@/components/trinexus/ui/T";
+import { T } from "@/components/trinexus/ui/T";
 
 const WHO = [
   { key: "w.students" },
@@ -10,6 +10,29 @@ const WHO = [
   { key: "w.unis" },
   { key: "w.orgs" },
   { text: "Builders" },
+] as const;
+
+const PARTNERS = [
+  {
+    title: "part.1",
+    body: "part.1.p",
+    subject: "Technology partnership",
+  },
+  {
+    title: "part.2",
+    body: "part.2.p",
+    subject: "Education partnership",
+  },
+  {
+    title: "part.3",
+    body: "part.3.p",
+    subject: "Community partnership",
+  },
+  {
+    title: "part.4",
+    body: "part.4.p",
+    subject: "Institutional partnership",
+  },
 ] as const;
 
 export function FoundingSection() {
@@ -28,7 +51,7 @@ export function FoundingSection() {
         </g>
       </svg>
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
-        <Reveal style={{ maxWidth: "42em" }}>
+        <Reveal className="founding-intro">
           <div className="observer">
             <span>
               <T k="found.from" />
@@ -41,11 +64,8 @@ export function FoundingSection() {
           <h2 className="h-xl">
             <T k="found.h" />
           </h2>
-          <p className="lead" style={{ marginTop: "22px" }}>
-            <T k="found.sub" />
-          </p>
-          <p style={{ marginTop: "18px" }}>
-            <T k="found.p" />
+          <p className="lead founding-lead">
+            <T k="found.lead" />
           </p>
           <div className="who">
             {WHO.map((item, index) => (
@@ -57,9 +77,25 @@ export function FoundingSection() {
           <div className="btns">
             <JoinButton className="btn btn-green" />
           </div>
-          <p className="quote" style={{ marginTop: "56px", color: "var(--white)" }}>
-            <THtml k="found.q" />
-          </p>
+        </Reveal>
+        <Reveal className="founding-partners" id="partners">
+          <div className="partners">
+            {PARTNERS.map((partner) => (
+              <div key={partner.title} className="partner">
+                <div>
+                  <h3>
+                    <T k={partner.title} />
+                  </h3>
+                  <p>
+                    <T k={partner.body} />
+                  </p>
+                </div>
+                <a href={`mailto:hello@trinexus.org?subject=${partner.subject}`}>
+                  <T k="part.cta" />
+                </a>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>

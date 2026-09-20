@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
@@ -30,6 +30,8 @@ const PEOPLE: {
   { id: "builder", roleText: "Builder", quoteKey: "ppl.builder.q", hubLine: "bl", activeNode: "bl" },
 ];
 
+const PEOPLE_PAGE_SIZE = 3;
+
 function PersonTri({
   hubLine,
   activeNode,
@@ -58,12 +60,68 @@ function PersonTri({
   );
 }
 
+type PersonCardProps = {
+  person: (typeof PEOPLE)[number];
+  active: boolean;
+  onToggle: () => void;
+};
+
+function PersonCard({ person, active, onToggle }: PersonCardProps) {
+  return (
+    <div
+      className={`pcard${active ? " on" : ""}`}
+      data-p={person.id}
+      tabIndex={0}
+      role="button"
+      aria-pressed={active}
+      onClick={onToggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onToggle();
+        }
+      }}
+    >
+      <TrinexusPhoto imageKey={`people.${person.id}`} />
+      <PersonTri hubLine={person.hubLine} activeNode={person.activeNode} />
+      <div className="txt">
+        <div className="role">
+          {person.roleKey ? <T k={person.roleKey} /> : person.roleText}
+        </div>
+        <div className="say">
+          <T k={person.quoteKey} />
+        </div>
+        <div className="meta ph-meta">
+          <span>
+            <T k="ppl.rep" />
+          </span>
+          <span>
+            <T k="ppl.region" />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function PeopleSection() {
   const [active, setActive] = useState<PersonId | null>(null);
+  const [page, setPage] = useState(0);
+
+  const pages = useMemo(() => {
+    const chunks: (typeof PEOPLE)[] = [];
+    for (let i = 0; i < PEOPLE.length; i += PEOPLE_PAGE_SIZE) {
+      chunks.push(PEOPLE.slice(i, i + PEOPLE_PAGE_SIZE));
+    }
+    return chunks;
+  }, []);
 
   const toggle = (id: PersonId) => {
     setActive((prev) => (prev === id ? null : id));
   };
+
+  const canPrev = page > 0;
+  const canNext = page < pages.length - 1;
 
   return (
     <section className="dark people-sec" id="people">
@@ -77,57 +135,70 @@ export function PeopleSection() {
             <T k="ppl.lead" />
           </p>
         </Reveal>
-        <Reveal className="people-grid" id="peopleGrid">
-          {PEOPLE.map((person) => {
-            const on = active === person.id;
-            return (
-              <div
-                key={person.id}
-                className={`pcard${on ? " on" : ""}`}
-                data-p={person.id}
-                tabIndex={0}
-                role="button"
-                aria-pressed={on}
-                onClick={() => toggle(person.id)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    toggle(person.id);
-                  }
-                }}
-              >
-                <TrinexusPhoto imageKey={`people.${person.id}`} />
-                <PersonTri hubLine={person.hubLine} activeNode={person.activeNode} />
-                <div className="txt">
-                  <div className="role">
-                    {person.roleKey ? <T k={person.roleKey} /> : person.roleText}
-                  </div>
-                  <div className="say">
-                    <T k={person.quoteKey} />
-                  </div>
-                  <div className="meta ph-meta">
-                    <span>
-                      <T k="ppl.rep" />
-                    </span>
-                    <span>
-                      <T k="ppl.region" />
-                    </span>
-                  </div>
+        <div className="people-carousel" id="peopleGrid">
+          <div className="people-carousel-viewport">
+            <div
+              className="people-carousel-track"
+              style={{
+                width: `${pages.length * 100}%`,
+                transform: `translateX(-${(page * 100) / pages.length}%)`,
+              }}
+            >
+              {pages.map((group, pageIndex) => (
+                <div
+                  key={pageIndex}
+                  className="people-carousel-page"
+                  style={{ width: `${100 / pages.length}%` }}
+                  aria-hidden={pageIndex !== page}
+                >
+                  {group.map((person) => (
+                    <PersonCard
+                      key={person.id}
+                      person={person}
+                      active={active === person.id}
+                      onToggle={() => toggle(person.id)}
+                    />
+                  ))}
                 </div>
+              ))}
+            </div>
+          </div>
+          {pages.length > 1 && (
+            <div className="people-carousel-nav">
+              <button
+                type="button"
+                className="people-carousel-btn"
+                onClick={() => setPage((p) => Math.max(0, p - 1))}
+                disabled={!canPrev}
+                aria-label="Anterior"
+              >
+                ←
+              </button>
+              <div className="people-carousel-dots" role="tablist" aria-label="Personas">
+                {pages.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    role="tab"
+                    className={index === page ? "active" : undefined}
+                    aria-selected={index === page}
+                    aria-label={`Grupo ${index + 1}`}
+                    onClick={() => setPage(index)}
+                  />
+                ))}
               </div>
-            );
-          })}
-        </Reveal>
-        <Reveal>
-          <p className="people-note">
-            <T k="ppl.note" />
-          </p>
-          <p className="people-cta">
-            <a href="/descubrimiento" className="btn btn-outline">
-              <T k="pil.link" />
-            </a>
-          </p>
-        </Reveal>
+              <button
+                type="button"
+                className="people-carousel-btn"
+                onClick={() => setPage((p) => Math.min(pages.length - 1, p + 1))}
+                disabled={!canNext}
+                aria-label="Siguiente"
+              >
+                →
+              </button>
+            </div>
+          )}
+        </div>
         <Reveal className="people-band">
           <TrinexusPhoto imageKey="band.community" />
           <svg className="nodes" viewBox="0 0 120 60" aria-hidden="true">
