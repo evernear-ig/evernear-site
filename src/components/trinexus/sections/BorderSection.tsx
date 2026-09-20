@@ -22,11 +22,13 @@ const CITY_ARIA: Record<CityId, string> = {
   pi: "Puerto Iguazú, Argentina",
 };
 
-const CITY_POS: Record<CityId, { cx: number; cy: number; tx: number; ty: number }> = {
-  cde: { cx: 175, cy: 255, tx: 70, ty: 243 },
-  foz: { cx: 360, cy: 240, tx: 372, ty: 243 },
-  pi: { cx: 375, cy: 398, tx: 288, ty: 415 },
+const CITY_POS: Record<CityId, { cx: number; cy: number }> = {
+  cde: { cx: 175, cy: 255 },
+  foz: { cx: 360, cy: 240 },
+  pi: { cx: 375, cy: 388 },
 };
+
+const MAP_FRAME = "scale(1.536 0.741)";
 
 export function BorderSection() {
   const { t } = useI18n();
@@ -127,12 +129,27 @@ export function BorderSection() {
         </div>
         <div className="border-right">
           <div className="b-map-wrap">
+            <div className="b-map-legend" aria-hidden="true">
+              <span className="b-map-lbl b-map-lbl-py">PARAGUAY</span>
+              <span className="b-map-lbl b-map-lbl-br">{String(t("c.br.up"))}</span>
+              <span className="b-map-lbl b-map-lbl-ar">ARGENTINA</span>
+              <span className={`b-map-city b-map-city-cde${displayCity === "cde" ? " on" : ""}`}>
+                Ciudad del Este
+              </span>
+              <span className={`b-map-city b-map-city-foz${displayCity === "foz" ? " on" : ""}`}>
+                Foz do Iguaçu
+              </span>
+              <span className={`b-map-city b-map-city-pi${displayCity === "pi" ? " on" : ""}`}>
+                Puerto Iguazú
+              </span>
+              <span className="b-map-hub">TRINEXUS</span>
+            </div>
             <svg
               ref={mapRef}
               className={`border-map${activeCountry ? ` on-${activeCountry}` : ""}`}
               id="borderMap"
-              viewBox="0 0 560 540"
-              preserveAspectRatio="xMidYMid slice"
+              viewBox="0 0 860 400"
+              preserveAspectRatio="xMidYMid meet"
               role="img"
               aria-label={String(t("a11y.map"))}
               onMouseLeave={handleMapLeave}
@@ -162,7 +179,7 @@ export function BorderSection() {
                 <stop offset="100%" stopColor="#0038A8" stopOpacity="0.28" />
               </linearGradient>
             </defs>
-            <g clipPath="url(#c)">
+            <g className="border-map-art" transform={MAP_FRAME} clipPath="url(#c)">
               <path className="topo" d="M0 60 C 120 40 200 90 300 70 S 480 40 560 60" />
               <path className="topo" d="M0 110 C 120 90 200 140 300 120 S 480 90 560 110" />
               <path className="topo" d="M0 160 C 100 140 180 190 260 170" />
@@ -200,15 +217,6 @@ export function BorderSection() {
                 className="river"
                 d="M258 322 C300 300 340 330 400 336 C450 340 500 330 560 345"
               />
-              <text className="lbl lbl-py" x="88" y="112">
-                PARAGUAY
-              </text>
-              <text className="lbl lbl-br" x="372" y="88" textAnchor="middle">
-                {String(t("c.br.up"))}
-              </text>
-              <text className="lbl lbl-ar" x="372" y="458" textAnchor="middle">
-                ARGENTINA
-              </text>
               {(["cde", "foz", "pi"] as const).map((city) => (
                 <line
                   key={`link-${city}`}
@@ -246,27 +254,11 @@ export function BorderSection() {
                 >
                   <circle className="cp" cx={CITY_POS[city].cx} cy={CITY_POS[city].cy} r="4" style={index ? { animationDelay: `${index * 1.2}s` } : undefined} />
                   <circle className="dot" cx={CITY_POS[city].cx} cy={CITY_POS[city].cy} r="4" />
-                  <text x={CITY_POS[city].tx} y={CITY_POS[city].ty}>
-                    {city === "cde"
-                      ? "Ciudad del Este"
-                      : city === "foz"
-                        ? "Foz do Iguaçu"
-                        : "Puerto Iguazú"}
-                  </text>
                 </g>
               ))}
               <circle className="hub-ring" cx="262" cy="322" r="18" />
               <circle className="hub-ring" cx="262" cy="322" r="32" style={{ opacity: 0.2 }} />
               <circle className="hub" cx="262" cy="322" r="7" />
-              <text
-                className="lbl"
-                x="262"
-                y="365"
-                textAnchor="middle"
-                style={{ fill: "#2EE59D" }}
-              >
-                TRINEXUS
-              </text>
             </g>
             </svg>
           </div>
