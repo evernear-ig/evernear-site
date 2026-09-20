@@ -1,7 +1,6 @@
 import { SiteShell } from "@/components/trinexus/SiteShell";
 import { BorderSection } from "@/components/trinexus/sections/BorderSection";
 import { EcosystemSection } from "@/components/trinexus/sections/EcosystemSection";
-import { FinalCtaSection } from "@/components/trinexus/sections/FinalCtaSection";
 import { FoundingSection } from "@/components/trinexus/sections/FoundingSection";
 import { FutureSection } from "@/components/trinexus/sections/FutureSection";
 import { HeroSection } from "@/components/trinexus/sections/HeroSection";
@@ -21,7 +20,6 @@ export default function Home() {
         <FoundingSection />
         <PartnersSection />
         <ManifestoSection />
-        <FinalCtaSection />
       </main>
     </SiteShell>
   );

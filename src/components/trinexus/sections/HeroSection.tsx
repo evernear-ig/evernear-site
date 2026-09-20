@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { LangNote } from "@/components/trinexus/ui/LangSwitch";
@@ -9,55 +8,9 @@ import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
 export function HeroSection() {
   const { t } = useI18n();
-  const heroRef = useRef<HTMLElement>(null);
-  const triRef = useRef<SVGSVGElement>(null);
-
-  useEffect(() => {
-    const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const tri = triRef.current;
-    const hero = heroRef.current;
-    if (rm || !tri || !hero) return;
-
-    let sy = 0;
-    let rx = 0;
-    let ry = 0;
-
-    const paint = () => {
-      tri.style.transform = `translateY(${sy * 0.12}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    };
-
-    const onMove = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse") return;
-      const r = hero.getBoundingClientRect();
-      ry = ((e.clientX - r.left) / r.width - 0.5) * 10;
-      rx = -((e.clientY - r.top) / r.height - 0.5) * 8;
-      paint();
-    };
-
-    const onLeave = () => {
-      rx = 0;
-      ry = 0;
-      paint();
-    };
-
-    const onScroll = () => {
-      sy = Math.min(window.scrollY, 800);
-      paint();
-    };
-
-    hero.addEventListener("pointermove", onMove);
-    hero.addEventListener("pointerleave", onLeave);
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      hero.removeEventListener("pointermove", onMove);
-      hero.removeEventListener("pointerleave", onLeave);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
 
   return (
-    <section className="hero" id="hero" ref={heroRef}>
+    <section className="hero" id="hero">
       <div className="hero-bg" aria-hidden="true">
         <TrinexusPhoto imageKey="hero.place" className="hero-photo" priority />
         <div className="glow g1" />
@@ -75,7 +28,7 @@ export function HeroSection() {
         </svg>
       </div>
       <div className="wrap">
-        <div>
+        <div className="hero-content">
           <LangNote />
           <div className="hero-desc">
             <T k="brand.desc" />
@@ -107,56 +60,6 @@ export function HeroSection() {
               <i />Paraguay
             </span>
           </div>
-        </div>
-        <div className="tri-wrap">
-          <svg
-            ref={triRef}
-            className="trinode"
-            id="trinode"
-            viewBox="0 0 500 460"
-            role="img"
-            aria-label={String(t("a11y.trinode"))}
-          >
-            <circle className="ring" cx="250" cy="287" r="150" />
-            <circle className="ring r2" cx="250" cy="287" r="205" />
-            <line className="edge" x1="250" y1="60" x2="440" y2="400" />
-            <line className="edge" x1="440" y1="400" x2="60" y2="400" />
-            <line className="edge" x1="60" y1="400" x2="250" y2="60" />
-            <line className="spoke" x1="250" y1="60" x2="250" y2="287" />
-            <line className="spoke" x1="440" y1="400" x2="250" y2="287" />
-            <line className="spoke" x1="60" y1="400" x2="250" y2="287" />
-            <circle className="npulse a" cx="250" cy="60" r="6" />
-            <circle className="npulse b" cx="440" cy="400" r="6" />
-            <circle className="npulse c" cx="60" cy="400" r="6" />
-            <circle className="node n1" cx="250" cy="60" r="6" />
-            <circle className="node n2" cx="440" cy="400" r="6" />
-            <circle className="node n3" cx="60" cy="400" r="6" />
-            <circle className="pulse" cx="250" cy="287" r="8" />
-            <circle className="center" cx="250" cy="287" r="9" />
-            <circle className="tv t1" r="3" />
-            <circle className="tv t2" r="3" />
-            <circle className="tv t3" r="3" />
-            <circle className="tv t4" r="2.5" />
-            <circle className="tv t5" r="2.5" />
-            <circle className="tv t6" r="2.5" />
-            <text x="250" y="36" textAnchor="middle">
-              PARAGUAY
-            </text>
-            <text x="440" y="424" textAnchor="middle">
-              {String(t("c.br.up"))}
-            </text>
-            <text x="60" y="424" textAnchor="middle">
-              ARGENTINA
-            </text>
-            <text
-              x="250"
-              y="322"
-              textAnchor="middle"
-              style={{ fill: "#2EE59D", letterSpacing: ".24em", fontSize: "12px" }}
-            >
-              TRINEXUS
-            </text>
-          </svg>
         </div>
       </div>
     </section>
