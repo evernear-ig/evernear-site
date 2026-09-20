@@ -88,31 +88,58 @@ export function BorderSection() {
   return (
     <section className="dark" id="border">
       <div className="wrap border-grid">
-        <Reveal className="stack b-text">
-          <h2 className="h-xl">
-            <THtml k="border.h" />
-          </h2>
-          <p className="lead">
-            <T k="border.lead" />
-          </p>
-          <p>
-            <T k="border.p1" />
-          </p>
-        </Reveal>
-        <div className="b-visual">
+        <div className="border-left">
+          <Reveal className="b-title">
+            <h2 className="h-xl">
+              <THtml k="border.h" />
+            </h2>
+          </Reveal>
+          <Reveal className="stack b-body">
+            <p className="lead">
+              <T k="border.lead" />
+            </p>
+            <p>
+              <T k="border.p1" />
+            </p>
+          </Reveal>
+          <Reveal delay={1} className="b-facts">
+            <div className="facts">
+              <div>
+                <strong>3</strong>
+                <span>
+                  <T k="border.f1" />
+                </span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span>
+                  <T k="border.f2" />
+                </span>
+              </div>
+              <div>
+                <strong>2</strong>
+                <span>
+                  <T k="border.f3" />
+                </span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+        <div className="border-right">
           <div className="b-map-wrap">
             <svg
               ref={mapRef}
               className={`border-map${activeCountry ? ` on-${activeCountry}` : ""}`}
               id="borderMap"
-              viewBox="0 0 560 520"
+              viewBox="0 0 560 540"
+              preserveAspectRatio="xMidYMid slice"
               role="img"
               aria-label={String(t("a11y.map"))}
               onMouseLeave={handleMapLeave}
             >
             <defs>
               <clipPath id="c">
-                <rect width="560" height="520" />
+                <rect width="560" height="540" />
               </clipPath>
               <linearGradient id="grad-ar" gradientUnits="userSpaceOnUse" x1="0" y1="410" x2="0" y2="520">
                 <stop offset="0%" stopColor="#74ACDF" stopOpacity="0.34" />
@@ -173,13 +200,13 @@ export function BorderSection() {
                 className="river"
                 d="M258 322 C300 300 340 330 400 336 C450 340 500 330 560 345"
               />
-              <text className="lbl lbl-py" x="70" y="120">
+              <text className="lbl lbl-py" x="88" y="112">
                 PARAGUAY
               </text>
-              <text className="lbl lbl-br" x="400" y="80">
+              <text className="lbl lbl-br" x="372" y="88" textAnchor="middle">
                 {String(t("c.br.up"))}
               </text>
-              <text className="lbl lbl-ar" x="400" y="470">
+              <text className="lbl lbl-ar" x="372" y="458" textAnchor="middle">
                 ARGENTINA
               </text>
               {(["cde", "foz", "pi"] as const).map((city) => (
@@ -234,7 +261,7 @@ export function BorderSection() {
               <text
                 className="lbl"
                 x="262"
-                y="370"
+                y="365"
                 textAnchor="middle"
                 style={{ fill: "#2EE59D" }}
               >
@@ -281,28 +308,6 @@ export function BorderSection() {
             </div>
           </div>
         </div>
-        <Reveal delay={1} className="b-facts">
-          <div className="facts">
-            <div>
-              <strong>3</strong>
-              <span>
-                <T k="border.f1" />
-              </span>
-            </div>
-            <div>
-              <strong>3</strong>
-              <span>
-                <T k="border.f2" />
-              </span>
-            </div>
-            <div>
-              <strong>2</strong>
-              <span>
-                <T k="border.f3" />
-              </span>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
