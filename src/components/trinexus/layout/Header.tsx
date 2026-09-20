@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
 import { useNavSolid } from "@/hooks/useNavSolid";
@@ -8,20 +8,34 @@ import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
 import { T } from "@/components/trinexus/ui/T";
 
-const NAV_LINKS = [
-  { href: "#about", key: "nav.about" },
-  { href: "#ecosystem", key: "nav.eco" },
+const ABOUT_SUB_LINKS = [
   { href: "#border", key: "nav.border" },
   { href: "#people", key: "nav.people" },
   { href: "#next", key: "nav.next" },
   { href: "#join", key: "nav.join" },
 ] as const;
 
+const NAV_LINKS = [{ href: "#ecosystem", key: "nav.eco" }] as const;
+
 export function Header() {
   const { t } = useI18n();
   const { closeJoin } = useJoinModal();
   const solid = useNavSolid();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const aboutCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openAboutMenu = () => {
+    if (aboutCloseTimer.current) {
+      clearTimeout(aboutCloseTimer.current);
+      aboutCloseTimer.current = null;
+    }
+    setAboutOpen(true);
+  };
+
+  const closeAboutMenu = () => {
+    aboutCloseTimer.current = setTimeout(() => setAboutOpen(false), 150);
+  };
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -41,12 +55,14 @@ export function Header() {
   useEffect(() => {
     return () => {
       document.body.style.overflow = "";
+      if (aboutCloseTimer.current) clearTimeout(aboutCloseTimer.current);
     };
   }, []);
 
   const onNavClick = () => {
     closeMenu();
     closeJoin();
+    setAboutOpen(false);
   };
 
   return (
@@ -74,6 +90,48 @@ export function Header() {
           </a>
           <nav aria-label={String(t("a11y.mainnav"))}>
             <ul className="nav-links">
+              <li
+                className={`nav-dropdown${aboutOpen ? " open" : ""}`}
+                onMouseEnter={openAboutMenu}
+                onMouseLeave={closeAboutMenu}
+              >
+                <a
+                  href="#top"
+                  className="nav-dropdown-trigger"
+                  aria-expanded={aboutOpen}
+                  aria-haspopup="true"
+                >
+                  <T k="nav.about" />
+                  <svg
+                    className="nav-dropdown-chevron"
+                    viewBox="0 0 12 12"
+                    width="10"
+                    height="10"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 4 L6 8 L10 4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
+                <ul
+                  className="nav-dropdown-menu"
+                  aria-label={String(t("a11y.aboutnav"))}
+                >
+                  {ABOUT_SUB_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} onClick={() => setAboutOpen(false)}>
+                        <T k={link.key} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a href={link.href}>
@@ -103,6 +161,16 @@ export function Header() {
         </div>
       </header>
       <div className={`mobile-menu${menuOpen ? " open" : ""}`} id="mobileMenu">
+        <a href="#top" onClick={onNavClick}>
+          <T k="nav.about" />
+        </a>
+        <div className="mobile-submenu" aria-label={String(t("a11y.aboutnav"))}>
+          {ABOUT_SUB_LINKS.map((link) => (
+            <a key={link.href} href={link.href} onClick={onNavClick}>
+              <T k={link.key} />
+            </a>
+          ))}
+        </div>
         {NAV_LINKS.map((link) => (
           <a key={link.href} href={link.href} onClick={onNavClick}>
             <T k={link.key} />
