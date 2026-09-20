@@ -9,7 +9,7 @@ const PILLARS = [
     title: "pil.learn",
     body: "pil.learn.p",
     more: "pil.learn.m",
-    href: "#learn",
+    href: "/educacion",
     icon: (
       <svg viewBox="0 0 52 52" aria-hidden="true">
         <circle cx="26" cy="26" r="20" />
@@ -24,7 +24,7 @@ const PILLARS = [
     title: "pil.connect",
     body: "pil.connect.p",
     more: "pil.connect.m",
-    href: "#connect",
+    href: "/descubrimiento",
     icon: (
       <svg viewBox="0 0 52 52" aria-hidden="true">
         <circle cx="10" cy="26" r="4" />
@@ -42,7 +42,7 @@ const PILLARS = [
     title: "pil.build",
     body: "pil.build.p",
     more: "pil.build.m",
-    href: "#build",
+    href: "/eventos",
     icon: (
       <svg viewBox="0 0 52 52" aria-hidden="true">
         <rect x="8" y="30" width="36" height="14" />
@@ -57,7 +57,7 @@ const PILLARS = [
     title: "pil.access",
     body: "pil.access.p",
     more: "pil.access.m",
-    href: "#access",
+    href: "/descubrimiento?tab=opportunities",
     icon: (
       <svg viewBox="0 0 52 52" aria-hidden="true">
         <path d="M8 40 L26 12 L44 40" />

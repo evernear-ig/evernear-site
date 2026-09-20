@@ -1,13 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { OPPORTUNITIES, PROFILES } from "@/data/discovery";
 import { EntityCard } from "./EntityCard";
 import { FilterBar } from "./FilterBar";
 import { T } from "@/components/trinexus/ui/T";
 
 export function DiscoveryPageContent() {
-  const [tab, setTab] = useState<"people" | "opportunities">("people");
+  const searchParams = useSearchParams();
+  const initialTab =
+    searchParams.get("tab") === "opportunities" ? "opportunities" : "people";
+  const [tab, setTab] = useState<"people" | "opportunities">(initialTab);
   const [city, setCity] = useState("all");
 
   const profiles = useMemo(() => {

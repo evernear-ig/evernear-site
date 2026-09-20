@@ -122,6 +122,11 @@ export function PeopleSection() {
           <p className="people-note">
             <T k="ppl.note" />
           </p>
+          <p className="people-cta">
+            <a href="/descubrimiento" className="btn btn-outline">
+              <T k="pil.link" />
+            </a>
+          </p>
         </Reveal>
         <Reveal className="people-band">
           <TrinexusPhoto imageKey="band.community" />

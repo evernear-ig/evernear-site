@@ -1,7 +1,9 @@
+import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
+
+type BuildSectionVariant = "full" | "events" | "community";
 
 const JOURNEY = [
   { key: "build.j1" },
@@ -19,11 +21,21 @@ const TAGS = [
   { titleKey: "build.t5", subKey: "build.t5.s" },
 ] as const;
 
-export function BuildSection() {
+export function BuildSection({
+  embedded = false,
+  variant = "full",
+}: {
+  embedded?: boolean;
+  variant?: BuildSectionVariant;
+}) {
+  const showHeader = variant !== "community";
+  const showPhoto = variant !== "community";
+  const showJourney = variant === "full" || variant === "events";
+  const showTags = variant === "full" || variant === "community";
+
   return (
-    <section className="tint" id="build">
-      <Seam />
-      <div className="wrap">
+    <EcoSectionFrame embedded={embedded} className="tint" id="build">
+      {showHeader ? (
         <Reveal className="grid g-7-5" style={{ alignItems: "end" }}>
           <h2 className="h-xl">
             <T k="build.h" />
@@ -32,6 +44,8 @@ export function BuildSection() {
             <T k="build.lead" />
           </p>
         </Reveal>
+      ) : null}
+      {showPhoto ? (
         <Reveal>
           <figure className="ph-band">
             <TrinexusPhoto imageKey="build.makers" />
@@ -40,6 +54,8 @@ export function BuildSection() {
             </figcaption>
           </figure>
         </Reveal>
+      ) : null}
+      {showJourney ? (
         <Reveal className="journey" a11yKey="build.j.aria">
           {JOURNEY.map((step, index) => (
             <div key={step.key} className="step">
@@ -50,6 +66,8 @@ export function BuildSection() {
             </div>
           ))}
         </Reveal>
+      ) : null}
+      {showTags ? (
         <Reveal className="tags-lg">
           {TAGS.map((tag) => (
             <div key={tag.subKey}>
@@ -60,12 +78,14 @@ export function BuildSection() {
             </div>
           ))}
         </Reveal>
+      ) : null}
+      {showJourney || showTags ? (
         <Reveal>
           <p className="quote" style={{ marginTop: "64px" }}>
             <THtml k="build.q" />
           </p>
         </Reveal>
-      </div>
-    </section>
+      ) : null}
+    </EcoSectionFrame>
   );
 }

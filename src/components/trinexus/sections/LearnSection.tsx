@@ -1,6 +1,6 @@
 import { I18nAria } from "@/components/trinexus/ui/I18nAria";
+import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
@@ -20,11 +20,9 @@ const LIST_ITEMS = [
   { title: "learn.f6", sub: "learn.f6.s" },
 ] as const;
 
-export function LearnSection() {
+export function LearnSection({ embedded = false }: { embedded?: boolean }) {
   return (
-    <section className="light" id="learn">
-      <Seam />
-      <div className="wrap">
+    <EcoSectionFrame embedded={embedded} className="light" id="learn">
         <Reveal className="grid g-5-7">
           <h2 className="h-xl">
             <T k="learn.h" />
@@ -99,7 +97,6 @@ export function LearnSection() {
             </p>
           </div>
         </Reveal>
-      </div>
-    </section>
+    </EcoSectionFrame>
   );
 }

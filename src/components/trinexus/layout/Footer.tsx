@@ -9,7 +9,7 @@ import {
 } from "@/lib/ecosystem/verticals";
 
 const COM_LINKS = [
-  { href: "/#next", key: "foot.events" },
+  { href: "/eventos", key: "foot.events" },
   { href: "/#join", key: "foot.com" },
   { href: "/#partners", key: "foot.partners" },
 ] as const;

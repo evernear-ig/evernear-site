@@ -49,7 +49,7 @@ export const ECOSYSTEM_VERTICALS = [
 export const ABOUT_NAV_LINKS = [
   { href: "/#border", key: "nav.border" },
   { href: "/#people", key: "nav.people" },
-  { href: "/#next", key: "nav.next" },
+  { href: "/eventos", key: "nav.next" },
   { href: "/#join", key: "nav.join" },
 ] as const;
 
