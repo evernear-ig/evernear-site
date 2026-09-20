@@ -36,6 +36,8 @@ export function BorderSection() {
 
   const displayCity = activeCity ?? stickyCity;
   const photoKey = displayCity ?? "all";
+  const activeCountry =
+    displayCity === "pi" ? "ar" : displayCity === "foz" ? "br" : displayCity === "cde" ? "py" : null;
 
   const renderCityInfo = useCallback(() => {
     const subj = String(t(`ph.${photoKey}`));
@@ -101,7 +103,7 @@ export function BorderSection() {
           <div className="b-map-wrap">
             <svg
               ref={mapRef}
-              className="border-map"
+              className={`border-map${activeCountry ? ` on-${activeCountry}` : ""}`}
               id="borderMap"
               viewBox="0 0 560 520"
               role="img"
@@ -112,6 +114,26 @@ export function BorderSection() {
               <clipPath id="c">
                 <rect width="560" height="520" />
               </clipPath>
+              <linearGradient id="grad-ar" gradientUnits="userSpaceOnUse" x1="0" y1="410" x2="0" y2="520">
+                <stop offset="0%" stopColor="#74ACDF" stopOpacity="0.34" />
+                <stop offset="46%" stopColor="#74ACDF" stopOpacity="0.34" />
+                <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.16" />
+                <stop offset="54%" stopColor="#74ACDF" stopOpacity="0.34" />
+                <stop offset="100%" stopColor="#74ACDF" stopOpacity="0.3" />
+              </linearGradient>
+              <linearGradient id="grad-br" gradientUnits="userSpaceOnUse" x1="300" y1="0" x2="560" y2="330">
+                <stop offset="0%" stopColor="#009C3B" stopOpacity="0.34" />
+                <stop offset="62%" stopColor="#009C3B" stopOpacity="0.3" />
+                <stop offset="88%" stopColor="#FFDF00" stopOpacity="0.14" />
+                <stop offset="100%" stopColor="#002776" stopOpacity="0.22" />
+              </linearGradient>
+              <linearGradient id="grad-py" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="400">
+                <stop offset="0%" stopColor="#D52B1E" stopOpacity="0.32" />
+                <stop offset="33%" stopColor="#D52B1E" stopOpacity="0.32" />
+                <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.14" />
+                <stop offset="67%" stopColor="#0038A8" stopOpacity="0.32" />
+                <stop offset="100%" stopColor="#0038A8" stopOpacity="0.28" />
+              </linearGradient>
             </defs>
             <g clipPath="url(#c)">
               <path className="topo" d="M0 60 C 120 40 200 90 300 70 S 480 40 560 60" />
@@ -122,14 +144,17 @@ export function BorderSection() {
               <path className="topo" d="M0 500 C 100 480 200 530 300 510 S 480 480 560 500" />
               <path
                 className="fill py"
+                fill="url(#grad-py)"
                 d="M0 0 H300 C280 60 250 120 250 200 C250 240 240 270 235 320 C230 350 240 380 260 400 L0 400 Z"
               />
               <path
                 className="fill br"
+                fill="url(#grad-br)"
                 d="M300 0 H560 V330 L400 330 C380 340 320 300 290 300 C270 280 265 240 265 200 C265 120 285 60 300 0 Z"
               />
               <path
                 className="fill ar"
+                fill="url(#grad-ar)"
                 d="M0 410 L260 410 C300 360 340 330 400 340 L560 340 V520 H0 Z"
               />
               <path
@@ -148,13 +173,13 @@ export function BorderSection() {
                 className="river"
                 d="M258 322 C300 300 340 330 400 336 C450 340 500 330 560 345"
               />
-              <text className="lbl" x="70" y="120">
+              <text className="lbl lbl-py" x="70" y="120">
                 PARAGUAY
               </text>
-              <text className="lbl" x="400" y="80">
+              <text className="lbl lbl-br" x="400" y="80">
                 {String(t("c.br.up"))}
               </text>
-              <text className="lbl" x="400" y="470">
+              <text className="lbl lbl-ar" x="400" y="470">
                 ARGENTINA
               </text>
               {(["cde", "foz", "pi"] as const).map((city) => (
