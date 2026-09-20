@@ -1,8 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { T } from "@/components/trinexus/ui/T";
+
+const DEMOS = [
+  { token: "evt-trinexus-001", labelKey: "fut.qr.event", href: "/eventos/trinexus-001" },
+  { token: "biz-cafe-frontera", labelKey: "fut.qr.business", href: "/comercios/cafe-frontera" },
+  { token: "biz-verduleria-si", labelKey: "fut.qr.store", href: "/comercios/verduleria-san-ignacio" },
+] as const;
 
 export function QrScanContent() {
   const params = useSearchParams();
@@ -30,7 +37,27 @@ export function QrScanContent() {
   }, [token]);
 
   if (!token) {
-    return <p><T k="qr.no.token" /></p>;
+    return (
+      <div className="qr-scan-page">
+        <h2 className="h-xl" style={{ fontSize: "clamp(1.4rem,3vw,2rem)" }}>
+          <T k="qr.scan.title" />
+        </h2>
+        <p className="lead"><T k="qr.demo.lead" /></p>
+        <ul className="qr-demo-list">
+          {DEMOS.map((demo) => (
+            <li key={demo.token}>
+              <Link
+                href={`/qr/escanear?token=${encodeURIComponent(demo.token)}`}
+                className="qr-demo-card"
+              >
+                <strong><T k={demo.labelKey} /></strong>
+                <span><T k="qr.simulate" /></span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 
   return (
