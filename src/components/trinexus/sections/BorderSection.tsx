@@ -104,28 +104,6 @@ export function BorderSection() {
               <T k="border.p1" />
             </p>
           </Reveal>
-          <Reveal delay={1} className="b-facts">
-            <div className="facts">
-              <div>
-                <strong>3</strong>
-                <span>
-                  <T k="border.f1" />
-                </span>
-              </div>
-              <div>
-                <strong>3</strong>
-                <span>
-                  <T k="border.f2" />
-                </span>
-              </div>
-              <div>
-                <strong>2</strong>
-                <span>
-                  <T k="border.f3" />
-                </span>
-              </div>
-            </div>
-          </Reveal>
         </div>
         <div className="border-right">
           <div className="b-map-wrap">

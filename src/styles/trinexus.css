@@ -182,7 +182,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .border-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,5vw,72px);align-items:start}
 .border-left,.border-right{display:flex;flex-direction:column;min-width:0}
 .border-left{gap:clamp(24px,3vw,36px)}
-.border-right{gap:clamp(18px,2.2vw,24px)}
+.border-right{gap:0}
 .border-grid .b-title .h-xl{text-wrap:balance;margin:0}
 .border-grid .b-map-wrap{position:relative;width:100%;aspect-ratio:2.15/1;min-height:0;overflow:hidden;border-radius:6px;background:linear-gradient(180deg,rgba(12,18,36,.65),rgba(6,10,22,.9))}
 .border-grid .b-map-wrap .border-map{display:block;width:100%;height:100%;-webkit-mask-image:none;mask-image:none;filter:drop-shadow(0 16px 36px rgba(0,0,0,.35))}
@@ -200,16 +200,16 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .b-map-city-foz.on{color:var(--country-br-2)}
 .b-map-city-pi.on{color:var(--country-ar)}
 .b-map-hub{left:47%;top:64%;transform:translateX(-50%);color:var(--green);font-size:clamp(.58rem,.74vw,.74rem);font-weight:700;letter-spacing:.18em}
-.border-grid .b-facts .facts{margin-top:0}
-.border-city-panel .city-tabs{margin-top:0;margin-bottom:10px;gap:5px}
+.border-city-panel{width:100%;margin-top:0;display:flex;flex-direction:column}
+.border-city-panel .city-tabs{display:flex;justify-content:center;width:100%;margin:clamp(6px,1vw,9px) 0 clamp(8px,1.2vw,11px);gap:5px}
 .border-city-panel .city-tabs button{font-size:.66rem;padding:7px 11px;letter-spacing:.08em}
-.border-city-panel .city-photo{aspect-ratio:21/9;max-height:min(24vh,158px)}
-.border-city-panel .city-photo .lab{left:14px;right:14px;bottom:12px}
-.border-city-panel .city-photo .lab b{font-size:.92rem}
-.border-city-panel .city-photo .lab span{font-size:.76rem;margin-top:2px}
-.border-city-panel .city-photo .lab .ph-meta{margin-top:6px;font-size:.7rem}
+.border-city-panel .city-photo{width:100%;aspect-ratio:2.15/1;max-height:none;border-radius:6px;overflow:hidden}
+.border-city-panel .city-photo .lab{left:14px;right:14px;bottom:10px}
+.border-city-panel .city-photo .lab b{font-size:.88rem}
+.border-city-panel .city-photo .lab span{font-size:.72rem;margin-top:2px;line-height:1.35}
+.border-city-panel .city-photo .lab .ph-meta{margin-top:4px;font-size:.66rem}
 @media(min-width:901px){.border-map{aspect-ratio:unset}}
-@media(max-width:900px){.border-grid{grid-template-columns:1fr;row-gap:28px}.border-left,.border-right{display:contents}.border-grid .b-title{order:1}.border-grid .b-map-wrap{order:2}.b-map-lbl{font-size:.74rem}.b-map-city{font-size:.66rem}.b-map-hub{font-size:.7rem}.border-grid .b-body{order:3}.border-grid .border-city-panel{order:4}.border-grid .b-facts{order:5}.border-map .dot{r:5}}
+@media(max-width:900px){.border-grid{grid-template-columns:1fr;row-gap:28px}.border-left,.border-right{display:contents}.border-grid .b-title{order:1}.border-grid .b-map-wrap{order:2}.b-map-lbl{font-size:.74rem}.b-map-city{font-size:.66rem}.b-map-hub{font-size:.7rem}.border-grid .b-body{order:3}.border-grid .border-city-panel{order:4}.border-map .dot{r:5}}
 .border-map .river{fill:none;stroke:var(--violet-soft);stroke-width:1.4;opacity:.75}
 .border-map .river-glow{fill:none;stroke:var(--violet-soft);stroke-width:8;opacity:.12;filter:blur(4px)}
 .border-map .topo{fill:none;stroke:rgba(255,255,255,.06);stroke-width:1}
@@ -242,11 +242,6 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .border-map .mv.m4{offset-path:path("M175 255 L360 240");animation-delay:1.2s;animation-duration:6s}
 .city-info{margin-top:22px;min-height:52px;border-left:2px solid var(--green);padding-left:16px;font-size:.92rem;color:var(--text-on-dark-muted);transition:opacity .3s}
 .city-info b{display:block;color:var(--white);font-family:var(--font-head);letter-spacing:.02em}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;border-top:1px solid var(--line);padding-top:32px}
-.facts div{font-family:var(--font-head)}
-.facts strong{display:block;font-size:2.2rem;color:var(--green);letter-spacing:-.03em;line-height:1}
-.facts span{font-size:.85rem;color:var(--text-on-dark-muted);display:block;margin-top:8px;font-family:var(--font-body)}
-@media(max-width:600px){.facts{grid-template-columns:1fr;gap:18px}}
 
 /* why */
 .why{padding:clamp(110px,15vw,210px) 0;overflow:hidden}
