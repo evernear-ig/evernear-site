@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import {
   NavDropdown,
@@ -21,9 +21,9 @@ export function Header() {
   const { closeJoin } = useJoinModal();
   const solid = useNavSolid();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const [ecoOpen, setEcoOpen] = useState(false);
-  const dropdown = useNavDropdown();
+  const { activeMenu, open, scheduleClose, closeNow, cleanup } =
+    useNavDropdown();
+  const navRef = useRef<HTMLElement>(null);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -43,21 +43,49 @@ export function Header() {
   useEffect(() => {
     return () => {
       document.body.style.overflow = "";
-      dropdown.cleanup();
+      cleanup();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- cleanup on unmount only
-  }, []);
+  }, [cleanup]);
+
+  useEffect(() => {
+    if (!activeMenu) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeNow();
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Node;
+      if (navRef.current && !navRef.current.contains(target)) {
+        closeNow();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [activeMenu, closeNow]);
 
   const onNavClick = () => {
     closeMenu();
     closeJoin();
-    setAboutOpen(false);
-    setEcoOpen(false);
+    closeNow();
   };
+
+  const navClass = [
+    "nav",
+    solid ? "solid" : "",
+    menuOpen ? "menu-open" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <>
-      <header className={`nav${solid ? " solid" : ""}`} id="nav">
+      <header className={navClass} id="nav">
         <div className="wrap">
           <a href="/" className="logo" aria-label={String(t("a11y.home"))}>
             <svg viewBox="0 0 40 40" aria-hidden="true">
@@ -74,25 +102,25 @@ export function Header() {
             </svg>
             TRINEXUS
           </a>
-          <nav aria-label={String(t("a11y.mainnav"))}>
-            <ul className="nav-links">
+          <nav ref={navRef} aria-label={String(t("a11y.mainnav"))}>
+            <ul className="nav-links" onMouseLeave={scheduleClose}>
               <NavDropdown
                 triggerHref="/"
                 triggerKey="nav.about"
                 subLinks={ABOUT_NAV_LINKS}
                 submenuAriaKey="a11y.aboutnav"
-                open={aboutOpen}
-                onOpen={() => dropdown.open(setAboutOpen)}
-                onClose={() => dropdown.scheduleClose(setAboutOpen)}
+                open={activeMenu === "about"}
+                onOpen={() => open("about")}
+                onCloseNow={closeNow}
               />
               <NavDropdown
                 triggerHref="/ecosistema"
                 triggerKey="nav.eco"
                 subLinks={ECOSYSTEM_NAV_LINKS}
                 submenuAriaKey="a11y.ecosystemnav"
-                open={ecoOpen}
-                onOpen={() => dropdown.open(setEcoOpen)}
-                onClose={() => dropdown.scheduleClose(setEcoOpen)}
+                open={activeMenu === "eco"}
+                onOpen={() => open("eco")}
+                onCloseNow={closeNow}
               />
             </ul>
           </nav>
@@ -101,7 +129,7 @@ export function Header() {
             <JoinButton className="btn btn-green btn-sm" />
             <button
               type="button"
-              className="burger"
+              className={`burger${menuOpen ? " open" : ""}`}
               id="burger"
               aria-label={String(t("a11y.menu"))}
               aria-expanded={menuOpen}

@@ -1,8 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
+
+export type NavMenuId = "about" | "eco";
 
 type SubLink = { href: string; key: string };
 
@@ -13,7 +15,7 @@ type NavDropdownProps = {
   submenuAriaKey: string;
   open: boolean;
   onOpen: () => void;
-  onClose: () => void;
+  onCloseNow: () => void;
   onSubLinkClick?: () => void;
 };
 
@@ -24,7 +26,7 @@ export function NavDropdown({
   submenuAriaKey,
   open,
   onOpen,
-  onClose,
+  onCloseNow,
   onSubLinkClick,
 }: NavDropdownProps) {
   const { t } = useI18n();
@@ -33,7 +35,6 @@ export function NavDropdown({
     <li
       className={`nav-dropdown${open ? " open" : ""}`}
       onMouseEnter={onOpen}
-      onMouseLeave={onClose}
     >
       <a
         href={triggerHref}
@@ -65,7 +66,7 @@ export function NavDropdown({
             <a
               href={link.href}
               onClick={() => {
-                onClose();
+                onCloseNow();
                 onSubLinkClick?.();
               }}
             >
@@ -79,6 +80,7 @@ export function NavDropdown({
 }
 
 export function useNavDropdown() {
+  const [activeMenu, setActiveMenu] = useState<NavMenuId | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearCloseTimer = () => {
@@ -88,19 +90,24 @@ export function useNavDropdown() {
     }
   };
 
-  const scheduleClose = (setOpen: (open: boolean) => void) => {
+  const open = useCallback((id: NavMenuId) => {
     clearCloseTimer();
-    closeTimer.current = setTimeout(() => setOpen(false), 150);
-  };
+    setActiveMenu(id);
+  }, []);
 
-  const open = (setOpen: (open: boolean) => void) => {
+  const scheduleClose = useCallback(() => {
     clearCloseTimer();
-    setOpen(true);
-  };
+    closeTimer.current = setTimeout(() => setActiveMenu(null), 150);
+  }, []);
 
-  const cleanup = () => {
+  const closeNow = useCallback(() => {
     clearCloseTimer();
-  };
+    setActiveMenu(null);
+  }, []);
 
-  return { open, scheduleClose, cleanup };
+  const cleanup = useCallback(() => {
+    clearCloseTimer();
+  }, []);
+
+  return { activeMenu, open, scheduleClose, closeNow, cleanup };
 }
