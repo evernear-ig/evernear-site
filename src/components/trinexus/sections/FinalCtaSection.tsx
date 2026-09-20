@@ -18,7 +18,7 @@ export function FinalCtaSection() {
         </Reveal>
         <Reveal delay={1} className="btns">
           <JoinButton className="btn btn-ink" />
-          <a href="#about" className="btn btn-outline-ink">
+          <a href="#manifesto" className="btn btn-outline-ink">
             <T k="cta.vision" />
           </a>
         </Reveal>

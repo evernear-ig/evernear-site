@@ -13,8 +13,6 @@ import { ManifestoSection } from "@/components/trinexus/sections/ManifestoSectio
 import { NextSection } from "@/components/trinexus/sections/NextSection";
 import { PartnersSection } from "@/components/trinexus/sections/PartnersSection";
 import { PeopleSection } from "@/components/trinexus/sections/PeopleSection";
-import { WhySection } from "@/components/trinexus/sections/WhySection";
-
 export default function Home() {
   return (
     <SiteShell>
@@ -23,7 +21,6 @@ export default function Home() {
         <HeroSection />
         <BorderSection />
         <PeopleSection />
-        <WhySection />
         <EcosystemSection />
         <LearnSection />
         <ConnectSection />
