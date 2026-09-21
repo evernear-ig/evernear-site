@@ -799,15 +799,16 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-card--featured{border-color:var(--green);position:relative}
 .eco-card-badge{display:inline-block;font-family:var(--font-head);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(26,138,107,.12);color:var(--green-ink);align-self:flex-start}
 .nav-dropdown--wide .nav-dropdown-menu{min-width:280px;padding:8px 0}
-.nav-dropdown--mega .nav-dropdown-menu{min-width:0;padding:0;border:0;background:transparent;box-shadow:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:8px}
-.nav-mega{display:flex;gap:0;list-style:none;margin:0;padding:0;background:rgba(7,11,26,.96);border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 48px -16px rgba(0,0,0,.55)}
-.nav-mega-col{min-width:220px;padding:16px 0;border-right:1px solid var(--line)}
+.nav-dropdown--mega{z-index:70}
+.nav-dropdown--mega .nav-dropdown-menu{min-width:0;display:flex;gap:0;padding:8px 0;position:absolute;top:calc(100% + 12px);left:100%;right:auto;transform:none;margin:0 0 0 16px;z-index:70}
+.nav-mega-col{min-width:196px;padding:6px 0;border-right:1px solid var(--line)}
 .nav-mega-col:last-child{border-right:0}
-.nav-mega-family{display:block;padding:10px 20px 12px;font-family:var(--font-head);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600;transition:color .2s}
-.nav-mega-family:hover{color:#5CF0B4}
+.nav-mega-family{display:block;padding:8px 18px 6px;font-family:var(--font-head);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);font-weight:400;transition:color .2s}
+.nav-mega-family:hover{color:var(--white)}
 .nav-mega-links{list-style:none;margin:0;padding:0}
-.nav-mega-links a{display:block;padding:8px 20px;font-family:var(--font-head);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-2);transition:background .2s,color .2s;white-space:nowrap}
+.nav-mega-links a{display:block;padding:10px 18px;font-size:.7rem;letter-spacing:.1em;color:var(--gray-2);transition:background .2s,color .2s;white-space:nowrap}
 .nav-mega-links a:hover{background:rgba(255,255,255,.06);color:var(--white)}
+@media(max-width:1320px){.nav-dropdown--mega .nav-dropdown-menu{margin-left:0}}
 .nav-dropdown-group{padding:6px 0}
 .nav-dropdown-group-label{display:block;padding:8px 16px 6px;font-family:var(--font-head);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2)}
 .nav-dropdown-group ul{list-style:none;margin:0;padding:0}
