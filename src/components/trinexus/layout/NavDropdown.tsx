@@ -15,6 +15,7 @@ type NavDropdownProps = {
   subLinks?: readonly SubLink[];
   subGroups?: readonly NavLinkGroup[];
   submenuAriaKey: string;
+  megaMenu?: boolean;
   open: boolean;
   onOpen: () => void;
   onCloseNow: () => void;
@@ -27,6 +28,7 @@ export function NavDropdown({
   subLinks,
   subGroups,
   submenuAriaKey,
+  megaMenu = false,
   open,
   onOpen,
   onCloseNow,
@@ -39,9 +41,16 @@ export function NavDropdown({
     onSubLinkClick?.();
   };
 
+  const menuClass = [
+    "nav-dropdown-menu",
+    megaMenu && subGroups ? "nav-mega" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <li
-      className={`nav-dropdown${open ? " open" : ""}${subGroups ? " nav-dropdown--wide" : ""}`}
+      className={`nav-dropdown${open ? " open" : ""}${megaMenu ? " nav-dropdown--mega" : subGroups ? " nav-dropdown--wide" : ""}`}
       onMouseEnter={onOpen}
     >
       <a
@@ -68,14 +77,18 @@ export function NavDropdown({
           />
         </svg>
       </a>
-      <ul className="nav-dropdown-menu" aria-label={String(t(submenuAriaKey))}>
+      <ul className={menuClass} aria-label={String(t(submenuAriaKey))}>
         {subGroups
           ? subGroups.map((group) => (
-              <li key={group.labelKey} className="nav-dropdown-group">
-                <span className="nav-dropdown-group-label">
+              <li key={group.labelKey} className="nav-mega-col">
+                <a
+                  href={group.href}
+                  className="nav-mega-family"
+                  onClick={handleLinkClick}
+                >
                   <T k={group.labelKey} />
-                </span>
-                <ul>
+                </a>
+                <ul className="nav-mega-links">
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <a href={link.href} onClick={handleLinkClick}>

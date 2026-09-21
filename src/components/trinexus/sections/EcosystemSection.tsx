@@ -58,14 +58,14 @@ export function EcosystemSection() {
           </p>
         </Reveal>
 
-        <Reveal className="areas-block">
+        <Reveal className="areas-block" id="comunidad">
           <h3 className="areas-family">
             <T k="nav.family.community" />
           </h3>
           <AreaGrid verticals={COMMUNITY_VERTICALS} />
         </Reveal>
 
-        <Reveal className="areas-block">
+        <Reveal className="areas-block" id="region">
           <h3 className="areas-family">
             <T k="nav.family.region" />
           </h3>

@@ -61,14 +61,14 @@ export function EcosystemIndexPage() {
         </section>
         <section className="light eco-body">
           <div className="wrap">
-            <header className="eco-catalog-head">
+            <header className="eco-catalog-head" id="comunidad">
               <h2 className="eco-catalog-title">
                 <T k="nav.family.community" />
               </h2>
             </header>
             <VerticalGrid verticals={COMMUNITY_VERTICALS} />
 
-            <header className="eco-catalog-head" style={{ marginTop: "48px" }}>
+            <header className="eco-catalog-head" id="region" style={{ marginTop: "48px" }}>
               <h2 className="eco-catalog-title">
                 <T k="nav.family.region" />
               </h2>
