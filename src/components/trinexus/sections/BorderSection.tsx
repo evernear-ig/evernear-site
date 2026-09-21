@@ -120,7 +120,7 @@ export function BorderSection() {
               <span className={`b-map-city b-map-city-pi${displayCity === "pi" ? " on" : ""}`}>
                 Puerto Iguazú
               </span>
-              <span className="b-map-hub">TRINEXUS</span>
+              <span className="b-map-hub">CONEXA</span>
             </div>
             <svg
               ref={mapRef}

@@ -3,10 +3,10 @@ import type { EventItem } from "@/lib/ecosystem/types";
 export const SEED_EVENTS: EventItem[] = [
   {
     slug: "trinexus-001",
-    title: "TRINEXUS 001 — Primer Encuentro",
+    title: "CONEXA 001 — Primer Encuentro",
     date: "2026-06-15",
     cityId: "pi",
-    organizer: "TRINEXUS",
+    organizer: "CONEXA",
     tags: ["innovación", "comunidad", "networking"],
     description:
       "El primer encuentro de personas interesadas en tecnología, innovación y el futuro de la Triple Frontera.",
@@ -39,7 +39,7 @@ export const SEED_EVENTS: EventItem[] = [
     title: "Activación Turística — Más allá de las Cataratas",
     date: "2026-07-01",
     cityId: "pi",
-    organizer: "TRINEXUS + Aliados",
+    organizer: "CONEXA + Aliados",
     tags: ["turismo", "región"],
     description:
       "Recorrido guiado mostrando que hay más región para explorar más allá de las Cataratas.",

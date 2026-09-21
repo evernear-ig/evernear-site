@@ -12,6 +12,8 @@ const COM_LINKS = [
   { href: "/eventos", key: "foot.events" },
   { href: "/#join", key: "foot.com" },
   { href: "/#partners", key: "foot.partners" },
+  { href: "/terminos", key: "legal.terms" },
+  { href: "/privacidad", key: "legal.privacy" },
 ] as const;
 
 const SOCIAL = [
@@ -42,7 +44,7 @@ export function Footer() {
                 <circle cx="5" cy="31" r="3" fill="#F6F7FB" />
                 <circle cx="20" cy="22" r="3.5" fill="#2EE59D" />
               </svg>
-              TRINEXUS
+              CONEXA
             </a>
             <p>
               <T k="foot.p" />
@@ -103,7 +105,7 @@ export function Footer() {
             </h4>
             <ul>
               <li>
-                <a href="mailto:hello@trinexus.org">hello@trinexus.org</a>
+                <a href="mailto:hello@conexa.org">hello@conexa.org</a>
               </li>
               {SOCIAL.map((item) => (
                 <li key={item.label}>
@@ -121,7 +123,7 @@ export function Footer() {
           </b>
           <LangSwitch />
           <span>
-            © 2026 TRINEXUS · <T k="foot.photo" />
+            © 2026 CONEXA · <T k="foot.photo" />
           </span>
         </div>
       </div>

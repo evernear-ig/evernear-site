@@ -6,22 +6,22 @@ const PARTNERS = [
   {
     title: "part.1",
     body: "part.1.p",
-    subject: "Technology partnership",
+    subject: "Deporte y clubes — CONEXA",
   },
   {
     title: "part.2",
     body: "part.2.p",
-    subject: "Education partnership",
+    subject: "Salud e instituciones — CONEXA",
   },
   {
     title: "part.3",
     body: "part.3.p",
-    subject: "Community partnership",
+    subject: "Solidaridad y fundaciones — CONEXA",
   },
   {
     title: "part.4",
     body: "part.4.p",
-    subject: "Institutional partnership",
+    subject: "Innovación y educación — CONEXA",
   },
 ] as const;
 
@@ -64,7 +64,7 @@ export function FoundingSection() {
                     <T k={partner.body} />
                   </p>
                 </div>
-                <a href={`mailto:hello@trinexus.org?subject=${partner.subject}`}>
+                <a href={`mailto:hello@conexa.org?subject=${encodeURIComponent(partner.subject)}`}>
                   <T k="part.cta" />
                 </a>
               </div>

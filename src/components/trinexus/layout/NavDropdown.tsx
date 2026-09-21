@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
+import type { NavLinkGroup } from "@/lib/ecosystem/verticals";
 
 export type NavMenuId = "about" | "eco";
 
@@ -11,7 +12,8 @@ type SubLink = { href: string; key: string };
 type NavDropdownProps = {
   triggerHref: string;
   triggerKey: string;
-  subLinks: readonly SubLink[];
+  subLinks?: readonly SubLink[];
+  subGroups?: readonly NavLinkGroup[];
   submenuAriaKey: string;
   open: boolean;
   onOpen: () => void;
@@ -23,6 +25,7 @@ export function NavDropdown({
   triggerHref,
   triggerKey,
   subLinks,
+  subGroups,
   submenuAriaKey,
   open,
   onOpen,
@@ -31,9 +34,14 @@ export function NavDropdown({
 }: NavDropdownProps) {
   const { t } = useI18n();
 
+  const handleLinkClick = () => {
+    onCloseNow();
+    onSubLinkClick?.();
+  };
+
   return (
     <li
-      className={`nav-dropdown${open ? " open" : ""}`}
+      className={`nav-dropdown${open ? " open" : ""}${subGroups ? " nav-dropdown--wide" : ""}`}
       onMouseEnter={onOpen}
     >
       <a
@@ -61,19 +69,30 @@ export function NavDropdown({
         </svg>
       </a>
       <ul className="nav-dropdown-menu" aria-label={String(t(submenuAriaKey))}>
-        {subLinks.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              onClick={() => {
-                onCloseNow();
-                onSubLinkClick?.();
-              }}
-            >
-              <T k={link.key} />
-            </a>
-          </li>
-        ))}
+        {subGroups
+          ? subGroups.map((group) => (
+              <li key={group.labelKey} className="nav-dropdown-group">
+                <span className="nav-dropdown-group-label">
+                  <T k={group.labelKey} />
+                </span>
+                <ul>
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} onClick={handleLinkClick}>
+                        <T k={link.key} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          : subLinks?.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} onClick={handleLinkClick}>
+                  <T k={link.key} />
+                </a>
+              </li>
+            ))}
       </ul>
     </li>
   );

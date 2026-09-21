@@ -8,11 +8,11 @@ import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
 type PersonId =
   | "student"
+  | "athlete"
   | "developer"
-  | "entrepreneur"
+  | "foundation"
   | "business"
-  | "creator"
-  | "builder";
+  | "creator";
 
 const PEOPLE: {
   id: PersonId;
@@ -23,11 +23,11 @@ const PEOPLE: {
   activeNode: "top" | "br" | "bl";
 }[] = [
   { id: "student", roleKey: "ppl.student", quoteKey: "ppl.student.q", hubLine: "top", activeNode: "top" },
-  { id: "developer", roleKey: "ppl.dev", quoteKey: "ppl.dev.q", hubLine: "br", activeNode: "br" },
-  { id: "entrepreneur", roleKey: "ppl.ent", quoteKey: "ppl.ent.q", hubLine: "bl", activeNode: "bl" },
-  { id: "business", roleKey: "ppl.biz", quoteKey: "ppl.biz.q", hubLine: "top", activeNode: "top" },
-  { id: "creator", roleKey: "ppl.creator", quoteKey: "ppl.creator.q", hubLine: "br", activeNode: "br" },
-  { id: "builder", roleText: "Builder", quoteKey: "ppl.builder.q", hubLine: "bl", activeNode: "bl" },
+  { id: "athlete", roleKey: "ppl.athlete", quoteKey: "ppl.athlete.q", hubLine: "br", activeNode: "br" },
+  { id: "developer", roleKey: "ppl.dev", quoteKey: "ppl.dev.q", hubLine: "bl", activeNode: "bl" },
+  { id: "foundation", roleKey: "ppl.foundation", quoteKey: "ppl.foundation.q", hubLine: "top", activeNode: "top" },
+  { id: "business", roleKey: "ppl.biz", quoteKey: "ppl.biz.q", hubLine: "br", activeNode: "br" },
+  { id: "creator", roleKey: "ppl.creator", quoteKey: "ppl.creator.q", hubLine: "bl", activeNode: "bl" },
 ];
 
 const PEOPLE_PAGE_SIZE = 3;

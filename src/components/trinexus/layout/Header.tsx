@@ -13,6 +13,7 @@ import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
 import { T } from "@/components/trinexus/ui/T";
 import {
   ABOUT_NAV_LINKS,
+  ECOSYSTEM_NAV_GROUPS,
   ECOSYSTEM_NAV_LINKS,
 } from "@/lib/ecosystem/verticals";
 
@@ -100,7 +101,7 @@ export function Header() {
               <circle cx="5" cy="31" r="3" fill="#F6F7FB" />
               <circle cx="20" cy="22" r="3.5" fill="#2EE59D" />
             </svg>
-            TRINEXUS
+            CONEXA
           </a>
           <nav ref={navRef} aria-label={String(t("a11y.mainnav"))}>
             <ul className="nav-links" onMouseLeave={scheduleClose}>
@@ -116,7 +117,7 @@ export function Header() {
               <NavDropdown
                 triggerHref="/ecosistema"
                 triggerKey="nav.eco"
-                subLinks={ECOSYSTEM_NAV_LINKS}
+                subGroups={ECOSYSTEM_NAV_GROUPS}
                 submenuAriaKey="a11y.ecosystemnav"
                 open={activeMenu === "eco"}
                 onOpen={() => open("eco")}
@@ -157,16 +158,22 @@ export function Header() {
         <a href="/ecosistema" onClick={onNavClick}>
           <T k="nav.eco" />
         </a>
-        <div
-          className="mobile-submenu"
-          aria-label={String(t("a11y.ecosystemnav"))}
-        >
-          {ECOSYSTEM_NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={onNavClick}>
-              <T k={link.key} />
-            </a>
-          ))}
-        </div>
+        {ECOSYSTEM_NAV_GROUPS.map((group) => (
+          <div
+            key={group.labelKey}
+            className="mobile-submenu"
+            aria-label={String(t(group.labelKey))}
+          >
+            <span className="mobile-submenu-label">
+              <T k={group.labelKey} />
+            </span>
+            {group.links.map((link) => (
+              <a key={link.href} href={link.href} onClick={onNavClick}>
+                <T k={link.key} />
+              </a>
+            ))}
+          </div>
+        ))}
         <LangSwitch />
         <JoinButton className="btn btn-green" onOpen={closeMenu} />
       </div>

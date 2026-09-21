@@ -791,3 +791,31 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .panfleto-email li{padding:8px 0;border-bottom:1px solid var(--line-dark);font-size:.9rem;max-width:none}
 .qr-scan-page{max-width:480px;text-align:center;padding:40px 0}
 .scan-ok{color:var(--green-ink);font-size:1.1rem;margin:20px 0}
+.areas-sec{padding:var(--section-y) 0}
+.areas-block{margin-top:var(--block-gap)}
+.areas-family{font-family:var(--font-head);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0 0 20px}
+.areas-cta{margin-top:var(--block-gap);text-align:center}
+.areas-grid{margin-top:0}
+.eco-card--featured{border-color:var(--green);position:relative}
+.eco-card-badge{display:inline-block;font-family:var(--font-head);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(26,138,107,.12);color:var(--green-ink);align-self:flex-start}
+.nav-dropdown--wide .nav-dropdown-menu{min-width:280px;padding:8px 0}
+.nav-dropdown-group{padding:6px 0}
+.nav-dropdown-group-label{display:block;padding:8px 16px 6px;font-family:var(--font-head);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2)}
+.nav-dropdown-group ul{list-style:none;margin:0;padding:0}
+.mobile-submenu-label{display:block;font-family:var(--font-head);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);margin-bottom:8px}
+.eco-disclaimer{font-size:.9rem;color:var(--text-on-light-muted);max-width:52em;line-height:1.55;margin:0 0 24px;padding:14px 18px;border-left:3px solid var(--violet);background:rgba(75,47,166,.06)}
+.eco-disclaimer--muted{opacity:.85;font-size:.85rem;border-left-color:var(--line-dark);background:transparent}
+.eco-disclaimer-bar{padding:20px 0 0}
+.eco-coming{color:var(--text-on-light-muted);font-size:1.05rem;max-width:36em}
+.legal-wrap{max-width:42em;padding:var(--section-y) 0}
+.legal-wrap p{color:var(--text-on-light-muted);max-width:none;margin-top:1em}
+.innovacion-lead{margin-bottom:28px;max-width:42em}
+.innovacion-pillar-grid{grid-template-columns:repeat(2,1fr)}
+@media(max-width:700px){.innovacion-pillar-grid{grid-template-columns:1fr}}
+.eco-hero--sport{border-top:4px solid var(--green)}
+.eco-hero--health{border-top:4px solid #1A8A6B}
+.eco-hero--wellness{border-top:4px solid #6B5BC4}
+.eco-hero--communication{border-top:4px solid #D97706}
+.eco-hero--solidarity{border-top:4px solid var(--green)}
+.eco-hero--innovation{border-top:4px solid var(--violet)}
+.eco-entity-card--solidarity{border-top:3px solid var(--green)}

@@ -26,7 +26,7 @@ export const COURSES: Course[] = [
   {
     slug: "becas-triple-frontera",
     title: "Becas Triple Frontera",
-    institution: "TRINEXUS + Aliados",
+    institution: "CONEXA + Aliados",
     country: "ar",
     cityId: "pi",
     modality: "hibrido",
@@ -48,7 +48,7 @@ export const COURSES: Course[] = [
   {
     slug: "emprendimiento-online",
     title: "Emprendimiento Digital",
-    institution: "TRINEXUS",
+    institution: "CONEXA",
     country: "ar",
     cityId: "pi",
     modality: "online",

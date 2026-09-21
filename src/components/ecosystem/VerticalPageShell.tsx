@@ -30,6 +30,15 @@ export function VerticalPageShell({
           titleKey={vertical.titleKey}
           leadKey={vertical.leadKey}
         />
+        {vertical.informational ? (
+          <section className="light eco-disclaimer-bar">
+            <div className="wrap">
+              <p className="eco-disclaimer">
+                <T k="legal.vertical.disclaimer" />
+              </p>
+            </div>
+          </section>
+        ) : null}
         {beforeCatalog}
         <section className="light eco-body eco-catalog">
           <div className="wrap">

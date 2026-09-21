@@ -72,6 +72,26 @@ export const IMAGES = {
         en: "A woman writing ideas on paper during a workshop",
       },
     },
+    athlete: {
+      u: "photo-1574629810360-7d2ba7029f8d",
+      pos: "50% 40%",
+      credit: "Unsplash",
+      alt: {
+        es: "Deportista en cancha de básquet",
+        pt: "Atleta em quadra de basquete",
+        en: "Athlete on a basketball court",
+      },
+    },
+    foundation: {
+      u: "photo-1593113598332-cd288d649433",
+      pos: "50% 40%",
+      credit: "Unsplash",
+      alt: {
+        es: "Voluntarios organizando una actividad comunitaria",
+        pt: "Voluntários organizando uma atividade comunitária",
+        en: "Volunteers organizing a community activity",
+      },
+    },
     builder: {
       u: "photo-1522071820081-009f0129c71c",
       pos: "50% 45%",

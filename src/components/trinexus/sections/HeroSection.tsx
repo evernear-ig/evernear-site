@@ -41,7 +41,7 @@ export function HeroSection() {
           </p>
           <div className="btns">
             <JoinButton />
-            <a href="#border" className="btn btn-ghost">
+            <a href="#ecosystem" className="btn btn-ghost">
               <T k="cta.explore" />
             </a>
           </div>

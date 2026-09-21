@@ -17,18 +17,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TRINEXUS — El Hub de Innovación de la Triple Frontera",
+  title: "CONEXA — Descubrí tu región",
   description:
-    "TRINEXUS es el hub de innovación que conecta personas, tecnología y oportunidades en la Triple Frontera de Argentina, Brasil y Paraguay.",
-  authors: [{ name: "TRINEXUS" }],
-  metadataBase: new URL("https://trinexus.org"),
+    "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+  authors: [{ name: "CONEXA" }],
+  metadataBase: new URL("https://conexa.org"),
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "TRINEXUS",
-    title: "TRINEXUS — El Hub de Innovación de la Triple Frontera",
+    siteName: "CONEXA",
+    title: "CONEXA — Descubrí tu región",
     description:
-      "TRINEXUS es el hub de innovación que conecta personas, tecnología y oportunidades en la Triple Frontera de Argentina, Brasil y Paraguay.",
+      "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
   },
   twitter: { card: "summary_large_image" },
   other: { "theme-color": "#070B1A" },
