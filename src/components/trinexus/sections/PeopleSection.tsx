@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
@@ -142,7 +141,6 @@ export function PeopleSection() {
 
   return (
     <section className="dark people-sec" id="people">
-      <Seam />
       <div className="wrap">
         <Reveal className="sec-head sec-head--center">
           <h2 className="h-xl">

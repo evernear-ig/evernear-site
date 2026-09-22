@@ -7,7 +7,6 @@ import {
   REGION_VERTICALS,
 } from "@/lib/ecosystem/verticals";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
@@ -149,7 +148,6 @@ function AreasCarousel({ verticals }: { verticals: readonly AreaVertical[] }) {
 export function EcosystemSection() {
   return (
     <section className="dark areas-sec" id="ecosystem">
-      <Seam />
       <div className="wrap">
         <Reveal className="sec-head sec-head--split-invert">
           <p className="lead">
