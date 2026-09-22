@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { T, THtml } from "@/components/trinexus/ui/T";
+import { T } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
 type PersonId =
@@ -214,27 +214,6 @@ export function PeopleSection() {
             </div>
           )}
         </div>
-        <Reveal className="people-band">
-          <TrinexusPhoto imageKey="band.community" />
-          <svg className="nodes" viewBox="0 0 120 60" aria-hidden="true">
-            <line x1="10" y1="50" x2="60" y2="12" />
-            <line x1="60" y1="12" x2="110" y2="50" />
-            <line x1="10" y1="50" x2="110" y2="50" />
-            <line x1="60" y1="12" x2="60" y2="38" style={{ stroke: "#2EE59D" }} />
-            <circle cx="10" cy="50" r="3" style={{ fill: "#F6F7FB", stroke: "none" }} />
-            <circle cx="110" cy="50" r="3" style={{ fill: "#F6F7FB", stroke: "none" }} />
-            <circle cx="60" cy="12" r="3" style={{ fill: "#F6F7FB", stroke: "none" }} />
-            <circle className="g" cx="60" cy="38" r="4" />
-          </svg>
-          <div className="cap">
-            <h3 className="h-xl">
-              <THtml k="ppl.band" />
-            </h3>
-            <span className="ph-meta">
-              <T k="ppl.band.meta" />
-            </span>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

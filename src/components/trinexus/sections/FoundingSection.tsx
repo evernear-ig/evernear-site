@@ -27,7 +27,7 @@ const PARTNERS = [
 
 export function FoundingSection() {
   return (
-    <section className="founding" id="join">
+    <section className="founding dark" id="join">
       <svg className="deco" viewBox="0 0 500 460" aria-hidden="true">
         <path d="M250 40 L460 420 L40 420 Z" />
         <line x1="250" y1="40" x2="250" y2="293" />
