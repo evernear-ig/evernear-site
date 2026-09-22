@@ -81,13 +81,9 @@ export function NavDropdown({
         {subGroups
           ? subGroups.map((group) => (
               <li key={group.labelKey} className="nav-mega-col">
-                <a
-                  href={group.href}
-                  className="nav-mega-family"
-                  onClick={handleLinkClick}
-                >
+                <span className="nav-mega-family nav-mega-family--label">
                   <T k={group.labelKey} />
-                </a>
+                </span>
                 <ul className="nav-mega-links">
                   {group.links.map((link) => (
                     <li key={link.href}>

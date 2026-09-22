@@ -179,9 +179,6 @@ export function Header() {
               </button>
               {expanded ? (
                 <div className="mobile-submenu mobile-eco-links">
-                  <a href={group.href} onClick={onNavClick}>
-                    <T k="nav.family.seeAll" />
-                  </a>
                   {group.links.map((link) => (
                     <a key={link.href} href={link.href} onClick={onNavClick}>
                       <T k={link.key} />

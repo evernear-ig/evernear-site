@@ -140,19 +140,16 @@ export const REGION_VERTICALS = ECOSYSTEM_VERTICALS.filter(
 
 export type NavLinkGroup = {
   labelKey: string;
-  href: string;
   links: readonly { href: string; key: string }[];
 };
 
 export const ECOSYSTEM_NAV_GROUPS: readonly NavLinkGroup[] = [
   {
     labelKey: "nav.family.community",
-    href: "/ecosistema#comunidad",
     links: COMMUNITY_VERTICALS.map((v) => ({ href: v.href, key: v.navKey })),
   },
   {
     labelKey: "nav.family.region",
-    href: "/ecosistema#region",
     links: REGION_VERTICALS.map((v) => ({ href: v.href, key: v.navKey })),
   },
 ];
