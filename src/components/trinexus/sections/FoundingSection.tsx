@@ -1,31 +1,25 @@
+"use client";
+
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T } from "@/components/trinexus/ui/T";
+import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
+import type { JoinTrack } from "@/lib/join-tracks";
 
-const PARTNERS = [
-  {
-    title: "part.1",
-    body: "part.1.p",
-    subject: "Deporte y clubes — CONEXA",
-  },
-  {
-    title: "part.2",
-    body: "part.2.p",
-    subject: "Salud e instituciones — CONEXA",
-  },
-  {
-    title: "part.3",
-    body: "part.3.p",
-    subject: "Solidaridad y fundaciones — CONEXA",
-  },
-  {
-    title: "part.4",
-    body: "part.4.p",
-    subject: "Innovación y educación — CONEXA",
-  },
-] as const;
+const PARTNERS: {
+  track: JoinTrack;
+  title: "part.1" | "part.2" | "part.3" | "part.4";
+  body: "part.1.p" | "part.2.p" | "part.3.p" | "part.4.p";
+}[] = [
+  { track: "sport", title: "part.1", body: "part.1.p" },
+  { track: "health", title: "part.2", body: "part.2.p" },
+  { track: "solidarity", title: "part.3", body: "part.3.p" },
+  { track: "innovation", title: "part.4", body: "part.4.p" },
+];
 
 export function FoundingSection() {
+  const { openJoin } = useJoinModal();
+
   return (
     <section className="founding dark" id="join">
       <svg className="deco" viewBox="0 0 500 460" aria-hidden="true">
@@ -55,7 +49,7 @@ export function FoundingSection() {
         <Reveal className="founding-partners" id="partners">
           <div className="partners">
             {PARTNERS.map((partner) => (
-              <div key={partner.title} className="partner">
+              <div key={partner.track} className="partner">
                 <div>
                   <h3>
                     <T k={partner.title} />
@@ -64,9 +58,13 @@ export function FoundingSection() {
                     <T k={partner.body} />
                   </p>
                 </div>
-                <a href={`mailto:hello@conexa.org?subject=${encodeURIComponent(partner.subject)}`}>
+                <button
+                  type="button"
+                  className="partner-cta"
+                  onClick={() => openJoin({ track: partner.track })}
+                >
                   <T k="part.cta" />
-                </a>
+                </button>
               </div>
             ))}
           </div>

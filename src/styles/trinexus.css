@@ -503,8 +503,9 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .founding .partner>div{flex:1}
 .founding .partner h3{color:var(--white)}
 .founding .partner p{color:var(--gray-2)}
-.founding .partner a{color:var(--green);margin-top:auto;padding-top:16px;font-family:var(--font-head);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
-@media (hover:hover) and (pointer:fine){.founding .partner a:hover{color:#5CF0B4}}
+.founding .partner a,.founding .partner-cta{color:var(--green);margin-top:auto;padding-top:16px;font-family:var(--font-head);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-align:left}
+.founding .partner-cta{width:100%;background:none;border:0;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.founding .partner a:hover,.founding .partner-cta:hover{color:#5CF0B4}}
 @media(max-width:900px){.founding .deco{opacity:.08;width:56vw}}
 
 /* partners */
@@ -560,6 +561,7 @@ footer li{margin-bottom:10px;font-size:.92rem}
 @media (hover:hover) and (pointer:fine){.modal-close:hover{background:var(--gray)}}
 .modal h2{font-size:clamp(1.5rem,3vw,2.3rem);text-transform:uppercase;margin-bottom:8px;padding-right:40px}
 .modal .sub{color:var(--ink-2);margin-bottom:32px}
+.form-track-badge{display:inline-flex;margin-bottom:12px;padding:6px 12px;border:1px solid var(--line-dark);border-radius:999px;font-family:var(--font-head);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-ink)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
 .field{display:flex;flex-direction:column;gap:7px}
