@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { BridgeScene } from "./scenes/BridgeScene";
 import { ArcScene, NetworkScene } from "./scenes/AmbientScenes";
@@ -62,7 +63,9 @@ export default function Scene3DCanvas({
       onCreated={({ camera }) => camera.lookAt(...rig.target)}
     >
       <Lights />
-      <Scene variant={variant} labels={labels} />
+      <Suspense fallback={null}>
+        <Scene variant={variant} labels={labels} />
+      </Suspense>
     </Canvas>
   );
 }

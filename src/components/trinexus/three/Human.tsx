@@ -1,18 +1,27 @@
 "use client";
 
+import { useTexture } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { DoubleSide, Group, Material, MeshStandardMaterial } from "three";
+import {
+  DoubleSide,
+  Group,
+  Material,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
+  SRGBColorSpace,
+} from "three";
+import { resolveImageSrc } from "@/lib/images";
 import { createCrateTexture, type CrateIcon } from "./crateTexture";
 import { C } from "./palette";
 
 export type HumanProps = {
-  /** Shared body material, created once per scene. */
-  figureMat: Material;
   /** Shared crate shell material for the five unprinted faces. */
   crateMat: Material;
   label: string;
   icon: CrateIcon;
+  /** Trinexus image key, e.g. ecosystem.deporte */
+  imageKey: string;
   /** Offsets the walk cycle so no two figures step in sync. */
   phase: number;
   cadence?: number;
@@ -21,22 +30,39 @@ export type HumanProps = {
 };
 
 /**
- * Procedural low-poly walker. Built from primitives on purpose: no external
- * model to download, and every proportion stays tunable from here.
+ * Walker built from real regional photography on crossed billboards, plus the
+ * labelled crate they carry toward the connection node.
  */
 export function Human({
-  figureMat,
   crateMat,
   label,
   icon,
+  imageKey,
   phase,
   cadence = 4.4,
   yaw = Math.PI / 2 - 0.3,
 }: HumanProps) {
   const bob = useRef<Group>(null);
-  const hips = useRef<(Group | null)[]>([null, null]);
-  const knees = useRef<(Group | null)[]>([null, null]);
-  const arms = useRef<(Group | null)[]>([null, null]);
+  const body = useRef<Group>(null);
+  const photoSrc = resolveImageSrc(imageKey, 720) ?? resolveImageSrc("ecosystem.deporte", 720)!;
+  const photoTexture = useTexture(photoSrc);
+
+  useEffect(() => {
+    photoTexture.colorSpace = SRGBColorSpace;
+    photoTexture.anisotropy = 4;
+  }, [photoTexture]);
+
+  const figureMat = useMemo(
+    () =>
+      new MeshBasicMaterial({
+        map: photoTexture,
+        transparent: true,
+        alphaTest: 0.04,
+        side: DoubleSide,
+        toneMapped: false,
+      }),
+    [photoTexture],
+  );
 
   const faceMat = useMemo(() => {
     const texture = createCrateTexture(label, icon);
@@ -53,10 +79,12 @@ export function Human({
 
   useEffect(
     () => () => {
+      figureMat.map?.dispose();
+      figureMat.dispose();
       faceMat.map?.dispose();
       faceMat.dispose();
     },
-    [faceMat],
+    [figureMat, faceMat],
   );
 
   const crateMats = useMemo(
@@ -67,80 +95,36 @@ export function Human({
   useFrame(({ clock }) => {
     const t = clock.elapsedTime * cadence + phase;
     const swing = Math.sin(t);
-
-    for (let i = 0; i < 2; i++) {
-      const s = i === 0 ? swing : -swing;
-      const hip = hips.current[i];
-      const knee = knees.current[i];
-      const arm = arms.current[i];
-      if (hip) hip.rotation.x = s * 0.5;
-      if (knee) knee.rotation.x = Math.max(0, s) * 0.85;
-      if (arm) arm.rotation.x = -1.02 - s * 0.1;
-    }
+    const stride = Math.sin(t * 2);
 
     if (bob.current) {
-      bob.current.position.y = Math.abs(swing) * 0.045;
-      bob.current.rotation.z = swing * 0.018;
+      bob.current.position.y = Math.abs(swing) * 0.055;
+      bob.current.rotation.z = swing * 0.022;
+    }
+
+    if (body.current) {
+      body.current.rotation.x = stride * 0.04;
+      body.current.position.z = stride * 0.018;
     }
   });
 
   return (
     <group ref={bob}>
-      <group rotation={[0, yaw, 0]}>
-        {[-0.115, 0.115].map((x, i) => (
-          <group
-            key={x}
-            ref={(node) => {
-              hips.current[i] = node;
-            }}
-            position={[x, 0.72, 0]}
-          >
-            <mesh material={figureMat} position={[0, -0.17, 0]}>
-              <capsuleGeometry args={[0.072, 0.2, 3, 10]} />
-            </mesh>
-            <group
-              ref={(node) => {
-                knees.current[i] = node;
-              }}
-              position={[0, -0.34, 0]}
-            >
-              <mesh material={figureMat} position={[0, -0.17, 0]}>
-                <capsuleGeometry args={[0.062, 0.22, 3, 10]} />
-              </mesh>
-              <mesh material={figureMat} position={[0, -0.335, 0.045]}>
-                <boxGeometry args={[0.11, 0.055, 0.21]} />
-              </mesh>
-            </group>
-          </group>
-        ))}
-
-        <mesh material={figureMat} position={[0, 1.04, 0]}>
-          <capsuleGeometry args={[0.15, 0.34, 4, 14]} />
+      <group ref={body} rotation={[0, yaw, 0]}>
+        <mesh material={figureMat} position={[0, 0.98, 0]}>
+          <planeGeometry args={[0.74, 1.22]} />
         </mesh>
-        <mesh material={figureMat} position={[0, 1.4, 0]}>
-          <cylinderGeometry args={[0.05, 0.055, 0.1, 10]} />
+        <mesh
+          material={figureMat}
+          position={[0, 0.98, 0]}
+          rotation={[0, Math.PI / 2, 0]}
+        >
+          <planeGeometry args={[0.74, 1.22]} />
         </mesh>
-        <mesh material={figureMat} position={[0, 1.5, 0.008]}>
-          <sphereGeometry args={[0.125, 18, 14]} />
-        </mesh>
-
-        {[-0.175, 0.175].map((x, i) => (
-          <group
-            key={x}
-            ref={(node) => {
-              arms.current[i] = node;
-            }}
-            position={[x, 1.28, 0]}
-          >
-            <mesh material={figureMat} position={[0, -0.19, 0]}>
-              <capsuleGeometry args={[0.052, 0.3, 3, 10]} />
-            </mesh>
-          </group>
-        ))}
       </group>
 
       {/* Crate stays world-aligned so its printed face always reads to camera. */}
-      <group position={[0.36, 1.0, 0.06]}>
+      <group position={[0.38, 0.96, 0.08]}>
         <mesh material={crateMats}>
           <boxGeometry args={[0.66, 0.5, 0.26]} />
         </mesh>

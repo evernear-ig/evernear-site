@@ -470,6 +470,15 @@ export function getImageSpec(key: string): ImageSpec | undefined {
   return (bucket as ImageGroup)[item];
 }
 
+export function resolveImageSrc(key: string, width = 640): string | undefined {
+  const spec = getImageSpec(key);
+  if (!spec) return undefined;
+  if (spec.file && IMAGES.localBase) {
+    return `${IMAGES.localBase}${spec.file}`;
+  }
+  return IMAGES.base(spec.u, width);
+}
+
 export function imageAlt(spec: ImageSpec, lang: LangCode, fallback: LangCode = "es") {
   return spec.alt[lang] || spec.alt[fallback] || spec.alt.en || "";
 }

@@ -3,35 +3,18 @@
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { LangNote } from "@/components/trinexus/ui/LangSwitch";
+import { HeroBridgeVisual } from "@/components/trinexus/sections/HeroBridgeVisual";
 import { T, TLines } from "@/components/trinexus/ui/T";
-import { Scene3D } from "@/components/trinexus/three/Scene3D";
-
-/** What each figure carries across the bridge, in walking order. */
-const CRATE_KEYS = [
-  "nav.sport",
-  "nav.tourism",
-  "nav.innovation",
-  "nav.solidarity",
-  "nav.commerce",
-  "nav.communication",
-  "hero.crate.you",
-] as const;
 
 export function HeroSection() {
   const { t } = useI18n();
 
   return (
-    <section className="hero" id="hero">
+    <section className="hero hero--cinema" id="hero">
       <div className="hero-bg">
-        <Scene3D
-          variant="bridge"
-          className="scene3d--hero"
-          onMobile
-          labels={CRATE_KEYS.map((key) => String(t(key)))}
-        />
+        <HeroBridgeVisual />
         <div className="glow g1" aria-hidden="true" />
         <div className="glow g2" aria-hidden="true" />
-        <div className="grid" aria-hidden="true" />
         <svg
           className="topo"
           viewBox="0 0 1440 900"

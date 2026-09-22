@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Line } from "@react-three/drei";
+import { Line, useTexture } from "@react-three/drei";
+import { resolveImageSrc } from "@/lib/images";
 import {
   BufferAttribute,
   BufferGeometry,
@@ -109,30 +110,35 @@ function Tower({ x, material }: { x: number; material: MeshStandardMaterial }) {
 
 type WalkerSpec = {
   icon: CrateIcon;
+  imageKey: string;
   lane: number;
   speed: number;
   start: number;
 };
 
+/** Photo keys align with CRATE_KEYS order in HeroSection. */
 const WALKERS: WalkerSpec[] = [
-  { icon: "ball", lane: -0.4, speed: 0.55, start: 0 },
-  { icon: "pin", lane: 0.36, speed: 0.55, start: 2.3 },
-  { icon: "code", lane: -0.32, speed: 0.55, start: 4.6 },
-  { icon: "heart", lane: 0.4, speed: 0.55, start: 6.9 },
-  { icon: "bag", lane: -0.36, speed: 0.55, start: 9.2 },
-  { icon: "mic", lane: 0.34, speed: 0.55, start: 11.5 },
-  { icon: "dots", lane: -0.3, speed: 0.55, start: 13.8 },
+  { icon: "ball", imageKey: "ecosystem.deporte", lane: -0.4, speed: 0.55, start: 0 },
+  { icon: "pin", imageKey: "ecosystem.turismo", lane: 0.36, speed: 0.55, start: 2.3 },
+  { icon: "code", imageKey: "ecosystem.innovacion", lane: -0.32, speed: 0.55, start: 4.6 },
+  { icon: "heart", imageKey: "ecosystem.solidaridad", lane: 0.4, speed: 0.55, start: 6.9 },
+  { icon: "bag", imageKey: "ecosystem.comercios", lane: -0.36, speed: 0.55, start: 9.2 },
+  { icon: "mic", imageKey: "ecosystem.comunicacion", lane: 0.34, speed: 0.55, start: 11.5 },
+  { icon: "dots", imageKey: "about.discovery", lane: -0.3, speed: 0.55, start: 13.8 },
 ];
+
+for (const walker of WALKERS) {
+  const src = resolveImageSrc(walker.imageKey, 720);
+  if (src) useTexture.preload(src);
+}
 
 function Walker({
   spec,
   label,
-  figureMat,
   crateMat,
 }: {
   spec: WalkerSpec;
   label: string;
-  figureMat: MeshStandardMaterial;
   crateMat: MeshStandardMaterial;
 }) {
   const group = useRef<Group>(null);
@@ -146,10 +152,10 @@ function Walker({
   return (
     <group ref={group}>
       <Human
-        figureMat={figureMat}
         crateMat={crateMat}
         label={label}
         icon={spec.icon}
+        imageKey={spec.imageKey}
         phase={spec.start * 1.7}
         cadence={spec.speed * 7.4}
       />
@@ -279,13 +285,6 @@ function Arrival({ nodeMat }: { nodeMat: MeshStandardMaterial }) {
 export function BridgeScene({ labels }: { labels: string[] }) {
   const mats = useMemo(
     () => ({
-      figure: new MeshStandardMaterial({
-        color: "#e2e7f7",
-        roughness: 0.44,
-        metalness: 0.06,
-        emissive: C.violetSoft,
-        emissiveIntensity: 0.1,
-      }),
       crate: new MeshStandardMaterial({
         color: "#131A38",
         roughness: 0.58,
@@ -415,7 +414,6 @@ export function BridgeScene({ labels }: { labels: string[] }) {
           key={spec.icon}
           spec={spec}
           label={labels[i % labels.length]}
-          figureMat={mats.figure}
           crateMat={mats.crate}
         />
       ))}
