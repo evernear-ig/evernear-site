@@ -6,6 +6,7 @@ import { JoinModalProvider } from "@/components/trinexus/providers/JoinModalProv
 import { Footer } from "@/components/trinexus/layout/Footer";
 import { Header } from "@/components/trinexus/layout/Header";
 import { JoinModal } from "@/components/trinexus/layout/JoinModal";
+import { AppToaster } from "@/components/trinexus/ui/AppToaster";
 import { T } from "@/components/trinexus/ui/T";
 
 function SkipLink() {
@@ -25,6 +26,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         {children}
         <Footer />
         <JoinModal />
+        <AppToaster />
       </JoinModalProvider>
     </I18nProvider>
   );

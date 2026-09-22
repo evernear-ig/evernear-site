@@ -5,7 +5,28 @@
   --font-sans: var(--font-body);
 }
 
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
 body {
   font-family: var(--font-body), system-ui, sans-serif;
   touch-action: manipulation;
+  min-height: 100dvh;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }

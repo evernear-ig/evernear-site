@@ -10,6 +10,7 @@ import {
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
 import { T, THtml } from "@/components/trinexus/ui/T";
+import { toast } from "sonner";
 
 const INTERESTS = [
   { value: "blockchain", label: "Blockchain" },
@@ -82,7 +83,9 @@ export function JoinModal() {
     );
     const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
     if (missing.length || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      setErrorKey(missing.length ? "err.required" : "err.email");
+      const key = missing.length ? "err.required" : "err.email";
+      setErrorKey(key);
+      toast.error(String(t(key)));
       (missing[0] ?? form.elements.namedItem("email"))?.focus();
       return;
     }

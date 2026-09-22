@@ -27,7 +27,7 @@ export function SolidarityPageContent() {
                 description={cause.story}
                 cityId={cause.cityId}
                 accent="solidarity"
-                imageKey="ecosystem.events"
+                imageKey="ecosystem.solidaridad"
                 badge={cause.status}
                 meta={cause.kind}
               />

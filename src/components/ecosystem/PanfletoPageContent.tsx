@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
+import { toast } from "sonner";
 
 type Preview = {
   events: { title: string; date: string }[];
@@ -10,9 +12,8 @@ type Preview = {
 };
 
 export function PanfletoPageContent() {
+  const { t } = useI18n();
   const [preview, setPreview] = useState<Preview | null>(null);
-  const [userStatus, setUserStatus] = useState("");
-  const [bizStatus, setBizStatus] = useState("");
 
   useEffect(() => {
     fetch("/api/panfleto/preview")
@@ -30,7 +31,12 @@ export function PanfletoPageContent() {
       body: JSON.stringify({ email }),
     });
     const data = await res.json();
-    setUserStatus(data.ok ? "ok" : "exists");
+    if (data.ok) {
+      toast.success(String(t("panfleto.subscribed")));
+      e.currentTarget.reset();
+    } else {
+      toast.error(String(t("panfleto.exists")));
+    }
   }
 
   async function subscribeBusiness(e: React.FormEvent<HTMLFormElement>) {
@@ -44,9 +50,14 @@ export function PanfletoPageContent() {
         promo: fd.get("promo"),
       }),
     });
-    setBizStatus(res.ok ? "ok" : "error");
-    const p = await fetch("/api/panfleto/preview").then((r) => r.json());
-    setPreview(p);
+    if (res.ok) {
+      toast.success(String(t("panfleto.biz.ok")));
+      e.currentTarget.reset();
+      const p = await fetch("/api/panfleto/preview").then((r) => r.json());
+      setPreview(p);
+    } else {
+      toast.error(String(t("events.form.error")));
+    }
   }
 
   return (
@@ -63,8 +74,6 @@ export function PanfletoPageContent() {
             <T k="panfleto.subscribe" />
           </button>
         </form>
-        {userStatus === "ok" && <p className="form-ok"><T k="panfleto.subscribed" /></p>}
-        {userStatus === "exists" && <p className="form-err"><T k="panfleto.exists" /></p>}
       </section>
 
       <section className="panfleto-section">
@@ -83,7 +92,6 @@ export function PanfletoPageContent() {
             <T k="panfleto.biz.submit" />
           </button>
         </form>
-        {bizStatus === "ok" && <p className="form-ok"><T k="panfleto.biz.ok" /></p>}
       </section>
 
       {preview && (

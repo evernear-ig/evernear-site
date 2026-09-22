@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
@@ -30,7 +30,8 @@ const PEOPLE: {
   { id: "creator", roleKey: "ppl.creator", quoteKey: "ppl.creator.q", hubLine: "bl", activeNode: "bl" },
 ];
 
-const PEOPLE_PAGE_SIZE = 3;
+const PEOPLE_PAGE_SIZE_DESKTOP = 3;
+const PEOPLE_PAGE_SIZE_MOBILE = 1;
 
 function PersonTri({
   hubLine,
@@ -107,14 +108,30 @@ function PersonCard({ person, active, onToggle }: PersonCardProps) {
 export function PeopleSection() {
   const [active, setActive] = useState<PersonId | null>(null);
   const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(PEOPLE_PAGE_SIZE_DESKTOP);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px)");
+    const syncPageSize = () => {
+      setPageSize(mq.matches ? PEOPLE_PAGE_SIZE_MOBILE : PEOPLE_PAGE_SIZE_DESKTOP);
+      setPage(0);
+    };
+    syncPageSize();
+    mq.addEventListener("change", syncPageSize);
+    return () => mq.removeEventListener("change", syncPageSize);
+  }, []);
 
   const pages = useMemo(() => {
     const chunks: (typeof PEOPLE)[] = [];
-    for (let i = 0; i < PEOPLE.length; i += PEOPLE_PAGE_SIZE) {
-      chunks.push(PEOPLE.slice(i, i + PEOPLE_PAGE_SIZE));
+    for (let i = 0; i < PEOPLE.length; i += pageSize) {
+      chunks.push(PEOPLE.slice(i, i + pageSize));
     }
     return chunks;
-  }, []);
+  }, [pageSize]);
+
+  useEffect(() => {
+    setPage((current) => Math.min(current, Math.max(0, pages.length - 1)));
+  }, [pages.length]);
 
   const toggle = (id: PersonId) => {
     setActive((prev) => (prev === id ? null : id));
@@ -127,7 +144,7 @@ export function PeopleSection() {
     <section className="dark people-sec" id="people">
       <Seam />
       <div className="wrap">
-        <Reveal className="grid g-7-5" style={{ alignItems: "end" }}>
+        <Reveal className="sec-head sec-head--center">
           <h2 className="h-xl">
             <T k="ppl.h" />
           </h2>

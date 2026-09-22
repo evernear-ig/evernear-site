@@ -1,37 +1,40 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
+import { toast } from "sonner";
 
 export function PublishEventForm() {
   const router = useRouter();
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const { t } = useI18n();
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("loading");
     const fd = new FormData(e.currentTarget);
-    try {
-      const res = await fetch("/api/events", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: fd.get("title"),
-          date: fd.get("date"),
-          cityId: fd.get("cityId"),
-          organizer: fd.get("organizer"),
-          tags: fd.get("tags"),
-          description: fd.get("description"),
-        }),
-      });
+    const promise = fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: fd.get("title"),
+        date: fd.get("date"),
+        cityId: fd.get("cityId"),
+        organizer: fd.get("organizer"),
+        tags: fd.get("tags"),
+        description: fd.get("description"),
+      }),
+    }).then(async (res) => {
       const event = await res.json();
       if (!res.ok) throw new Error();
-      setStatus("done");
       router.push(`/eventos/${event.slug}`);
-    } catch {
-      setStatus("error");
-    }
+      return event;
+    });
+
+    toast.promise(promise, {
+      loading: String(t("events.form.submit")) + "…",
+      success: String(t("events.form.submit")),
+      error: String(t("events.form.error")),
+    });
   }
 
   return (
@@ -64,10 +67,9 @@ export function PublishEventForm() {
         <T k="events.form.description" />
         <textarea name="description" rows={4} required />
       </label>
-      <button type="submit" className="btn btn-green" disabled={status === "loading"}>
+      <button type="submit" className="btn btn-green">
         <T k="events.form.submit" />
       </button>
-      {status === "error" && <p className="form-err"><T k="events.form.error" /></p>}
     </form>
   );
 }

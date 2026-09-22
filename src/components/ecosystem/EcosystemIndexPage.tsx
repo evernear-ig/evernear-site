@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/trinexus/SiteShell";
 import { T } from "@/components/trinexus/ui/T";
+import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 import {
   COMMUNITY_VERTICALS,
   REGION_VERTICALS,
@@ -13,6 +14,7 @@ function VerticalGrid({
     href: string;
     titleKey: string;
     leadKey: string;
+    imageKey: string;
     featured?: boolean;
   }[];
 }) {
@@ -24,20 +26,25 @@ function VerticalGrid({
             href={vertical.href}
             className={`eco-card${vertical.featured ? " eco-card--featured" : ""}`}
           >
-            {vertical.featured && (
-              <span className="eco-card-badge">
-                <T k="areas.featured" />
+            <div className="eco-card-img">
+              <TrinexusPhoto imageKey={vertical.imageKey} />
+            </div>
+            <div className="eco-card-body">
+              {vertical.featured && (
+                <span className="eco-card-badge">
+                  <T k="areas.featured" />
+                </span>
+              )}
+              <h2>
+                <T k={vertical.titleKey} />
+              </h2>
+              <p>
+                <T k={vertical.leadKey} />
+              </p>
+              <span className="eco-card-link">
+                <T k="eco.enter" />
               </span>
-            )}
-            <h2>
-              <T k={vertical.titleKey} />
-            </h2>
-            <p>
-              <T k={vertical.leadKey} />
-            </p>
-            <span className="eco-card-link">
-              <T k="eco.enter" />
-            </span>
+            </div>
           </Link>
         </li>
       ))}
@@ -49,8 +56,16 @@ export function EcosystemIndexPage() {
   return (
     <SiteShell>
       <main id="main" className="eco-page">
-        <section className="dark eco-hero">
-          <div className="wrap">
+        <section className="dark eco-hero eco-hero--index">
+          <div className="eco-hero-bg">
+            <TrinexusPhoto
+              imageKey="ecosystem.heroIndex"
+              className="eco-hero-photo"
+              priority
+            />
+            <div className="eco-hero-veil" />
+          </div>
+          <div className="wrap sec-head sec-head--center eco-hero-content">
             <h1 className="h-xl">
               <T k="eco.index.h" />
             </h1>
@@ -68,7 +83,11 @@ export function EcosystemIndexPage() {
             </header>
             <VerticalGrid verticals={COMMUNITY_VERTICALS} />
 
-            <header className="eco-catalog-head" id="region" style={{ marginTop: "48px" }}>
+            <header
+              className="eco-catalog-head"
+              id="region"
+              style={{ marginTop: "48px" }}
+            >
               <h2 className="eco-catalog-title">
                 <T k="nav.family.region" />
               </h2>

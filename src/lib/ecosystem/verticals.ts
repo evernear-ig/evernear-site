@@ -21,7 +21,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.sport.h",
     leadKey: "eco.sport.lead",
     accent: "sport",
-    imageKey: "ecosystem.events",
+    imageKey: "ecosystem.deporte",
     family: "comunidad",
   },
   {
@@ -31,7 +31,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.health.h",
     leadKey: "eco.health.lead",
     accent: "health",
-    imageKey: "ecosystem.education",
+    imageKey: "ecosystem.salud",
     family: "comunidad",
     informational: true,
   },
@@ -42,7 +42,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.wellness.h",
     leadKey: "eco.wellness.lead",
     accent: "wellness",
-    imageKey: "ecosystem.discovery",
+    imageKey: "ecosystem.bienestar",
     family: "comunidad",
     informational: true,
   },
@@ -53,7 +53,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.communication.h",
     leadKey: "eco.communication.lead",
     accent: "communication",
-    imageKey: "ecosystem.discovery",
+    imageKey: "ecosystem.comunicacion",
     family: "comunidad",
   },
   {
@@ -63,7 +63,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.solidarity.h",
     leadKey: "eco.solidarity.lead",
     accent: "solidarity",
-    imageKey: "ecosystem.events",
+    imageKey: "ecosystem.solidaridad",
     family: "comunidad",
     featured: true,
     informational: true,
@@ -75,7 +75,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.tourism.h",
     leadKey: "eco.tourism.lead",
     accent: "tourism",
-    imageKey: "ecosystem.tourism",
+    imageKey: "ecosystem.turismo",
     family: "region",
   },
   {
@@ -85,7 +85,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.commerce.h",
     leadKey: "eco.commerce.lead",
     accent: "commerce",
-    imageKey: "ecosystem.commerce",
+    imageKey: "ecosystem.comercios",
     family: "region",
   },
   {
@@ -95,7 +95,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.education.h",
     leadKey: "eco.education.lead",
     accent: "education",
-    imageKey: "ecosystem.education",
+    imageKey: "ecosystem.educacion",
     family: "region",
   },
   {
@@ -105,7 +105,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.events.h",
     leadKey: "eco.events.lead",
     accent: "events",
-    imageKey: "ecosystem.events",
+    imageKey: "ecosystem.eventos",
     family: "region",
   },
   {
@@ -115,7 +115,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.discovery.h",
     leadKey: "eco.discovery.lead",
     accent: "discovery",
-    imageKey: "ecosystem.discovery",
+    imageKey: "ecosystem.descubrimiento",
     family: "region",
   },
   {
@@ -125,7 +125,7 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
     titleKey: "eco.innovation.h",
     leadKey: "eco.innovation.lead",
     accent: "innovation",
-    imageKey: "ecosystem.education",
+    imageKey: "ecosystem.innovacion",
     family: "region",
   },
 ] as const;

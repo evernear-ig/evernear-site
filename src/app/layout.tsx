@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -31,7 +31,17 @@ export const metadata: Metadata = {
       "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
   },
   twitter: { card: "summary_large_image" },
-  other: { "theme-color": "#070B1A" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#070B1A" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -41,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${inter.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-dvh flex flex-col">{children}</body>
     </html>
   );
 }

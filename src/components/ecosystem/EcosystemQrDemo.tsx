@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
+import { toast } from "sonner";
 
 const DEMOS = [
   {
@@ -22,6 +24,7 @@ type EcosystemQrDemoProps = {
 };
 
 export function EcosystemQrDemo({ compact = false }: EcosystemQrDemoProps) {
+  const { t } = useI18n();
   const [activeToken, setActiveToken] = useState<string | null>(null);
   const [result, setResult] = useState<{
     count: number;
@@ -44,6 +47,7 @@ export function EcosystemQrDemo({ compact = false }: EcosystemQrDemoProps) {
       setResult(data);
     } catch {
       setResult(null);
+      toast.error(String(t("events.form.error")));
     } finally {
       setLoading(false);
     }

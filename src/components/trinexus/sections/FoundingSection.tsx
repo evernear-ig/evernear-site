@@ -41,7 +41,7 @@ export function FoundingSection() {
         </g>
       </svg>
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
-        <Reveal className="founding-intro">
+        <Reveal className="founding-intro sec-head sec-head--center">
           <h2 className="h-xl">
             <T k="found.h" />
           </h2>

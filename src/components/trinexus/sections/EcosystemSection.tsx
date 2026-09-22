@@ -9,11 +9,13 @@ import {
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
+import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
 type AreaVertical = {
   href: string;
   titleKey: string;
   leadKey: string;
+  imageKey: string;
   featured?: boolean;
 };
 
@@ -26,20 +28,25 @@ function AreaCard({ vertical }: { vertical: AreaVertical }) {
       href={vertical.href}
       className={`eco-card${vertical.featured ? " eco-card--featured" : ""}`}
     >
-      {vertical.featured && (
-        <span className="eco-card-badge">
-          <T k="areas.featured" />
+      <div className="eco-card-img">
+        <TrinexusPhoto imageKey={vertical.imageKey} />
+      </div>
+      <div className="eco-card-body">
+        {vertical.featured && (
+          <span className="eco-card-badge">
+            <T k="areas.featured" />
+          </span>
+        )}
+        <h2>
+          <T k={vertical.titleKey} />
+        </h2>
+        <p>
+          <T k={vertical.leadKey} />
+        </p>
+        <span className="eco-card-link">
+          <T k="eco.enter" />
         </span>
-      )}
-      <h2>
-        <T k={vertical.titleKey} />
-      </h2>
-      <p>
-        <T k={vertical.leadKey} />
-      </p>
-      <span className="eco-card-link">
-        <T k="eco.enter" />
-      </span>
+      </div>
     </Link>
   );
 }
@@ -144,13 +151,13 @@ export function EcosystemSection() {
     <section className="dark areas-sec" id="ecosystem">
       <Seam />
       <div className="wrap">
-        <Reveal className="grid g-7-5" style={{ alignItems: "end" }}>
-          <h2 className="h-xl">
-            <THtml k="areas.h" />
-          </h2>
+        <Reveal className="sec-head sec-head--split-invert">
           <p className="lead">
             <T k="areas.lead" />
           </p>
+          <h2 className="h-xl">
+            <THtml k="areas.h" />
+          </h2>
         </Reveal>
 
         <Reveal className="areas-block" id="comunidad">

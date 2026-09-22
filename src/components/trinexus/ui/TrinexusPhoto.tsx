@@ -31,12 +31,12 @@ export function TrinexusPhoto({
   if (!spec && !artwork) return null;
 
   const alt = spec ? imageAlt(spec, lang) : "";
-  const src = spec
-    ? spec.file && IMAGES.localBase
+  const localSrc =
+    spec?.file && IMAGES.localBase
       ? `${IMAGES.localBase}${spec.file}`
-      : IMAGES.base(spec.u, 1000)
-    : undefined;
-  const srcSet = spec
+      : undefined;
+  const src = spec ? (localSrc ?? IMAGES.base(spec.u, 1000)) : undefined;
+  const srcSet = spec && !localSrc
     ? IMAGES.widths.map((w) => `${IMAGES.base(spec.u, w)} ${w}w`).join(", ")
     : undefined;
 
