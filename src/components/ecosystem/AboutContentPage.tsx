@@ -1,57 +1,39 @@
 import Link from "next/link";
-import { ContentSlides, type SlideBlock } from "@/components/ecosystem/ContentSlides";
+import {
+  AboutSlidesPage,
+  type SlideBlock,
+} from "@/components/ecosystem/AboutSlidesPage";
 import { SiteShell } from "@/components/trinexus/SiteShell";
 import { T } from "@/components/trinexus/ui/T";
 
 type AboutContentPageProps = {
   titleKey: string;
   leadKey?: string;
-  blocks: readonly SlideBlock[];
+  heroImageKey?: string;
+  blocks?: readonly SlideBlock[];
   footerLinks?: readonly { href: string; key: string }[];
-  layout?: "scroll" | "slides";
+  layout?: "scroll" | "fullscreen";
 };
 
 export function AboutContentPage({
   titleKey,
   leadKey,
-  blocks,
+  heroImageKey = "about.vision",
+  blocks = [],
   footerLinks,
   layout = "scroll",
 }: AboutContentPageProps) {
-  if (layout === "slides") {
+  if (layout === "fullscreen") {
     return (
       <SiteShell>
-        <main id="main" className="eco-page about-page about-page--slides">
-          <section className="dark about-slides">
-            <div className="wrap about-slides-shell">
-              <header className="about-slides-head">
-                <h1 className="h-xl">
-                  <T k={titleKey} />
-                </h1>
-                {leadKey ? (
-                  <p className="lead">
-                    <T k={leadKey} />
-                  </p>
-                ) : null}
-              </header>
-
-              <ContentSlides blocks={blocks} priorityImage />
-
-              {footerLinks && footerLinks.length > 0 ? (
-                <nav className="about-slides-links" aria-label="Related">
-                  <ul>
-                    {footerLinks.map((link) => (
-                      <li key={link.href}>
-                        <Link href={link.href} className="btn btn-ghost btn-sm">
-                          <T k={link.key} />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              ) : null}
-            </div>
-          </section>
+        <main id="main" className="eco-page about-page about-page--full">
+          <AboutSlidesPage
+            titleKey={titleKey}
+            leadKey={leadKey}
+            heroImageKey={heroImageKey}
+            blocks={blocks}
+            footerLinks={footerLinks}
+          />
         </main>
       </SiteShell>
     );
