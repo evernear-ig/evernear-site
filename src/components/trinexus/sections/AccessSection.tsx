@@ -1,4 +1,5 @@
 import { AccessBridgeSvg } from "@/components/trinexus/sections/AccessBridgeSvg";
+import { Scene3D } from "@/components/trinexus/three/Scene3D";
 import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T, THtml } from "@/components/trinexus/ui/T";
@@ -15,7 +16,12 @@ const OPPS = [
 
 export function AccessSection({ embedded = false }: { embedded?: boolean }) {
   return (
-    <EcoSectionFrame embedded={embedded} className="dark" id="access">
+    <EcoSectionFrame
+      embedded={embedded}
+      className="dark"
+      id="access"
+      backdrop={<Scene3D variant="arc" className="scene3d--wide" />}
+    >
         <Reveal className="grid g-7-5" style={{ alignItems: "end" }}>
           <h2 className="h-xl">
             <T k="acc.h" />

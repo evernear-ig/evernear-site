@@ -1,4 +1,5 @@
 import { ConnectNetwork } from "@/components/trinexus/sections/ConnectNetwork";
+import { Scene3D } from "@/components/trinexus/three/Scene3D";
 import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T, THtml } from "@/components/trinexus/ui/T";
@@ -7,7 +8,12 @@ const ROLES = ["con.r1", "con.r2", "con.r3", "con.r4", "con.r5", "con.r6"] as co
 
 export function ConnectSection({ embedded = false }: { embedded?: boolean }) {
   return (
-    <EcoSectionFrame embedded={embedded} className="dark" id="connect">
+    <EcoSectionFrame
+      embedded={embedded}
+      className="dark"
+      id="connect"
+      backdrop={<Scene3D variant="network" className="scene3d--right" />}
+    >
       <div className="grid g-7-5">
         <Reveal>
           <ConnectNetwork />
