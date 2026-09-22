@@ -210,15 +210,33 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .b-map-city-cde.on{color:var(--country-py)}
 .b-map-city-foz.on{color:var(--country-br-2)}
 .b-map-city-pi.on{color:var(--country-ar)}
-.b-map-hub{left:47%;top:64%;transform:translateX(-50%);color:var(--green);font-size:clamp(.58rem,.74vw,.74rem);font-weight:700;letter-spacing:.18em}
+.b-map-hub{left:47%;top:64%;transform:translateX(-50%);color:var(--green);font-size:clamp(.58rem,.74vw,.74rem);font-weight:700;letter-spacing:.18em;animation:border-hub-glow 3.2s ease-in-out infinite}
 .border-city-panel{width:100%;margin-top:0;display:flex;flex-direction:column}
 .border-city-panel .city-tabs{display:flex;justify-content:center;width:100%;margin:clamp(6px,1vw,9px) 0 clamp(8px,1.2vw,11px);gap:5px}
-.border-city-panel .city-tabs button{font-size:.66rem;padding:7px 11px;letter-spacing:.08em}
-.border-city-panel .city-photo{width:100%;aspect-ratio:2.15/1;max-height:none;border-radius:6px;overflow:hidden}
-.border-city-panel .city-photo .lab{left:14px;right:14px;bottom:10px}
+.border-city-panel .city-tabs button{font-size:.66rem;padding:7px 11px;letter-spacing:.08em;transition:transform .28s cubic-bezier(.2,.8,.2,1),background .25s,color .25s,border-color .25s,box-shadow .25s}
+.border-city-panel .city-tabs button[aria-pressed="true"]{transform:translateY(-1px);box-shadow:0 6px 18px rgba(46,229,157,.22)}
+.border-city-panel .city-photo{width:100%;aspect-ratio:2.15/1;max-height:none;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 44px rgba(0,0,0,.35);position:relative}
+.border-city-panel .city-photo .ph{position:absolute;inset:0}
+.border-city-panel .city-photo img.show{animation:border-photo-kenburns 22s ease-in-out infinite alternate;transform-origin:center center}
+.border-city-panel .city-photo .veil{transition:opacity .55s ease,background .55s ease}
+.border-city-panel .city-photo.is-all .veil{background:linear-gradient(180deg,rgba(7,11,26,.08) 0%,rgba(7,11,26,.55) 52%,rgba(7,11,26,.88) 100%)}
+.border-city-panel .city-photo.is-pi .veil{background:linear-gradient(180deg,rgba(7,11,26,.05) 0%,rgba(7,11,26,.5) 50%,rgba(7,11,26,.9) 100%)}
+.border-city-panel .city-photo.is-foz .veil{background:linear-gradient(180deg,rgba(7,11,26,.1) 0%,rgba(7,11,26,.58) 52%,rgba(7,11,26,.9) 100%)}
+.border-city-panel .city-photo.is-cde .veil{background:linear-gradient(180deg,rgba(7,11,26,.12) 0%,rgba(7,11,26,.6) 54%,rgba(7,11,26,.92) 100%)}
+.border-photo-shine{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.07) 50%,transparent 62%);transform:translateX(-120%);animation:border-photo-shine 7s ease-in-out infinite}
+.border-city-panel .city-photo .lab{left:14px;right:14px;bottom:10px;animation:border-lab-in .5s cubic-bezier(.2,.8,.2,1) both}
 .border-city-panel .city-photo .lab b{font-size:.88rem}
 .border-city-panel .city-photo .lab span{font-size:.72rem;margin-top:2px;line-height:1.35}
 .border-city-panel .city-photo .lab .ph-meta{margin-top:4px;font-size:.66rem}
+.border-grid .b-body p{transition:opacity .4s ease}
+@keyframes border-hub-glow{0%,100%{text-shadow:0 0 0 transparent;opacity:.92}50%{text-shadow:0 0 14px rgba(46,229,157,.55);opacity:1}}
+@keyframes border-photo-kenburns{from{transform:scale(1.03)}to{transform:scale(1.1) translate(-1.2%,-.6%)}}
+@keyframes border-photo-shine{0%,72%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@keyframes border-lab-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .b-map-hub,.border-city-panel .city-photo img.show,.border-photo-shine,.border-city-panel .city-photo .lab{animation:none!important}
+  .border-city-panel .city-tabs button[aria-pressed="true"]{transform:none;box-shadow:none}
+}
 @media(min-width:901px){.border-map{aspect-ratio:unset}}
 @media(max-width:900px){.border-grid{grid-template-columns:1fr;row-gap:28px}.border-left,.border-right{display:contents}.border-grid .b-title{order:1}.border-grid .b-map-wrap{order:2}.b-map-lbl{font-size:.74rem}.b-map-city{font-size:.66rem}.b-map-hub{font-size:.7rem}.border-grid .b-body{order:3}.border-grid .border-city-panel{order:4}.border-map .dot{r:5}}
 .border-map .river{fill:none;stroke:var(--violet-soft);stroke-width:1.4;opacity:.75}

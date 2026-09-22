@@ -259,7 +259,7 @@ export function BorderSection() {
                 </button>
               ))}
             </div>
-            <div className="city-photo">
+            <div className={`city-photo border-city-photo${displayCity ? ` is-${displayCity}` : " is-all"}`}>
               <div className="ph">
                 {CITY_TABS.map((tab) => (
                   <TrinexusPhoto
@@ -271,8 +271,9 @@ export function BorderSection() {
                   />
                 ))}
                 <div className="veil" />
+                <div className="border-photo-shine" aria-hidden="true" />
               </div>
-              <div className="lab" id="cityInfo" aria-live="polite">
+              <div className="lab" id="cityInfo" key={photoKey} aria-live="polite">
                 {renderCityInfo()}
               </div>
             </div>

@@ -106,42 +106,46 @@ export const IMAGES = {
   cities: {
     all: {
       u: "photo-1736060109179-e41c70ba8a02",
-      pos: "50% 55%",
-      credit: "Iain",
+      file: "/images/border/border-region.png",
+      pos: "50% 45%",
       alt: {
-        es: "Vista aérea de un puente sobre un río",
-        pt: "Vista aérea de uma ponte sobre um rio",
-        en: "Aerial view of a bridge over a river",
+        es: "Vista aérea de la Triple Frontera y el Puente de la Amistad sobre el río Paraná",
+        pt: "Vista aérea da Tríplice Fronteira e da Ponte da Amizade sobre o rio Paraná",
+        en: "Aerial view of the Triple Border and Friendship Bridge over the Paraná River",
+        gn: "Jehecha yvate gotyo Triple Frontera ha Puente de la Amistad Paraná yguasúpe",
       },
     },
     pi: {
       u: "photo-1590246185449-e9e2ddd683bb",
-      pos: "50% 50%",
-      credit: "Christhian Gruhn",
+      file: "/images/border/border-pi.png",
+      pos: "50% 42%",
       alt: {
-        es: "Personas sobre una pasarela junto a cascadas en la selva",
-        pt: "Pessoas em uma passarela perto de cachoeiras na mata",
-        en: "People on a walkway beside waterfalls in the rainforest",
+        es: "Cataratas del Iguazú desde el lado argentino, selva misionera",
+        pt: "Cataratas do Iguaçu pelo lado argentino, mata atlântica",
+        en: "Iguazú Falls from the Argentine side, Atlantic rainforest",
+        gn: "Yguasu kuarahy resẽ guive Argentina gotyo",
       },
     },
     foz: {
       u: "photo-1736060109179-e41c70ba8a02",
+      file: "/images/border/border-foz.png",
       pos: "50% 40%",
-      credit: "Iain",
       alt: {
-        es: "Vista aérea de un puente que cruza un río",
-        pt: "Vista aérea de uma ponte cruzando um rio",
-        en: "Aerial view of a bridge crossing a river",
+        es: "Foz do Iguaçu al atardecer, Brasil junto a la Triple Frontera",
+        pt: "Foz do Iguaçu ao entardecer, Brasil na Tríplice Fronteira",
+        en: "Foz do Iguaçu at dusk, Brazil at the Triple Border",
+        gn: "Foz do Iguaçu ko'ẽme, Brasil Triple Frontera-pe",
       },
     },
     cde: {
       u: "photo-1556742049-0cfed4f6a45d",
-      pos: "50% 40%",
-      credit: "Clay Banks",
+      file: "/images/border/border-cde.png",
+      pos: "50% 42%",
       alt: {
-        es: "Intercambio en el mostrador de un comercio",
-        pt: "Atendimento no balcão de um comércio",
-        en: "An exchange at the counter of a small business",
+        es: "Puente de la Amistad y centro comercial de Ciudad del Este sobre el río Paraná",
+        pt: "Ponte da Amizade e centro comercial de Ciudad del Este sobre o rio Paraná",
+        en: "Friendship Bridge and Ciudad del Este commercial skyline on the Paraná River",
+        gn: "Puente de la Amistad ha Ciudad del Este rembiapópe Paraná yguasúpe",
       },
     },
   } satisfies ImageGroup,
@@ -473,8 +477,9 @@ export function getImageSpec(key: string): ImageSpec | undefined {
 export function resolveImageSrc(key: string, width = 640): string | undefined {
   const spec = getImageSpec(key);
   if (!spec) return undefined;
-  if (spec.file && IMAGES.localBase) {
-    return `${IMAGES.localBase}${spec.file}`;
+  if (spec.file) {
+    if (spec.file.startsWith("/")) return spec.file;
+    if (IMAGES.localBase) return `${IMAGES.localBase}${spec.file}`;
   }
   return IMAGES.base(spec.u, width);
 }
