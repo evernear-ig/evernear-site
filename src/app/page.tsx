@@ -4,16 +4,28 @@ import { EcosystemSection } from "@/components/trinexus/sections/EcosystemSectio
 import { FoundingSection } from "@/components/trinexus/sections/FoundingSection";
 import { HeroSection } from "@/components/trinexus/sections/HeroSection";
 import { PeopleSection } from "@/components/trinexus/sections/PeopleSection";
+import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
+
 export default function Home() {
   return (
     <SiteShell>
       <main id="main">
         <span id="top" />
-        <HeroSection />
-        <BorderSection />
-        <PeopleSection />
-        <EcosystemSection />
-        <FoundingSection />
+        <ScrollSection>
+          <HeroSection />
+        </ScrollSection>
+        <ScrollSection>
+          <BorderSection />
+        </ScrollSection>
+        <ScrollSection>
+          <PeopleSection />
+        </ScrollSection>
+        <ScrollSection>
+          <EcosystemSection />
+        </ScrollSection>
+        <ScrollSection>
+          <FoundingSection />
+        </ScrollSection>
       </main>
     </SiteShell>
   );

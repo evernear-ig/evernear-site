@@ -10,7 +10,9 @@ import {
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
 import { JOIN_CITY_OPTIONS, JOIN_TRACKS } from "@/lib/join-tracks";
+import { ConexaMascotFallback } from "@/components/trinexus/ui/ConexaMascotFallback";
 import { T, THtml } from "@/components/trinexus/ui/T";
+import type { MascotPose } from "@/lib/mascot-poses";
 import { toast } from "sonner";
 
 const INTERESTS = [
@@ -188,6 +190,7 @@ export function JoinModal() {
 
   const titleKey = trackConfig ? trackConfig.titleKey : "form.h";
   const subKey = trackConfig ? trackConfig.subKey : "form.sub";
+  const modalPose: MascotPose = success ? "globe" : track ? "think" : "welcome";
 
   return (
     <div
@@ -201,6 +204,7 @@ export function JoinModal() {
     >
       <div className="modal-bg" onClick={closeJoin} aria-hidden="true" />
       <div className="modal-box">
+        <ConexaMascotFallback pose={modalPose} className="modal-mascot" alt="CONEXA" />
         <button
           type="button"
           className="modal-close"
