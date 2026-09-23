@@ -954,7 +954,7 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-entity-card--sport{border-top:3px solid var(--eco-sport)}
 .eco-entity-card--preview{cursor:default;pointer-events:none;opacity:.94}
 .eco-entity-badge--preview{background:rgba(255,107,74,.14);color:var(--eco-sport)}
-.sport-guide-region{margin-top:28px;padding-top:22px;border-top:1px solid var(--line-dark)}
+.sport-guide-region{margin-top:0;padding-top:0;border-top:0}
 .sport-guide-region-title,.sport-guide-audience-title{font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px}
 .sport-guide-region p{color:var(--text-on-light-muted);margin:0 0 14px;line-height:1.5}
 .sport-guide-cities{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start}
@@ -1134,7 +1134,9 @@ body:has(.about-page--full){overflow:hidden}
 .innovacion-lead{margin-bottom:28px;max-width:42em}
 .innovacion-pillar-grid{grid-template-columns:repeat(2,1fr)}
 @media(max-width:700px){.innovacion-pillar-grid{grid-template-columns:1fr}}
-.eco-hero--sport{border-top:4px solid var(--green)}
+.eco-hero--sport{border-top:4px solid var(--eco-sport);min-height:min(48svh,460px)}
+.eco-hero--sport .eco-hero-photo img,.eco-hero--sport .ph.eco-hero-photo img{opacity:.5;filter:saturate(.78) brightness(.9)}
+.eco-hero--sport .eco-hero-veil{background:linear-gradient(180deg,rgba(7,11,26,.5) 0%,rgba(7,11,26,.68) 42%,rgba(7,11,26,.86) 100%),linear-gradient(90deg,rgba(7,11,26,.72) 0%,rgba(7,11,26,.28) 52%,transparent 78%)}
 .eco-hero--health{border-top:4px solid #1A8A6B}
 .eco-hero--wellness{border-top:4px solid #6B5BC4}
 .eco-hero--communication{border-top:4px solid #D97706}

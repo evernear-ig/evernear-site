@@ -6,10 +6,14 @@ import { FilterBar } from "./FilterBar";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 import { T } from "@/components/trinexus/ui/T";
 import type { CityId } from "@/lib/ecosystem/cities";
+import { JOIN_TRACKS } from "@/lib/join-tracks";
+
+const SPORT_DISCIPLINES = JOIN_TRACKS.sport.focusAreas.slice(0, 8);
 
 type PreviewItem = {
   id: string;
   cityId: CityId;
+  discipline: string;
   titleKey: string;
   subtitleKey: string;
   descKey: string;
@@ -20,6 +24,7 @@ const PREVIEW_ITEMS: PreviewItem[] = [
   {
     id: "club",
     cityId: "pi",
+    discipline: "basketball",
     titleKey: "sport.preview.club.title",
     subtitleKey: "sport.preview.club.sub",
     descKey: "sport.preview.club.desc",
@@ -28,6 +33,7 @@ const PREVIEW_ITEMS: PreviewItem[] = [
   {
     id: "athlete",
     cityId: "foz",
+    discipline: "futsal",
     titleKey: "sport.preview.athlete.title",
     subtitleKey: "sport.preview.athlete.sub",
     descKey: "sport.preview.athlete.desc",
@@ -36,6 +42,7 @@ const PREVIEW_ITEMS: PreviewItem[] = [
   {
     id: "call",
     cityId: "cde",
+    discipline: "futsal",
     titleKey: "sport.preview.call.title",
     subtitleKey: "sport.preview.call.sub",
     descKey: "sport.preview.call.desc",
@@ -45,10 +52,15 @@ const PREVIEW_ITEMS: PreviewItem[] = [
 
 export function SportComingSoonContent() {
   const [city, setCity] = useState("all");
+  const [discipline, setDiscipline] = useState("all");
 
   const filtered = useMemo(() => {
-    return PREVIEW_ITEMS.filter((item) => city === "all" || item.cityId === city);
-  }, [city]);
+    return PREVIEW_ITEMS.filter((item) => {
+      if (city !== "all" && item.cityId !== city) return false;
+      if (discipline !== "all" && item.discipline !== discipline) return false;
+      return true;
+    });
+  }, [city, discipline]);
 
   return (
     <>
@@ -70,6 +82,19 @@ export function SportComingSoonContent() {
               { value: "pi", labelKey: "city.pi.b" },
               { value: "foz", labelKey: "city.foz.b" },
               { value: "cde", labelKey: "city.cde.b" },
+            ],
+          },
+          {
+            id: "discipline",
+            labelKey: "filter.modality",
+            value: discipline,
+            onChange: setDiscipline,
+            options: [
+              { value: "all", labelKey: "filter.all" },
+              ...SPORT_DISCIPLINES.map((item) => ({
+                value: item.value,
+                labelKey: item.key,
+              })),
             ],
           },
         ]}
