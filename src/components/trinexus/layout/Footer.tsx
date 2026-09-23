@@ -1,7 +1,9 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import {
   ABOUT_NAV_LINKS,
@@ -27,11 +29,16 @@ export function Footer() {
   const { t } = useI18n();
 
   return (
-    <footer>
+    <footer style={{ viewTransitionName: "site-footer" } satisfies CSSProperties}>
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <a href="/" className="logo" aria-label={String(t("a11y.home"))}>
+            <TransitionLink
+              href="/"
+              transition="fade"
+              className="logo"
+              aria-label={String(t("a11y.home"))}
+            >
               <svg viewBox="0 0 40 40" aria-hidden="true">
                 <path
                   d="M20 5 L35 31 L5 31 Z"
@@ -45,7 +52,7 @@ export function Footer() {
                 <circle cx="20" cy="22" r="3.5" fill="#2EE59D" />
               </svg>
               CONEXA
-            </a>
+            </TransitionLink>
             <p>
               <T k="foot.p" />
             </p>
@@ -64,23 +71,23 @@ export function Footer() {
             <ul>
               {ABOUT_NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}>
+                  <TransitionLink href={link.href}>
                     <T k={link.key} />
-                  </a>
+                  </TransitionLink>
                 </li>
               ))}
             </ul>
           </div>
-          <div>
+          <div className="foot-col foot-col--eco">
             <h4>
               <T k="foot.eco" />
             </h4>
-            <ul>
+            <ul className="foot-eco-links">
               {ECOSYSTEM_NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}>
+                  <TransitionLink href={link.href}>
                     <T k={link.key} />
-                  </a>
+                  </TransitionLink>
                 </li>
               ))}
             </ul>
@@ -92,9 +99,12 @@ export function Footer() {
             <ul>
               {COM_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}>
+                  <TransitionLink
+                    href={link.href}
+                    transition={link.href.startsWith("/#") ? "fade" : "forward"}
+                  >
                     <T k={link.key} />
-                  </a>
+                  </TransitionLink>
                 </li>
               ))}
             </ul>

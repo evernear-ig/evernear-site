@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { SiteShell } from "@/components/trinexus/SiteShell";
+import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
 import { T } from "@/components/trinexus/ui/T";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 import { VerticalHero } from "./VerticalHero";
@@ -25,6 +26,7 @@ export function VerticalPageShell({
     <SiteShell>
       <main id="main" className="eco-page">
         <VerticalHero
+          slug={vertical.slug}
           accent={vertical.accent}
           imageKey={vertical.imageKey}
           titleKey={vertical.titleKey}
@@ -40,18 +42,20 @@ export function VerticalPageShell({
           </section>
         ) : null}
         {beforeCatalog}
-        <section className="light eco-body eco-catalog">
-          <div className="wrap">
-            {catalogDividerKey ? (
-              <header className="eco-catalog-head">
-                <h2 className="eco-catalog-title">
-                  <T k={catalogDividerKey} />
-                </h2>
-              </header>
-            ) : null}
-            {children}
-          </div>
-        </section>
+        <ScrollSection>
+          <section className="light eco-body eco-catalog">
+            <div className="wrap">
+              {catalogDividerKey ? (
+                <header className="eco-catalog-head">
+                  <h2 className="eco-catalog-title">
+                    <T k={catalogDividerKey} />
+                  </h2>
+                </header>
+              ) : null}
+              {children}
+            </div>
+          </section>
+        </ScrollSection>
         <VerticalNavStrip activeSlug={verticalSlug} />
       </main>
     </SiteShell>

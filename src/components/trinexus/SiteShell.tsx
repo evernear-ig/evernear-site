@@ -28,7 +28,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <SmoothScroll>
             <SkipLink />
             <Header />
-            {children}
+            <div className="page-surface">{children}</div>
             <Footer />
             <JoinModal />
             <ConexaGuideLayer />

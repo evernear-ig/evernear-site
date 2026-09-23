@@ -17,20 +17,16 @@ import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider"
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
 import {
-  computeConexaScrub,
   useConexaScrollScrub,
   type ConexaScrubState,
 } from "@/hooks/useConexaScrollScrub";
+import { resetMascotPark } from "@/lib/mascot-clearance";
 import {
   getConexaSections,
   resolveSectionTargets,
   type ConexaSectionTarget,
 } from "@/lib/conexa-sections";
 import { MASCOT_CONCEPTS } from "@/lib/mascot-concepts";
-import {
-  computeMascotLayout,
-  getMascotPlacement,
-} from "@/lib/mascot-placements";
 import type { MascotPose } from "@/lib/mascot-poses";
 
 const ConexaMascotOrbit = dynamic(
@@ -42,7 +38,6 @@ const ConexaMascotOrbit = dynamic(
 );
 
 const PROMPT_KEY = "conexa-guide-prompt-v1";
-const SPINE_RIGHT = 54;
 type GuideMode = "ambient" | "prompt" | "tour";
 
 export function ConexaGuideLayer() {
@@ -59,7 +54,6 @@ export function ConexaGuideLayer() {
   const [scrub, setScrub] = useState<ConexaScrubState | null>(null);
   const [assemble, setAssemble] = useState(1);
   const [prevPose, setPrevPose] = useState<MascotPose>("welcome");
-  const [tourLayout, setTourLayout] = useState(scrub?.layout ?? null);
   const prevIndexRef = useRef(0);
   const assembleRaf = useRef(0);
 
@@ -71,18 +65,15 @@ export function ConexaGuideLayer() {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 1024px)");
 
     const sync = () => {
       setReducedMotion(reduce.matches);
-      setAllowed(desktop.matches);
+      setAllowed(true);
     };
     sync();
     reduce.addEventListener("change", sync);
-    desktop.addEventListener("change", sync);
     return () => {
       reduce.removeEventListener("change", sync);
-      desktop.removeEventListener("change", sync);
     };
   }, []);
 
@@ -108,10 +99,15 @@ export function ConexaGuideLayer() {
 
   useConexaScrollScrub(
     targets,
-    allowed && mode === "ambient" && visible && !joinOpen,
+    allowed && visible && !joinOpen,
     reducedMotion,
     setScrub,
   );
+
+  useEffect(() => {
+    resetMascotPark();
+    window.dispatchEvent(new Event("resize"));
+  }, [mode]);
 
   const activeIndex = mode === "tour"
     ? Math.max(0, (state?.currentStepNumber ?? 1) - 1)
@@ -128,22 +124,6 @@ export function ConexaGuideLayer() {
       : (scrub?.concept ?? "default");
 
   const tokens = MASCOT_CONCEPTS[concept];
-
-  useEffect(() => {
-    if (mode !== "tour" || !targets.length) return;
-    const index = Math.max(0, (state?.currentStepNumber ?? 1) - 1);
-    const target = targets[index];
-    if (!target) return;
-
-    const rect = target.el.getBoundingClientRect();
-    const placement = getMascotPlacement(target.key);
-    setTourLayout(
-      computeMascotLayout(rect, placement, {
-        width: window.innerWidth,
-        height: window.innerHeight,
-      }),
-    );
-  }, [mode, state?.currentStepNumber, targets]);
 
   useEffect(() => {
     if (prevIndexRef.current === activeIndex) return;
@@ -205,12 +185,7 @@ export function ConexaGuideLayer() {
     if (state?.isCompleted) setMode("ambient");
   }, [state?.isCompleted]);
 
-  const layout = mode === "tour" && tourLayout ? tourLayout : scrub?.layout;
-  const nodeYs = scrub?.nodeYs ?? [];
-  const progress =
-    mode === "tour"
-      ? (state?.progressPercentage ?? 0)
-      : (scrub?.globalProgress ?? 0) * 100;
+  const layout = scrub?.layout;
 
   const tourAnchor =
     mode === "tour" ? targets[activeIndex]?.el ?? null : null;
@@ -218,19 +193,9 @@ export function ConexaGuideLayer() {
   const show =
     allowed && visible && !joinOpen && targets.length > 0 && layout;
 
-  if (!show) return null;
+  if (!show || !layout) return null;
 
-  const spineX = window.innerWidth - SPINE_RIGHT;
-  const connectorMidX = (layout.connectorStartX + layout.focusX) * 0.5;
-  const connectorMidY = (layout.connectorStartY + layout.focusY) * 0.5;
-  const connectorPath = `M ${layout.connectorStartX} ${layout.connectorStartY} Q ${connectorMidX} ${connectorMidY}, ${layout.focusX} ${layout.focusY}`;
-  const chipLabel = String(t(scrub?.stepKey ?? "journey.hero.step"));
-  const mascotSize =
-    mode === "ambient"
-      ? layout.mascotSize * 0.68
-      : mode === "tour"
-        ? layout.mascotSize * 0.55
-        : layout.mascotSize;
+  const mascotSize = layout.mascotSize;
 
   return (
     <ConexaGuideActionsProvider exitTour={exitTour}>
@@ -249,58 +214,6 @@ export function ConexaGuideLayer() {
       ) : null}
 
       {mode === "tour" ? <ConexaSpotlight anchor={tourAnchor} /> : null}
-
-      <svg className="conexa-guide__svg" width="100%" height="100%" aria-hidden="true">
-        {nodeYs.length > 1 ? (
-          <line
-            x1={spineX}
-            y1={nodeYs[0]}
-            x2={spineX}
-            y2={nodeYs[nodeYs.length - 1]}
-            className="conexa-guide__spine"
-          />
-        ) : null}
-        {activeIndex > 0 && nodeYs[activeIndex] !== undefined ? (
-          <line
-            x1={spineX}
-            y1={nodeYs[activeIndex - 1]}
-            x2={spineX}
-            y2={nodeYs[activeIndex]}
-            className="conexa-guide__spine-active"
-            style={{ stroke: tokens.accent }}
-          />
-        ) : null}
-        <path d={connectorPath} className="conexa-guide__connector" />
-        <circle
-          cx={layout.focusX}
-          cy={layout.focusY}
-          r="16"
-          fill={tokens.accent}
-          className="conexa-guide__focus"
-          opacity="0.2"
-        />
-        <circle
-          cx={layout.focusX}
-          cy={layout.focusY}
-          r="4"
-          fill={tokens.accent}
-          className="conexa-guide__focus-dot"
-        />
-      </svg>
-
-      <div className="conexa-guide__nodes" style={{ right: SPINE_RIGHT - 6 }}>
-        {targets.map((target, index) => (
-          <span
-            key={target.key}
-            className={`conexa-guide__node${index === activeIndex ? " is-active" : ""}${index < activeIndex ? " is-visited" : ""}`}
-            style={{ top: nodeYs[index] ?? layout.mascotCenterY }}
-          />
-        ))}
-      </div>
-
-      <div className="conexa-guide__progress" style={{ right: SPINE_RIGHT + 18 }}>
-        <span className="conexa-guide__progress-fill" style={{ height: `${progress}%` }} />
-      </div>
 
       {mode === "prompt" ? (
         <div className="conexa-guide__prompt" role="dialog" aria-labelledby="conexa-prompt-title">
@@ -333,9 +246,8 @@ export function ConexaGuideLayer() {
         type="button"
         className="conexa-guide__actor"
         style={{
-          top: layout.mascotTop + (layout.mascotSize - mascotSize) / 2,
-          left: layout.mascotLeft + (layout.mascotSize - mascotSize) / 2,
           width: mascotSize,
+          transform: `translate3d(${layout.mascotLeft}px, ${layout.mascotTop}px, 0)`,
         }}
         onClick={() => {
           if (mode === "tour") return;
@@ -344,27 +256,22 @@ export function ConexaGuideLayer() {
         disabled={mode === "tour"}
         aria-label={String(t("journey.ambient.tap"))}
       >
-        <div className="conexa-guide__orbit-wrap">
-          <ConexaMascotOrbit
-            tokens={tokens}
+        <span className="conexa-guide__float">
+          <div className="conexa-guide__orbit-wrap">
+            <ConexaMascotOrbit
+              tokens={tokens}
+              assemble={assemble}
+              reducedMotion={reducedMotion}
+            />
+          </div>
+          <ConexaMascotImage
+            pose={pose}
+            prevPose={prevPose}
             assemble={assemble}
-            reducedMotion={reducedMotion}
+            compact
+            alt=""
           />
-        </div>
-        <ConexaMascotImage
-          pose={pose}
-          prevPose={prevPose}
-          assemble={assemble}
-          compact={mode === "ambient"}
-        />
-        {mode === "ambient" ? (
-          <span className="conexa-guide__chip">
-            {chipLabel}
-            <span className="conexa-guide__chip-count">
-              {activeIndex + 1}/{targets.length}
-            </span>
-          </span>
-        ) : null}
+        </span>
       </button>
 
       {mode === "tour" ? (

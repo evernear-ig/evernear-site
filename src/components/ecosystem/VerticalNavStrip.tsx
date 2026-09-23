@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 
@@ -12,15 +12,16 @@ export function VerticalNavStrip({ activeSlug }: { activeSlug: string }) {
         <ul className="eco-nav-links">
           {ECOSYSTEM_VERTICALS.map((vertical) => (
             <li key={vertical.slug}>
-              <Link
+              <TransitionLink
                 href={vertical.href}
+                transition="fade"
                 className={vertical.slug === activeSlug ? "active" : undefined}
                 aria-current={
                   vertical.slug === activeSlug ? "page" : undefined
                 }
               >
                 <T k={vertical.navKey} />
-              </Link>
+              </TransitionLink>
             </li>
           ))}
         </ul>

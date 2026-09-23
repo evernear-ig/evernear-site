@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import type { NavLinkGroup } from "@/lib/ecosystem/verticals";
 
@@ -53,7 +54,7 @@ export function NavDropdown({
       className={`nav-dropdown${open ? " open" : ""}${megaMenu ? " nav-dropdown--mega" : subGroups ? " nav-dropdown--wide" : ""}`}
       onMouseEnter={onOpen}
     >
-      <a
+      <TransitionLink
         href={triggerHref}
         className="nav-dropdown-trigger"
         aria-expanded={open}
@@ -76,7 +77,7 @@ export function NavDropdown({
             strokeLinejoin="round"
           />
         </svg>
-      </a>
+      </TransitionLink>
       <ul className={menuClass} aria-label={String(t(submenuAriaKey))}>
         {subGroups
           ? subGroups.map((group) => (
@@ -87,9 +88,9 @@ export function NavDropdown({
                 <ul className="nav-mega-links">
                   {group.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} onClick={handleLinkClick}>
+                      <TransitionLink href={link.href} onClick={handleLinkClick}>
                         <T k={link.key} />
-                      </a>
+                      </TransitionLink>
                     </li>
                   ))}
                 </ul>
@@ -97,9 +98,9 @@ export function NavDropdown({
             ))
           : subLinks?.map((link) => (
               <li key={link.href}>
-                <a href={link.href} onClick={handleLinkClick}>
+                <TransitionLink href={link.href} onClick={handleLinkClick}>
                   <T k={link.key} />
-                </a>
+                </TransitionLink>
               </li>
             ))}
       </ul>

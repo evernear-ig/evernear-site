@@ -1,8 +1,11 @@
-import Link from "next/link";
+import type { CSSProperties } from "react";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 import { T } from "@/components/trinexus/ui/T";
+import { ecoViewTransitionName } from "@/lib/eco-vt-name";
 
 type VerticalHeroProps = {
+  slug: string;
   accent: string;
   imageKey: string;
   titleKey: string;
@@ -10,22 +13,30 @@ type VerticalHeroProps = {
 };
 
 export function VerticalHero({
+  slug,
   accent,
   imageKey,
   titleKey,
   leadKey,
 }: VerticalHeroProps) {
+  const vtName = ecoViewTransitionName(slug);
+
   return (
     <section className={`dark eco-hero eco-hero--${accent}`}>
       <div className="eco-hero-bg">
-        <TrinexusPhoto imageKey={imageKey} className="eco-hero-photo" priority />
+        <div
+          className="eco-hero-photo-wrap"
+          style={{ viewTransitionName: vtName } satisfies CSSProperties}
+        >
+          <TrinexusPhoto imageKey={imageKey} className="eco-hero-photo" priority />
+        </div>
         <div className="eco-hero-veil" />
       </div>
       <div className="wrap eco-hero-content">
         <nav className="eco-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/ecosistema">
+          <TransitionLink href="/ecosistema" transition="back">
             <T k="nav.eco" />
-          </Link>
+          </TransitionLink>
           <span aria-hidden="true">/</span>
           <span>
             <T k={titleKey} />

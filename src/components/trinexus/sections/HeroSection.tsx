@@ -3,6 +3,7 @@
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { LangNote } from "@/components/trinexus/ui/LangSwitch";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { HeroBridgeVisual } from "@/components/trinexus/sections/HeroBridgeVisual";
 import { T, TLines } from "@/components/trinexus/ui/T";
 
@@ -43,9 +44,9 @@ export function HeroSection() {
           </p>
           <div className="btns">
             <JoinButton />
-            <a href="/que-es" className="btn btn-ghost">
+            <TransitionLink href="/que-es" className="btn btn-ghost">
               <T k="nav.vision" />
-            </a>
+            </TransitionLink>
           </div>
           <div
             className="hero-countries"

@@ -1,14 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { EcoCardLink } from "@/components/ecosystem/EcoCardLink";
 import {
   COMMUNITY_VERTICALS,
   REGION_VERTICALS,
 } from "@/lib/ecosystem/verticals";
+import { slugFromEcoHref } from "@/lib/eco-vt-name";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T, THtml } from "@/components/trinexus/ui/T";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
 type AreaVertical = {
   href: string;
@@ -23,30 +24,14 @@ const AREA_PAGE_SIZE_MOBILE = 1;
 
 function AreaCard({ vertical }: { vertical: AreaVertical }) {
   return (
-    <Link
+    <EcoCardLink
       href={vertical.href}
-      className={`eco-card${vertical.featured ? " eco-card--featured" : ""}`}
-    >
-      <div className="eco-card-img">
-        <TrinexusPhoto imageKey={vertical.imageKey} />
-      </div>
-      <div className="eco-card-body">
-        {vertical.featured && (
-          <span className="eco-card-badge">
-            <T k="areas.featured" />
-          </span>
-        )}
-        <h2>
-          <T k={vertical.titleKey} />
-        </h2>
-        <p>
-          <T k={vertical.leadKey} />
-        </p>
-        <span className="eco-card-link">
-          <T k="eco.enter" />
-        </span>
-      </div>
-    </Link>
+      slug={slugFromEcoHref(vertical.href)}
+      titleKey={vertical.titleKey}
+      leadKey={vertical.leadKey}
+      imageKey={vertical.imageKey}
+      featured={vertical.featured}
+    />
   );
 }
 
@@ -173,9 +158,9 @@ export function EcosystemSection() {
         </Reveal>
 
         <Reveal className="areas-cta">
-          <Link href="/ecosistema" className="btn btn-ghost">
+          <TransitionLink href="/ecosistema" className="btn btn-ghost">
             <T k="areas.seeAll" />
-          </Link>
+          </TransitionLink>
         </Reveal>
       </div>
     </section>

@@ -4,6 +4,7 @@ import {
   type SlideBlock,
 } from "@/components/ecosystem/AboutSlidesPage";
 import { SiteShell } from "@/components/trinexus/SiteShell";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 
 type AboutContentPageProps = {
@@ -83,9 +84,13 @@ export function AboutContentPage({
                 <ul>
                   {footerLinks.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href}>
+                      <TransitionLink
+                        href={link.href}
+                        transition={link.href.startsWith("/#") ? "fade" : "forward"}
+                        className="btn btn-outline btn-sm"
+                      >
                         <T k={link.key} />
-                      </Link>
+                      </TransitionLink>
                     </li>
                   ))}
                 </ul>

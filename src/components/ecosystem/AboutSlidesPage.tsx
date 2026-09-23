@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, startTransition } from "react";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 
@@ -35,7 +35,9 @@ export function AboutSlidesPage({
   const go = useCallback(
     (delta: number) => {
       if (count < 2) return;
-      setIndex((current) => (current + delta + count) % count);
+      startTransition(() => {
+        setIndex((current) => (current + delta + count) % count);
+      });
     },
     [count],
   );
@@ -53,7 +55,9 @@ export function AboutSlidesPage({
   return (
     <section className="dark eco-hero eco-hero--about-full">
       <div className="eco-hero-bg" aria-hidden="true">
-        <TrinexusPhoto imageKey={imageKey} className="eco-hero-photo" priority />
+        <div key={imageKey} className="about-full-photo-layer">
+          <TrinexusPhoto imageKey={imageKey} className="eco-hero-photo" priority />
+        </div>
         <div className="eco-hero-veil" />
       </div>
 
@@ -71,7 +75,11 @@ export function AboutSlidesPage({
           </header>
 
           {active ? (
-            <article className="about-full-slide" aria-live="polite">
+            <article
+              key={active.titleKey}
+              className="about-full-slide"
+              aria-live="polite"
+            >
               <h2 className="about-full-slide-title">
                 <T k={active.titleKey} />
               </h2>
@@ -114,7 +122,9 @@ export function AboutSlidesPage({
                   aria-selected={i === index}
                   aria-label={`Sección ${i + 1}`}
                   className={i === index ? "active" : undefined}
-                  onClick={() => setIndex(i)}
+                  onClick={() => {
+                    startTransition(() => setIndex(i));
+                  }}
                 />
               ))}
             </div>
@@ -134,9 +144,13 @@ export function AboutSlidesPage({
               <ul>
                 {footerLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="btn btn-ghost btn-sm">
+                    <TransitionLink
+                      href={link.href}
+                      transition={link.href.startsWith("/#") ? "fade" : "forward"}
+                      className="btn btn-ghost btn-sm"
+                    >
                       <T k={link.key} />
-                    </Link>
+                    </TransitionLink>
                   </li>
                 ))}
               </ul>

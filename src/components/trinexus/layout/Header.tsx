@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import {
   NavDropdown,
@@ -10,6 +10,7 @@ import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider"
 import { useNavSolid } from "@/hooks/useNavSolid";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
+import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import {
   ABOUT_NAV_LINKS,
@@ -91,9 +92,18 @@ export function Header() {
 
   return (
     <>
-      <header className={navClass} id="nav">
+      <header
+        className={navClass}
+        id="nav"
+        style={{ viewTransitionName: "site-header" } satisfies CSSProperties}
+      >
         <div className="wrap">
-          <a href="/" className="logo" aria-label={String(t("a11y.home"))}>
+          <TransitionLink
+            href="/"
+            transition="fade"
+            className="logo"
+            aria-label={String(t("a11y.home"))}
+          >
             <svg viewBox="0 0 40 40" aria-hidden="true">
               <path
                 d="M20 5 L35 31 L5 31 Z"
@@ -107,7 +117,7 @@ export function Header() {
               <circle cx="20" cy="22" r="3.5" fill="#2EE59D" />
             </svg>
             CONEXA
-          </a>
+          </TransitionLink>
           <nav ref={navRef} aria-label={String(t("a11y.mainnav"))}>
             <ul className="nav-links" onMouseLeave={scheduleClose}>
               <NavDropdown
@@ -156,9 +166,9 @@ export function Header() {
         </span>
         <div className="mobile-submenu" aria-label={String(t("a11y.aboutnav"))}>
           {ABOUT_NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={onNavClick}>
+            <TransitionLink key={link.href} href={link.href} onClick={onNavClick}>
               <T k={link.key} />
-            </a>
+            </TransitionLink>
           ))}
         </div>
         <span className="mobile-menu-section">
@@ -180,9 +190,9 @@ export function Header() {
               {expanded ? (
                 <div className="mobile-submenu mobile-eco-links">
                   {group.links.map((link) => (
-                    <a key={link.href} href={link.href} onClick={onNavClick}>
+                    <TransitionLink key={link.href} href={link.href} onClick={onNavClick}>
                       <T k={link.key} />
-                    </a>
+                    </TransitionLink>
                   ))}
                 </div>
               ) : null}

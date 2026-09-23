@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/trinexus.css";
+@import "../styles/view-transitions.css";
 
 @theme inline {
   --font-sans: var(--font-body);
@@ -9,12 +10,28 @@ html {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior: none;
+  background: var(--space);
 }
 
 body {
   font-family: var(--font-body), system-ui, sans-serif;
   touch-action: manipulation;
   min-height: 100dvh;
+}
+
+[data-sonner-toaster],
+section[aria-label*="Notifications"] {
+  position: fixed !important;
+  pointer-events: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: visible;
+}
+
+[data-sonner-toast] {
+  pointer-events: auto;
 }
 
 input,
