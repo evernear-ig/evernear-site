@@ -471,6 +471,184 @@ export const IMAGES = {
       },
     },
   } satisfies ImageGroup,
+  sport: {
+    footballVictoria: {
+      u: "/images/sport/sport-football-victoria.png",
+      file: "/images/sport/sport-football-victoria.png",
+      pos: "50% 40%",
+      credit: "CONEXA",
+      alt: {
+        es: "Equipo juvenil de fútbol entrenando en cancha comunitaria de Puerto Iguazú",
+        pt: "Equipe juvenil de futebol treinando em campo comunitário de Puerto Iguazú",
+        en: "Youth football team training on a community pitch in Puerto Iguazú",
+      },
+    },
+    footballLigaBarrial: {
+      u: "/images/sport/sport-football-liga-barrial.png",
+      file: "/images/sport/sport-football-liga-barrial.png",
+      pos: "50% 45%",
+      credit: "CONEXA",
+      alt: {
+        es: "Partido de fútbol amateur en torneo barrial al atardecer",
+        pt: "Partida de futebol amador em torneio de bairro ao entardecer",
+        en: "Amateur football match at a neighborhood tournament at dusk",
+      },
+    },
+    futsalFoz: {
+      u: "/images/sport/sport-futsal-foz.png",
+      file: "/images/sport/sport-futsal-foz.png",
+      pos: "50% 42%",
+      credit: "CONEXA",
+      alt: {
+        es: "Partido de futsal en ginásio cubierto de Foz do Iguaçu",
+        pt: "Partida de futsal em ginásio coberto de Foz do Iguaçu",
+        en: "Futsal match in an indoor court in Foz do Iguaçu",
+      },
+    },
+    futsalCopa: {
+      u: "/images/sport/sport-futsal-copa.png",
+      file: "/images/sport/sport-futsal-copa.png",
+      pos: "50% 40%",
+      credit: "CONEXA",
+      alt: {
+        es: "Selección escolar de futsal en cancha antes de copa fronteriza",
+        pt: "Seleção escolar de futsal em quadra antes de copa fronteiriça",
+        en: "School futsal team on court before a cross-border cup",
+      },
+    },
+    basketIguazu: {
+      u: "/images/sport/sport-basket-iguazu.png",
+      file: "/images/sport/sport-basket-iguazu.png",
+      pos: "50% 38%",
+      credit: "CONEXA",
+      alt: {
+        es: "Jugadores de básquet en cancha cubierta comunitaria",
+        pt: "Jogadores de basquete em quadra coberta comunitária",
+        en: "Basketball players on a community indoor court",
+      },
+    },
+    basketFozEscuela: {
+      u: "/images/sport/sport-basket-foz-escuela.png",
+      file: "/images/sport/sport-basket-foz-escuela.png",
+      pos: "50% 42%",
+      credit: "CONEXA",
+      alt: {
+        es: "Niños en clase de básquet en escuela pública de Foz",
+        pt: "Crianças em aula de basquete em escola pública de Foz",
+        en: "Children in a basketball class at a public school in Foz",
+      },
+    },
+    volleyIguazu: {
+      u: "/images/sport/sport-volley-iguazu.png",
+      file: "/images/sport/sport-volley-iguazu.png",
+      pos: "50% 40%",
+      credit: "CONEXA",
+      alt: {
+        es: "Equipo femenino de vóley en partido local",
+        pt: "Equipe feminina de vôlei em partida local",
+        en: "Women's volleyball team in a local match",
+      },
+    },
+    volleyCde: {
+      u: "/images/sport/sport-volley-cde.png",
+      file: "/images/sport/sport-volley-cde.png",
+      pos: "50% 42%",
+      credit: "CONEXA",
+      alt: {
+        es: "Partido de vóley en cancha de Ciudad del Este",
+        pt: "Partida de vôlei em quadra de Ciudad del Este",
+        en: "Volleyball match on a court in Ciudad del Este",
+      },
+    },
+    handballPi: {
+      u: "/images/sport/sport-handball-pi.png",
+      file: "/images/sport/sport-handball-pi.png",
+      pos: "50% 40%",
+      credit: "CONEXA",
+      alt: {
+        es: "Equipo escolar de handball en polideportivo de Puerto Iguazú",
+        pt: "Equipe escolar de handebol em poliesportivo de Puerto Iguazú",
+        en: "School handball team at a sports hall in Puerto Iguazú",
+      },
+    },
+    handballFoz: {
+      u: "/images/sport/sport-handball-foz.png",
+      file: "/images/sport/sport-handball-foz.png",
+      pos: "50% 42%",
+      credit: "CONEXA",
+      alt: {
+        es: "Partido universitario de handball en campus de Foz",
+        pt: "Partida universitária de handebol no campus de Foz",
+        en: "University handball match on a Foz campus court",
+      },
+    },
+    martialFoz: {
+      u: "/images/sport/sport-martial-foz.png",
+      file: "/images/sport/sport-martial-foz.png",
+      pos: "50% 38%",
+      credit: "CONEXA",
+      alt: {
+        es: "Clase de artes marciales en dojo de Foz do Iguaçu",
+        pt: "Aula de artes marciais em dojo de Foz do Iguaçu",
+        en: "Martial arts class in a dojo in Foz do Iguaçu",
+      },
+    },
+    martialCde: {
+      u: "/images/sport/sport-martial-cde.png",
+      file: "/images/sport/sport-martial-cde.png",
+      pos: "50% 40%",
+      credit: "CONEXA",
+      alt: {
+        es: "Judoka entrenando en tatami de Ciudad del Este",
+        pt: "Judoca treinando em tatame de Ciudad del Este",
+        en: "Judo athlete training on a mat in Ciudad del Este",
+      },
+    },
+    athleticsMaraton: {
+      u: "/images/sport/sport-athletics-maraton.png",
+      file: "/images/sport/sport-athletics-maraton.png",
+      pos: "50% 45%",
+      credit: "CONEXA",
+      alt: {
+        es: "Corredores en carrera de ruta fronteriza al amanecer",
+        pt: "Corredores em prova de rua fronteiriça ao amanhecer",
+        en: "Runners in a cross-border road race at dawn",
+      },
+    },
+    athleticsPi: {
+      u: "/images/sport/sport-athletics-pi.png",
+      file: "/images/sport/sport-athletics-pi.png",
+      pos: "50% 42%",
+      credit: "CONEXA",
+      alt: {
+        es: "Atletas entrenando en pista municipal de Puerto Iguazú",
+        pt: "Atletas treinando em pista municipal de Puerto Iguazú",
+        en: "Athletes training on a municipal track in Puerto Iguazú",
+      },
+    },
+    swimFoz: {
+      u: "/images/sport/sport-swim-foz.png",
+      file: "/images/sport/sport-swim-foz.png",
+      pos: "50% 40%",
+      credit: "CONEXA",
+      alt: {
+        es: "Natación en pileta olímpica municipal de Foz",
+        pt: "Natação em piscina olímpica municipal de Foz",
+        en: "Swimming in a municipal Olympic pool in Foz",
+      },
+    },
+    swimPi: {
+      u: "/images/sport/sport-swim-pi.png",
+      file: "/images/sport/sport-swim-pi.png",
+      pos: "50% 42%",
+      credit: "CONEXA",
+      alt: {
+        es: "Clase de natación infantil en pileta climatizada",
+        pt: "Aula de natação infantil em piscina aquecida",
+        en: "Children's swimming lesson in a heated pool",
+      },
+    },
+  } satisfies ImageGroup,
 };
 
 export function getImageSpec(key: string): ImageSpec | undefined {

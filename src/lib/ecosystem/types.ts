@@ -79,3 +79,17 @@ export type Business = {
   qrId: string;
   panfletoSubscribed: boolean;
 };
+
+export type SportListingKind = "club" | "athlete" | "call" | "team";
+
+export type SportListing = {
+  id: string;
+  discipline: string;
+  cityId: CityId;
+  kind: SportListingKind;
+  title: string;
+  subtitle: string;
+  description: string;
+  imageKey: string;
+  meta?: string;
+};

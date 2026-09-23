@@ -960,6 +960,7 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .sport-guide-cities{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start}
 .sport-coming-lead{color:var(--text-on-light-muted);margin:0 0 20px;line-height:1.55;max-width:52ch}
 .sport-coming-filter-note{font-size:.84rem;color:var(--text-on-light-muted);margin:-8px 0 20px;line-height:1.45}
+.sport-coming-empty{color:var(--text-on-light-muted);margin:0 0 24px;line-height:1.5;max-width:42ch}
 .eco-entity-card-img{aspect-ratio:16/9;overflow:hidden}
 .eco-entity-card-img .ph{height:100%;border:0;border-radius:0}
 .eco-entity-card-body{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
