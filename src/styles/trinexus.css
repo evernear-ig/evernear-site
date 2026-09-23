@@ -3,7 +3,7 @@
   --space:#070B1A;--space-2:#0D1330;--space-3:#141B3D;
   --violet:#4B2FA6;--violet-deep:#2E1A6E;--violet-soft:#8A6DE6;
   --green:#2EE59D;--green-ink:#118C5B;
-  --eco-tourism:#1A8A6B;--eco-education:#2B6CB0;--eco-discovery:#4B2FA6;--eco-events:#D97706;--eco-commerce:#B45309;
+  --eco-tourism:#1A8A6B;--eco-education:#2B6CB0;--eco-discovery:#4B2FA6;--eco-events:#D97706;--eco-commerce:#B45309;--eco-sport:#FF6B4A;
   --city-pi:#1A8A6B;--city-foz:#2B6CB0;--city-cde:#B45309;
   --country-ar:#74ACDF;--country-ar-2:#FFFFFF;
   --country-br:#009C3B;--country-br-2:#FFDF00;--country-br-3:#002776;
@@ -951,6 +951,15 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-entity-card--discovery{border-top:3px solid var(--eco-discovery)}
 .eco-entity-card--events{border-top:3px solid var(--eco-events)}
 .eco-entity-card--commerce{border-top:3px solid var(--eco-commerce)}
+.eco-entity-card--sport{border-top:3px solid var(--eco-sport)}
+.eco-entity-card--preview{cursor:default;pointer-events:none;opacity:.94}
+.eco-entity-badge--preview{background:rgba(255,107,74,.14);color:var(--eco-sport)}
+.sport-guide-region{margin-top:28px;padding-top:22px;border-top:1px solid var(--line-dark)}
+.sport-guide-region-title,.sport-guide-audience-title{font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px}
+.sport-guide-region p{color:var(--text-on-light-muted);margin:0 0 14px;line-height:1.5}
+.sport-guide-cities{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start}
+.sport-coming-lead{color:var(--text-on-light-muted);margin:0 0 20px;line-height:1.55;max-width:52ch}
+.sport-coming-filter-note{font-size:.84rem;color:var(--text-on-light-muted);margin:-8px 0 20px;line-height:1.45}
 .eco-entity-card-img{aspect-ratio:16/9;overflow:hidden}
 .eco-entity-card-img .ph{height:100%;border:0;border-radius:0}
 .eco-entity-card-body{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
