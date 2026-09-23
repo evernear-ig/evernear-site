@@ -17,13 +17,13 @@ import { toast } from "sonner";
 
 const INTERESTS = [
   { value: "blockchain", label: "Blockchain" },
-  { value: "ai", key: "i.ai" },
-  { value: "programming", key: "t.prog" },
-  { value: "technology", key: "i.tech" },
+  { value: "ai", labelKey: "i.ai" },
+  { value: "programming", labelKey: "t.prog" },
+  { value: "technology", labelKey: "i.tech" },
   { value: "startups", label: "Startups" },
-  { value: "entrepreneurship", key: "t.ent" },
-  { value: "education", key: "i.edu" },
-  { value: "innovation", key: "i.inn" },
+  { value: "entrepreneurship", labelKey: "t.ent" },
+  { value: "education", labelKey: "i.edu" },
+  { value: "innovation", labelKey: "i.inn" },
 ] as const;
 
 function toggleValue(list: string[], value: string) {
@@ -50,6 +50,7 @@ export function JoinModal() {
   const lastFocus = useRef<HTMLElement | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const modalBoxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -78,10 +79,45 @@ export function JoinModal() {
     if (open) {
       lastFocus.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = "hidden";
+      document.body.classList.add("join-modal-open");
+      window.dispatchEvent(new Event("conexa:scroll-lock"));
     } else {
       document.body.style.overflow = "";
+      document.body.classList.remove("join-modal-open");
+      window.dispatchEvent(new Event("conexa:scroll-unlock"));
       lastFocus.current?.focus();
     }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.classList.remove("join-modal-open");
+      window.dispatchEvent(new Event("conexa:scroll-unlock"));
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const modal = modalRef.current;
+    const box = modalBoxRef.current;
+    if (!modal || !box) return;
+
+    const onWheel = (event: WheelEvent) => {
+      if (!modal.contains(event.target as Node)) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (!box.contains(event.target as Node)) return;
+
+      const maxScroll = box.scrollHeight - box.clientHeight;
+      if (maxScroll <= 0) return;
+
+      box.scrollTop = Math.max(0, Math.min(maxScroll, box.scrollTop + event.deltaY));
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    return () => window.removeEventListener("wheel", onWheel, { capture: true });
   }, [open]);
 
   useEffect(() => {
@@ -203,7 +239,7 @@ export function JoinModal() {
       onKeyDown={onModalKeyDown}
     >
       <div className="modal-bg" onClick={closeJoin} aria-hidden="true" />
-      <div className="modal-box">
+      <div className="modal-box" ref={modalBoxRef}>
         <ConexaMascotFallback pose={modalPose} className="modal-mascot" alt="CONEXA" />
         <button
           type="button"
@@ -412,7 +448,7 @@ export function JoinModal() {
                     {INTERESTS.map((item) => (
                       <label key={item.value}>
                         <input type="checkbox" name="interests" value={item.value} />
-                        {"key" in item && item.key ? <T k={item.key} /> : item.label}
+                        {"labelKey" in item ? <T k={item.labelKey} /> : item.label}
                       </label>
                     ))}
                   </div>

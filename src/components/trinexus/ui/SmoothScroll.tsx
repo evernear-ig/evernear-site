@@ -14,6 +14,11 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       smoothWheel: true,
     });
 
+    const onLock = () => lenis.stop();
+    const onUnlock = () => lenis.start();
+    window.addEventListener("conexa:scroll-lock", onLock);
+    window.addEventListener("conexa:scroll-unlock", onUnlock);
+
     let raf = 0;
     const loop = (time: number) => {
       lenis.raf(time);
@@ -22,6 +27,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     raf = requestAnimationFrame(loop);
 
     return () => {
+      window.removeEventListener("conexa:scroll-lock", onLock);
+      window.removeEventListener("conexa:scroll-unlock", onUnlock);
       cancelAnimationFrame(raf);
       lenis.destroy();
     };
