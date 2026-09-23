@@ -103,10 +103,12 @@ export function computeConexaScrub(
 
   const seg = segments[activeIndex] ?? segments[0];
   const hintY = Math.max(96, Math.min(viewport.height - 96, seg.centerY));
+  const hintX =
+    seg.target.key === "border" ? viewport.width * 0.24 : viewport.width * 0.5;
   const mascotSize = getMascotClearSize(viewport.width);
   const spot = placeFreeMascot(
     mascotSize,
-    { x: viewport.width * 0.5, y: hintY },
+    { x: hintX, y: hintY },
     activeIndex,
   );
 

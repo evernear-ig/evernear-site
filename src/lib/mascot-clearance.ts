@@ -41,9 +41,13 @@ const OBSTACLE_SELECTOR = [
   ".city-photo",
   ".hero-content",
   ".hero-bridge-cinema",
+  ".b-map-wrap",
+  ".border-city-panel",
   ".conexa-guide__prompt",
   ".conexa-guide__tour-panel",
 ].join(",");
+
+const MAP_OBSTACLE_INSET = 32;
 
 const PAD = 18;
 const MARGIN = 18;
@@ -102,11 +106,12 @@ function collectObstacles(viewport: { width: number; height: number }) {
     if (rect.bottom < -20 || rect.top > viewport.height + 20) return;
     if (rect.right < 0 || rect.left > viewport.width) return;
     if (rect.width > viewport.width * 0.92 && rect.height > viewport.height * 0.72) return;
+    const inset = node.matches(".b-map-wrap, .border-city-panel") ? MAP_OBSTACLE_INSET : 0;
     obstacles.push({
-      left: rect.left,
-      top: rect.top,
-      right: rect.right,
-      bottom: rect.bottom,
+      left: rect.left - inset,
+      top: rect.top - inset,
+      right: rect.right + inset,
+      bottom: rect.bottom + inset,
     });
   });
 
