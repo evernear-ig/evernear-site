@@ -1063,11 +1063,12 @@ body:has(.about-page--full){overflow:hidden}
 @keyframes about-slide-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes about-photo-in{from{opacity:0;filter:saturate(.2) brightness(.55)}to{opacity:1;filter:saturate(.38) brightness(.72)}}
 .about-full-slide-title{font-family:var(--font-head);font-size:clamp(1rem,.35vw + .82rem,1.2rem);letter-spacing:.16em;text-transform:uppercase;color:var(--white);margin:0 auto clamp(1.1em,2.4vh,1.5em);padding:0 clamp(10px,2vw,18px) .75em;border-bottom:2px solid var(--green);display:inline-block;line-height:1.25;font-weight:600}
-.about-full-slide-body{display:flex;flex-direction:column;gap:.75em;align-items:center}
+.about-full-slide-body{display:flex;flex-direction:column;gap:.75em;align-items:center;width:100%}
 .about-full-slide-body p,.about-full-slide-list li{font-size:clamp(1rem,.32vw + .9rem,1.14rem);line-height:1.55;color:rgba(246,247,251,.94);margin:0;max-width:42ch;font-weight:400}
-.about-full-slide-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7em;align-items:center;text-align:center}
-.about-full-slide-list li{position:relative;padding:0 0 0 16px;text-align:left;max-width:38ch}
-.about-full-slide-list li::before{content:"";position:absolute;left:0;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--green);opacity:.95}
+.about-full-slide-list{list-style:none;margin:0;padding:0;display:grid;gap:1em;width:100%;max-width:38ch;text-align:left}
+.about-full-slide-list li{position:relative;padding:.12em 0 .12em 1.15em;max-width:none;width:100%;isolation:isolate}
+.about-full-slide-list li span{display:block}
+.about-full-slide-list li::before{content:"";position:absolute;left:0;top:.78em;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--green);opacity:.95}
 .about-full-nav{display:flex;align-items:center;justify-content:center;gap:20px;flex-shrink:0;margin-top:clamp(28px,4.5vh,44px)}
 .about-full-nav-btn{width:44px;height:44px;border:1px solid var(--line);background:rgba(7,11,26,.35);color:var(--white);font-family:var(--font-head);font-size:1.1rem;cursor:pointer;border-radius:8px;transition:border-color .2s var(--ease-out),background .2s,transform 160ms var(--ease-out)}
 .about-full-nav-btn:active{transform:scale(.97)}

@@ -84,13 +84,15 @@ export function AboutSlidesPage({
                 <T k={active.titleKey} />
               </h2>
               {active.list ? (
-                <ul className="about-full-slide-list">
-                  {active.bodyKeys.map((key) => (
-                    <li key={key}>
-                      <T k={key} />
-                    </li>
-                  ))}
-                </ul>
+                <div className="about-full-slide-body">
+                  <ul className="about-full-slide-list">
+                    {active.bodyKeys.map((key) => (
+                      <li key={key}>
+                        <T k={key} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ) : (
                 <div className="about-full-slide-body">
                   {active.bodyKeys.map((key) => (

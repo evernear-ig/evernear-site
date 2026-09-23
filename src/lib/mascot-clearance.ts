@@ -43,6 +43,7 @@ const OBSTACLE_SELECTOR = [
   ".hero-bridge-cinema",
   ".b-map-wrap",
   ".border-city-panel",
+  ".about-full-slide-list",
   ".conexa-guide__prompt",
   ".conexa-guide__tour-panel",
 ].join(",");
