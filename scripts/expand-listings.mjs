@@ -5,6 +5,7 @@
 import { writeFileSync, readFileSync, mkdirSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { getThematicPhoto } from "./listing-photo-themes.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -14,77 +15,6 @@ const IMAGES_DIR = join(ROOT, "src/lib/images");
 const CITIES = ["pi", "foz", "cde"];
 const CITY_LABEL = { pi: "Puerto Iguazú", foz: "Foz do Iguaçu", cde: "Ciudad del Este" };
 const PER_CATEGORY = 6;
-
-const PHOTO_POOL = [
-  "photo-1758270705317-3ef6142d306f",
-  "photo-1602992708529-c9fdb12905c9",
-  "photo-1568658176307-bfbd2873abda",
-  "photo-1687293233211-6b0cc3beba70",
-  "photo-1649252504196-4aca12ecc644",
-  "photo-1574629810360-7d2ba7029f8d",
-  "photo-1593113598332-cd288d649433",
-  "photo-1522071820081-009f0129c71c",
-  "photo-1736060109179-e41c70ba8a02",
-  "photo-1590246185449-e9e2ddd683bb",
-  "photo-1556742049-0cfed4f6a45d",
-  "photo-1482951486181-13a752dbbd52",
-  "photo-1529156069898-49953e39b3ac",
-  "photo-1556918936-3e73b945d24f",
-  "photo-1623652554515-91c833e3080e",
-  "photo-1629904853716-f0bc54eea481",
-  "photo-1649252504348-235b14c9cdb5",
-  "photo-1576091160399-112ba8d25d1f",
-  "photo-1544367567-0f2fcb009e0b",
-  "photo-1478737270239-2f02e77fc3bd",
-  "photo-1584515935687-5d4bcc1577d4",
-  "photo-1559757143-29579d20b2cd",
-  "photo-1606811971610-448588d57af0",
-  "photo-1579684385127-1ef15d508118",
-  "photo-1571019614242-c5c5dee9f50b",
-  "photo-1576091160550-2173dba999ef",
-  "photo-1555252333-9f8e92e65df9",
-  "photo-1519494026892-80bbd4d6df07",
-  "photo-1576091160879-890e68117963",
-  "photo-1506126613408-eca07ce68773",
-  "photo-1573497019940-1c28c88b4f3e",
-  "photo-1534438327276-14e5300c3a48",
-  "photo-1490645935967-10de6ba17061",
-  "photo-1545389336-cf090694435e",
-  "photo-1599901860904-17e06ed708a2",
-  "photo-1517836357463-d25dfeac3438",
-  "photo-1504711434969-e33886168f5c",
-  "photo-1460925895917-afdab827c52f",
-  "photo-1598488035139-bdbb2231ccc4",
-  "photo-1590602847861-f357a8772d96",
-  "photo-1566073771259-6a8506099945",
-  "photo-1488646953014-85cb44e25828",
-  "photo-1414235077428-338989a2e8c0",
-  "photo-1564501049412-61c2a3083791",
-  "photo-1469854523086-cc02fe5d8800",
-  "photo-1556910103-1c02745aae4d",
-  "photo-1554118811-1e0d58224f24",
-  "photo-1452860606245-08befc0ff4a9",
-  "photo-1581578731548-c64695cc6952",
-  "photo-1441986300917-64674bd600d8",
-  "photo-1576602976047-17479705aab",
-  "photo-1555041469-a586c61ea9bc",
-  "photo-1606761568499-6d2451b23be8",
-  "photo-1523050854058-8df90110c9f1",
-  "photo-1546410531-03aa5fa4b0f0",
-  "photo-1639762681485-074b7f938860",
-  "photo-1524178232363-1fb2b075b655",
-  "photo-1561070791-2526d30994b5",
-  "photo-1677442136019-21780ecad995",
-  "photo-1559136555-9303baea8ebd",
-  "photo-1551288049-bebda4e38f71",
-  "photo-1546519638-68b109498ffc",
-  "photo-1503676260728-1c00da094a0b",
-  "photo-1450778868870-14a5deda6b1a",
-  "photo-1486406146926-c627a92ad1ab",
-  "photo-1532996122724-e3c354a0a782",
-  "photo-1505685296765-3a2730d38989",
-  "photo-1604719312566-8912b086b4a7",
-];
 
 /** @type {Record<string, { categories: string[]; kinds: string[]; exportName: string; typeImport: string }>} */
 const VERTICALS = {
@@ -387,13 +317,6 @@ const META_POOL = [
   "Red CONEXA",
 ];
 
-let photoIndex = 0;
-function nextPhoto() {
-  const photo = PHOTO_POOL[photoIndex % PHOTO_POOL.length];
-  photoIndex += 1;
-  return photo;
-}
-
 function slugify(value) {
   return value
     .normalize("NFD")
@@ -531,21 +454,12 @@ function ensureImageGroup(group) {
   if (!LISTING_IMAGES[group]) LISTING_IMAGES[group] = {};
 }
 
-function registerImage(group, itemKey, categoryLabel, cityId, index) {
+function registerImage(group, itemKey, categorySlug, categoryLabel, cityId, index) {
   ensureImageGroup(group);
   const key = itemKey;
   if (LISTING_IMAGES[group][key]) return `${group}.${key}`;
-  const city = CITY_LABEL[cityId];
-  const photo = nextPhoto();
-  LISTING_IMAGES[group][key] = {
-    u: photo,
-    pos: "50% 42%",
-    alt: {
-      es: `${categoryLabel} en ${city} · listing ${index + 1}`,
-      pt: `${categoryLabel} em ${city} · listing ${index + 1}`,
-      en: `${categoryLabel} in ${city} · listing ${index + 1}`,
-    },
-  };
+  const photo = getThematicPhoto(group, categorySlug, index, categoryLabel, cityId);
+  LISTING_IMAGES[group][key] = photo;
   totalImageKeys += 1;
   return `${group}.${key}`;
 }
@@ -561,6 +475,7 @@ function generateVerticalListings(group, config) {
       const imageKey = registerImage(
         group,
         itemKey,
+        catSlug,
         CATEGORY_LABELS[group][category] ?? category,
         cityId,
         n
@@ -593,6 +508,7 @@ function generateSportListings() {
       const imageKey = registerImage(
         "sport",
         itemKey,
+        discSlug,
         CATEGORY_LABELS.sport[discipline],
         cityId,
         n
@@ -655,9 +571,10 @@ function formatImageSpec(key, spec) {
   const altLines = Object.entries(spec.alt)
     .map(([lang, text]) => `      ${lang}: "${escapeString(text)}",`)
     .join("\n");
+  const fileLine = spec.file ? `\n      file: "${escapeString(spec.file)}",` : "";
   return `    ${key}: {
-      u: "${spec.u}",
-      pos: "${spec.pos}",
+      u: "${escapeString(spec.u)}",${fileLine}
+      pos: "${escapeString(spec.pos ?? "50% 42%")}",
       alt: {
 ${altLines}
       },
