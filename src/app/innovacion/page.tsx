@@ -1,13 +1,5 @@
-import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
-import { InnovacionPageContent } from "@/components/ecosystem/InnovacionPageContent";
+import { VerticalCatalogPage } from "@/components/ecosystem/VerticalCatalogPage";
 
 export default function InnovacionPage() {
-  return (
-    <VerticalPageShell
-      verticalSlug="innovacion"
-      catalogDividerKey="eco.innovation.pillars"
-    >
-      <InnovacionPageContent />
-    </VerticalPageShell>
-  );
+  return <VerticalCatalogPage verticalSlug="innovacion" />;
 }

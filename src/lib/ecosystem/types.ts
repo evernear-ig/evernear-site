@@ -80,6 +80,18 @@ export type Business = {
   panfletoSubscribed: boolean;
 };
 
+export type VerticalListing = {
+  id: string;
+  cityId: CityId;
+  category: string;
+  kind: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  imageKey: string;
+  meta?: string;
+};
+
 export type SportListingKind = "club" | "athlete" | "call" | "team";
 
 export type SportListing = {

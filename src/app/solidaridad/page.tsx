@@ -1,13 +1,10 @@
-import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
-import { SolidarityPageContent } from "@/components/ecosystem/SolidarityPageContent";
+import { VerticalCatalogPage } from "@/components/ecosystem/VerticalCatalogPage";
 
 export default function SolidaridadPage() {
   return (
-    <VerticalPageShell
+    <VerticalCatalogPage
       verticalSlug="solidaridad"
-      catalogDividerKey="eco.catalog.solidarity"
-    >
-      <SolidarityPageContent />
-    </VerticalPageShell>
+      disclaimerKey="legal.solidarity.disclaimer"
+    />
   );
 }

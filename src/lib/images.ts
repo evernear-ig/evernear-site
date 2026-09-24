@@ -1,3 +1,5 @@
+import { LISTING_IMAGES } from "@/lib/images/listing-images";
+
 export type ImageMode = "auto" | "artwork" | "photo";
 
 export type LangCode = "es" | "pt" | "en" | "gn";
@@ -649,10 +651,824 @@ export const IMAGES = {
       },
     },
   } satisfies ImageGroup,
+  health: {
+    capsPi: {
+      u: "photo-1576091160399-112ba8d25d1f",
+      pos: "50% 40%",
+      alt: {
+        es: "Consultorio de atención primaria comunitaria en Puerto Iguazú",
+        pt: "Consultório de atenção primária comunitária em Puerto Iguazú",
+        en: "Community primary care clinic in Puerto Iguazú",
+      },
+    },
+    pediatricFoz: {
+      u: "photo-1584515935687-5d4bcc1577d4",
+      pos: "50% 42%",
+      alt: {
+        es: "Consultorio pediátrico con juguetes y ambiente acogedor",
+        pt: "Consultório pediátrico com brinquedos e ambiente acolhedor",
+        en: "Pediatric clinic with toys and a welcoming atmosphere",
+      },
+    },
+    mentalCde: {
+      u: "photo-1559757143-29579d20b2cd",
+      pos: "50% 45%",
+      alt: {
+        es: "Espacio de salud mental con ambiente tranquilo y luminoso",
+        pt: "Espaço de saúde mental com ambiente tranquilo e iluminado",
+        en: "Mental health space with a calm, bright atmosphere",
+      },
+    },
+    dentalPi: {
+      u: "photo-1606811971610-448588d57af0",
+      pos: "50% 40%",
+      alt: {
+        es: "Consultorio odontológico con equipamiento moderno",
+        pt: "Consultório odontológico com equipamento moderno",
+        en: "Dental office with modern equipment",
+      },
+    },
+    nursingFoz: {
+      u: "photo-1579684385127-1ef15d508118",
+      pos: "50% 42%",
+      alt: {
+        es: "Enfermera brindando cuidados domiciliarios a un paciente",
+        pt: "Enfermeira prestando cuidados domiciliares a um paciente",
+        en: "Nurse providing home care to a patient",
+      },
+    },
+    rehabPi: {
+      u: "photo-1571019614242-c5c5dee9f50b",
+      pos: "50% 45%",
+      alt: {
+        es: "Sesión de rehabilitación física en centro kinesiológico",
+        pt: "Sessão de reabilitação física em centro de fisioterapia",
+        en: "Physical rehabilitation session at a therapy center",
+      },
+    },
+    preventionCde: {
+      u: "photo-1576091160550-2173dba999ef",
+      pos: "50% 40%",
+      alt: {
+        es: "Feria de salud preventiva en plaza comunitaria",
+        pt: "Feira de saúde preventiva em praça comunitária",
+        en: "Preventive health fair in a community square",
+      },
+    },
+    maternalFoz: {
+      u: "photo-1555252333-9f8e92e65df9",
+      pos: "50% 42%",
+      alt: {
+        es: "Sala de maternidad con ambiente cálido y acogedor",
+        pt: "Sala de maternidade com ambiente acolhedor",
+        en: "Maternity ward with a warm, welcoming atmosphere",
+      },
+    },
+    elderlyPi: {
+      u: "photo-1519494026892-80bbd4d6df07",
+      pos: "50% 45%",
+      alt: {
+        es: "Adultos mayores participando en actividades comunitarias",
+        pt: "Idosos participando de atividades comunitárias",
+        en: "Elderly people participating in community activities",
+      },
+    },
+    telehealthRegion: {
+      u: "photo-1576091160879-890e68117963",
+      pos: "50% 40%",
+      alt: {
+        es: "Teleconsulta médica desde una computadora en la región",
+        pt: "Teleconsulta médica a partir de um computador na região",
+        en: "Medical teleconsultation from a computer in the region",
+      },
+    },
+  } satisfies ImageGroup,
+  wellness: {
+    yogaPi: {
+      u: "photo-1544367567-0f2fcb009e0b",
+      pos: "50% 45%",
+      alt: {
+        es: "Clase de yoga al aire libre entre árboles en Misiones",
+        pt: "Aula de yoga ao ar livre entre árvores em Misiones",
+        en: "Outdoor yoga class among trees in Misiones",
+      },
+    },
+    meditationFoz: {
+      u: "photo-1506126613408-eca07ce68773",
+      pos: "50% 42%",
+      alt: {
+        es: "Grupo meditando en un espacio tranquilo de Foz",
+        pt: "Grupo meditando em um espaço tranquilo de Foz",
+        en: "Group meditating in a calm space in Foz",
+      },
+    },
+    psychologyCde: {
+      u: "photo-1573497019940-1c28c88b4f3e",
+      pos: "50% 40%",
+      alt: {
+        es: "Consultorio psicológico con ambiente profesional y cálido",
+        pt: "Consultório psicológico com ambiente profissional e acolhedor",
+        en: "Psychology office with a professional, warm atmosphere",
+      },
+    },
+    fitnessFoz: {
+      u: "photo-1534438327276-14e5300c3a48",
+      pos: "50% 45%",
+      alt: {
+        es: "Entrenamiento funcional en gimnasio comunitario de Foz",
+        pt: "Treino funcional em academia comunitária de Foz",
+        en: "Functional training at a community gym in Foz",
+      },
+    },
+    nutritionPi: {
+      u: "photo-1490645935967-10de6ba17061",
+      pos: "50% 42%",
+      alt: {
+        es: "Consulta de nutrición con alimentos frescos regionales",
+        pt: "Consulta de nutrição com alimentos frescos regionais",
+        en: "Nutrition consultation with fresh regional foods",
+      },
+    },
+    mindfulnessCde: {
+      u: "photo-1545389336-cf090694435e",
+      pos: "50% 40%",
+      alt: {
+        es: "Taller de mindfulness para equipos de trabajo",
+        pt: "Workshop de mindfulness para equipes de trabalho",
+        en: "Mindfulness workshop for work teams",
+      },
+    },
+    yogaFoz: {
+      u: "photo-1599901860904-17e06ed708a2",
+      pos: "50% 45%",
+      alt: {
+        es: "Estudio de yoga con vista al parque en Foz",
+        pt: "Estúdio de yoga com vista para o parque em Foz",
+        en: "Yoga studio with a park view in Foz",
+      },
+    },
+    fitnessPi: {
+      u: "photo-1517836357463-d25dfeac3438",
+      pos: "50% 42%",
+      alt: {
+        es: "Entrenamiento grupal de CrossFit en Puerto Iguazú",
+        pt: "Treino em grupo de CrossFit em Puerto Iguazú",
+        en: "Group CrossFit training in Puerto Iguazú",
+      },
+    },
+  } satisfies ImageGroup,
+  communication: {
+    radioFoz: {
+      u: "photo-1478737270239-2f02e77fc3bd",
+      pos: "50% 42%",
+      alt: {
+        es: "Estudio de radio comunitaria en Foz do Iguaçu",
+        pt: "Estúdio de rádio comunitária em Foz do Iguaçu",
+        en: "Community radio studio in Foz do Iguaçu",
+      },
+    },
+    podcastPi: {
+      u: "photo-1649252504196-4aca12ecc644",
+      pos: "50% 42%",
+      alt: {
+        es: "Grabación de podcast sobre historias de la Triple Frontera",
+        pt: "Gravação de podcast sobre histórias da Tríplice Fronteira",
+        en: "Podcast recording about Triple Border stories",
+      },
+    },
+    pressCde: {
+      u: "photo-1504711434969-e33886168f5c",
+      pos: "50% 40%",
+      alt: {
+        es: "Redacción de medio digital local en Ciudad del Este",
+        pt: "Redação de mídia digital local em Ciudad del Este",
+        en: "Local digital media newsroom in Ciudad del Este",
+      },
+    },
+    communityPi: {
+      u: "photo-1529156069898-49953e39b3ac",
+      pos: "50% 45%",
+      alt: {
+        es: "Red de comunicadores vecinales reunidos en Puerto Iguazú",
+        pt: "Rede de comunicadores comunitários reunidos em Puerto Iguazú",
+        en: "Neighborhood communicators network gathered in Puerto Iguazú",
+      },
+    },
+    digitalFoz: {
+      u: "photo-1460925895917-afdab827c52f",
+      pos: "50% 42%",
+      alt: {
+        es: "Agencia de comunicación digital trabajando en Foz",
+        pt: "Agência de comunicação digital trabalhando em Foz",
+        en: "Digital communication agency working in Foz",
+      },
+    },
+    radioPi: {
+      u: "photo-1598488035139-bdbb2231ccc4",
+      pos: "50% 40%",
+      alt: {
+        es: "Cabina de radio local con equipo de transmisión",
+        pt: "Cabine de rádio local com equipamento de transmissão",
+        en: "Local radio booth with broadcasting equipment",
+      },
+    },
+    podcastFoz: {
+      u: "photo-1590602847861-f357a8772d96",
+      pos: "50% 42%",
+      alt: {
+        es: "Podcast tech con micrófonos en estudio de Foz",
+        pt: "Podcast tech com microfones em estúdio de Foz",
+        en: "Tech podcast with microphones in a Foz studio",
+      },
+    },
+    pressPi: {
+      u: "photo-1505685296765-3a2730d38989",
+      pos: "50% 45%",
+      alt: {
+        es: "Revista impresa sobre ecoturismo y cultura misionera",
+        pt: "Revista impressa sobre ecoturismo e cultura misioneira",
+        en: "Printed magazine about ecotourism and Misiones culture",
+      },
+    },
+  } satisfies ImageGroup,
+  tourism: {
+    stayPi: {
+      u: "photo-1566073771259-6a8506099945",
+      pos: "50% 42%",
+      alt: {
+        es: "Hostel acogedor cerca de las Cataratas en Puerto Iguazú",
+        pt: "Hostel acolhedor perto das Cataratas em Puerto Iguazú",
+        en: "Cozy hostel near the Falls in Puerto Iguazú",
+      },
+    },
+    agencyFoz: {
+      u: "photo-1488646953014-85cb44e25828",
+      pos: "50% 40%",
+      alt: {
+        es: "Agencia de turismo organizando paquetes binacionales",
+        pt: "Agência de turismo organizando pacotes binacionais",
+        en: "Tour agency organizing cross-border packages",
+      },
+    },
+    attractionPi: {
+      u: "photo-1590246185449-e9e2ddd683bb",
+      pos: "50% 48%",
+      alt: {
+        es: "Visita a comunidad guaraní en la selva misionera",
+        pt: "Visita a comunidade guarani na mata misioneira",
+        en: "Visit to a Guaraní community in the Misiones rainforest",
+      },
+    },
+    foodCde: {
+      u: "photo-1414235077428-338989a2e8c0",
+      pos: "50% 45%",
+      alt: {
+        es: "Tour gastronómico con platos trifronterizos",
+        pt: "Tour gastronômico com pratos trifronteiriços",
+        en: "Food tour with tri-border regional dishes",
+      },
+    },
+    practicalFoz: {
+      u: "photo-1488646953014-85cb44e25828",
+      pos: "50% 42%",
+      alt: {
+        es: "Centro de información turística con mapas y guías",
+        pt: "Centro de informação turística com mapas e guias",
+        en: "Tourist information center with maps and guides",
+      },
+    },
+    stayFoz: {
+      u: "photo-1564501049412-61c2a3083791",
+      pos: "50% 40%",
+      alt: {
+        es: "Posada con vista al río Paraná en Foz do Iguaçu",
+        pt: "Pousada com vista para o rio Paraná em Foz do Iguaçu",
+        en: "Inn with a Paraná River view in Foz do Iguaçu",
+      },
+    },
+    attractionFoz: {
+      u: "photo-1736060109179-e41c70ba8a02",
+      pos: "50% 45%",
+      alt: {
+        es: "Marco das Três Fronteiras con vista a tres países",
+        pt: "Marco das Três Fronteiras com vista para três países",
+        en: "Three Borders Landmark with views of three countries",
+      },
+    },
+    agencyPi: {
+      u: "photo-1469854523086-cc02fe5d8800",
+      pos: "50% 42%",
+      alt: {
+        es: "Excursión regional más allá de las Cataratas",
+        pt: "Excursão regional além das Cataratas",
+        en: "Regional excursion beyond the Falls",
+      },
+    },
+    foodPi: {
+      u: "photo-1556910103-1c02745aae4d",
+      pos: "50% 45%",
+      alt: {
+        es: "Experiencia de cultura yerba mate en Misiones",
+        pt: "Experiência da cultura da erva-mate em Misiones",
+        en: "Yerba mate culture experience in Misiones",
+      },
+    },
+    practicalCde: {
+      u: "photo-1488646953014-85cb44e25828",
+      pos: "50% 40%",
+      alt: {
+        es: "Orientación para cruce fronterizo desde Ciudad del Este",
+        pt: "Orientação para travessia fronteiriça a partir de Ciudad del Este",
+        en: "Border crossing guidance from Ciudad del Este",
+      },
+    },
+  } satisfies ImageGroup,
+  commerce: {
+    alimentosPi: {
+      u: "photo-1687293233211-6b0cc3beba70",
+      pos: "50% 45%",
+      alt: {
+        es: "Verdulería con frutas frescas de estación en Puerto Iguazú",
+        pt: "Hortifruti com frutas frescas da estação em Puerto Iguazú",
+        en: "Produce shop with seasonal fresh fruit in Puerto Iguazú",
+      },
+    },
+    gastronomiaFoz: {
+      u: "photo-1554118811-1e0d58224f24",
+      pos: "50% 42%",
+      alt: {
+        es: "Café con vista al río en Foz do Iguaçu",
+        pt: "Café com vista para o rio em Foz do Iguaçu",
+        en: "Café with a river view in Foz do Iguaçu",
+      },
+    },
+    electronicaCde: {
+      u: "photo-1556742049-0cfed4f6a45d",
+      pos: "50% 42%",
+      alt: {
+        es: "Tienda de electrónica en Ciudad del Este",
+        pt: "Loja de eletrônicos em Ciudad del Este",
+        en: "Electronics store in Ciudad del Este",
+      },
+    },
+    artesaniasPi: {
+      u: "photo-1452860606245-08befc0ff4a9",
+      pos: "50% 40%",
+      alt: {
+        es: "Artesanías misioneras hechas a mano por productores locales",
+        pt: "Artesanato misioneiro feito à mão por produtores locais",
+        en: "Handmade Misiones crafts by local producers",
+      },
+    },
+    herramientasFoz: {
+      u: "photo-1581578731548-c64695cc6952",
+      pos: "50% 45%",
+      alt: {
+        es: "Ferretería familiar atendiendo la región trifronteriza",
+        pt: "Ferragem familiar atendendo a região trifronteiriça",
+        en: "Family hardware store serving the tri-border region",
+      },
+    },
+    textilCde: {
+      u: "photo-1441986300917-64674bd600d8",
+      pos: "50% 42%",
+      alt: {
+        es: "Tienda de ropa y accesorios en Ciudad del Este",
+        pt: "Loja de roupas e acessórios em Ciudad del Este",
+        en: "Clothing and accessories store in Ciudad del Este",
+      },
+    },
+    farmaciaPi: {
+      u: "photo-1576602976047-17479705aab",
+      pos: "50% 40%",
+      alt: {
+        es: "Farmacia de turno con estanterías de medicamentos",
+        pt: "Farmácia de plantão com prateleiras de medicamentos",
+        en: "On-duty pharmacy with medicine shelves",
+      },
+    },
+    mueblesFoz: {
+      u: "photo-1555041469-a586c61ea9bc",
+      pos: "50% 45%",
+      alt: {
+        es: "Mueblería con sala de exhibición en Foz do Iguaçu",
+        pt: "Móveis com sala de exposição em Foz do Iguaçu",
+        en: "Furniture showroom in Foz do Iguaçu",
+      },
+    },
+    souvenirsPi: {
+      u: "photo-1606761568499-6d2451b23be8",
+      pos: "50% 42%",
+      alt: {
+        es: "Tienda de souvenirs con productos regionales del Iguazú",
+        pt: "Loja de souvenirs com produtos regionais do Iguaçu",
+        en: "Souvenir shop with regional Iguazú products",
+      },
+    },
+    supermercadoCde: {
+      u: "photo-1604719312566-8912b086b4a7",
+      pos: "50% 40%",
+      alt: {
+        es: "Supermercado de barrio con productos de tres países",
+        pt: "Supermercado de bairro com produtos de três países",
+        en: "Neighborhood supermarket with products from three countries",
+      },
+    },
+  } satisfies ImageGroup,
+  education: {
+    bootcampPi: {
+      u: "photo-1623652554515-91c833e3080e",
+      pos: "50% 42%",
+      alt: {
+        es: "Bootcamp de desarrollo web con estudiantes en Puerto Iguazú",
+        pt: "Bootcamp de desenvolvimento web com estudantes em Puerto Iguazú",
+        en: "Web development bootcamp with students in Puerto Iguazú",
+      },
+    },
+    unilaFoz: {
+      u: "photo-1523050854058-8df90110c9f1",
+      pos: "50% 45%",
+      alt: {
+        es: "Campus universitario UNILA en Foz do Iguaçu",
+        pt: "Campus universitário UNILA em Foz do Iguaçu",
+        en: "UNILA university campus in Foz do Iguaçu",
+      },
+    },
+    becasPi: {
+      u: "photo-1758270705317-3ef6142d306f",
+      pos: "50% 42%",
+      alt: {
+        es: "Estudiantes beneficiarios de becas en la región",
+        pt: "Estudantes beneficiários de bolsas na região",
+        en: "Scholarship recipients studying in the region",
+      },
+    },
+    inglesCde: {
+      u: "photo-1546410531-03aa5fa4b0f0",
+      pos: "50% 40%",
+      alt: {
+        es: "Clase de inglés para comercio fronterizo en Ciudad del Este",
+        pt: "Aula de inglês para comércio fronteiriço em Ciudad del Este",
+        en: "English class for border trade in Ciudad del Este",
+      },
+    },
+    emprendimientoPi: {
+      u: "photo-1568658176307-bfbd2873abda",
+      pos: "50% 42%",
+      alt: {
+        es: "Curso de emprendimiento digital para fundadores regionales",
+        pt: "Curso de empreendedorismo digital para fundadores regionais",
+        en: "Digital entrepreneurship course for regional founders",
+      },
+    },
+    roboticaFoz: {
+      u: "photo-1602992708529-c9fdb12905c9",
+      pos: "50% 45%",
+      alt: {
+        es: "Taller de robótica con estudiantes en SENAI Foz",
+        pt: "Oficina de robótica com estudantes no SENAI Foz",
+        en: "Robotics workshop with students at SENAI Foz",
+      },
+    },
+    turismoPi: {
+      u: "photo-1469854523086-cc02fe5d8800",
+      pos: "50% 42%",
+      alt: {
+        es: "Formación de guías turísticos en la región del Iguazú",
+        pt: "Formação de guias turísticos na região do Iguaçu",
+        en: "Tour guide training in the Iguazú region",
+      },
+    },
+    becaBlockchainFoz: {
+      u: "photo-1639762681485-074b7f938860",
+      pos: "50% 40%",
+      alt: {
+        es: "Beca de desarrollo blockchain para estudiantes regionales",
+        pt: "Bolsa de desenvolvimento blockchain para estudantes regionais",
+        en: "Blockchain development scholarship for regional students",
+      },
+    },
+  } satisfies ImageGroup,
+  events: {
+    conexa001: {
+      u: "photo-1649252504348-235b14c9cdb5",
+      pos: "50% 45%",
+      alt: {
+        es: "Primer encuentro CONEXA de innovación en Puerto Iguazú",
+        pt: "Primeiro encontro CONEXA de inovação em Puerto Iguazú",
+        en: "First CONEXA innovation gathering in Puerto Iguazú",
+      },
+    },
+    blockchainFoz: {
+      u: "photo-1639762681485-074b7f938860",
+      pos: "50% 42%",
+      alt: {
+        es: "Meetup de blockchain con desarrolladores en Foz",
+        pt: "Meetup de blockchain com desenvolvedores em Foz",
+        en: "Blockchain meetup with developers in Foz",
+      },
+    },
+    semanaCde: {
+      u: "photo-1523050854058-8df90110c9f1",
+      pos: "50% 45%",
+      alt: {
+        es: "Semana estudiantil con actividades en Ciudad del Este",
+        pt: "Semana estudantil com atividades em Ciudad del Este",
+        en: "Student week with activities in Ciudad del Este",
+      },
+    },
+    turismoCataratas: {
+      u: "photo-1590246185449-e9e2ddd683bb",
+      pos: "50% 48%",
+      alt: {
+        es: "Activación turística más allá de las Cataratas",
+        pt: "Ativação turística além das Cataratas",
+        en: "Tourism activation beyond the Falls",
+      },
+    },
+    networkingPi: {
+      u: "photo-1568658176307-bfbd2873abda",
+      pos: "50% 42%",
+      alt: {
+        es: "Networking de emprendedores fronterizos en Puerto Iguazú",
+        pt: "Networking de empreendedores fronteiriços em Puerto Iguazú",
+        en: "Border entrepreneurs networking in Puerto Iguazú",
+      },
+    },
+    devFoz: {
+      u: "photo-1629904853716-f0bc54eea481",
+      pos: "50% 45%",
+      alt: {
+        es: "Dev meetup con desarrolladores en Foz do Iguaçu",
+        pt: "Dev meetup com desenvolvedores em Foz do Iguaçu",
+        en: "Dev meetup with developers in Foz do Iguaçu",
+      },
+    },
+    comunidadCde: {
+      u: "photo-1593113598332-cd288d649433",
+      pos: "50% 40%",
+      alt: {
+        es: "Feria comunitaria con emprendedores en Ciudad del Este",
+        pt: "Feira comunitária com empreendedores em Ciudad del Este",
+        en: "Community fair with entrepreneurs in Ciudad del Este",
+      },
+    },
+    educacionPi: {
+      u: "photo-1524178232363-1fb2b075b655",
+      pos: "50% 42%",
+      alt: {
+        es: "Conferencia sobre educación fronteriza trinacional",
+        pt: "Conferência sobre educação fronteiriça trinacional",
+        en: "Tri-national border education conference",
+      },
+    },
+  } satisfies ImageGroup,
+  discovery: {
+    profileMaria: {
+      u: "photo-1602992708529-c9fdb12905c9",
+      pos: "50% 40%",
+      alt: {
+        es: "Desarrolladora full stack de Puerto Iguazú",
+        pt: "Desenvolvedora full stack de Puerto Iguazú",
+        en: "Full stack developer from Puerto Iguazú",
+      },
+    },
+    profileJoao: {
+      u: "photo-1568658176307-bfbd2873abda",
+      pos: "50% 42%",
+      alt: {
+        es: "Emprendedor de Foz do Iguaçu en reunión de proyecto",
+        pt: "Empreendedor de Foz do Iguaçu em reunião de projeto",
+        en: "Entrepreneur from Foz do Iguaçu in a project meeting",
+      },
+    },
+    profileAna: {
+      u: "photo-1687293233211-6b0cc3beba70",
+      pos: "50% 45%",
+      alt: {
+        es: "Comerciante de Ciudad del Este en su local",
+        pt: "Comerciante de Ciudad del Este em sua loja",
+        en: "Merchant from Ciudad del Este at her store",
+      },
+    },
+    profileLucas: {
+      u: "photo-1758270705317-3ef6142d306f",
+      pos: "50% 42%",
+      alt: {
+        es: "Estudiante de ingeniería buscando equipo de proyecto",
+        pt: "Estudante de engenharia buscando equipe de projeto",
+        en: "Engineering student looking for a project team",
+      },
+    },
+    empleoDev: {
+      u: "photo-1522071820081-009f0129c71c",
+      pos: "50% 45%",
+      alt: {
+        es: "Oportunidad de empleo remoto para desarrollador React",
+        pt: "Oportunidade de emprego remoto para desenvolvedor React",
+        en: "Remote job opportunity for a React developer",
+      },
+    },
+    pasantiaTurismo: {
+      u: "photo-1469854523086-cc02fe5d8800",
+      pos: "50% 42%",
+      alt: {
+        es: "Pasantía en turismo digital en Puerto Iguazú",
+        pt: "Estágio em turismo digital em Puerto Iguazú",
+        en: "Digital tourism internship in Puerto Iguazú",
+      },
+    },
+    colaboracionBlockchain: {
+      u: "photo-1639762681485-074b7f938860",
+      pos: "50% 40%",
+      alt: {
+        es: "Colaboración en meetup blockchain de la región",
+        pt: "Colaboração no meetup blockchain da região",
+        en: "Collaboration at the regional blockchain meetup",
+      },
+    },
+    empleoDiseno: {
+      u: "photo-1561070791-2526d30994b5",
+      pos: "50% 45%",
+      alt: {
+        es: "Empleo de diseñador UX en agencia de Ciudad del Este",
+        pt: "Vaga de designer UX em agência de Ciudad del Este",
+        en: "UX designer job at an agency in Ciudad del Este",
+      },
+    },
+  } satisfies ImageGroup,
+  innovation: {
+    softwarePi: {
+      u: "photo-1629904853716-f0bc54eea481",
+      pos: "50% 42%",
+      alt: {
+        es: "Equipo de desarrollo de software en Puerto Iguazú",
+        pt: "Equipe de desenvolvimento de software em Puerto Iguazú",
+        en: "Software development team in Puerto Iguazú",
+      },
+    },
+    aiFoz: {
+      u: "photo-1677442136019-21780ecad995",
+      pos: "50% 45%",
+      alt: {
+        es: "Laboratorio de inteligencia artificial en UNILA Foz",
+        pt: "Laboratório de inteligência artificial na UNILA Foz",
+        en: "Artificial intelligence lab at UNILA Foz",
+      },
+    },
+    blockchainCde: {
+      u: "photo-1639762681485-074b7f938860",
+      pos: "50% 40%",
+      alt: {
+        es: "Comunidad blockchain en Ciudad del Este",
+        pt: "Comunidade blockchain em Ciudad del Este",
+        en: "Blockchain community in Ciudad del Este",
+      },
+    },
+    startupsPi: {
+      u: "photo-1559136555-9303baea8ebd",
+      pos: "50% 42%",
+      alt: {
+        es: "Incubadora de startups en Puerto Iguazú",
+        pt: "Incubadora de startups em Puerto Iguazú",
+        en: "Startup incubator in Puerto Iguazú",
+      },
+    },
+    hardwareFoz: {
+      u: "photo-1602992708529-c9fdb12905c9",
+      pos: "50% 45%",
+      alt: {
+        es: "MakerSpace con impresora 3D en Foz do Iguaçu",
+        pt: "MakerSpace com impressora 3D em Foz do Iguaçu",
+        en: "MakerSpace with a 3D printer in Foz do Iguaçu",
+      },
+    },
+    designCde: {
+      u: "photo-1561070791-2526d30994b5",
+      pos: "50% 42%",
+      alt: {
+        es: "Estudio de diseño UX/UI en Ciudad del Este",
+        pt: "Estúdio de design UX/UI em Ciudad del Este",
+        en: "UX/UI design studio in Ciudad del Este",
+      },
+    },
+    dataPi: {
+      u: "photo-1551288049-bebda4e38f71",
+      pos: "50% 40%",
+      alt: {
+        es: "Dashboard de datos abiertos sobre la región trifronteriza",
+        pt: "Dashboard de dados abertos sobre a região trifronteiriça",
+        en: "Open data dashboard about the tri-border region",
+      },
+    },
+    educationFoz: {
+      u: "photo-1623652554515-91c833e3080e",
+      pos: "50% 45%",
+      alt: {
+        es: "Bootcamp tech con estudiantes en Foz do Iguaçu",
+        pt: "Bootcamp tech com estudantes em Foz do Iguaçu",
+        en: "Tech bootcamp with students in Foz do Iguaçu",
+      },
+    },
+    researchPi: {
+      u: "photo-1524178232363-1fb2b075b655",
+      pos: "50% 42%",
+      alt: {
+        es: "Centro de investigación sobre economía fronteriza",
+        pt: "Centro de pesquisa sobre economia fronteiriça",
+        en: "Research center on border economy",
+      },
+    },
+    openSourceFoz: {
+      u: "photo-1522071820081-009f0129c71c",
+      pos: "50% 45%",
+      alt: {
+        es: "Comunidad open source colaborando en Foz do Iguaçu",
+        pt: "Comunidade open source colaborando em Foz do Iguaçu",
+        en: "Open source community collaborating in Foz do Iguaçu",
+      },
+    },
+  } satisfies ImageGroup,
+  solidarity: {
+    basquetJoaquin: {
+      u: "photo-1546519638-68b109498ffc",
+      pos: "50% 40%",
+      alt: {
+        es: "Joven jugador de básquet buscando apoyo para su temporada",
+        pt: "Jovem jogador de basquete buscando apoio para sua temporada",
+        en: "Young basketball player seeking support for his season",
+      },
+    },
+    rifaFundacionNorte: {
+      u: "photo-1503676260728-1c00da094a0b",
+      pos: "50% 42%",
+      alt: {
+        es: "Rifa solidaria para kits escolares en Foz do Iguaçu",
+        pt: "Rifa solidária para kits escolares em Foz do Iguaçu",
+        en: "Solidarity raffle for school kits in Foz do Iguaçu",
+      },
+    },
+    merenderoCde: {
+      u: "photo-1593113598332-cd288d649433",
+      pos: "50% 40%",
+      alt: {
+        es: "Merendero comunitario los fines de semana en Ciudad del Este",
+        pt: "Merenda comunitária nos fins de semana em Ciudad del Este",
+        en: "Community meal service on weekends in Ciudad del Este",
+      },
+    },
+    refugioAnimalesPi: {
+      u: "photo-1450778868870-14a5deda6b1a",
+      pos: "50% 45%",
+      alt: {
+        es: "Refugio de animales abandonados en Puerto Iguazú",
+        pt: "Abrigo de animais abandonados em Puerto Iguazú",
+        en: "Abandoned animal shelter in Puerto Iguazú",
+      },
+    },
+    viviendaFoz: {
+      u: "photo-1486406146926-c627a92ad1ab",
+      pos: "50% 42%",
+      alt: {
+        es: "Proyecto de vivienda digna para familias en Foz",
+        pt: "Projeto de moradia digna para famílias em Foz",
+        en: "Dignified housing project for families in Foz",
+      },
+    },
+    migrantesCde: {
+      u: "photo-1529156069898-49953e39b3ac",
+      pos: "50% 40%",
+      alt: {
+        es: "Red de apoyo para migrantes en Ciudad del Este",
+        pt: "Rede de apoio para migrantes em Ciudad del Este",
+        en: "Support network for migrants in Ciudad del Este",
+      },
+    },
+    generoPi: {
+      u: "photo-1573497019940-1c28c88b4f3e",
+      pos: "50% 45%",
+      alt: {
+        es: "Casa refugio para mujeres en Puerto Iguazú",
+        pt: "Casa abrigo para mulheres em Puerto Iguazú",
+        en: "Women's shelter in Puerto Iguazú",
+      },
+    },
+    ambienteFoz: {
+      u: "photo-1532996122724-e3c354a0a782",
+      pos: "50% 42%",
+      alt: {
+        es: "Voluntarios limpiando la ribera del Paraná en Foz",
+        pt: "Voluntários limpando a margem do Paraná em Foz",
+        en: "Volunteers cleaning the Paraná riverbank in Foz",
+      },
+    },
+  } satisfies ImageGroup,
 };
 
 export function getImageSpec(key: string): ImageSpec | undefined {
   const [group, item] = key.split(".");
+  const listingGroup = (LISTING_IMAGES as Record<string, ImageGroup>)[group];
+  if (listingGroup?.[item]) return listingGroup[item];
   const bucket = IMAGES[group as keyof typeof IMAGES];
   if (!bucket || typeof bucket !== "object") return undefined;
   return (bucket as ImageGroup)[item];

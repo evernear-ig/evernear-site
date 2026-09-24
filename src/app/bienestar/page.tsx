@@ -1,10 +1,5 @@
-import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
-import { VerticalPlaceholder } from "@/components/ecosystem/VerticalPlaceholder";
+import { VerticalCatalogPage } from "@/components/ecosystem/VerticalCatalogPage";
 
 export default function BienestarPage() {
-  return (
-    <VerticalPageShell verticalSlug="bienestar">
-      <VerticalPlaceholder />
-    </VerticalPageShell>
-  );
+  return <VerticalCatalogPage verticalSlug="bienestar" />;
 }

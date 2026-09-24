@@ -20,6 +20,7 @@ export function EcoSectionFrame({
   if (embedded) {
     return (
       <div
+        id={id}
         className={["eco-narrative", className, backdrop ? "sec3d" : null]
           .filter(Boolean)
           .join(" ")}

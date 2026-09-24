@@ -1,10 +1,5 @@
-import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
-import { TourismPageContent } from "@/components/ecosystem/TourismPageContent";
+import { VerticalCatalogPage } from "@/components/ecosystem/VerticalCatalogPage";
 
 export default function TurismoPage() {
-  return (
-    <VerticalPageShell verticalSlug="turismo">
-      <TourismPageContent />
-    </VerticalPageShell>
-  );
+  return <VerticalCatalogPage verticalSlug="turismo" />;
 }

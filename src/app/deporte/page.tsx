@@ -1,15 +1,5 @@
-import { SportComingSoonContent } from "@/components/ecosystem/SportComingSoonContent";
-import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
-import { SportGuideSection } from "@/components/trinexus/sections/SportGuideSection";
+import { VerticalCatalogPage } from "@/components/ecosystem/VerticalCatalogPage";
 
 export default function DeportePage() {
-  return (
-    <VerticalPageShell
-      verticalSlug="deporte"
-      beforeCatalog={<SportGuideSection embedded />}
-      catalogDividerKey="eco.catalog.sport"
-    >
-      <SportComingSoonContent />
-    </VerticalPageShell>
-  );
+  return <VerticalCatalogPage verticalSlug="deporte" />;
 }

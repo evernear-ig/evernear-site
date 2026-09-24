@@ -130,6 +130,8 @@ export const ECOSYSTEM_VERTICALS: readonly EcosystemVertical[] = [
   },
 ] as const;
 
+export type VerticalSlug = (typeof ECOSYSTEM_VERTICALS)[number]["slug"];
+
 export const COMMUNITY_VERTICALS = ECOSYSTEM_VERTICALS.filter(
   (v) => v.family === "comunidad"
 );
