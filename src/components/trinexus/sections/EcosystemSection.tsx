@@ -51,9 +51,8 @@ export function EcosystemSection() {
           </h3>
           <Carousel
             variant="cards"
+            drive="strip"
             items={COMMUNITY_VERTICALS}
-            itemsPerPage={{ desktop: 3, mobile: 1 }}
-            stagger
             renderItem={(vertical) => <AreaCard vertical={vertical} />}
           />
         </Reveal>
@@ -64,9 +63,8 @@ export function EcosystemSection() {
           </h3>
           <Carousel
             variant="cards"
+            drive="strip"
             items={REGION_VERTICALS}
-            itemsPerPage={{ desktop: 3, mobile: 1 }}
-            stagger
             renderItem={(vertical) => <AreaCard vertical={vertical} />}
           />
         </Reveal>

@@ -1,8 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-
-const SWIPE_THRESHOLD = 48;
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 
 type UseCarouselOptions = {
   count: number;
@@ -36,69 +34,88 @@ export function useCarousel({
     [count, loop, controlledIndex, onIndexChange],
   );
 
-  const goPrev = useCallback(() => setIndex(index - 1), [index, setIndex]);
-  const goNext = useCallback(() => setIndex(index + 1), [index, setIndex]);
-
-  const canPrev = loop || index > 0;
-  const canNext = loop || index < count - 1;
-
-  return { index, setIndex, goPrev, goNext, canPrev, canNext };
+  return { index, setIndex };
 }
 
-export function useCarouselPageSize(
-  desktop: number,
-  mobile: number,
-  breakpoint = 900,
-) {
-  const [pageSize, setPageSize] = useState(desktop);
-
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`);
-    const sync = () => setPageSize(mq.matches ? mobile : desktop);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [desktop, mobile, breakpoint]);
-
-  return pageSize;
-}
-
-export function useCarouselSwipe(
-  onSwipe: (direction: "prev" | "next") => void,
+/** Vertical page scroll drives slide index inside a tall sticky runway. */
+export function useScrollDrive(
+  containerRef: RefObject<HTMLElement | null>,
+  count: number,
   enabled = true,
 ) {
-  const touchStartX = useRef<number | null>(null);
+  const [index, setIndex] = useState(0);
 
-  const onTouchStart = (event: React.TouchEvent) => {
-    if (!enabled) return;
-    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
-  };
-
-  const onTouchEnd = (event: React.TouchEvent) => {
-    if (!enabled || touchStartX.current == null) return;
-    const delta = event.changedTouches[0].clientX - touchStartX.current;
-    touchStartX.current = null;
-    if (Math.abs(delta) < SWIPE_THRESHOLD) return;
-    onSwipe(delta < 0 ? "next" : "prev");
-  };
-
-  return { onTouchStart, onTouchEnd };
-}
-
-export function useCarouselKeyboard(
-  onPrev: () => void,
-  onNext: () => void,
-  enabled = true,
-) {
   useEffect(() => {
-    if (!enabled) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft") onPrev();
-      if (event.key === "ArrowRight") onNext();
+    if (!enabled || count < 2) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const runway = el.offsetHeight - window.innerHeight;
+      if (runway <= 0) return;
+      const scrolled = Math.min(Math.max(-rect.top, 0), runway);
+      const progress = scrolled / runway;
+      const next = Math.min(
+        count - 1,
+        Math.max(0, Math.round(progress * (count - 1))),
+      );
+      setIndex(next);
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [enabled, onPrev, onNext]);
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [count, enabled, containerRef]);
+
+  return index;
+}
+
+/** Wheel / trackpad scroll advances slides (fullscreen sections). */
+export function useWheelDrive(
+  containerRef: RefObject<HTMLElement | null>,
+  count: number,
+  index: number,
+  setIndex: (next: number) => void,
+  enabled = true,
+) {
+  useEffect(() => {
+    if (!enabled || count < 2) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    let locked = false;
+    const onWheel = (event: WheelEvent) => {
+      if (locked || Math.abs(event.deltaY) < 10) return;
+      const next =
+        event.deltaY > 0
+          ? Math.min(count - 1, index + 1)
+          : Math.max(0, index - 1);
+      if (next === index) return;
+      event.preventDefault();
+      locked = true;
+      setIndex(next);
+      window.setTimeout(() => {
+        locked = false;
+      }, 480);
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [count, enabled, index, setIndex, containerRef]);
 }
 
 export function useReducedMotion() {

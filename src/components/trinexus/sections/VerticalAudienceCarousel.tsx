@@ -61,11 +61,6 @@ export function VerticalAudienceCarousel({
     </article>,
   ];
 
-  const dotLabels = [
-    ...items.map((item) => String(t(item.title))),
-    String(t(ctaKey)),
-  ];
-
   const liveMessage = () => {
     if (index === quoteIndex) return String(t(quoteKey));
     const item = items[index];
@@ -75,15 +70,12 @@ export function VerticalAudienceCarousel({
   return (
     <Carousel
       variant="hero"
+      drive="scroll"
       className="sport-audience-carousel"
       slides={slides}
-      index={index}
       onIndexChange={setIndex}
       ariaLabel={String(t(audienceKey))}
-      showArrows={false}
-      swipe
       reveal
-      dotLabels={dotLabels}
       liveRegion={liveMessage()}
     />
   );

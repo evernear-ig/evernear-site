@@ -732,8 +732,8 @@ body.join-modal-open{overflow:hidden}
 
 /* people */
 .people-carousel{margin-top:var(--block-gap)}
-.people-carousel .carousel__page{max-width:min(100%,360px);margin:0 auto}
-@media(min-width:901px){.people-carousel .carousel__page{max-width:none}}
+.people-carousel .carousel__strip-item{flex:0 0 min(280px,78vw)}
+@media(min-width:901px){.people-carousel .carousel__strip-item{flex:0 0 calc((100% - 36px)/3)}}
 .people-carousel-viewport{overflow:hidden;width:100%;touch-action:pan-y}
 .people-carousel-track{display:flex;flex-wrap:nowrap;transition:transform .35s var(--ease-out)}
 .people-carousel-page{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;box-sizing:border-box;padding:0 1px}

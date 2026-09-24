@@ -103,14 +103,12 @@ export function AboutSlidesPage({
           {count > 0 ? (
             <Carousel
               variant="panel"
+              drive="wheel"
               transition="fade"
               slides={slides}
               index={index}
               onIndexChange={setIndex}
-              loop
-              keyboard
-              swipe
-              dotLabels={blocks.map((_, i) => `Sección ${i + 1}`)}
+              reveal={false}
               footer={footer}
               className="about-full-carousel"
             />

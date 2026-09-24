@@ -122,10 +122,9 @@ export function PeopleSection() {
         </Reveal>
         <Carousel
           variant="cards"
+          drive="strip"
           className="people-carousel"
           items={PEOPLE}
-          itemsPerPage={{ desktop: 3, mobile: 1 }}
-          stagger
           renderItem={(person) => (
             <PersonCard
               person={person}

@@ -35,14 +35,11 @@ export function VerticalPathCarousel({ prefix, steps }: VerticalPathCarouselProp
   return (
     <Carousel
       variant="hero"
+      drive="scroll"
       slides={slides}
-      index={index}
       onIndexChange={setIndex}
       ariaLabel={String(t(ariaKey))}
-      showArrows={false}
-      swipe
       reveal
-      dotLabels={steps.map((step) => String(t(step.title)))}
       liveRegion={
         activeStep ? `${t(activeStep.title)}. ${t(activeStep.body)}` : ""
       }
