@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Carousel } from "@/components/trinexus/ui/Carousel";
+import { chunkItems } from "@/hooks/useCarousel";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
@@ -122,16 +123,20 @@ export function PeopleSection() {
         </Reveal>
         <Carousel
           variant="cards"
-          drive="strip"
+          drive="scroll"
           className="people-carousel"
-          items={PEOPLE}
-          renderItem={(person) => (
-            <PersonCard
-              person={person}
-              active={active === person.id}
-              onToggle={() => toggle(person.id)}
-            />
-          )}
+          slides={chunkItems(PEOPLE, 3).map((page) => (
+            <div key={page.map((person) => person.id).join("-")} className="carousel-page--trio">
+              {page.map((person) => (
+                <PersonCard
+                  key={person.id}
+                  person={person}
+                  active={active === person.id}
+                  onToggle={() => toggle(person.id)}
+                />
+              ))}
+            </div>
+          ))}
         />
       </div>
     </section>

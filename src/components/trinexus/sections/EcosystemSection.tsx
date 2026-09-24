@@ -7,6 +7,7 @@ import {
 } from "@/lib/ecosystem/verticals";
 import { slugFromEcoHref } from "@/lib/eco-vt-name";
 import { Carousel } from "@/components/trinexus/ui/Carousel";
+import { chunkItems } from "@/hooks/useCarousel";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T, THtml } from "@/components/trinexus/ui/T";
@@ -51,9 +52,17 @@ export function EcosystemSection() {
           </h3>
           <Carousel
             variant="cards"
-            drive="strip"
-            items={COMMUNITY_VERTICALS}
-            renderItem={(vertical) => <AreaCard vertical={vertical} />}
+            drive="scroll"
+            className="areas-carousel"
+            slides={chunkItems(COMMUNITY_VERTICALS, 3).map((page) => (
+              <ul key={page.map((vertical) => vertical.slug).join("-")} className="carousel-page--trio">
+                {page.map((vertical) => (
+                  <li key={vertical.slug}>
+                    <AreaCard vertical={vertical} />
+                  </li>
+                ))}
+              </ul>
+            ))}
           />
         </Reveal>
 
@@ -63,9 +72,17 @@ export function EcosystemSection() {
           </h3>
           <Carousel
             variant="cards"
-            drive="strip"
-            items={REGION_VERTICALS}
-            renderItem={(vertical) => <AreaCard vertical={vertical} />}
+            drive="scroll"
+            className="areas-carousel"
+            slides={chunkItems(REGION_VERTICALS, 3).map((page) => (
+              <ul key={page.map((vertical) => vertical.slug).join("-")} className="carousel-page--trio">
+                {page.map((vertical) => (
+                  <li key={vertical.slug}>
+                    <AreaCard vertical={vertical} />
+                  </li>
+                ))}
+              </ul>
+            ))}
           />
         </Reveal>
 

@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  type CSSProperties,
-  type ReactNode,
-  useEffect,
-  useRef,
-} from "react";
+import { type ReactNode, useEffect } from "react";
 import {
   useCarousel,
   useReducedMotion,
@@ -103,9 +98,7 @@ function CarouselSlides({
   footer,
   liveRegion,
 }: CarouselSlidesProps) {
-  const revealRef = useReveal<HTMLDivElement>();
-  const runwayRef = useRef<HTMLDivElement>(null);
-  const wheelRef = useRef<HTMLDivElement>(null);
+  const rootRef = useReveal<HTMLDivElement>();
   const reducedMotion = useReducedMotion();
   const count = slides.length;
 
@@ -116,7 +109,7 @@ function CarouselSlides({
   });
 
   const scrollIndex = useScrollDrive(
-    runwayRef,
+    rootRef,
     count,
     drive === "scroll" && !reducedMotion,
   );
@@ -129,7 +122,7 @@ function CarouselSlides({
   }, [drive, reducedMotion, scrollIndex, onIndexChange]);
 
   useWheelDrive(
-    wheelRef,
+    rootRef,
     count,
     index,
     setIndex,
@@ -155,21 +148,14 @@ function CarouselSlides({
     );
   }
 
-  const runwayStyle = {
-    "--carousel-steps": count,
-  } as CSSProperties;
-
-  const stickyRef = drive === "wheel" ? wheelRef : undefined;
-
   return (
     <div
-      ref={runwayRef}
+      ref={rootRef}
       className={rootClass}
-      style={drive === "scroll" ? runwayStyle : undefined}
       aria-label={ariaLabel}
       aria-roledescription="carousel"
     >
-      <div ref={stickyRef} className="carousel__sticky">
+      <div className="carousel__sticky">
         <div className="carousel__viewport">
           <CarouselStage slides={slides} index={index} transition={transition} />
         </div>

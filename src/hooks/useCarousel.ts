@@ -37,7 +37,10 @@ export function useCarousel({
   return { index, setIndex };
 }
 
-/** Vertical page scroll drives slide index inside a tall sticky runway. */
+/**
+ * Page scroll drives slide index as the block crosses the viewport.
+ * Does not need a taller-than-screen runway (that left blank gaps).
+ */
 export function useScrollDrive(
   containerRef: RefObject<HTMLElement | null>,
   count: number,
@@ -54,15 +57,18 @@ export function useScrollDrive(
     const update = () => {
       ticking = false;
       const rect = el.getBoundingClientRect();
-      const runway = el.offsetHeight - window.innerHeight;
-      if (runway <= 0) return;
-      const scrolled = Math.min(Math.max(-rect.top, 0), runway);
-      const progress = scrolled / runway;
+      const vh = window.innerHeight;
+      const center = rect.top + rect.height / 2;
+      const start = vh * 0.82;
+      const end = vh * 0.22;
+      const span = Math.max(start - end, 1);
+      const progress = (start - center) / span;
+      const clamped = Math.min(1, Math.max(0, progress));
       const next = Math.min(
         count - 1,
-        Math.max(0, Math.round(progress * (count - 1))),
+        Math.max(0, Math.round(clamped * (count - 1))),
       );
-      setIndex(next);
+      setIndex((prev) => (prev === next ? prev : next));
     };
 
     const onScroll = () => {

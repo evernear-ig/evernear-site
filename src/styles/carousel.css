@@ -8,10 +8,11 @@
 .carousel__fade-slide[data-active="true"]{opacity:1;transform:none;pointer-events:auto;position:relative}
 .carousel--fade .carousel__viewport{min-height:1px}
 
-/* Scroll runway: bajar la página avanza el carrusel */
-.carousel--drive-scroll{position:relative;height:calc(var(--carousel-steps, 1) * 55vh);min-height:calc(var(--carousel-steps, 1) * 320px)}
-.carousel__sticky{position:sticky;top:var(--nav-h);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100dvh - var(--nav-h));padding:clamp(16px,3vh,32px) 0;box-sizing:border-box}
-.carousel--panel .carousel__sticky{justify-content:flex-start;padding-top:clamp(24px,5vh,48px)}
+/* Scroll: el avance lo calcula el hook según el paso por el viewport (sin pista vacía) */
+.carousel--drive-scroll{position:relative;height:auto;min-height:0}
+.carousel__sticky{position:relative;top:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:0;padding:clamp(8px,1.5vh,16px) 0;box-sizing:border-box}
+.carousel--panel .carousel__sticky{justify-content:flex-start;padding-top:0}
+.carousel--drive-wheel .carousel__sticky{position:relative;top:auto;min-height:0;padding:0}
 .carousel--hero .carousel__viewport{max-width:36rem;margin-inline:auto;width:100%}
 .carousel--hero .carousel__slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;min-height:min(24vh,200px)}
 
@@ -20,10 +21,13 @@
 .carousel--drive-strip .carousel__strip::-webkit-scrollbar{display:none}
 .carousel--drive-strip .carousel__strip-item{flex:0 0 min(300px,86vw);scroll-snap-align:start;min-width:0}
 @media(min-width:901px){.carousel--drive-strip .carousel__strip-item{flex:0 0 calc((100% - 36px)/3)}}
+.carousel--cards .carousel__viewport{width:100%}
 .carousel--cards .carousel__strip-item{height:100%}
+.carousel--cards .carousel-page--trio .pcard{height:100%}
 
 /* Progress bar sutil (no botones) */
-.carousel__progress{width:min(120px,28vw);height:2px;margin-top:clamp(16px,2.5vh,24px);background:rgba(246,247,251,.15);border-radius:999px;overflow:hidden}
+.carousel__progress{width:min(120px,28vw);height:2px;margin-top:clamp(16px,2.5vh,24px);background:var(--line-dark);border-radius:999px;overflow:hidden}
+.dark .carousel__progress{background:rgba(246,247,251,.15)}
 .carousel__progress-bar{display:block;height:100%;background:var(--green);border-radius:999px;transition:width var(--carousel-duration) var(--carousel-ease)}
 
 /* Hero / audience slide content */
@@ -35,6 +39,9 @@
 .carousel-audience-slide p{margin:0;max-width:34ch;font-size:clamp(.95rem,1.2vw,1.05rem);line-height:1.55;color:var(--text-on-light-muted)}
 .carousel-audience-slide--quote{gap:20px;padding-top:clamp(4px,1vh,8px)}
 .carousel-audience-slide--quote .quote{margin:0;max-width:22em;font-family:var(--font-head);font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.35;color:var(--ink)}
+.carousel-page--trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 1px;margin:0;list-style:none;width:100%}
+.carousel-page--trio>li{min-width:0;height:100%}
+@media(max-width:900px){.carousel-page--trio{grid-template-columns:1fr;gap:14px;max-width:min(100%,360px);margin-inline:auto}}
 
 /* Panel (qué es CONEXA) */
 .about-full-carousel{width:100%;max-width:44ch}
@@ -56,5 +63,4 @@
 @media(prefers-reduced-motion:reduce){
   .carousel__track,.carousel__fade-slide,.carousel__progress-bar,.carousel--reveal.carousel{transition:none}
   .carousel--drive-scroll{height:auto}
-  .carousel__sticky{position:relative;top:auto;min-height:0}
 }

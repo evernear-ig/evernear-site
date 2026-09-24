@@ -1098,8 +1098,8 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-hero--index{min-height:min(42svh,420px);display:flex;align-items:flex-end;padding:0}
 .eco-hero--index::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 55% at 12% 100%,rgba(46,229,157,.12),transparent 58%),radial-gradient(ellipse 55% 45% at 88% 8%,rgba(75,47,166,.18),transparent 52%);pointer-events:none}
 .eco-hero--index>.wrap{margin-bottom:0;padding-bottom:var(--section-gap)}
-body:has(.about-page--full){overflow:hidden}
-.about-page--full{flex:1;display:flex;flex-direction:column;min-height:100dvh;max-height:100dvh;overflow:hidden}
+html:has(.about-page--full),body:has(.about-page--full){overflow:hidden;height:100dvh;background:var(--space)}
+.about-page--full{flex:1;display:flex;flex-direction:column;min-height:100dvh;max-height:100dvh;overflow:hidden;background:var(--space)}
 .page-surface:has(.about-page--full)+footer{display:none}
 .about-page--full .eco-hero--about-full{flex:1;min-height:0;height:100%;width:100%;display:flex;align-items:center;justify-content:center;padding:0;border-top:4px solid var(--green)}
 .about-page--full .eco-hero--about-full .eco-hero-bg{position:absolute;inset:0}

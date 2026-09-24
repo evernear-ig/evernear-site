@@ -25,6 +25,16 @@ body {
   pointer-events: none;
 }
 
+/* Live region de toasts: si queda en el flujo, deja un hueco blanco bajo la página */
+section[aria-label="Notifications alt+T"],
+[data-react-aria-top-layer="true"] {
+  position: fixed !important;
+  inset: auto 0 0 0;
+  width: 100%;
+  z-index: 85;
+  pointer-events: none;
+}
+
 [data-sonner-toast].conexa-toast {
   pointer-events: auto;
   width: min(420px, calc(100vw - 2rem)) !important;
