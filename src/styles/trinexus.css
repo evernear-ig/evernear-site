@@ -103,7 +103,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .nav.solid{background:rgba(7,11,26,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);gap:20px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;letter-spacing:.14em;font-size:1.05rem;color:var(--white)}
-.logo svg{width:26px;height:26px}
+.logo-mark{display:flex;align-items:center;flex-shrink:0;height:32px}
+.logo-mark img{height:32px!important;width:auto!important;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(46,229,157,.2))}
 .nav-links{display:flex;gap:clamp(16px,1.7vw,28px);list-style:none}
 .nav-links a{font-family:var(--font-head);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-2);transition:color .2s;white-space:nowrap}
 @media (hover:hover) and (pointer:fine){.nav-links a:hover{color:var(--white)}}

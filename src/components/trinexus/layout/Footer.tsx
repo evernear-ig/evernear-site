@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { ConexaLogo } from "@/components/trinexus/ui/ConexaLogo";
 import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
@@ -40,19 +41,7 @@ export function Footer() {
               className="logo"
               aria-label={String(t("a11y.home"))}
             >
-              <svg viewBox="0 0 40 40" aria-hidden="true">
-                <path
-                  d="M20 5 L35 31 L5 31 Z"
-                  fill="none"
-                  stroke="#F6F7FB"
-                  strokeWidth="1.5"
-                />
-                <circle cx="20" cy="5" r="3" fill="#F6F7FB" />
-                <circle cx="35" cy="31" r="3" fill="#F6F7FB" />
-                <circle cx="5" cy="31" r="3" fill="#F6F7FB" />
-                <circle cx="20" cy="22" r="3.5" fill="#2EE59D" />
-              </svg>
-              CONEXA
+              <ConexaLogo />
             </TransitionLink>
             <p>
               <T k="foot.p" />
