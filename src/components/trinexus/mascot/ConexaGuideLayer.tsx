@@ -9,6 +9,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type PointerEvent as ReactPointerEvent,
 } from "react";
 import { ConexaGuideActionsProvider } from "@/components/trinexus/mascot/ConexaGuideActionsContext";
 import { ConexaMascotImage } from "@/components/trinexus/mascot/ConexaMascotImage";
@@ -20,7 +21,7 @@ import {
   useConexaScrollScrub,
   type ConexaScrubState,
 } from "@/hooks/useConexaScrollScrub";
-import { resetMascotPark } from "@/lib/mascot-clearance";
+import { getMascotClearSize } from "@/lib/mascot-clearance";
 import {
   getConexaSections,
   resolveSectionTargets,
@@ -37,8 +38,44 @@ const ConexaMascotOrbit = dynamic(
   { ssr: false },
 );
 
-const PROMPT_KEY = "conexa-guide-prompt-v1";
-type GuideMode = "ambient" | "prompt" | "tour";
+const POS_KEY = "conexa-mascot-pos-v1";
+type GuideMode = "idle" | "menu" | "tour" | "chat";
+type DockPos = { left: number; top: number };
+
+function dockSize() {
+  return getMascotClearSize(window.innerWidth);
+}
+
+function defaultDock(size: { width: number; height: number }): DockPos {
+  const pad = 16;
+  return {
+    left: Math.max(pad, window.innerWidth - size.width - pad),
+    top: Math.max(pad, window.innerHeight - size.height - pad),
+  };
+}
+
+function clampDock(
+  pos: DockPos,
+  size: { width: number; height: number },
+): DockPos {
+  const pad = 8;
+  return {
+    left: Math.max(pad, Math.min(pos.left, window.innerWidth - size.width - pad)),
+    top: Math.max(pad, Math.min(pos.top, window.innerHeight - size.height - pad)),
+  };
+}
+
+function readSavedDock(size: { width: number; height: number }): DockPos | null {
+  try {
+    const raw = localStorage.getItem(POS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as DockPos;
+    if (typeof parsed.left !== "number" || typeof parsed.top !== "number") return null;
+    return clampDock(parsed, size);
+  } catch {
+    return null;
+  }
+}
 
 export function ConexaGuideLayer() {
   const pathname = usePathname();
@@ -49,11 +86,24 @@ export function ConexaGuideLayer() {
   const [allowed, setAllowed] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [mode, setMode] = useState<GuideMode>("ambient");
+  const [mode, setMode] = useState<GuideMode>("idle");
   const [targets, setTargets] = useState<ConexaSectionTarget[]>([]);
   const [scrub, setScrub] = useState<ConexaScrubState | null>(null);
   const [assemble, setAssemble] = useState(1);
   const [prevPose, setPrevPose] = useState<MascotPose>("welcome");
+  const [pos, setPos] = useState<DockPos>({ left: 0, top: 0 });
+  const [size, setSize] = useState({ width: 88, height: 108 });
+  const [dragging, setDragging] = useState(false);
+  const [dockReady, setDockReady] = useState(false);
+  const customPos = useRef(false);
+  const dragRef = useRef({
+    pointerId: -1,
+    moved: false,
+    startX: 0,
+    startY: 0,
+    origLeft: 0,
+    origTop: 0,
+  });
   const prevIndexRef = useRef(0);
   const assembleRaf = useRef(0);
 
@@ -63,19 +113,30 @@ export function ConexaGuideLayer() {
     setTargets(resolveSectionTargets(sectionConfigs));
   }, [sectionConfigs]);
 
+  const placeDefault = useCallback(() => {
+    const nextSize = dockSize();
+    setSize(nextSize);
+    const saved = customPos.current ? readSavedDock(nextSize) : null;
+    setPos(saved ?? defaultDock(nextSize));
+  }, []);
+
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-
     const sync = () => {
       setReducedMotion(reduce.matches);
       setAllowed(true);
     };
     sync();
     reduce.addEventListener("change", sync);
-    return () => {
-      reduce.removeEventListener("change", sync);
-    };
+    return () => reduce.removeEventListener("change", sync);
   }, []);
+
+  useEffect(() => {
+    const saved = readSavedDock(dockSize());
+    customPos.current = Boolean(saved);
+    placeDefault();
+    setDockReady(true);
+  }, [placeDefault]);
 
   useEffect(() => {
     const onVisibility = () => setVisible(document.visibilityState === "visible");
@@ -91,11 +152,16 @@ export function ConexaGuideLayer() {
   }, [syncTargets, pathname]);
 
   useEffect(() => {
-    if (!allowed || joinOpen) return;
-    if (localStorage.getItem(PROMPT_KEY)) return;
-    const timer = window.setTimeout(() => setMode("prompt"), 1400);
-    return () => window.clearTimeout(timer);
-  }, [allowed, joinOpen]);
+    const onResize = () => {
+      const nextSize = dockSize();
+      setSize(nextSize);
+      setPos((prev) =>
+        customPos.current ? clampDock(prev, nextSize) : defaultDock(nextSize),
+      );
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useConexaScrollScrub(
     targets,
@@ -104,11 +170,6 @@ export function ConexaGuideLayer() {
     setScrub,
   );
 
-  useEffect(() => {
-    resetMascotPark();
-    window.dispatchEvent(new Event("resize"));
-  }, [mode]);
-
   const activeIndex = mode === "tour"
     ? Math.max(0, (state?.currentStepNumber ?? 1) - 1)
     : scrub?.activeIndex ?? 0;
@@ -116,7 +177,7 @@ export function ConexaGuideLayer() {
   const pose =
     mode === "tour"
       ? (targets[activeIndex]?.pose ?? "welcome")
-      : (scrub?.pose ?? "welcome");
+      : (mode === "chat" ? "think" : (scrub?.pose ?? "welcome"));
 
   const concept =
     mode === "tour"
@@ -152,138 +213,217 @@ export function ConexaGuideLayer() {
     assembleRaf.current = requestAnimationFrame(tick);
   }, [activeIndex, reducedMotion, targets, scrub?.pose]);
 
-  const openTour = useCallback(
-    (index?: number) => {
-      const idx = index ?? scrub?.activeIndex ?? 0;
-      const key = targets[idx]?.key;
-      if (key) void goToStep(key);
-      setMode("tour");
-    },
-    [goToStep, scrub?.activeIndex, targets],
-  );
+  const openTour = useCallback(() => {
+    const key = targets[0]?.key ?? targets[scrub?.activeIndex ?? 0]?.key;
+    if (key) void goToStep(key);
+    setMode("tour");
+  }, [goToStep, scrub?.activeIndex, targets]);
 
   const exitTour = useCallback(() => {
-    setMode("ambient");
+    setMode("idle");
   }, []);
 
-  const dismissPrompt = useCallback((startTour: boolean) => {
-    localStorage.setItem(PROMPT_KEY, "1");
-    if (startTour) openTour(0);
-    else setMode("ambient");
-  }, [openTour]);
-
   useEffect(() => {
-    if (mode !== "tour") return;
+    if (mode !== "tour" && mode !== "chat") return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") exitTour();
+      if (e.key === "Escape") setMode("idle");
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [mode, exitTour]);
+  }, [mode]);
 
   useEffect(() => {
-    if (state?.isCompleted) setMode("ambient");
+    if (state?.isCompleted) setMode("idle");
   }, [state?.isCompleted]);
 
-  const layout = scrub?.layout;
+  const onPointerDown = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (event.button !== 0) return;
+    dragRef.current = {
+      pointerId: event.pointerId,
+      moved: false,
+      startX: event.clientX,
+      startY: event.clientY,
+      origLeft: pos.left,
+      origTop: pos.top,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
 
-  const tourAnchor =
-    mode === "tour" ? targets[activeIndex]?.el ?? null : null;
+  const onPointerMove = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (dragRef.current.pointerId !== event.pointerId) return;
+    const dx = event.clientX - dragRef.current.startX;
+    const dy = event.clientY - dragRef.current.startY;
+    if (!dragRef.current.moved && dx * dx + dy * dy < 36) return;
+    dragRef.current.moved = true;
+    setDragging(true);
+    setMode((m) => (m === "menu" ? "idle" : m));
+    customPos.current = true;
+    setPos(
+      clampDock(
+        {
+          left: dragRef.current.origLeft + dx,
+          top: dragRef.current.origTop + dy,
+        },
+        size,
+      ),
+    );
+  };
 
-  const show =
-    allowed && visible && !joinOpen && targets.length > 0 && layout;
+  const onPointerUp = (event: ReactPointerEvent<HTMLButtonElement>) => {
+    if (dragRef.current.pointerId !== event.pointerId) return;
+    event.currentTarget.releasePointerCapture(event.pointerId);
+    const wasDrag = dragRef.current.moved;
+    dragRef.current.pointerId = -1;
+    setDragging(false);
+    if (wasDrag) {
+      setPos((current) => {
+        const next = clampDock(current, size);
+        localStorage.setItem(POS_KEY, JSON.stringify(next));
+        return next;
+      });
+      return;
+    }
+    if (mode === "tour" || mode === "chat") return;
+    setMode((m) => (m === "menu" ? "idle" : "menu"));
+  };
 
-  if (!show || !layout) return null;
+  const tourAnchor = mode === "tour" ? targets[activeIndex]?.el ?? null : null;
+  const show = allowed && visible && !joinOpen && dockReady;
+  if (!show) return null;
 
-  const mascotSize = layout.mascotSize;
+  const flipMenu = pos.top < 220;
+  const mascotSize = size.width;
 
   return (
     <ConexaGuideActionsProvider exitTour={exitTour}>
-    <div
-      className={`conexa-guide${mode === "tour" ? " conexa-guide--tour" : ""}${reducedMotion ? " conexa-guide--reduced" : ""}`}
-      data-concept={concept}
-      data-mode={mode}
-    >
-      {mode === "tour" ? (
-        <button
-          type="button"
-          className="conexa-guide__backdrop"
-          aria-label="Cerrar tour"
-          onClick={exitTour}
-        />
-      ) : null}
+      <div
+        className={`conexa-guide${mode === "tour" ? " conexa-guide--tour" : ""}${reducedMotion ? " conexa-guide--reduced" : ""}`}
+        data-concept={concept}
+        data-mode={mode}
+      >
+        {mode === "tour" ? (
+          <button
+            type="button"
+            className="conexa-guide__backdrop"
+            aria-label={String(t("journey.btn.close"))}
+            onClick={exitTour}
+          />
+        ) : null}
 
-      {mode === "tour" ? <ConexaSpotlight anchor={tourAnchor} /> : null}
+        {mode === "menu" ? (
+          <button
+            type="button"
+            className="conexa-guide__dismiss"
+            aria-label={String(t("journey.btn.close"))}
+            onClick={() => setMode("idle")}
+          />
+        ) : null}
 
-      {mode === "prompt" ? (
-        <div className="conexa-guide__prompt" role="dialog" aria-labelledby="conexa-prompt-title">
-          <p id="conexa-prompt-title" className="conexa-guide__prompt-title">
-            <T k="journey.prompt.title" />
-          </p>
-          <p className="conexa-guide__prompt-body">
-            <T k="journey.prompt.body" />
-          </p>
-          <div className="conexa-guide__prompt-actions">
-            <button
-              type="button"
-              className="conexa-guide__prompt-btn conexa-guide__prompt-btn--ghost"
-              onClick={() => dismissPrompt(false)}
-            >
-              <T k="journey.prompt.later" />
-            </button>
+        {mode === "tour" ? <ConexaSpotlight anchor={tourAnchor} /> : null}
+
+        <div
+          className={`conexa-guide__dock${dragging ? " conexa-guide__dock--dragging" : ""}${flipMenu ? " conexa-guide__dock--flip" : ""}`}
+          style={{
+            width: mascotSize,
+            transform: `translate3d(${pos.left}px, ${pos.top}px, 0)`,
+          }}
+        >
+          {mode === "menu" ? (
+            <div className="conexa-guide__menu" role="menu" aria-label={String(t("journey.menu.label"))}>
+              <button
+                type="button"
+                role="menuitem"
+                className="conexa-guide__menu-btn"
+                disabled={targets.length === 0}
+                onClick={() => openTour()}
+              >
+                <span className="conexa-guide__menu-kicker">
+                  <T k="journey.menu.guideKicker" />
+                </span>
+                <span>
+                  <T k="journey.menu.guide" />
+                </span>
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                className="conexa-guide__menu-btn"
+                onClick={() => setMode("chat")}
+              >
+                <span className="conexa-guide__menu-kicker">
+                  <T k="journey.menu.chatKicker" />
+                </span>
+                <span>
+                  <T k="journey.menu.chat" />
+                </span>
+              </button>
+            </div>
+          ) : null}
+
+          <button
+            type="button"
+            className={`conexa-guide__actor${dragging ? " conexa-guide__actor--dragging" : ""}`}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            aria-label={String(t("journey.ambient.tap"))}
+            aria-expanded={mode === "menu"}
+            title={String(t("journey.drag.hint"))}
+          >
+            <span className="conexa-guide__float">
+              <div className="conexa-guide__orbit-wrap">
+                <ConexaMascotOrbit
+                  tokens={tokens}
+                  assemble={assemble}
+                  reducedMotion={reducedMotion}
+                />
+              </div>
+              <ConexaMascotImage
+                pose={pose}
+                prevPose={prevPose}
+                assemble={assemble}
+                compact
+                alt=""
+              />
+            </span>
+          </button>
+        </div>
+
+        {mode === "tour" ? (
+          <div className="conexa-guide__tour-panel" role="dialog" aria-modal="true">
+            {renderStep()}
+          </div>
+        ) : null}
+
+        {mode === "chat" ? (
+          <div
+            className="conexa-guide__chat"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="conexa-chat-title"
+          >
+            <p id="conexa-chat-title" className="conexa-guide__chat-title">
+              <T k="journey.chat.title" />
+            </p>
+            <p className="conexa-guide__chat-body">
+              <T k="journey.chat.body" />
+            </p>
+            <input
+              className="conexa-guide__chat-input"
+              disabled
+              placeholder={String(t("journey.chat.placeholder"))}
+            />
             <button
               type="button"
               className="conexa-guide__prompt-btn conexa-guide__prompt-btn--primary"
-              onClick={() => dismissPrompt(true)}
+              onClick={() => setMode("idle")}
             >
-              <T k="journey.prompt.start" />
+              <T k="journey.btn.close" />
             </button>
           </div>
-        </div>
-      ) : null}
-
-      <button
-        type="button"
-        className="conexa-guide__actor"
-        style={{
-          width: mascotSize,
-          transform: `translate3d(${layout.mascotLeft}px, ${layout.mascotTop}px, 0)`,
-        }}
-        onClick={() => {
-          if (mode === "tour") return;
-          openTour();
-        }}
-        disabled={mode === "tour"}
-        aria-label={String(t("journey.ambient.tap"))}
-      >
-        <span className="conexa-guide__float">
-          <div className="conexa-guide__orbit-wrap">
-            <ConexaMascotOrbit
-              tokens={tokens}
-              assemble={assemble}
-              reducedMotion={reducedMotion}
-            />
-          </div>
-          <ConexaMascotImage
-            pose={pose}
-            prevPose={prevPose}
-            assemble={assemble}
-            compact
-            alt=""
-          />
-        </span>
-      </button>
-
-      {mode === "tour" ? (
-        <div
-          className="conexa-guide__tour-panel"
-          role="dialog"
-          aria-modal="true"
-        >
-          {renderStep()}
-        </div>
-      ) : null}
-    </div>
+        ) : null}
+      </div>
     </ConexaGuideActionsProvider>
   );
 }

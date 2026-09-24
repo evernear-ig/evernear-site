@@ -1,4 +1,3 @@
-import { CityBadge } from "@/components/ecosystem/CityBadge";
 import { VerticalAudienceCarousel } from "@/components/trinexus/sections/VerticalAudienceCarousel";
 import { VerticalPathCarousel } from "@/components/trinexus/sections/VerticalPathCarousel";
 import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
@@ -6,9 +5,6 @@ import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T } from "@/components/trinexus/ui/T";
 import { getVerticalCatalog } from "@/lib/ecosystem/vertical-catalog";
 import type { VerticalSlug } from "@/lib/ecosystem/verticals";
-import type { CityId } from "@/lib/ecosystem/cities";
-
-const REGION_CITIES: CityId[] = ["pi", "foz", "cde"];
 
 type VerticalGuideSectionProps = {
   verticalSlug: VerticalSlug;
@@ -29,20 +25,6 @@ export function VerticalGuideSection({
       </Reveal>
 
       <Reveal className="sport-guide-body">
-        <div className="sport-guide-region">
-          <h3 className="sport-guide-region-title">
-            <T k={`${prefix}.guide.region.h`} />
-          </h3>
-          <p>
-            <T k={`${prefix}.guide.region.p`} />
-          </p>
-          <div className="sport-guide-cities">
-            {REGION_CITIES.map((cityId) => (
-              <CityBadge key={cityId} cityId={cityId} />
-            ))}
-          </div>
-        </div>
-
         <div className="sport-guide-audience">
           <h3 className="sport-guide-audience-title">
             <T k={`${prefix}.guide.audience.h`} />

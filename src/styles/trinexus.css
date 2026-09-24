@@ -348,12 +348,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 12px)}
 .sport-guide-disclaimer{margin-top:var(--block-gap);display:flex;justify-content:center}
 .sport-guide-disclaimer .eco-disclaimer{margin:0;max-width:min(100%,42rem);text-align:center}
 .sport-guide-body{margin-top:var(--block-gap);width:100%;max-width:min(640px,92vw);margin-inline:auto;text-align:center}
-.sport-guide-region{margin-top:0;padding-top:0;border-top:0;padding-bottom:var(--block-gap);border-bottom:1px solid var(--line-dark)}
-.sport-guide-region-title,.sport-guide-audience-title{font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px}
-.sport-guide-region p{color:var(--text-on-light-muted);margin:0 auto 14px;line-height:1.5;max-width:38ch}
-.sport-guide-cities{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.sport-guide-audience{margin-top:var(--block-gap)}
-.sport-guide-audience-title{margin:0 0 clamp(12px,1.8vh,18px)}
+.sport-guide-audience-title{font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 clamp(12px,1.8vh,18px)}
+.sport-guide-audience{margin-top:0}
 .sport-audience-static{display:flex;flex-direction:column;width:100%}
 .sport-audience-carousel{width:100%;display:flex;flex-direction:column;align-items:center}
 .sport-audience-carousel-viewport{overflow:hidden;width:100%;max-width:36rem;touch-action:pan-y}
@@ -617,12 +613,22 @@ body.join-modal-open{overflow:hidden}
 .conexa-mascot-img__orbit-ring--b{inset:10%;border-color:rgba(138,109,230,.2);animation-duration:11s;animation-direction:reverse}
 .conexa-guide{position:fixed;inset:0;z-index:40;overflow:hidden;pointer-events:none}
 .conexa-guide__backdrop{position:fixed;inset:0;border:0;background:rgba(7,11,26,.72);cursor:pointer;pointer-events:auto;z-index:41}
+.conexa-guide__dismiss{position:fixed;inset:0;border:0;background:transparent;cursor:default;pointer-events:auto;z-index:43}
 .conexa-spotlight{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(7,11,26,.78);pointer-events:none;z-index:42;transition:top .45s cubic-bezier(.23,1,.32,1),left .45s cubic-bezier(.23,1,.32,1),width .45s ease,height .45s ease}
-.conexa-guide__actor{position:absolute;top:0;left:0;display:block;border:0;background:transparent;padding:0;cursor:pointer;pointer-events:auto;z-index:44;transition:transform .7s cubic-bezier(.23,1,.32,1)}
+.conexa-guide__dock{position:absolute;top:0;left:0;z-index:44;pointer-events:auto}
+.conexa-guide__dock--dragging{z-index:48}
+.conexa-guide__actor{position:relative;display:block;width:100%;border:0;background:transparent;padding:0;cursor:grab;touch-action:none}
+.conexa-guide__actor--dragging,.conexa-guide__dock--dragging .conexa-guide__actor{cursor:grabbing}
 .conexa-guide__actor:disabled{cursor:default}
 .conexa-guide__float{position:relative;display:block;width:100%;animation:conexa-float 4.4s ease-in-out infinite}
 .conexa-guide__orbit-wrap{position:absolute;inset:-8%;z-index:0;opacity:.9;pointer-events:none}
 .conexa-guide__orbit-wrap canvas{width:100%!important;height:100%!important}
+.conexa-guide__menu{position:absolute;right:0;bottom:calc(100% + 10px);z-index:46;width:min(240px,70vw);display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:16px;background:rgba(7,11,26,.96);border:1px solid rgba(46,229,157,.4);box-shadow:0 20px 48px rgba(7,11,26,.55)}
+.conexa-guide__dock--flip .conexa-guide__menu{bottom:auto;top:calc(100% + 10px)}
+.conexa-guide__menu-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;text-align:left;padding:10px 12px;border:0;border-radius:12px;background:transparent;color:var(--text-on-dark);cursor:pointer;font-family:var(--font-head);font-size:.92rem;letter-spacing:.02em}
+.conexa-guide__menu-btn:hover,.conexa-guide__menu-btn:focus-visible{background:rgba(46,229,157,.12)}
+.conexa-guide__menu-btn:disabled{opacity:.4;cursor:not-allowed}
+.conexa-guide__menu-kicker{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
 .conexa-guide__prompt{position:fixed;right:24px;bottom:24px;z-index:46;max-width:min(340px,90vw);padding:18px 20px;border-radius:16px;background:rgba(7,11,26,.94);border:1px solid rgba(46,229,157,.4);box-shadow:0 20px 48px rgba(7,11,26,.55);pointer-events:auto}
 .conexa-guide__prompt-title{margin:0 0 8px;font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
 .conexa-guide__prompt-body{margin:0 0 16px;font-size:.9rem;line-height:1.5;color:var(--text-on-dark)}
@@ -630,6 +636,11 @@ body.join-modal-open{overflow:hidden}
 .conexa-guide__prompt-btn{padding:8px 14px;border-radius:999px;font-family:var(--font-head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid transparent}
 .conexa-guide__prompt-btn--ghost{background:transparent;border-color:rgba(255,255,255,.2);color:var(--text-on-dark-muted)}
 .conexa-guide__prompt-btn--primary{background:var(--green);color:var(--ink)}
+.conexa-guide__chat{position:fixed;right:24px;bottom:120px;z-index:50;width:min(320px,calc(100vw - 32px));padding:18px 18px 16px;border-radius:16px;background:rgba(7,11,26,.96);border:1px solid rgba(46,229,157,.4);box-shadow:0 20px 48px rgba(7,11,26,.55);pointer-events:auto;display:flex;flex-direction:column;gap:12px}
+.conexa-guide__chat-title{margin:0;font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.conexa-guide__chat-body{margin:0;font-size:.88rem;line-height:1.5;color:var(--text-on-dark)}
+.conexa-guide__chat-input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--text-on-dark-muted);font-size:.85rem}
+.conexa-guide__chat .conexa-guide__prompt-btn{align-self:flex-end}
 .conexa-guide__tour-panel{position:fixed;right:96px;bottom:24px;z-index:50;width:min(320px,calc(100vw - 112px));pointer-events:auto}
 .conexa-tour-card{padding:16px 18px;border-radius:16px;background:rgba(7,11,26,.94);border:1px solid rgba(46,229,157,.38);box-shadow:0 20px 48px rgba(7,11,26,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .conexa-tour-card__head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
@@ -643,12 +654,11 @@ body.join-modal-open{overflow:hidden}
 .conexa-tour-card__btn--primary{background:var(--green);color:var(--ink)}
 .conexa-guide--reduced .conexa-guide__actor{transition:none}
 .conexa-guide--reduced .conexa-guide__float{animation:none}
-.conexa-guide--tour .conexa-guide__actor{pointer-events:none;opacity:.92}
 .conexa-guide--tour .conexa-guide__float{animation:none}
 @media (max-width:767px){
   .conexa-guide__prompt{left:12px;right:12px;bottom:calc(88px + env(safe-area-inset-bottom,0px));max-width:none;padding:14px 16px}
   .conexa-guide__prompt-body{font-size:.85rem;margin-bottom:12px}
-  .conexa-guide__tour-panel{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto}
+  .conexa-guide__tour-panel,.conexa-guide__chat{left:12px;right:12px;bottom:calc(108px + env(safe-area-inset-bottom,0px));width:auto}
   .conexa-guide__orbit-wrap{inset:-4%;opacity:.75}
 }
 .scroll-sec{position:relative}

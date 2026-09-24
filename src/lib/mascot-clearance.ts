@@ -52,7 +52,6 @@ const OBSTACLE_SELECTOR = [
   ".quote",
   ".chips",
   ".chip",
-  ".sport-guide-region",
   ".sport-guide-body",
   ".sport-audience-panel",
   ".sport-audience-panel--quote",
@@ -60,6 +59,8 @@ const OBSTACLE_SELECTOR = [
   ".border-city-panel",
   ".about-full-slide-list",
   ".conexa-guide__prompt",
+  ".conexa-guide__menu",
+  ".conexa-guide__chat",
   ".conexa-guide__tour-panel",
 ].join(",");
 
