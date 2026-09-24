@@ -29,8 +29,14 @@ export const metadata: Metadata = {
     title: "CONEXA — Descubrí tu región",
     description:
       "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+    locale: "es_AR",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "CONEXA — Descubrí tu región",
+    description:
+      "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+  },
 };
 
 export const viewport: Viewport = {

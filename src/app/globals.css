@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/trinexus.css";
+@import "../styles/carousel.css";
 @import "../styles/view-transitions.css";
 
 @theme inline {

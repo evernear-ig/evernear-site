@@ -9,9 +9,9 @@ type LegalPageProps = {
 export function LegalPage({ titleKey, bodyKeys }: LegalPageProps) {
   return (
     <SiteShell>
-      <main id="main" className="eco-page">
-        <section className="light eco-body legal-page">
-          <div className="wrap legal-wrap">
+      <main id="main" className="eco-page legal-page">
+        <section className="dark eco-hero eco-hero--about legal-page__section">
+          <div className="wrap legal-wrap sec-head sec-head--stack">
             <h1 className="h-xl">
               <T k={titleKey} />
             </h1>

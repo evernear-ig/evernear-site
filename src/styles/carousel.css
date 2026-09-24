@@ -1,0 +1,82 @@
+/* Unified carousel system — CONEXA */
+.carousel{--carousel-duration:var(--duration-panel);--carousel-ease:var(--ease-out);width:100%}
+.carousel__viewport{overflow:hidden;width:100%;touch-action:pan-y}
+.carousel__track{display:flex;flex-wrap:nowrap;transition:transform var(--carousel-duration) var(--carousel-ease)}
+.carousel__slide{flex:0 0 auto;box-sizing:border-box}
+.carousel__shell{display:flex;align-items:center;gap:clamp(8px,1.5vw,16px)}
+.carousel__fade-stage{position:relative;width:100%}
+.carousel__fade-slide{opacity:0;transform:translateY(12px);transition:opacity var(--carousel-duration) var(--carousel-ease),transform var(--carousel-duration) var(--carousel-ease);pointer-events:none;position:absolute;inset:0;width:100%}
+.carousel__fade-slide[data-active="true"]{opacity:1;transform:none;pointer-events:auto;position:relative}
+.carousel--fade .carousel__viewport{min-height:1px}
+
+/* Arrows — circular, brand-consistent */
+.carousel__arrow{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:44px;height:44px;padding:0;border:1px solid var(--line);border-radius:50%;background:rgba(7,11,26,.35);color:var(--white);font-family:var(--font-head);font-size:1.1rem;line-height:1;cursor:pointer;transition:border-color var(--duration-ui) var(--carousel-ease),background var(--duration-ui) var(--carousel-ease),transform var(--duration-fast) var(--carousel-ease),opacity var(--duration-ui) var(--carousel-ease)}
+.carousel__arrow span{pointer-events:none}
+.carousel__arrow:active:not(:disabled){transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.carousel__arrow:hover:not(:disabled){border-color:var(--green);background:rgba(46,229,157,.1)}}
+.carousel__arrow:disabled{opacity:.35;cursor:not-allowed}
+
+/* Nav row (panel / hero) */
+.carousel__nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:clamp(20px,3vh,28px)}
+.carousel--panel .carousel__nav{margin-top:clamp(28px,4.5vh,44px)}
+
+/* Dots — unified */
+.carousel__dots{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:20px}
+.carousel__nav .carousel__dots{margin-top:0}
+.carousel__dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(246,247,251,.35);cursor:pointer;transition:transform var(--duration-ui) var(--carousel-ease),background var(--duration-ui) var(--carousel-ease),opacity var(--duration-ui) var(--carousel-ease)}
+.carousel__dots button.is-active{background:var(--green);transform:scale(1.2)}
+
+/* Cards variant */
+.carousel--cards .carousel__page{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;box-sizing:border-box;padding:0 1px;list-style:none;margin:0}
+.carousel--cards .carousel__page-item{min-width:0;height:100%}
+@media(max-width:900px){.carousel--cards .carousel__page{grid-template-columns:1fr;gap:16px}}
+.carousel--cards .carousel__dots{margin-top:20px}
+
+/* Hero variant */
+.carousel--hero .carousel__viewport{max-width:36rem;margin-inline:auto}
+.carousel--hero .carousel__slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;min-height:min(28vh,220px)}
+.carousel--hero .carousel__nav{margin-top:clamp(14px,2vh,20px)}
+.carousel--hero .carousel__arrow{display:none}
+.carousel--hero.carousel--static{display:grid;gap:20px;width:100%;max-width:36rem;margin-inline:auto}
+.carousel-hero-slide{font-family:var(--font-head);display:flex;flex-direction:column;align-items:center;width:100%}
+.carousel-hero-slide b{display:block;font-size:clamp(1.05rem,1.6vw,1.35rem);text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.carousel-hero-slide span{display:block;font-family:var(--font-body);font-size:clamp(.88rem,1.1vw,.95rem);color:var(--text-on-light-muted);margin-top:8px;line-height:1.55;max-width:42ch}
+.carousel--hero.carousel--static .carousel-hero-slide{text-align:center;padding:12px 0;border-bottom:1px solid var(--line-dark)}
+.carousel--hero.carousel--static .carousel-hero-slide:last-child{border-bottom:0}
+.carousel-audience-slide{text-align:center;display:flex;flex-direction:column;align-items:center;width:100%;padding:0 12px}
+.carousel-audience-slide h4{margin:0 0 10px;font-family:var(--font-head);font-size:clamp(1.15rem,2.2vw,1.55rem);letter-spacing:.02em;line-height:1.15;color:var(--ink)}
+.carousel-audience-slide p{margin:0;max-width:34ch;font-size:clamp(.95rem,1.2vw,1.05rem);line-height:1.55;color:var(--text-on-light-muted)}
+.carousel-audience-slide--quote{gap:20px;padding-top:clamp(4px,1vh,8px)}
+.carousel-audience-slide--quote .quote{margin:0;max-width:22em;font-family:var(--font-head);font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.35;color:var(--ink)}
+.carousel--hero.carousel--static .carousel-audience-slide{padding:18px 0;border-bottom:1px solid var(--line-dark)}
+
+/* Panel variant (about / que-es) */
+.about-full-carousel{width:100%;max-width:44ch;margin-top:clamp(28px,5vh,48px)}
+.about-full-carousel .about-full-slide{margin-top:0;animation:none}
+.about-full-carousel .carousel__fade-stage{min-height:min(32vh,280px)}
+@media(max-width:720px){
+  .about-full-carousel{margin-top:24px}
+  .about-full-carousel .carousel__fade-stage{min-height:min(28vh,240px)}
+}
+
+/* Scroll reveal */
+.carousel--reveal.carousel:not(.in){opacity:0;transform:translateY(20px)}
+.carousel--reveal.carousel.in{opacity:1;transform:none;transition:opacity var(--carousel-duration) var(--carousel-ease),transform var(--carousel-duration) var(--carousel-ease)}
+
+/* Staggered card entrance */
+@keyframes carousel-stagger-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.carousel--stagger.in .carousel__page-item{animation:carousel-stagger-in var(--carousel-duration) var(--carousel-ease) both}
+.carousel--stagger.in .carousel__page-item[data-stagger="0"]{animation-delay:0ms}
+.carousel--stagger.in .carousel__page-item[data-stagger="1"]{animation-delay:80ms}
+.carousel--stagger.in .carousel__page-item[data-stagger="2"]{animation-delay:160ms}
+
+/* Mobile: hide outside arrows, rely on swipe */
+@media(max-width:900px){
+  .carousel--mobile-swipe .carousel__arrow--outside{display:none}
+  .carousel--mobile-swipe .carousel__shell{gap:0}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .carousel__track,.carousel__fade-slide,.carousel--reveal.carousel{transition:none}
+  .carousel--stagger.in .carousel__page-item{animation:none}
+}

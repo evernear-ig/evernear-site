@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
+import { Carousel } from "@/components/trinexus/ui/Carousel";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { T } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
@@ -28,9 +29,6 @@ const PEOPLE: {
   { id: "business", roleKey: "ppl.biz", quoteKey: "ppl.biz.q", hubLine: "br", activeNode: "br" },
   { id: "creator", roleKey: "ppl.creator", quoteKey: "ppl.creator.q", hubLine: "bl", activeNode: "bl" },
 ];
-
-const PEOPLE_PAGE_SIZE_DESKTOP = 3;
-const PEOPLE_PAGE_SIZE_MOBILE = 1;
 
 function PersonTri({
   hubLine,
@@ -106,38 +104,10 @@ function PersonCard({ person, active, onToggle }: PersonCardProps) {
 
 export function PeopleSection() {
   const [active, setActive] = useState<PersonId | null>(null);
-  const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(PEOPLE_PAGE_SIZE_DESKTOP);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 900px)");
-    const syncPageSize = () => {
-      setPageSize(mq.matches ? PEOPLE_PAGE_SIZE_MOBILE : PEOPLE_PAGE_SIZE_DESKTOP);
-      setPage(0);
-    };
-    syncPageSize();
-    mq.addEventListener("change", syncPageSize);
-    return () => mq.removeEventListener("change", syncPageSize);
-  }, []);
-
-  const pages = useMemo(() => {
-    const chunks: (typeof PEOPLE)[] = [];
-    for (let i = 0; i < PEOPLE.length; i += pageSize) {
-      chunks.push(PEOPLE.slice(i, i + pageSize));
-    }
-    return chunks;
-  }, [pageSize]);
-
-  useEffect(() => {
-    setPage((current) => Math.min(current, Math.max(0, pages.length - 1)));
-  }, [pages.length]);
 
   const toggle = (id: PersonId) => {
     setActive((prev) => (prev === id ? null : id));
   };
-
-  const canPrev = page > 0;
-  const canNext = page < pages.length - 1;
 
   return (
     <section className="dark people-sec" id="people">
@@ -150,70 +120,20 @@ export function PeopleSection() {
             <T k="ppl.lead" />
           </p>
         </Reveal>
-        <div className="people-carousel" id="peopleGrid">
-          <div className="people-carousel-viewport">
-            <div
-              className="people-carousel-track"
-              style={{
-                width: `${pages.length * 100}%`,
-                transform: `translateX(-${(page * 100) / pages.length}%)`,
-              }}
-            >
-              {pages.map((group, pageIndex) => (
-                <div
-                  key={pageIndex}
-                  className="people-carousel-page"
-                  style={{ width: `${100 / pages.length}%` }}
-                  aria-hidden={pageIndex !== page}
-                >
-                  {group.map((person) => (
-                    <PersonCard
-                      key={person.id}
-                      person={person}
-                      active={active === person.id}
-                      onToggle={() => toggle(person.id)}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-          {pages.length > 1 && (
-            <div className="people-carousel-nav">
-              <button
-                type="button"
-                className="people-carousel-btn"
-                onClick={() => setPage((p) => Math.max(0, p - 1))}
-                disabled={!canPrev}
-                aria-label="Anterior"
-              >
-                ←
-              </button>
-              <div className="people-carousel-dots" role="tablist" aria-label="Personas">
-                {pages.map((_, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    role="tab"
-                    className={index === page ? "active" : undefined}
-                    aria-selected={index === page}
-                    aria-label={`Grupo ${index + 1}`}
-                    onClick={() => setPage(index)}
-                  />
-                ))}
-              </div>
-              <button
-                type="button"
-                className="people-carousel-btn"
-                onClick={() => setPage((p) => Math.min(pages.length - 1, p + 1))}
-                disabled={!canNext}
-                aria-label="Siguiente"
-              >
-                →
-              </button>
-            </div>
+        <Carousel
+          variant="cards"
+          className="people-carousel"
+          items={PEOPLE}
+          itemsPerPage={{ desktop: 3, mobile: 1 }}
+          stagger
+          renderItem={(person) => (
+            <PersonCard
+              person={person}
+              active={active === person.id}
+              onToggle={() => toggle(person.id)}
+            />
           )}
-        </div>
+        />
       </div>
     </section>
   );

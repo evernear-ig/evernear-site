@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState, startTransition } from "react";
+import { useState } from "react";
+import { Carousel } from "@/components/trinexus/ui/Carousel";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
@@ -32,25 +33,50 @@ export function AboutSlidesPage({
   const active = count > 0 ? blocks[index] : null;
   const imageKey = active?.imageKey ?? heroImageKey;
 
-  const go = useCallback(
-    (delta: number) => {
-      if (count < 2) return;
-      startTransition(() => {
-        setIndex((current) => (current + delta + count) % count);
-      });
-    },
-    [count],
-  );
+  const slides = blocks.map((block) => (
+    <article key={block.titleKey} className="about-full-slide">
+      <h2 className="about-full-slide-title">
+        <T k={block.titleKey} />
+      </h2>
+      {block.list ? (
+        <div className="about-full-slide-body">
+          <ul className="about-full-slide-list">
+            {block.bodyKeys.map((key) => (
+              <li key={key}>
+                <T k={key} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="about-full-slide-body">
+          {block.bodyKeys.map((key) => (
+            <p key={key}>
+              <T k={key} />
+            </p>
+          ))}
+        </div>
+      )}
+    </article>
+  ));
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (count < 2) return;
-      if (e.key === "ArrowLeft") go(-1);
-      if (e.key === "ArrowRight") go(1);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [count, go]);
+  const footer = footerLinks && footerLinks.length > 0 ? (
+    <nav className="about-full-links" aria-label="Related">
+      <ul>
+        {footerLinks.map((link) => (
+          <li key={link.href}>
+            <TransitionLink
+              href={link.href}
+              transition={link.href.startsWith("/#") ? "fade" : "forward"}
+              className="btn btn-ghost btn-sm"
+            >
+              <T k={link.key} />
+            </TransitionLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  ) : undefined;
 
   return (
     <section className="dark eco-hero eco-hero--about-full">
@@ -74,90 +100,23 @@ export function AboutSlidesPage({
             ) : null}
           </header>
 
-          {active ? (
-            <article
-              key={active.titleKey}
-              className="about-full-slide"
-              aria-live="polite"
-            >
-              <h2 className="about-full-slide-title">
-                <T k={active.titleKey} />
-              </h2>
-              {active.list ? (
-                <div className="about-full-slide-body">
-                  <ul className="about-full-slide-list">
-                    {active.bodyKeys.map((key) => (
-                      <li key={key}>
-                        <T k={key} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <div className="about-full-slide-body">
-                  {active.bodyKeys.map((key) => (
-                    <p key={key}>
-                      <T k={key} />
-                    </p>
-                  ))}
-                </div>
-              )}
-            </article>
-          ) : null}
-
-          {count > 1 ? (
-            <nav className="about-full-nav" aria-label="Secciones">
-            <button
-              type="button"
-              className="about-full-nav-btn"
-              onClick={() => go(-1)}
-              aria-label="Anterior"
-            >
-              ←
-            </button>
-            <div className="about-full-dots" role="tablist">
-              {blocks.map((block, i) => (
-                <button
-                  key={block.titleKey}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === index}
-                  aria-label={`Sección ${i + 1}`}
-                  className={i === index ? "active" : undefined}
-                  onClick={() => {
-                    startTransition(() => setIndex(i));
-                  }}
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              className="about-full-nav-btn"
-              onClick={() => go(1)}
-              aria-label="Siguiente"
-            >
-              →
-            </button>
-            </nav>
-          ) : null}
-
-          {footerLinks && footerLinks.length > 0 ? (
-            <nav className="about-full-links" aria-label="Related">
-              <ul>
-                {footerLinks.map((link) => (
-                  <li key={link.href}>
-                    <TransitionLink
-                      href={link.href}
-                      transition={link.href.startsWith("/#") ? "fade" : "forward"}
-                      className="btn btn-ghost btn-sm"
-                    >
-                      <T k={link.key} />
-                    </TransitionLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ) : null}
+          {count > 0 ? (
+            <Carousel
+              variant="panel"
+              transition="fade"
+              slides={slides}
+              index={index}
+              onIndexChange={setIndex}
+              loop
+              keyboard
+              swipe
+              dotLabels={blocks.map((_, i) => `Sección ${i + 1}`)}
+              footer={footer}
+              className="about-full-carousel"
+            />
+          ) : (
+            footer
+          )}
         </div>
       </div>
     </section>
