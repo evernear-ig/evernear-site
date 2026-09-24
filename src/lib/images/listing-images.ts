@@ -32,7 +32,7 @@ export const LISTING_IMAGES = {
       },
     },
     alimentos_n4: {
-      u: "photo-1604719312566-8912b086b4a7",
+      u: "photo-1558655146-d09347e92766",
       pos: "50% 42%",
       alt: {
       es: "Panadería con hogazas recién horneadas",
@@ -59,7 +59,7 @@ export const LISTING_IMAGES = {
       },
     },
     artesanias_n1: {
-      u: "photo-1452860606245-08befc0ff4a9",
+      u: "photo-1582719471384-894fbb16e074",
       pos: "50% 42%",
       alt: {
       es: "Artesano tejiendo textil en telar manual",
@@ -86,7 +86,7 @@ export const LISTING_IMAGES = {
       },
     },
     artesanias_n4: {
-      u: "photo-1578749552338-434e437ca9a9",
+      u: "photo-1593113598332-cd288d649433",
       pos: "50% 42%",
       alt: {
       es: "Collar de cuentas y joyería artesanal",
@@ -95,7 +95,7 @@ export const LISTING_IMAGES = {
       },
     },
     artesanias_n5: {
-      u: "photo-1610701596007-761077692a1c",
+      u: "photo-1736060109179-e41c70ba8a02",
       pos: "50% 42%",
       alt: {
       es: "Madera tallada y objetos decorativos hechos a mano",
@@ -104,7 +104,7 @@ export const LISTING_IMAGES = {
       },
     },
     artesanias_n6: {
-      u: "photo-1596464716127-fa8297862b50",
+      u: "photo-1590246185449-e9e2ddd683bb",
       pos: "50% 42%",
       alt: {
       es: "Pintura artesanal sobre tela en mercado local",
@@ -167,7 +167,7 @@ export const LISTING_IMAGES = {
       },
     },
     farmacia_n1: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1626224583764-f87db24ac4ea",
       pos: "50% 42%",
       alt: {
       es: "Mostrador de farmacia con medicamentos en estante",
@@ -185,7 +185,7 @@ export const LISTING_IMAGES = {
       },
     },
     farmacia_n3: {
-      u: "photo-1631549916768-4119b2d8145c",
+      u: "photo-1554068865-24cecd4e34b8",
       pos: "50% 42%",
       alt: {
       es: "Vitamins and health products aisle in pharmacy",
@@ -194,7 +194,7 @@ export const LISTING_IMAGES = {
       },
     },
     farmacia_n4: {
-      u: "photo-1587854697902-72a84e4b3a8b",
+      u: "photo-1518611012118-696072aa579a",
       pos: "50% 42%",
       alt: {
       es: "Frascos de medicamentos alineados en anaquel",
@@ -203,7 +203,7 @@ export const LISTING_IMAGES = {
       },
     },
     farmacia_n5: {
-      u: "photo-1471864190181-a93a3070b6d6",
+      u: "photo-1571019614242-c5c5dee9f50b",
       pos: "50% 42%",
       alt: {
       es: "Consultorio farmacéutico con botiquín",
@@ -212,7 +212,7 @@ export const LISTING_IMAGES = {
       },
     },
     farmacia_n6: {
-      u: "photo-1585435557343-3b64280698b8",
+      u: "photo-1461896836934-ffe607ba8211",
       pos: "50% 42%",
       alt: {
       es: "Caja de farmacia con turnos y atención",
@@ -248,7 +248,7 @@ export const LISTING_IMAGES = {
       },
     },
     gastronomia_n4: {
-      u: "photo-1452860606245-08befc0ff4a9",
+      u: "photo-1618005182384-a83a8bd57fbe",
       pos: "50% 42%",
       alt: {
       es: "Cocina abierta con platos regionales",
@@ -266,7 +266,7 @@ export const LISTING_IMAGES = {
       },
     },
     gastronomia_n6: {
-      u: "photo-1559339352-11d035aa6528",
+      u: "photo-1532094349884-543bc11b234d",
       pos: "50% 42%",
       alt: {
       es: "Vino y queso en mesa de restaurante",
@@ -275,7 +275,7 @@ export const LISTING_IMAGES = {
       },
     },
     herramientas_n1: {
-      u: "photo-1581244277943-f6383b65e7f6",
+      u: "photo-1482951486181-13a752dbbd52",
       pos: "50% 42%",
       alt: {
       es: "Taladro y caja de herramientas en ferretería",
@@ -284,7 +284,7 @@ export const LISTING_IMAGES = {
       },
     },
     herramientas_n2: {
-      u: "photo-1504148455326-c376925ed967",
+      u: "photo-1623652554515-91c833e3080e",
       pos: "50% 42%",
       alt: {
       es: "Martillo, llaves y tornillos en mostrador",
@@ -293,7 +293,7 @@ export const LISTING_IMAGES = {
       },
     },
     herramientas_n3: {
-      u: "photo-1530124566582-6d49fd090251",
+      u: "photo-1649252504348-235b14c9cdb5",
       pos: "50% 42%",
       alt: {
       es: "Estantería de herramientas eléctricas en tienda",
@@ -311,7 +311,7 @@ export const LISTING_IMAGES = {
       },
     },
     herramientas_n5: {
-      u: "photo-1504328345606-18bbc8c558d7",
+      u: "photo-1581578731548-c64695cc6952",
       pos: "50% 42%",
       alt: {
       es: "Cinturón de herramientas de carpintero",
@@ -365,7 +365,7 @@ export const LISTING_IMAGES = {
       },
     },
     muebles_n5: {
-      u: "photo-1493663284031-b7e00a265aae",
+      u: "photo-1549060279-7e168fcee0c2",
       pos: "50% 42%",
       alt: {
       es: "Rincón de lectura con sillón y lámpara de pie",
@@ -401,7 +401,7 @@ export const LISTING_IMAGES = {
       },
     },
     souvenirs_n3: {
-      u: "photo-1578749552338-434e437ca9a9",
+      u: "photo-1599058917212-d750089bc07e",
       pos: "50% 42%",
       alt: {
       es: "Artesanía regional en tienda de souvenirs",
@@ -410,7 +410,7 @@ export const LISTING_IMAGES = {
       },
     },
     souvenirs_n4: {
-      u: "photo-1610701596007-761077692a1c",
+      u: "photo-1552674605-db6ffd4facb5",
       pos: "50% 42%",
       alt: {
       es: "Mate, termos y productos típicos en mostrador",
@@ -419,7 +419,7 @@ export const LISTING_IMAGES = {
       },
     },
     souvenirs_n5: {
-      u: "photo-1596464716127-fa8297862b50",
+      u: "photo-1530549387789-4c1017266635",
       pos: "50% 42%",
       alt: {
       es: "Camisetas y bolsas con diseño trinacional",
@@ -428,7 +428,7 @@ export const LISTING_IMAGES = {
       },
     },
     souvenirs_n6: {
-      u: "photo-1452860606245-08befc0ff4a9",
+      u: "photo-1519315901367-f34ff9154487",
       pos: "50% 42%",
       alt: {
       es: "Recuerdos artesanales en feria de souvenirs",
@@ -446,7 +446,7 @@ export const LISTING_IMAGES = {
       },
     },
     textil_n2: {
-      u: "photo-1558171813-119c7ee0d0f9",
+      u: "photo-1431324155629-1a6deb1dec8d",
       pos: "50% 42%",
       alt: {
       es: "Costurera trabajando en máquina de coser",
@@ -455,7 +455,7 @@ export const LISTING_IMAGES = {
       },
     },
     textil_n3: {
-      u: "photo-1610701596007-761077692a1c",
+      u: "photo-1551958219-acbc608c6377",
       pos: "50% 42%",
       alt: {
       es: "Modista probando prenda en maniquí",
@@ -473,7 +473,7 @@ export const LISTING_IMAGES = {
       },
     },
     textil_n5: {
-      u: "photo-1489987707025-afc088f93e66",
+      u: "photo-1612872087720-bb876e2e67d1",
       pos: "50% 42%",
       alt: {
       es: "Bordado artesanal sobre tela blanca",
@@ -520,7 +520,7 @@ export const LISTING_IMAGES = {
       },
     },
     community_n4: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1586864387967-d02ef85d93e8",
       pos: "50% 42%",
       alt: {
       es: "Cartelera comunitaria con avisos locales",
@@ -601,7 +601,7 @@ export const LISTING_IMAGES = {
       },
     },
     podcast_n1: {
-      u: "photo-1590602847861-f357a8772d96",
+      u: "photo-1550751827-4bd374c3f58b",
       pos: "50% 42%",
       alt: {
       es: "Podcast con micrófonos profesionales y auriculares",
@@ -619,7 +619,7 @@ export const LISTING_IMAGES = {
       },
     },
     podcast_n3: {
-      u: "photo-1598488035139-bdbb2231ccc4",
+      u: "photo-1518770660439-4636190af475",
       pos: "50% 42%",
       alt: {
       es: "Conductores conversando frente a mezclador de audio",
@@ -628,7 +628,7 @@ export const LISTING_IMAGES = {
       },
     },
     podcast_n4: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1581091226825-a6a2a5aee158",
       pos: "50% 42%",
       alt: {
       es: "Estudio casero de podcast con laptop y micrófono",
@@ -637,7 +637,7 @@ export const LISTING_IMAGES = {
       },
     },
     podcast_n5: {
-      u: "photo-1604719312566-8912b086b4a7",
+      u: "photo-1550009158-9ebf69173e03",
       pos: "50% 42%",
       alt: {
       es: "Edición de episodio de podcast en software de audio",
@@ -664,7 +664,7 @@ export const LISTING_IMAGES = {
       },
     },
     press_n2: {
-      u: "photo-1586339949912-3e9457bef6d7",
+      u: "photo-1441986300917-64674bd600d8",
       pos: "50% 42%",
       alt: {
       es: "Redacción de periódico con pantallas y titulares",
@@ -673,7 +673,7 @@ export const LISTING_IMAGES = {
       },
     },
     press_n3: {
-      u: "photo-1495020689067-37979a1201b8",
+      u: "photo-1513519245088-0e12902e5a38",
       pos: "50% 42%",
       alt: {
       es: "Reportero con cámara cubriendo evento local",
@@ -691,7 +691,7 @@ export const LISTING_IMAGES = {
       },
     },
     press_n5: {
-      u: "photo-1505685296765-3a2730d38989",
+      u: "photo-1581092160562-40aa08e78837",
       pos: "50% 42%",
       alt: {
       es: "Entrevista periodística con grabadora y bloc",
@@ -709,7 +709,7 @@ export const LISTING_IMAGES = {
       },
     },
     radio_n1: {
-      u: "photo-1604719312566-8912b086b4a7",
+      u: "photo-1556918936-3e73b945d24f",
       pos: "50% 42%",
       alt: {
       es: "Estudio de radio con micrófono y consola de audio",
@@ -718,7 +718,7 @@ export const LISTING_IMAGES = {
       },
     },
     radio_n2: {
-      u: "photo-1598488035139-bdbb2231ccc4",
+      u: "photo-1556742049-0cfed4f6a45d",
       pos: "50% 42%",
       alt: {
       es: "Locutor grabando programa en cabina acústica",
@@ -727,7 +727,7 @@ export const LISTING_IMAGES = {
       },
     },
     radio_n3: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1498049794561-7780e7231661",
       pos: "50% 42%",
       alt: {
       es: "Panel de control de emisora comunitaria",
@@ -736,7 +736,7 @@ export const LISTING_IMAGES = {
       },
     },
     radio_n4: {
-      u: "photo-1590602847861-f357a8772d96",
+      u: "photo-1526374965328-7f61d4dc18c5",
       pos: "50% 42%",
       alt: {
       es: "Entrevista radial con micrófonos en mesa",
@@ -819,7 +819,7 @@ export const LISTING_IMAGES = {
       },
     },
     empleo_n1: {
-      u: "photo-1521737711862-e3b97375f903",
+      u: "photo-1504674900247-0877df9cc836",
       pos: "50% 42%",
       alt: {
       es: "Entrevista laboral en oficina moderna",
@@ -873,7 +873,7 @@ export const LISTING_IMAGES = {
       },
     },
     pasantia_n1: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1546069901-ba9599a7e63c",
       pos: "50% 42%",
       alt: {
       es: "Pasante orientado por mentor en empresa",
@@ -963,7 +963,7 @@ export const LISTING_IMAGES = {
       },
     },
     profile_n5: {
-      u: "photo-1556155092-490389064275",
+      u: "photo-1512621776951-a57141f2eefd",
       pos: "50% 42%",
       alt: {
       es: "Perfil de desarrollador con código de fondo",
@@ -983,7 +983,7 @@ export const LISTING_IMAGES = {
   },
   education: {
     beca_n1: {
-      u: "photo-1606761568499-6d2451b23be8",
+      u: "photo-1503676260728-1c00da094a0b",
       pos: "50% 42%",
       alt: {
       es: "Estudiante becado recibiendo diploma",
@@ -992,7 +992,7 @@ export const LISTING_IMAGES = {
       },
     },
     beca_n2: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1573497019940-1c28c88b4f3e",
       pos: "50% 42%",
       alt: {
       es: "Convocatoria de becas en cartelera universitaria",
@@ -1046,7 +1046,7 @@ export const LISTING_IMAGES = {
       },
     },
     curso_n2: {
-      u: "photo-1546410531-03aa5fa4b0f0",
+      u: "photo-1579684385127-1ef15d508118",
       pos: "50% 42%",
       alt: {
       es: "Curso intensivo con laptops y proyector",
@@ -1064,7 +1064,7 @@ export const LISTING_IMAGES = {
       },
     },
     curso_n4: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1584982751601-97dcc096659c",
       pos: "50% 42%",
       alt: {
       es: "Certificado y material de curso sobre mesa",
@@ -1091,7 +1091,7 @@ export const LISTING_IMAGES = {
       },
     },
     programa_n1: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1576091160550-2173dba999ef",
       pos: "50% 42%",
       alt: {
       es: "Programa educativo universitario en campus",
@@ -1100,7 +1100,7 @@ export const LISTING_IMAGES = {
       },
     },
     programa_n2: {
-      u: "photo-1606761568499-6d2451b23be8",
+      u: "photo-1555252333-9f8e92e65df9",
       pos: "50% 42%",
       alt: {
       es: "Ceremonia de graduación de programa académico",
@@ -1118,7 +1118,7 @@ export const LISTING_IMAGES = {
       },
     },
     programa_n4: {
-      u: "photo-1546410531-03aa5fa4b0f0",
+      u: "photo-1503454537195-1dcabb73ffb9",
       pos: "50% 42%",
       alt: {
       es: "Programa de intercambio con estudiantes internacionales",
@@ -1147,7 +1147,7 @@ export const LISTING_IMAGES = {
   },
   events: {
     blockchain_n1: {
-      u: "photo-1639762681485-074b7f938860",
+      u: "photo-1609840114035-3c981b782dfe",
       pos: "50% 42%",
       alt: {
       es: "Presentación blockchain con gráficos en pantalla",
@@ -1156,7 +1156,7 @@ export const LISTING_IMAGES = {
       },
     },
     blockchain_n2: {
-      u: "photo-1642104704774-2f7156734737",
+      u: "photo-1629904853716-f0bc54eea481",
       pos: "50% 42%",
       alt: {
       es: "Red descentralizada visualizada en monitor",
@@ -1165,7 +1165,7 @@ export const LISTING_IMAGES = {
       },
     },
     blockchain_n3: {
-      u: "photo-1621761191319-c6fb62058540",
+      u: "photo-1588776814546-1ffcf47267a5",
       pos: "50% 42%",
       alt: {
       es: "Tokens y cripto en mesa de conferencia blockchain",
@@ -1228,7 +1228,7 @@ export const LISTING_IMAGES = {
       },
     },
     comunidad_n4: {
-      u: "photo-1505685296765-3a2730d38989",
+      u: "photo-1506126613408-eca07ce68773",
       pos: "50% 42%",
       alt: {
       es: "Música en vivo en encuentro comunitario",
@@ -1237,7 +1237,7 @@ export const LISTING_IMAGES = {
       },
     },
     comunidad_n5: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1522202176988-66273c2fd55f",
       pos: "50% 42%",
       alt: {
       es: "Stands solidarios en feria comunitaria",
@@ -1309,7 +1309,7 @@ export const LISTING_IMAGES = {
       },
     },
     educacion_n1: {
-      u: "photo-1546410531-03aa5fa4b0f0",
+      u: "photo-1490645935967-10de6ba17061",
       pos: "50% 42%",
       alt: {
       es: "Aula equipada para evento educativo",
@@ -1336,7 +1336,7 @@ export const LISTING_IMAGES = {
       },
     },
     educacion_n4: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1460925895917-afdab827c52f",
       pos: "50% 42%",
       alt: {
       es: "Seminario educativo en auditorio universitario",
@@ -1372,7 +1372,7 @@ export const LISTING_IMAGES = {
       },
     },
     estudiantes_n2: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1545389336-cf090694435e",
       pos: "50% 42%",
       alt: {
       es: "Campus universitario con estudiantes caminando",
@@ -1408,7 +1408,7 @@ export const LISTING_IMAGES = {
       },
     },
     estudiantes_n6: {
-      u: "photo-1606761568499-6d2451b23be8",
+      u: "photo-1517836357463-d25dfeac3438",
       pos: "50% 42%",
       alt: {
       es: "Graduados celebrando con birretes al aire",
@@ -1453,7 +1453,7 @@ export const LISTING_IMAGES = {
       },
     },
     innovacion_n5: {
-      u: "photo-1639762681485-074b7f938860",
+      u: "photo-1544367567-0f2fcb009e0b",
       pos: "50% 42%",
       alt: {
       es: "Blockchain y nuevas tecnologías en panel",
@@ -1516,7 +1516,7 @@ export const LISTING_IMAGES = {
       },
     },
     meetup_n6: {
-      u: "photo-1505685296765-3a2730d38989",
+      u: "photo-1534438327276-14e5300c3a48",
       pos: "50% 42%",
       alt: {
       es: "Auditorio pequeño lleno en meetup local",
@@ -1615,7 +1615,7 @@ export const LISTING_IMAGES = {
       },
     },
     turismo_n5: {
-      u: "photo-1470071459604-3b5ec3a8fe02",
+      u: "photo-1551288049-bebda4e38f71",
       pos: "50% 42%",
       alt: {
       es: "Excursión ecoturística en evento al aire libre",
@@ -1635,7 +1635,7 @@ export const LISTING_IMAGES = {
   },
   health: {
     dental_n1: {
-      u: "photo-1606811971610-448588d57af0",
+      u: "photo-1534438327276-14e5300c3a48",
       pos: "50% 42%",
       alt: {
       es: "Dentista examinando dientes con espejo bucal",
@@ -1671,7 +1671,7 @@ export const LISTING_IMAGES = {
       },
     },
     dental_n5: {
-      u: "photo-1598256986806-ca7a8d6a4b2a",
+      u: "photo-1545389336-cf090694435e",
       pos: "50% 42%",
       alt: {
       es: "Consultorio odontológico con instrumental esterilizado",
@@ -1689,7 +1689,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n1: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1522071820081-009f0129c71c",
       pos: "50% 42%",
       alt: {
       es: "Médico geriatra evaluando adulto mayor en consulta",
@@ -1698,7 +1698,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n2: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1559136555-9303baea8ebd",
       pos: "50% 42%",
       alt: {
       es: "Enfermera acompañando adulto mayor en residencia",
@@ -1707,7 +1707,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n3: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1561070791-2526d30994b5",
       pos: "50% 42%",
       alt: {
       es: "Fisioterapia geriátrica para movilidad segura",
@@ -1716,7 +1716,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n4: {
-      u: "photo-1519494026892-80bbd4d6df07",
+      u: "photo-1677442136019-21780ecad995",
       pos: "50% 42%",
       alt: {
       es: "Adultos mayores en sala de actividades comunitarias",
@@ -1734,7 +1734,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n6: {
-      u: "photo-1576091160879-890e68117963",
+      u: "photo-1556910103-1c02745aae4d",
       pos: "50% 42%",
       alt: {
       es: "Control de medicación para paciente geriátrico",
@@ -1743,7 +1743,7 @@ export const LISTING_IMAGES = {
       },
     },
     emergency_n1: {
-      u: "photo-1519494026892-80bbd4d6df07",
+      u: "photo-1687293233211-6b0cc3beba70",
       pos: "50% 42%",
       alt: {
       es: "Sala de emergencias con personal médico activo",
@@ -1761,7 +1761,7 @@ export const LISTING_IMAGES = {
       },
     },
     emergency_n3: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1524178232363-1fb2b075b655",
       pos: "50% 42%",
       alt: {
       es: "Equipo de trauma en bay de urgencias hospitalaria",
@@ -1770,7 +1770,7 @@ export const LISTING_IMAGES = {
       },
     },
     emergency_n4: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1758270705317-3ef6142d306f",
       pos: "50% 42%",
       alt: {
       es: "Monitor de signos vitales en unidad de cuidados críticos",
@@ -1779,7 +1779,7 @@ export const LISTING_IMAGES = {
       },
     },
     emergency_n5: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1560518883-ce09059eeffa",
       pos: "50% 42%",
       alt: {
       es: "Médico de guardia evaluando urgencia en triage",
@@ -1806,7 +1806,7 @@ export const LISTING_IMAGES = {
       },
     },
     maternal_n2: {
-      u: "photo-1519494026892-80bbd4d6df07",
+      u: "photo-1649252504196-4aca12ecc644",
       pos: "50% 42%",
       alt: {
       es: "Madre sosteniendo recién nacido en sala de maternidad",
@@ -1815,7 +1815,7 @@ export const LISTING_IMAGES = {
       },
     },
     maternal_n3: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1450101499163-c8848c66ca85",
       pos: "50% 42%",
       alt: {
       es: "Matrona acompañando parto en sala de hospital",
@@ -1824,7 +1824,7 @@ export const LISTING_IMAGES = {
       },
     },
     maternal_n4: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1529156069898-49953e39b3ac",
       pos: "50% 42%",
       alt: {
       es: "Consulta de lactancia con especialista materno-infantil",
@@ -1878,7 +1878,7 @@ export const LISTING_IMAGES = {
       },
     },
     mental_n4: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1629904853716-f0bc54eea481",
       pos: "50% 42%",
       alt: {
       es: "Grupo de apoyo emocional en círculo de conversación",
@@ -1896,7 +1896,7 @@ export const LISTING_IMAGES = {
       },
     },
     mental_n6: {
-      u: "photo-1516307365426-bf4d4ac5193d",
+      u: "photo-1588776814546-1ffcf47267a5",
       pos: "50% 42%",
       alt: {
       es: "Espacio de mindfulness para regulación emocional",
@@ -1905,7 +1905,7 @@ export const LISTING_IMAGES = {
       },
     },
     nursing_n1: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1517836357463-d25dfeac3438",
       pos: "50% 42%",
       alt: {
       es: "Enfermera registrando signos vitales del paciente",
@@ -1932,7 +1932,7 @@ export const LISTING_IMAGES = {
       },
     },
     nursing_n4: {
-      u: "photo-1519494026892-80bbd4d6df07",
+      u: "photo-1490645935967-10de6ba17061",
       pos: "50% 42%",
       alt: {
       es: "Enfermera acompañando paciente en sala de recuperación",
@@ -1941,7 +1941,7 @@ export const LISTING_IMAGES = {
       },
     },
     nursing_n5: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1460925895917-afdab827c52f",
       pos: "50% 42%",
       alt: {
       es: "Visita domiciliaria de enfermería comunitaria",
@@ -1950,7 +1950,7 @@ export const LISTING_IMAGES = {
       },
     },
     nursing_n6: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1551288049-bebda4e38f71",
       pos: "50% 42%",
       alt: {
       es: "Enfermera preparando medicación en estación clínica",
@@ -1977,7 +1977,7 @@ export const LISTING_IMAGES = {
       },
     },
     pediatrics_n3: {
-      u: "photo-1519494026892-80bbd4d6df07",
+      u: "photo-1506126613408-eca07ce68773",
       pos: "50% 42%",
       alt: {
       es: "Sala pediátrica colorida con madre e hijo",
@@ -1986,7 +1986,7 @@ export const LISTING_IMAGES = {
       },
     },
     pediatrics_n4: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1522202176988-66273c2fd55f",
       pos: "50% 42%",
       alt: {
       es: "Vacunación infantil en centro de salud",
@@ -2004,7 +2004,7 @@ export const LISTING_IMAGES = {
       },
     },
     pediatrics_n6: {
-      u: "photo-1576091160879-890e68117963",
+      u: "photo-1609840114035-3c981b782dfe",
       pos: "50% 42%",
       alt: {
       es: "Instrumentos pediátricos sobre camilla de consulta",
@@ -2013,7 +2013,7 @@ export const LISTING_IMAGES = {
       },
     },
     prevention_n1: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1546069901-ba9599a7e63c",
       pos: "50% 42%",
       alt: {
       es: "Chequeo preventivo con tensiómetro y historial clínico",
@@ -2022,7 +2022,7 @@ export const LISTING_IMAGES = {
       },
     },
     prevention_n2: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1495521821757-a1efb6729352",
       pos: "50% 42%",
       alt: {
       es: "Campaña de vacunación en centro comunitario",
@@ -2040,7 +2040,7 @@ export const LISTING_IMAGES = {
       },
     },
     prevention_n4: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1504711434969-e33886168f5c",
       pos: "50% 42%",
       alt: {
       es: "Tamizaje de salud con evaluación clínica básica",
@@ -2067,7 +2067,7 @@ export const LISTING_IMAGES = {
       },
     },
     primary_n1: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1503676260728-1c00da094a0b",
       pos: "50% 42%",
       alt: {
       es: "Médico de familia atendiendo consulta en consultorio",
@@ -2076,7 +2076,7 @@ export const LISTING_IMAGES = {
       },
     },
     primary_n2: {
-      u: "photo-1631217868264-e5b964844446",
+      u: "photo-1573497019940-1c28c88b4f3e",
       pos: "50% 42%",
       alt: {
       es: "Consultorio de atención primaria con signos vitales",
@@ -2103,7 +2103,7 @@ export const LISTING_IMAGES = {
       },
     },
     primary_n5: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1544367567-0f2fcb009e0b",
       pos: "50% 42%",
       alt: {
       es: "Enfermera tomando presión en atención primaria",
@@ -2121,7 +2121,7 @@ export const LISTING_IMAGES = {
       },
     },
     rehab_n1: {
-      u: "photo-1576091160879-890e68117963",
+      u: "photo-1512621776951-a57141f2eefd",
       pos: "50% 42%",
       alt: {
       es: "Fisioterapeuta guiando ejercicios de rehabilitación",
@@ -2157,7 +2157,7 @@ export const LISTING_IMAGES = {
       },
     },
     rehab_n5: {
-      u: "photo-1599901860904-17e06ed708a2",
+      u: "photo-1504674900247-0877df9cc836",
       pos: "50% 42%",
       alt: {
       es: "Gimnasio terapéutico con equipos de recuperación",
@@ -2202,7 +2202,7 @@ export const LISTING_IMAGES = {
       },
     },
     telehealth_n4: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1486406146926-c627a92ad1ab",
       pos: "50% 42%",
       alt: {
       es: "Médico remoto guiando paciente por pantalla",
@@ -2211,7 +2211,7 @@ export const LISTING_IMAGES = {
       },
     },
     telehealth_n5: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1581578731548-c64695cc6952",
       pos: "50% 42%",
       alt: {
       es: "Monitoreo remoto de signos con dispositivos conectados",
@@ -2276,7 +2276,7 @@ export const LISTING_IMAGES = {
       },
     },
     ai_n6: {
-      u: "photo-1639762681485-074b7f938860",
+      u: "photo-1495521821757-a1efb6729352",
       pos: "50% 42%",
       alt: {
       es: "Chatbot y NLP en prototipo de producto IA",
@@ -2285,7 +2285,7 @@ export const LISTING_IMAGES = {
       },
     },
     blockchain_n1: {
-      u: "photo-1639762681485-074b7f938860",
+      u: "photo-1504711434969-e33886168f5c",
       pos: "50% 42%",
       alt: {
       es: "Cadena de bloques en visualización 3D",
@@ -2294,7 +2294,7 @@ export const LISTING_IMAGES = {
       },
     },
     blockchain_n2: {
-      u: "photo-1642104704774-2f7156734737",
+      u: "photo-1649252504196-4aca12ecc644",
       pos: "50% 42%",
       alt: {
       es: "Contratos inteligentes en pantalla de desarrollo",
@@ -2303,7 +2303,7 @@ export const LISTING_IMAGES = {
       },
     },
     blockchain_n3: {
-      u: "photo-1621761191319-c6fb62058540",
+      u: "photo-1450101499163-c8848c66ca85",
       pos: "50% 42%",
       alt: {
       es: "Criptomonedas y wallet en app blockchain",
@@ -2465,7 +2465,7 @@ export const LISTING_IMAGES = {
       },
     },
     education_n3: {
-      u: "photo-1546410531-03aa5fa4b0f0",
+      u: "photo-1529156069898-49953e39b3ac",
       pos: "50% 42%",
       alt: {
       es: "Curso de innovación educativa en universidad",
@@ -2483,7 +2483,7 @@ export const LISTING_IMAGES = {
       },
     },
     education_n5: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1522071820081-009f0129c71c",
       pos: "50% 42%",
       alt: {
       es: "Capacitación docente en herramientas digitales",
@@ -2636,7 +2636,7 @@ export const LISTING_IMAGES = {
       },
     },
     research_n4: {
-      u: "photo-1576086213369-f890f914ca3e",
+      u: "photo-1559136555-9303baea8ebd",
       pos: "50% 42%",
       alt: {
       es: "Equipo de investigación analizando muestras",
@@ -2645,7 +2645,7 @@ export const LISTING_IMAGES = {
       },
     },
     research_n5: {
-      u: "photo-1532187863486-abf9db6311e8",
+      u: "photo-1561070791-2526d30994b5",
       pos: "50% 42%",
       alt: {
       es: "Conferencia académica con poster de investigación",
@@ -2654,7 +2654,7 @@ export const LISTING_IMAGES = {
       },
     },
     research_n6: {
-      u: "photo-1581093450022-5c2a8d711b54",
+      u: "photo-1677442136019-21780ecad995",
       pos: "50% 42%",
       alt: {
       es: "Campo de investigación con instrumentos de medición",
@@ -2809,7 +2809,7 @@ export const LISTING_IMAGES = {
       },
     },
     children_n5: {
-      u: "photo-1516627145497-ae6979af6c82",
+      u: "photo-1568658176307-bfbd2873abda",
       pos: "50% 42%",
       alt: {
       es: "Recreación infantil con juegos cooperativos",
@@ -2827,7 +2827,7 @@ export const LISTING_IMAGES = {
       },
     },
     disability_n1: {
-      u: "photo-1576091160879-890e68117963",
+      u: "photo-1573496359142-b8d87734a5a2",
       pos: "50% 42%",
       alt: {
       es: "Rehabilitación inclusiva con terapeuta especializado",
@@ -2854,7 +2854,7 @@ export const LISTING_IMAGES = {
       },
     },
     disability_n4: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1560250097-0b93528c311a",
       pos: "50% 42%",
       alt: {
       es: "Señalética accesible en centro comunitario",
@@ -2863,7 +2863,7 @@ export const LISTING_IMAGES = {
       },
     },
     disability_n5: {
-      u: "photo-1516307365426-bf4d4ac5193d",
+      u: "photo-1507003211169-0a1dd7228f2d",
       pos: "50% 42%",
       alt: {
       es: "Grupo de apoyo para familias con discapacidad",
@@ -2899,7 +2899,7 @@ export const LISTING_IMAGES = {
       },
     },
     education_n3: {
-      u: "photo-1546410531-03aa5fa4b0f0",
+      u: "photo-1558618666-fcd25c85cd64",
       pos: "50% 42%",
       alt: {
       es: "Biblioteca comunitaria con libros compartidos",
@@ -2908,7 +2908,7 @@ export const LISTING_IMAGES = {
       },
     },
     education_n4: {
-      u: "photo-1523050854058-8df90110c9f1",
+      u: "photo-1584308666744-24d5c474f2ae",
       pos: "50% 42%",
       alt: {
       es: "Mentoría educativa para estudiantes vulnerables",
@@ -2935,7 +2935,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n1: {
-      u: "photo-1576091160399-112ba8d25d1f",
+      u: "photo-1518546305927-5a555bb7020d",
       pos: "50% 42%",
       alt: {
       es: "Acompañamiento solidario a adultos mayores",
@@ -2944,7 +2944,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n2: {
-      u: "photo-1559757143-29579d20b2cd",
+      u: "photo-1498050108023-c5249f4df085",
       pos: "50% 42%",
       alt: {
       es: "Visita domiciliaria de voluntarios a adultos mayores",
@@ -2953,7 +2953,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n3: {
-      u: "photo-1519494026892-80bbd4d6df07",
+      u: "photo-1555066931-4365d14bab8c",
       pos: "50% 42%",
       alt: {
       es: "Centro de día con actividades para la tercera edad",
@@ -2962,7 +2962,7 @@ export const LISTING_IMAGES = {
       },
     },
     elderly_n4: {
-      u: "photo-1584515935687-5d4bcc1577d4",
+      u: "photo-1516321318423-f06f85e504b3",
       pos: "50% 42%",
       alt: {
       es: "Entrega de medicamentos solidarios a jubilados",
@@ -2998,7 +2998,7 @@ export const LISTING_IMAGES = {
       },
     },
     environment_n2: {
-      u: "photo-1532996122724-e3c354a0a782",
+      u: "photo-1616486338812-3dadae4b4ace",
       pos: "50% 42%",
       alt: {
       es: "Limpieza de río y costa en acción ambiental",
@@ -3007,7 +3007,7 @@ export const LISTING_IMAGES = {
       },
     },
     environment_n3: {
-      u: "photo-1470071459604-3b5ec3a8fe02",
+      u: "photo-1618221195710-dd6b41faaea6",
       pos: "50% 42%",
       alt: {
       es: "Bosque nativo protegido en reserva comunitaria",
@@ -3043,7 +3043,7 @@ export const LISTING_IMAGES = {
       },
     },
     food_n1: {
-      u: "photo-1488523785043-adfa3789e851",
+      u: "photo-1591047139829-d91aecb6caea",
       pos: "50% 42%",
       alt: {
       es: "Voluntarios sirviendo comida en comedor solidario",
@@ -3115,7 +3115,7 @@ export const LISTING_IMAGES = {
       },
     },
     gender_n3: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1532372320572-cda25653a26d",
       pos: "50% 42%",
       alt: {
       es: "Conversatorio sobre equidad de género comunitario",
@@ -3142,7 +3142,7 @@ export const LISTING_IMAGES = {
       },
     },
     gender_n6: {
-      u: "photo-1516307365426-bf4d4ac5193d",
+      u: "photo-1602992708529-c9fdb12905c9",
       pos: "50% 42%",
       alt: {
       es: "Espacio seguro de contención y acompañamiento",
@@ -3178,7 +3178,7 @@ export const LISTING_IMAGES = {
       },
     },
     housing_n4: {
-      u: "photo-1450778868870-14a5deda6b1a",
+      u: "photo-1586023492125-27b2c045efd7",
       pos: "50% 42%",
       alt: {
       es: "Entrega de materiales para mejora de vivienda",
@@ -3227,7 +3227,7 @@ export const LISTING_IMAGES = {
       },
     },
     athletics_n3: {
-      u: "photo-1452629074695-961253016661",
+      u: "photo-1579684385127-1ef15d508118",
       pos: "50% 42%",
       alt: {
       es: "Corredores de maratón en calle con dorsales y multitud",
@@ -3236,7 +3236,7 @@ export const LISTING_IMAGES = {
       },
     },
     athletics_n4: {
-      u: "photo-1571008887538-b36bbda18822",
+      u: "photo-1584982751601-97dcc096659c",
       pos: "50% 42%",
       alt: {
       es: "Atleta de pista en carrera de velocidad en línea de salida",
@@ -3254,7 +3254,7 @@ export const LISTING_IMAGES = {
       },
     },
     athletics_n6: {
-      u: "photo-1476480862126-209bfaa8ecc8",
+      u: "photo-1576091160550-2173dba999ef",
       pos: "50% 42%",
       alt: {
       es: "Maratón con corredores avanzando en carretera abierta",
@@ -3283,7 +3283,7 @@ export const LISTING_IMAGES = {
       },
     },
     basketball_n3: {
-      u: "photo-1546519638-68b109498ffc",
+      u: "photo-1518611012118-696072aa579a",
       pos: "50% 42%",
       alt: {
       es: "Jugador encestando en aro de básquet en partido",
@@ -3292,7 +3292,7 @@ export const LISTING_IMAGES = {
       },
     },
     basketball_n4: {
-      u: "photo-1504458204852-2438a8a8f1e5",
+      u: "photo-1571019614242-c5c5dee9f50b",
       pos: "50% 42%",
       alt: {
       es: "Entrenamiento de básquet con dribbling y defensa",
@@ -3301,7 +3301,7 @@ export const LISTING_IMAGES = {
       },
     },
     basketball_n5: {
-      u: "photo-1519861537503-de93347e5497",
+      u: "photo-1461896836934-ffe607ba8211",
       pos: "50% 42%",
       alt: {
       es: "Cancha de básquet al aire libre con aros y líneas",
@@ -3310,7 +3310,7 @@ export const LISTING_IMAGES = {
       },
     },
     basketball_n6: {
-      u: "photo-1546519650-f095aff4a804",
+      u: "photo-1549060279-7e168fcee0c2",
       pos: "50% 42%",
       alt: {
       es: "Equipo de básquet en timeout junto al banco",
@@ -3348,7 +3348,7 @@ export const LISTING_IMAGES = {
       },
     },
     football_n4: {
-      u: "photo-1574629810360-7d2ba7029f8d",
+      u: "photo-1551958219-acbc608c6377",
       pos: "50% 42%",
       alt: {
       es: "Jugadores disputando el balón en partido de fútbol",
@@ -3357,7 +3357,7 @@ export const LISTING_IMAGES = {
       },
     },
     football_n5: {
-      u: "photo-1522778119026-d647f0566c20",
+      u: "photo-1431324155629-1a6deb1dec8d",
       pos: "50% 42%",
       alt: {
       es: "Estadio de fútbol con gradas y campo iluminado",
@@ -3366,7 +3366,7 @@ export const LISTING_IMAGES = {
       },
     },
     football_n6: {
-      u: "photo-1517466787929-bc90951f0987",
+      u: "photo-1551958219-acbc608c6377",
       pos: "50% 42%",
       alt: {
       es: "Entrenamiento de fútbol juvenil con conos y balones",
@@ -3404,7 +3404,7 @@ export const LISTING_IMAGES = {
       },
     },
     futsal_n4: {
-      u: "photo-1575361204480-ddacdc147267",
+      u: "photo-1612872087720-bb876e2e67d1",
       pos: "50% 42%",
       alt: {
       es: "Jugador de futsal driblando en espacio reducido",
@@ -3413,7 +3413,7 @@ export const LISTING_IMAGES = {
       },
     },
     futsal_n5: {
-      u: "photo-1518609878373-06d740f60bb8",
+      u: "photo-1626224583764-f87db24ac4ea",
       pos: "50% 42%",
       alt: {
       es: "Equipo de futsal celebrando gol en torneo local",
@@ -3422,7 +3422,7 @@ export const LISTING_IMAGES = {
       },
     },
     futsal_n6: {
-      u: "photo-1546519638-68b109498ffc",
+      u: "photo-1554068865-24cecd4e34b8",
       pos: "50% 42%",
       alt: {
       es: "Balón de futsal y zapatillas sobre piso de gimnasio",
@@ -3451,7 +3451,7 @@ export const LISTING_IMAGES = {
       },
     },
     handball_n3: {
-      u: "photo-1574629810360-7d2ba7029f8d",
+      u: "photo-1552674605-db6ffd4facb5",
       pos: "50% 42%",
       alt: {
       es: "Lanzamiento a gol en partido de handball indoor",
@@ -3525,7 +3525,7 @@ export const LISTING_IMAGES = {
       },
     },
     martial_arts_n5: {
-      u: "photo-1555597673-b21d5c1c79af",
+      u: "photo-1530549387789-4c1017266635",
       pos: "50% 42%",
       alt: {
       es: "Combate de artes marciales con árbitro y protección",
@@ -3534,7 +3534,7 @@ export const LISTING_IMAGES = {
       },
     },
     martial_arts_n6: {
-      u: "photo-1517438984743-efed966a384c",
+      u: "photo-1519315901367-f34ff9154487",
       pos: "50% 42%",
       alt: {
       es: "Artista marcial en posición de kata concentrado",
@@ -3572,7 +3572,7 @@ export const LISTING_IMAGES = {
       },
     },
     swimming_n4: {
-      u: "photo-1571902940492-38c16b57e237",
+      u: "photo-1555252333-9f8e92e65df9",
       pos: "50% 42%",
       alt: {
       es: "Salida de nadadores desde bloques en competencia",
@@ -3590,7 +3590,7 @@ export const LISTING_IMAGES = {
       },
     },
     swimming_n6: {
-      u: "photo-1576610616656-d3aa5d1fe423",
+      u: "photo-1503454537195-1dcabb73ffb9",
       pos: "50% 42%",
       alt: {
       es: "Pileta olímpica con carriles y nadadores en fondo",
@@ -3637,7 +3637,7 @@ export const LISTING_IMAGES = {
       },
     },
     volleyball_n5: {
-      u: "photo-1599586120429-48281b16f7a0",
+      u: "photo-1599058917212-d750089bc07e",
       pos: "50% 42%",
       alt: {
       es: "Red de vóley con pelota suspendida sobre la cancha",
@@ -3729,7 +3729,7 @@ export const LISTING_IMAGES = {
       },
     },
     attraction_n3: {
-      u: "photo-1470071459604-3b5ec3a8fe02",
+      u: "photo-1556761175-b413da4baf72",
       pos: "50% 42%",
       alt: {
       es: "Parque nacional con vegetación subtropical",
@@ -3774,7 +3774,7 @@ export const LISTING_IMAGES = {
       },
     },
     food_n2: {
-      u: "photo-1559339352-11d035aa6528",
+      u: "photo-1620712943543-bcc4688e7485",
       pos: "50% 42%",
       alt: {
       es: "Comida regional en mesa de restaurante local",
@@ -3801,7 +3801,7 @@ export const LISTING_IMAGES = {
       },
     },
     food_n5: {
-      u: "photo-1452860606245-08befc0ff4a9",
+      u: "photo-1586717799252-bd134ad00e26",
       pos: "50% 42%",
       alt: {
       es: "Mercado gastronómico con puestos de comida",
@@ -3918,7 +3918,7 @@ export const LISTING_IMAGES = {
       },
     },
     stay_n6: {
-      u: "photo-1560185127-8721a63f9f3a",
+      u: "photo-1486312338219-ce68d2c6f44d",
       pos: "50% 42%",
       alt: {
       es: "Desayuno incluido en patio de posada local",
@@ -3956,7 +3956,7 @@ export const LISTING_IMAGES = {
       },
     },
     fitness_n4: {
-      u: "photo-1599901860904-17e06ed708a2",
+      u: "photo-1571896349842-33c89424de2d",
       pos: "50% 42%",
       alt: {
       es: "Circuito de alta intensidad en box de entrenamiento",
@@ -3965,7 +3965,7 @@ export const LISTING_IMAGES = {
       },
     },
     fitness_n5: {
-      u: "photo-1532996122724-e3c354a0a782",
+      u: "photo-1590490360182-c33d57733427",
       pos: "50% 42%",
       alt: {
       es: "Cardio en cinta y monitor de frecuencia",
@@ -3974,7 +3974,7 @@ export const LISTING_IMAGES = {
       },
     },
     fitness_n6: {
-      u: "photo-1571902940492-38c16b57e237",
+      u: "photo-1488646953014-85cb44e25828",
       pos: "50% 42%",
       alt: {
       es: "Entrenamiento personal con plan personalizado",
@@ -4001,7 +4001,7 @@ export const LISTING_IMAGES = {
       },
     },
     meditation_n3: {
-      u: "photo-1516307365426-bf4d4ac5193d",
+      u: "photo-1441974231531-c6227db76b6e",
       pos: "50% 42%",
       alt: {
       es: "Espacio de mindfulness con cojines y luz tenue",
@@ -4010,7 +4010,7 @@ export const LISTING_IMAGES = {
       },
     },
     meditation_n4: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1469854523086-cc02fe5d8800",
       pos: "50% 42%",
       alt: {
       es: "Meditación con cuenco tibetano y respiración",
@@ -4028,7 +4028,7 @@ export const LISTING_IMAGES = {
       },
     },
     meditation_n6: {
-      u: "photo-1508672019048-805c086b109e",
+      u: "photo-1544776193-352d25ca82cd",
       pos: "50% 42%",
       alt: {
       es: "Práctica de atención plena con journal y té",
@@ -4037,7 +4037,7 @@ export const LISTING_IMAGES = {
       },
     },
     mindfulness_n1: {
-      u: "photo-1516307365426-bf4d4ac5193d",
+      u: "photo-1414235077428-338989a2e8c0",
       pos: "50% 42%",
       alt: {
       es: "Práctica de mindfulness con respiración consciente",
@@ -4064,7 +4064,7 @@ export const LISTING_IMAGES = {
       },
     },
     mindfulness_n4: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1554118811-1e0d58224f24",
       pos: "50% 42%",
       alt: {
       es: "Diario de gratitud en rutina de mindfulness",
@@ -4082,7 +4082,7 @@ export const LISTING_IMAGES = {
       },
     },
     mindfulness_n6: {
-      u: "photo-1508672019048-805c086b109e",
+      u: "photo-1542838132-92c53300491e",
       pos: "50% 42%",
       alt: {
       es: "Meditación breve con temporizador y silencio",
@@ -4100,7 +4100,7 @@ export const LISTING_IMAGES = {
       },
     },
     nutrition_n2: {
-      u: "photo-1498837167922-ddd275144396",
+      u: "photo-1506905925346-21bda4d32df4",
       pos: "50% 42%",
       alt: {
       es: "Nutricionista explicando plan alimentario",
@@ -4163,7 +4163,7 @@ export const LISTING_IMAGES = {
       },
     },
     psychology_n3: {
-      u: "photo-1478737270239-2f02e77fc3bd",
+      u: "photo-1564501049412-61c2a3083791",
       pos: "50% 42%",
       alt: {
       es: "Grupo terapéutico en círculo de confianza",
@@ -4181,7 +4181,7 @@ export const LISTING_IMAGES = {
       },
     },
     psychology_n5: {
-      u: "photo-1516307365426-bf4d4ac5193d",
+      u: "photo-1520250497591-112f2f40a3f4",
       pos: "50% 42%",
       alt: {
       es: "Evaluación psicológica con test y conversación",
@@ -4226,7 +4226,7 @@ export const LISTING_IMAGES = {
       },
     },
     yoga_n4: {
-      u: "photo-1599901860904-17e06ed708a2",
+      u: "photo-1566073771259-6a8506099945",
       pos: "50% 42%",
       alt: {
       es: "Instructora guiando respiración en sesión de yoga",
@@ -4244,7 +4244,7 @@ export const LISTING_IMAGES = {
       },
     },
     yoga_n6: {
-      u: "photo-1508672019048-805c086b109e",
+      u: "photo-1542601906990-b4d3fb778b09",
       pos: "50% 42%",
       alt: {
       es: "Estudio de yoga con velas y mats alineados",
