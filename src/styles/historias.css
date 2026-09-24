@@ -1,39 +1,30 @@
 /* Historias + Pulso semanal */
 
 .historias-hero {
-  padding: clamp(5rem, 12vw, 7rem) 0 clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(5rem, 12vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
 }
 
-.historias-hero__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
+.historias-hero--compact {
+  padding-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .historias-hero__copy .h-xl {
   text-wrap: balance;
-  max-width: 18ch;
+  max-width: 22ch;
 }
 
 .historias-hero__copy .lead {
-  max-width: 42ch;
-}
-
-.historias-hero__media.story-media {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--line-dark);
+  max-width: 48ch;
 }
 
 .historias-body {
-  padding: clamp(2rem, 5vw, 4rem) 0 clamp(4rem, 8vw, 6rem);
+  padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(4rem, 8vw, 6rem);
 }
 
 .historias-tabs {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
   border-bottom: 1px solid var(--line);
 }
 
@@ -67,101 +58,198 @@
   border-bottom-color: var(--green);
 }
 
-.historias-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1rem, 3vw, 1.75rem);
-  margin-top: clamp(1rem, 3vw, 1.75rem);
+/* TikTok-style reels */
+
+.story-reels__lead {
+  color: var(--text-muted);
+  max-width: 52ch;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
 }
 
-.story-card {
-  display: grid;
-  gap: 1rem;
-  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+.story-reels__track {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  margin-inline: calc(-1 * var(--pad, 16px));
+  padding: 0.25rem var(--pad, 16px) 1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
-.story-card--featured {
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(1.25rem, 3vw, 2rem);
-  align-items: start;
-  margin-bottom: clamp(1rem, 3vw, 1.75rem);
+.story-reels__item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
 }
 
-.story-card--wide {
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(1.25rem, 3vw, 2rem);
-  margin-top: clamp(1rem, 3vw, 1.75rem);
-}
-
-.story-card__body {
+.story-reel {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.55rem;
+  width: 168px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), opacity 160ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .story-reel:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.story-reel:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+
+.story-reel.is-active .story-reel__media-wrap {
+  box-shadow: 0 0 0 2px var(--green);
+}
+
+.story-reel__media-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.story-reel__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  background: linear-gradient(180deg, transparent, rgba(7, 11, 26, 0.88));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.story-reel__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(7, 11, 26, 0.72);
+  color: var(--white);
+}
+
+.story-reel__badge--photo {
+  color: var(--green);
+}
+
+.story-reel__caption {
+  padding: 0 2px;
   min-width: 0;
 }
 
-.story-card__meta {
+.story-reel__name {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.story-reel__hook {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 0.15rem;
+}
+
+.story-reel__tag {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--green);
+}
+
+.story-reels__detail {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.story-reels__detail-head {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5rem 0.75rem;
   align-items: center;
+  margin-bottom: 0.75rem;
 }
 
-.story-card__vertical {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+.story-reels__detail-title {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  margin-right: auto;
+}
+
+.story-reels__detail-vertical {
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-}
-
-.story-card__title {
-  font-family: var(--font-head);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  text-wrap: balance;
-}
-
-.story-card__achievement {
   color: var(--text-muted);
+}
+
+.story-reels__detail-text {
   line-height: 1.55;
-  max-width: 55ch;
-}
-
-.story-card__connected {
-  font-size: 0.9rem;
   color: var(--text-muted);
+  max-width: 60ch;
 }
 
-.story-card__people {
+.story-reels__detail-connected {
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.story-reels__detail-people {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0.75rem 0 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.25rem;
-}
-
-.story-card__people li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
   font-size: 0.85rem;
 }
 
-.story-card__people strong {
-  font-weight: 600;
+.story-reels__detail-people li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
-.story-card__link {
+.story-reels__detail-link {
+  display: inline-block;
+  margin-top: 0.75rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--green);
   text-decoration: none;
-  margin-top: 0.25rem;
 }
 
-.story-card__link:hover {
+.story-reels__detail-link:hover {
   text-decoration: underline;
 }
 
@@ -170,6 +258,12 @@
   overflow: hidden;
   border-radius: 12px;
   background: var(--space);
+}
+
+.story-media--reel {
+  width: 168px;
+  aspect-ratio: 9 / 16;
+  border-radius: 14px;
 }
 
 .story-media--landscape {
@@ -208,9 +302,57 @@
   grid-column: 1 / -1;
 }
 
+.historias-form__media-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.historias-form__mode {
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+
+.historias-form__mode.is-active {
+  border-color: var(--green);
+  color: var(--text);
+  background: rgba(46, 229, 157, 0.08);
+}
+
+.historias-form__mode:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.historias-form__upload-hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.historias-form__preview-media {
+  width: 168px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--space);
+}
+
 .historias-form textarea {
   resize: vertical;
-  min-height: 6rem;
+  min-height: 5rem;
 }
 
 .pulso-panel {
@@ -360,21 +502,49 @@
 }
 
 @media (max-width: 900px) {
-  .historias-hero__grid,
-  .story-card--featured,
-  .story-card--wide,
-  .historias-grid,
+  .historias-form__grid,
   .pulso-schedule {
-    grid-template-columns: 1fr;
-  }
-
-  .historias-form__grid {
     grid-template-columns: 1fr;
   }
 
   .pulso-feed__item {
     grid-template-columns: 1fr;
     gap: 0.35rem;
+  }
+
+  .historias-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .historias-tab {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    padding: 0.65rem 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .story-reel,
+  .story-media--reel {
+    width: 148px;
+  }
+
+  .story-reels__detail {
+    padding: 1rem;
+  }
+
+  .story-reels__detail-title {
+    font-size: 1.05rem;
+  }
+
+  .historias-form__media-toggle {
+    flex-direction: column;
+  }
+
+  .historias-form__mode {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -389,7 +559,7 @@
     white-space: normal;
   }
 
-  .story-card {
+  .story-reel {
     transition: none;
   }
 }

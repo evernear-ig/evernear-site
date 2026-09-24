@@ -113,6 +113,8 @@ export type StoryParticipant = {
   imageKey: string;
 };
 
+export type StoryMediaType = "video" | "photo";
+
 export type ConnectionStory = {
   id: string;
   title: string;
@@ -122,7 +124,7 @@ export type ConnectionStory = {
   verticalSlug: VerticalSlug;
   cityId: CityId;
   publishedAt: string;
-  featured?: boolean;
+  mediaType: StoryMediaType;
   videoSrc?: string;
   posterSrc: string;
   mediaAlt: string;
@@ -147,6 +149,9 @@ export type StorySubmission = {
   achievement: string;
   verticalSlug: string;
   cityId: string;
+  mediaType: StoryMediaType;
+  mediaName?: string;
+  mediaSize?: number;
   submittedAt: string;
 };
 
