@@ -4,7 +4,7 @@ export const MASCOT_POSE_SRC: Record<MascotPose, string> = {
   welcome: "/images/mascot/conexa-welcome.webp",
   globe: "/images/mascot/conexa-globe.webp",
   peace: "/images/mascot/conexa-peace.webp",
-  think: "/images/mascot/conexa-think.webp",
+  think: "/images/mascot/conexa-thinker.png?v=3",
   point: "/images/mascot/conexa-point.webp",
 };
 

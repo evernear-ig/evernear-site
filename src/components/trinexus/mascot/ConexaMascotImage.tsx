@@ -41,7 +41,7 @@ export function ConexaMascotImage({
       data-pose={pose}
       style={style}
     >
-      <div className="conexa-mascot-img__aura" aria-hidden="true" />
+      {compact ? null : <div className="conexa-mascot-img__aura" aria-hidden="true" />}
       {showPrev ? (
         <Image
           src={MASCOT_POSE_SRC[prevPose]}
@@ -53,18 +53,29 @@ export function ConexaMascotImage({
           style={{ opacity: 1 - assemble }}
         />
       ) : null}
-      <Image
-        src={MASCOT_POSE_SRC[pose]}
-        alt={alt}
-        width={400}
-        height={480}
-        className="conexa-mascot-img__photo"
-        priority={pose === "welcome"}
-        style={{
-          opacity: showPrev ? assemble : 0.88 + assemble * 0.12,
-          transform: `scale(${0.9 + assemble * 0.1}) translateY(${disperse * 12}px)`,
-        }}
-      />
+      {compact ? (
+        <img
+          src={MASCOT_POSE_SRC[pose]}
+          alt={alt}
+          width={400}
+          height={480}
+          className="conexa-mascot-img__photo"
+          draggable={false}
+        />
+      ) : (
+        <Image
+          src={MASCOT_POSE_SRC[pose]}
+          alt={alt}
+          width={400}
+          height={480}
+          className="conexa-mascot-img__photo"
+          priority={pose === "think"}
+          style={{
+            opacity: showPrev ? assemble : 0.88 + assemble * 0.12,
+            transform: `scale(${0.9 + assemble * 0.1}) translateY(${disperse * 12}px)`,
+          }}
+        />
+      )}
       {!compact ? (
         <>
           <div className="conexa-mascot-img__orbit-ring" aria-hidden="true" />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useOnboarding } from "@onboardjs/react";
-import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import {
   useCallback,
@@ -27,23 +26,17 @@ import {
   resolveSectionTargets,
   type ConexaSectionTarget,
 } from "@/lib/conexa-sections";
-import { MASCOT_CONCEPTS } from "@/lib/mascot-concepts";
-import type { MascotPose } from "@/lib/mascot-poses";
-
-const ConexaMascotOrbit = dynamic(
-  () =>
-    import("@/components/trinexus/mascot/ConexaMascotOrbit").then(
-      (m) => m.ConexaMascotOrbit,
-    ),
-  { ssr: false },
-);
 
 const POS_KEY = "conexa-mascot-pos-v1";
 type GuideMode = "idle" | "menu" | "tour" | "chat";
 type DockPos = { left: number; top: number };
 
 function dockSize() {
-  return getMascotClearSize(window.innerWidth);
+  const size = getMascotClearSize(window.innerWidth);
+  return {
+    width: Math.round(size.width * 0.64),
+    height: Math.round(size.height * 0.64),
+  };
 }
 
 function defaultDock(size: { width: number; height: number }): DockPos {
@@ -89,8 +82,6 @@ export function ConexaGuideLayer() {
   const [mode, setMode] = useState<GuideMode>("idle");
   const [targets, setTargets] = useState<ConexaSectionTarget[]>([]);
   const [scrub, setScrub] = useState<ConexaScrubState | null>(null);
-  const [assemble, setAssemble] = useState(1);
-  const [prevPose, setPrevPose] = useState<MascotPose>("welcome");
   const [pos, setPos] = useState<DockPos>({ left: 0, top: 0 });
   const [size, setSize] = useState({ width: 88, height: 108 });
   const [dragging, setDragging] = useState(false);
@@ -104,8 +95,6 @@ export function ConexaGuideLayer() {
     origLeft: 0,
     origTop: 0,
   });
-  const prevIndexRef = useRef(0);
-  const assembleRaf = useRef(0);
 
   const sectionConfigs = useMemo(() => getConexaSections(pathname), [pathname]);
 
@@ -173,45 +162,6 @@ export function ConexaGuideLayer() {
   const activeIndex = mode === "tour"
     ? Math.max(0, (state?.currentStepNumber ?? 1) - 1)
     : scrub?.activeIndex ?? 0;
-
-  const pose =
-    mode === "tour"
-      ? (targets[activeIndex]?.pose ?? "welcome")
-      : (mode === "chat" ? "think" : (scrub?.pose ?? "welcome"));
-
-  const concept =
-    mode === "tour"
-      ? (targets[activeIndex]?.concept ?? "default")
-      : (scrub?.concept ?? "default");
-
-  const tokens = MASCOT_CONCEPTS[concept];
-
-  useEffect(() => {
-    if (prevIndexRef.current === activeIndex) return;
-    setPrevPose(
-      targets[prevIndexRef.current]?.pose ?? scrub?.pose ?? "welcome",
-    );
-    prevIndexRef.current = activeIndex;
-
-    if (reducedMotion) {
-      setAssemble(1);
-      return;
-    }
-
-    cancelAnimationFrame(assembleRaf.current);
-    setAssemble(0);
-    const start = performance.now();
-    const duration = 480;
-
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setAssemble(eased < 0.3 ? 0 : eased);
-      if (p < 1) assembleRaf.current = requestAnimationFrame(tick);
-      else setAssemble(1);
-    };
-    assembleRaf.current = requestAnimationFrame(tick);
-  }, [activeIndex, reducedMotion, targets, scrub?.pose]);
 
   const openTour = useCallback(() => {
     const key = targets[0]?.key ?? targets[scrub?.activeIndex ?? 0]?.key;
@@ -298,7 +248,6 @@ export function ConexaGuideLayer() {
     <ConexaGuideActionsProvider exitTour={exitTour}>
       <div
         className={`conexa-guide${mode === "tour" ? " conexa-guide--tour" : ""}${reducedMotion ? " conexa-guide--reduced" : ""}`}
-        data-concept={concept}
         data-mode={mode}
       >
         {mode === "tour" ? (
@@ -372,20 +321,7 @@ export function ConexaGuideLayer() {
             title={String(t("journey.drag.hint"))}
           >
             <span className="conexa-guide__float">
-              <div className="conexa-guide__orbit-wrap">
-                <ConexaMascotOrbit
-                  tokens={tokens}
-                  assemble={assemble}
-                  reducedMotion={reducedMotion}
-                />
-              </div>
-              <ConexaMascotImage
-                pose={pose}
-                prevPose={prevPose}
-                assemble={assemble}
-                compact
-                alt=""
-              />
+              <ConexaMascotImage pose="think" assemble={1} compact alt="" />
             </span>
           </button>
         </div>

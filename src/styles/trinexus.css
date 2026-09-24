@@ -608,7 +608,7 @@ body.join-modal-open{overflow:hidden}
 .conexa-mascot-img__aura{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(46,229,157,.14) 0%,rgba(138,109,230,.06) 50%,transparent 72%);pointer-events:none}
 .conexa-mascot-img__photo{width:100%!important;height:auto!important;object-fit:contain;transition:opacity .48s cubic-bezier(.23,1,.32,1),transform .52s cubic-bezier(.23,1,.32,1);filter:drop-shadow(0 8px 24px rgba(46,229,157,.25))}
 .conexa-mascot-img__photo--out{position:absolute;inset:0}
-.conexa-mascot-img--compact .conexa-mascot-img__orbit-ring{display:none}
+.conexa-mascot-img--compact .conexa-mascot-img__photo{filter:none}
 .conexa-mascot-img__orbit-ring{position:absolute;inset:2%;border:1.5px solid rgba(46,229,157,.25);border-radius:50%;animation:conexa-orbit-spin 8s linear infinite;pointer-events:none}
 .conexa-mascot-img__orbit-ring--b{inset:10%;border-color:rgba(138,109,230,.2);animation-duration:11s;animation-direction:reverse}
 .conexa-guide{position:fixed;inset:0;z-index:40;overflow:hidden;pointer-events:none}
