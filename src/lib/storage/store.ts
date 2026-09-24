@@ -1,4 +1,9 @@
-import type { EventItem } from "@/lib/ecosystem/types";
+import type {
+  EventItem,
+  PulsoItem,
+  PulsoSubscriber,
+  StorySubmission,
+} from "@/lib/ecosystem/types";
 import { SEED_EVENTS } from "@/data/events";
 
 type PanfletoSubscriber = { email: string; subscribedAt: string };
@@ -13,6 +18,9 @@ const events: EventItem[] = [...SEED_EVENTS];
 const panfletoSubscribers: PanfletoSubscriber[] = [];
 const panfletoEntries: PanfletoEntry[] = [];
 const qrScans: Map<string, QrScan> = new Map();
+const storySubmissions: StorySubmission[] = [];
+const pulsoSubscribers: PulsoSubscriber[] = [];
+const pulsoItems: PulsoItem[] = [];
 
 export function getEvents() {
   return [...events];
@@ -64,4 +72,40 @@ export function recordQrScan(token: string) {
 
 export function getQrScanCount(token: string) {
   return qrScans.get(token)?.count ?? 0;
+}
+
+export function submitStory(data: Omit<StorySubmission, "submittedAt">) {
+  storySubmissions.push({ ...data, submittedAt: new Date().toISOString() });
+  return true;
+}
+
+export function getStorySubmissions() {
+  return [...storySubmissions];
+}
+
+export function subscribePulso(email: string, notifyLive = false) {
+  const existing = pulsoSubscribers.find((s) => s.email === email);
+  if (existing) {
+    if (notifyLive) existing.notifyLive = true;
+    return false;
+  }
+  pulsoSubscribers.push({
+    email,
+    notifyLive,
+    subscribedAt: new Date().toISOString(),
+  });
+  return true;
+}
+
+export function getPulsoSubscribers() {
+  return [...pulsoSubscribers];
+}
+
+export function addPulsoItem(item: PulsoItem) {
+  pulsoItems.push(item);
+  return item;
+}
+
+export function getPulsoItemsFromStore() {
+  return [...pulsoItems];
 }

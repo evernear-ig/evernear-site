@@ -7,11 +7,12 @@ import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import {
   ABOUT_NAV_LINKS,
+  COMMUNITY_NAV_LINKS,
   ECOSYSTEM_NAV_LINKS,
 } from "@/lib/ecosystem/verticals";
 
 const COM_LINKS = [
-  { href: "/eventos", key: "foot.events" },
+  ...COMMUNITY_NAV_LINKS.filter((l) => l.href !== "/#join"),
   { href: "/#join", key: "foot.com" },
   { href: "/#partners", key: "foot.partners" },
   { href: "/terminos", key: "legal.terms" },

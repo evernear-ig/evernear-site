@@ -6,7 +6,7 @@ import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import type { NavLinkGroup } from "@/lib/ecosystem/verticals";
 
-export type NavMenuId = "about" | "eco";
+export type NavMenuId = "about" | "eco" | "community";
 
 type SubLink = { href: string; key: string };
 

@@ -1,4 +1,5 @@
 import type { CityId } from "./cities";
+import type { VerticalSlug } from "./verticals";
 
 export type TourismSourceStatus = "candidate" | "confirmed" | "unavailable";
 
@@ -104,4 +105,53 @@ export type SportListing = {
   description: string;
   imageKey: string;
   meta?: string;
+};
+
+export type StoryParticipant = {
+  name: string;
+  role: string;
+  imageKey: string;
+};
+
+export type ConnectionStory = {
+  id: string;
+  title: string;
+  participants: StoryParticipant[];
+  connectedWith: string[];
+  achievement: string;
+  verticalSlug: VerticalSlug;
+  cityId: CityId;
+  publishedAt: string;
+  featured?: boolean;
+  videoSrc?: string;
+  posterSrc: string;
+  mediaAlt: string;
+  profileId?: string;
+};
+
+export type PulsoItem = {
+  id: string;
+  verticalSlug: VerticalSlug;
+  cityId: CityId;
+  category: string;
+  title: string;
+  kind: string;
+  addedAt: string;
+};
+
+export type StorySubmission = {
+  name: string;
+  email: string;
+  story: string;
+  connectedWith: string;
+  achievement: string;
+  verticalSlug: string;
+  cityId: string;
+  submittedAt: string;
+};
+
+export type PulsoSubscriber = {
+  email: string;
+  notifyLive: boolean;
+  subscribedAt: string;
 };

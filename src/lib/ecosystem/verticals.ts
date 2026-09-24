@@ -166,3 +166,10 @@ export const ABOUT_NAV_LINKS = [
   { href: "/informacion", key: "nav.information" },
   { href: "/#join", key: "nav.join.cta" },
 ] as const;
+
+export const COMMUNITY_NAV_LINKS = [
+  { href: "/historias", key: "nav.stories" },
+  { href: "/historias?tab=pulso", key: "nav.pulso" },
+  { href: "/eventos", key: "nav.events" },
+  { href: "/#join", key: "nav.join.cta" },
+] as const;
