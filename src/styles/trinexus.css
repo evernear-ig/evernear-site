@@ -1198,12 +1198,18 @@ html:has(.about-page--journey) .nav{background:rgba(7,11,26,.9);backdrop-filter:
 .about-journey-block h2,.about-journey-block h3{font-family:var(--font-head);font-size:clamp(.92rem,.2vw + .82rem,1.05rem);letter-spacing:.14em;text-transform:uppercase;margin:0 0 .85em;padding-bottom:.65em;border-bottom:2px solid var(--green);display:inline-block}
 .about-journey-block p{margin:.85em 0 0;max-width:52ch;line-height:1.65;color:var(--text-on-light-muted)}
 .about-journey-chapter--legal{background:var(--space);color:var(--white);padding:clamp(56px,8vh,96px) 0}
+.about-journey-legal{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(40px,6vw,80px);align-items:start}
+.about-journey-legal .about-journey-block{scroll-margin-top:calc(var(--nav-h) + 20px)}
+.about-journey-legal .about-journey-block:last-child{position:relative}
+.about-journey-legal .about-journey-block:last-child::before{content:"";position:absolute;left:calc(clamp(40px,6vw,80px) / -2);top:0;bottom:0;width:1px;background:var(--line)}
 .about-journey-chapter--legal .about-journey-block h2{color:var(--white)}
-.about-journey-chapter--legal .about-journey-block p{color:rgba(246,247,251,.86)}
-.about-journey-chapter--legal + .about-journey-chapter--legal{border-top:1px solid var(--line)}
+.about-journey-chapter--legal .about-journey-block p{color:rgba(246,247,251,.86);max-width:none}
 @media(max-width:900px){
   .about-journey-chapter__grid{grid-template-columns:1fr}
   .about-journey-chapter__head{position:relative;top:auto}
+  .about-journey-legal{grid-template-columns:1fr}
+  .about-journey-legal .about-journey-block:last-child{padding-top:clamp(36px,6vh,56px);border-top:1px solid var(--line)}
+  .about-journey-legal .about-journey-block:last-child::before{display:none}
 }
 .about-wrap{max-width:42em;padding:var(--section-y) 0}
 .about-block{margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--line-dark)}

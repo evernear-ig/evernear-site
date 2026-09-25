@@ -18,7 +18,7 @@ const INFO_BLOCKS = [
   },
 ] as const;
 
-function LegalChapter({
+function LegalBlock({
   id,
   titleKey,
   bodyKeys,
@@ -28,20 +28,16 @@ function LegalChapter({
   bodyKeys: readonly string[];
 }) {
   return (
-    <section id={id} className="about-journey-chapter about-journey-chapter--legal">
-      <div className="wrap">
-        <article className="about-journey-block">
-          <h2>
-            <T k={titleKey} />
-          </h2>
-          {bodyKeys.map((key) => (
-            <p key={key}>
-              <T k={key} />
-            </p>
-          ))}
-        </article>
-      </div>
-    </section>
+    <article id={id} className="about-journey-block">
+      <h2>
+        <T k={titleKey} />
+      </h2>
+      {bodyKeys.map((key) => (
+        <p key={key}>
+          <T k={key} />
+        </p>
+      ))}
+    </article>
   );
 }
 
@@ -81,16 +77,20 @@ export function AboutJourneyChapters() {
 
       <FoundingSection />
 
-      <LegalChapter
-        id="terminos"
-        titleKey="legal.terms"
-        bodyKeys={["legal.terms.p1", "legal.terms.p2", "legal.terms.p3"]}
-      />
-      <LegalChapter
-        id="privacidad"
-        titleKey="legal.privacy"
-        bodyKeys={["legal.privacy.p1", "legal.privacy.p2", "legal.privacy.p3"]}
-      />
+      <section className="about-journey-chapter about-journey-chapter--legal">
+        <div className="wrap about-journey-legal">
+          <LegalBlock
+            id="terminos"
+            titleKey="legal.terms"
+            bodyKeys={["legal.terms.p1", "legal.terms.p2", "legal.terms.p3"]}
+          />
+          <LegalBlock
+            id="privacidad"
+            titleKey="legal.privacy"
+            bodyKeys={["legal.privacy.p1", "legal.privacy.p2", "legal.privacy.p3"]}
+          />
+        </div>
+      </section>
     </>
   );
 }
