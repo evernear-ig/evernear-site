@@ -16,9 +16,23 @@
 .carousel--hero .carousel__viewport{max-width:36rem;margin-inline:auto;width:100%}
 .carousel--hero .carousel__slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;min-height:min(24vh,200px)}
 
-/* Scroll de página → pan horizontal. Sin botones, sin overflow-x, sin autoplay. */
+/* Scroll-jack: bloquea la página y avanza por ítem con wheel/touch. */
+.carousel--jack .carousel__sticky{
+  position:sticky;
+  top:calc(var(--nav-h) + 8px);
+  z-index:2;
+  width:100%;
+  padding:8px 0 16px;
+  box-sizing:border-box;
+  touch-action:pan-y;
+  align-items:stretch;
+  background:transparent;
+}
+.carousel--jack.is-active .carousel__pan-track{
+  transition:transform var(--carousel-duration) var(--ease-out);
+}
 .carousel--pan{position:relative;height:auto;min-height:0}
-.carousel--pan .carousel__sticky{
+.carousel--pan:not(.carousel--jack) .carousel__sticky{
   position:relative;
   top:auto;
   z-index:auto;

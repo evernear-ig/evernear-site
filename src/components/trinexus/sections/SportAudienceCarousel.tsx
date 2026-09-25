@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { useScrollJackCarousel } from "@/hooks/useScrollJackCarousel";
 import { THtml, T } from "@/components/trinexus/ui/T";
 
 export const SPORT_AUDIENCE_ITEMS = [
@@ -12,15 +13,13 @@ export const SPORT_AUDIENCE_ITEMS = [
   { title: "join.org.sport.sponsor", sub: "sport.guide.a4.s" },
 ] as const;
 
-const SWIPE_THRESHOLD = 48;
 const SLIDE_COUNT = SPORT_AUDIENCE_ITEMS.length + 1;
 const QUOTE_INDEX = SPORT_AUDIENCE_ITEMS.length;
 
 export function SportAudienceCarousel() {
   const { t } = useI18n();
-  const [index, setIndex] = useState(0);
   const [staticMode, setStaticMode] = useState(false);
-  const touchStartX = useRef<number | null>(null);
+  const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -30,21 +29,11 @@ export function SportAudienceCarousel() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  const goTo = useCallback((next: number) => {
-    setIndex(Math.max(0, Math.min(SLIDE_COUNT - 1, next)));
-  }, []);
-
-  const onTouchStart = (event: React.TouchEvent) => {
-    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
-  };
-
-  const onTouchEnd = (event: React.TouchEvent) => {
-    if (touchStartX.current == null) return;
-    const delta = event.changedTouches[0].clientX - touchStartX.current;
-    touchStartX.current = null;
-    if (Math.abs(delta) < SWIPE_THRESHOLD) return;
-    goTo(delta < 0 ? index + 1 : index - 1);
-  };
+  const { currentIndex, isActive, setCurrentIndex } = useScrollJackCarousel(
+    rootRef,
+    SLIDE_COUNT,
+    { enabled: !staticMode },
+  );
 
   const dotLabel = (stepIndex: number) => {
     if (stepIndex === QUOTE_INDEX) return String(t("sport.guide.cta"));
@@ -53,10 +42,10 @@ export function SportAudienceCarousel() {
   };
 
   const liveMessage = () => {
-    if (index === QUOTE_INDEX) {
+    if (currentIndex === QUOTE_INDEX) {
       return `${t("sport.guide.q")}`;
     }
-    const item = SPORT_AUDIENCE_ITEMS[index];
+    const item = SPORT_AUDIENCE_ITEMS[currentIndex];
     return item ? `${t(item.title)}. ${t(item.sub)}` : "";
   };
 
@@ -89,23 +78,22 @@ export function SportAudienceCarousel() {
 
   return (
     <section
-      className="sport-audience-carousel"
+      ref={rootRef}
+      className={`sport-audience-carousel carousel--jack${isActive ? " is-active" : ""}`}
       aria-label={String(t("sport.guide.audience.h"))}
       aria-roledescription="carousel"
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
     >
       <div className="sport-audience-carousel-viewport">
         <div
           className="sport-audience-carousel-track"
-          style={{ transform: `translateX(-${index * 100}%)` }}
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {SPORT_AUDIENCE_ITEMS.map((item, stepIndex) => (
             <article
               key={item.title}
               id={`sport-audience-panel-${stepIndex}`}
               className="sport-audience-carousel-slide"
-              aria-hidden={stepIndex !== index}
+              aria-hidden={stepIndex !== currentIndex}
             >
               <h4>
                 <T k={item.title} />
@@ -118,7 +106,7 @@ export function SportAudienceCarousel() {
           <article
             id={`sport-audience-panel-${QUOTE_INDEX}`}
             className="sport-audience-carousel-slide sport-audience-carousel-slide--quote"
-            aria-hidden={index !== QUOTE_INDEX}
+            aria-hidden={currentIndex !== QUOTE_INDEX}
           >
             <p className="quote">
               <THtml k="sport.guide.q" />
@@ -142,11 +130,11 @@ export function SportAudienceCarousel() {
             key={stepIndex}
             type="button"
             role="tab"
-            className={stepIndex === index ? "is-active" : undefined}
-            aria-selected={stepIndex === index}
+            className={stepIndex === currentIndex ? "is-active" : undefined}
+            aria-selected={stepIndex === currentIndex}
             aria-controls={`sport-audience-panel-${stepIndex}`}
             aria-label={dotLabel(stepIndex)}
-            onClick={() => goTo(stepIndex)}
+            onClick={() => setCurrentIndex(stepIndex)}
           />
         ))}
       </div>

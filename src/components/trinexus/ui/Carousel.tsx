@@ -1,13 +1,13 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useRef } from "react";
+import { useCarouselPanOffset } from "@/hooks/useCarouselPanOffset";
 import {
   useCarousel,
   useReducedMotion,
-  useScrollDrive,
-  useScrollPan,
   useWheelDrive,
 } from "@/hooks/useCarousel";
+import { useScrollJackCarousel } from "@/hooks/useScrollJackCarousel";
 import { useReveal } from "@/hooks/useReveal";
 
 export type CarouselVariant = "cards" | "panel" | "hero";
@@ -102,6 +102,7 @@ function CarouselSlides({
   const rootRef = useReveal<HTMLDivElement>();
   const reducedMotion = useReducedMotion();
   const count = slides.length;
+  const scrollJack = drive === "scroll" && !reducedMotion && count > 1;
 
   const { index: carouselIndex, setIndex } = useCarousel({
     count,
@@ -109,18 +110,10 @@ function CarouselSlides({
     onIndexChange,
   });
 
-  const scrollIndex = useScrollDrive(
-    rootRef,
-    count,
-    drive === "scroll" && !reducedMotion,
-  );
-  const index = drive === "scroll" && !reducedMotion ? scrollIndex : carouselIndex;
-
-  useEffect(() => {
-    if (drive === "scroll" && !reducedMotion) {
-      onIndexChange?.(scrollIndex);
-    }
-  }, [drive, reducedMotion, scrollIndex, onIndexChange]);
+  const { currentIndex, isActive } = useScrollJackCarousel(rootRef, count, {
+    enabled: scrollJack,
+  });
+  const index = scrollJack ? currentIndex : carouselIndex;
 
   useWheelDrive(
     rootRef,
@@ -134,6 +127,8 @@ function CarouselSlides({
     "carousel",
     `carousel--${variant}`,
     `carousel--drive-${drive}`,
+    scrollJack ? "carousel--jack" : "",
+    scrollJack && isActive ? "is-active" : "",
     transition === "fade" ? "carousel--fade" : "",
     reveal ? "carousel--reveal rv" : "",
     className,
@@ -188,18 +183,22 @@ function CarouselStrip<T>({
 }: CarouselItemsProps<T>) {
   const revealRef = useReveal<HTMLDivElement>();
   const rootRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
-  const scrollPan = drive === "scroll" && !reducedMotion;
+  const scrollJack = drive === "scroll" && !reducedMotion && items.length > 1;
 
-  useScrollPan(rootRef, stickyRef, viewportRef, trackRef, scrollPan);
+  const { currentIndex, isActive } = useScrollJackCarousel(rootRef, items.length, {
+    enabled: scrollJack,
+  });
+
+  useCarouselPanOffset(viewportRef, trackRef, currentIndex, scrollJack);
 
   const rootClass = [
     "carousel",
     `carousel--${variant}`,
-    scrollPan ? "carousel--pan" : "carousel--drive-strip",
+    scrollJack ? "carousel--jack carousel--pan" : "carousel--drive-strip",
+    scrollJack && isActive ? "is-active" : "",
     reveal ? "carousel--reveal rv" : "",
     className,
   ]
@@ -212,7 +211,7 @@ function CarouselStrip<T>({
     </div>
   ));
 
-  if (scrollPan) {
+  if (scrollJack) {
     return (
       <div
         ref={rootRef}
@@ -220,7 +219,7 @@ function CarouselStrip<T>({
         aria-label={ariaLabel}
         aria-roledescription="carousel"
       >
-        <div ref={stickyRef} className="carousel__sticky">
+        <div className="carousel__sticky">
           <div ref={viewportRef} className="carousel__viewport">
             <div ref={trackRef} className="carousel__pan-track">
               {cards}
