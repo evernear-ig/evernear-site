@@ -16,13 +16,55 @@
 .carousel--hero .carousel__viewport{max-width:36rem;margin-inline:auto;width:100%}
 .carousel--hero .carousel__slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;min-height:min(24vh,200px)}
 
-/* Horizontal strip — deslizar con el dedo, sin botones */
-.carousel--drive-strip .carousel__strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 1px 10px;touch-action:pan-x}
-.carousel--drive-strip .carousel__strip::-webkit-scrollbar{display:none}
-.carousel--drive-strip .carousel__strip-item{flex:0 0 min(300px,86vw);scroll-snap-align:start;min-width:0}
-@media(min-width:901px){.carousel--drive-strip .carousel__strip-item{flex:0 0 calc((100% - 36px)/3)}}
+/* Scroll de página → pan horizontal. Sin botones, sin overflow-x, sin autoplay. */
+.carousel--pan{position:relative;height:auto;min-height:0}
+.carousel--pan .carousel__sticky{
+  position:sticky;
+  top:calc(var(--nav-h,72px) + 12px);
+  z-index:1;
+  width:100%;
+  padding:8px 0 16px;
+  box-sizing:border-box;
+  touch-action:pan-y;
+  align-items:stretch;
+}
+.carousel--pan .carousel__viewport{
+  overflow:hidden;
+  width:100%;
+  container-type:inline-size;
+  container-name:carousel-pan;
+}
+.carousel--pan .carousel__pan-track{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:18px;
+  width:max-content;
+  will-change:transform;
+  transition:none;
+}
+.carousel--pan .carousel__strip-item{
+  display:flex;
+  flex:0 0 min(78cqi,320px);
+  width:min(78cqi,320px);
+  min-width:0;
+  height:auto;
+}
+.carousel--pan .carousel__strip-item>*{flex:1;width:100%;min-width:0}
+@media (min-width:901px){
+  .carousel--pan .carousel__strip-item{
+    flex:0 0 calc((100cqi - 36px) / 3.2);
+    width:calc((100cqi - 36px) / 3.2);
+  }
+}
+
+/* Fallback grilla (reduced motion / drive strip) */
+.carousel--drive-strip .carousel__strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:18px;overflow:visible;padding:2px 0;touch-action:pan-y}
+.carousel--drive-strip .carousel__strip-item{display:flex;min-width:0;height:100%}
+.carousel--drive-strip .carousel__strip-item>*{flex:1;width:100%;min-width:0;height:100%}
+.carousel--drive-strip .carousel-hero-slide,.carousel--drive-strip .carousel-audience-slide{min-height:0;height:100%;text-align:left;align-items:flex-start;justify-content:flex-start;padding:0}
 .carousel--cards .carousel__viewport{width:100%}
-.carousel--cards .carousel__strip-item{height:100%}
+.carousel--cards:not(.carousel--pan) .carousel__strip-item{height:100%}
+.carousel--pan.carousel--cards .carousel__strip-item{height:auto}
 .carousel--cards .carousel-page--trio .pcard{height:100%}
 
 /* Progress bar sutil (no botones) */
@@ -44,12 +86,13 @@
 @media(max-width:900px){.carousel-page--trio{grid-template-columns:1fr;gap:14px;max-width:min(100%,360px);margin-inline:auto}}
 
 /* Panel (qué es CONEXA) */
-.about-full-carousel{width:100%;max-width:44ch}
-.about-full-carousel.carousel--drive-wheel{height:auto;min-height:0}
-.about-full-carousel.carousel--drive-wheel .carousel__sticky{position:relative;top:auto;min-height:0;padding:0}
+.about-full-carousel{width:100%;max-width:none}
+.about-full-carousel.carousel--drive-wheel,.about-full-carousel.carousel--drive-held{height:auto;min-height:0}
+.about-full-carousel.carousel--drive-wheel .carousel__sticky,.about-full-carousel.carousel--drive-held .carousel__sticky{position:relative;top:auto;min-height:0;padding:0;align-items:flex-start}
 .about-full-carousel .about-full-slide{margin-top:0;animation:none}
-.about-full-carousel .carousel__fade-stage{min-height:min(32vh,280px)}
-@media(max-width:720px){.about-full-carousel .carousel__fade-stage{min-height:min(28vh,220px)}}
+.about-full-carousel .carousel__fade-stage{min-height:min(42vh,380px)}
+.about-full-carousel .carousel__progress{margin-top:clamp(22px,3.5vh,32px);margin-inline:0}
+@media(max-width:720px){.about-full-carousel .carousel__fade-stage{min-height:min(36vh,300px)}}
 
 /* Static fallback */
 .carousel--static{display:grid;gap:20px;width:100%;max-width:36rem;margin-inline:auto}
@@ -62,5 +105,17 @@
 
 @media(prefers-reduced-motion:reduce){
   .carousel__track,.carousel__fade-slide,.carousel__progress-bar,.carousel--reveal.carousel{transition:none}
-  .carousel--drive-scroll{height:auto}
+  .carousel--drive-scroll,.carousel--pan{height:auto}
+  .carousel--pan .carousel__sticky{position:relative;top:auto}
+  .carousel--drive-strip .carousel__strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));
+    overflow:visible;
+    scroll-snap-type:none;
+    flex-wrap:unset;
+  }
+  .carousel--drive-strip .carousel__strip-item{
+    flex:unset;
+    width:auto;
+  }
 }

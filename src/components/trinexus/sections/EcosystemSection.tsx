@@ -7,7 +7,6 @@ import {
 } from "@/lib/ecosystem/verticals";
 import { slugFromEcoHref } from "@/lib/eco-vt-name";
 import { Carousel } from "@/components/trinexus/ui/Carousel";
-import { chunkItems } from "@/hooks/useCarousel";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T, THtml } from "@/components/trinexus/ui/T";
@@ -46,45 +45,43 @@ export function EcosystemSection() {
           </h2>
         </Reveal>
 
-        <Reveal className="areas-block" id="comunidad">
-          <h3 className="areas-family">
-            <T k="nav.family.community" />
-          </h3>
+        <div className="areas-block" id="comunidad">
+          <Reveal>
+            <h3 className="areas-family">
+              <T k="nav.family.community" />
+            </h3>
+          </Reveal>
           <Carousel
             variant="cards"
             drive="scroll"
             className="areas-carousel"
-            slides={chunkItems(COMMUNITY_VERTICALS, 3).map((page) => (
-              <ul key={page.map((vertical) => vertical.slug).join("-")} className="carousel-page--trio">
-                {page.map((vertical) => (
-                  <li key={vertical.slug}>
-                    <AreaCard vertical={vertical} />
-                  </li>
-                ))}
-              </ul>
-            ))}
+            ariaLabel="Vida y comunidad"
+            reveal={false}
+            items={COMMUNITY_VERTICALS}
+            renderItem={(vertical) => (
+              <AreaCard vertical={vertical} />
+            )}
           />
-        </Reveal>
+        </div>
 
-        <Reveal className="areas-block" id="region">
-          <h3 className="areas-family">
-            <T k="nav.family.region" />
-          </h3>
+        <div className="areas-block" id="region">
+          <Reveal>
+            <h3 className="areas-family">
+              <T k="nav.family.region" />
+            </h3>
+          </Reveal>
           <Carousel
             variant="cards"
             drive="scroll"
             className="areas-carousel"
-            slides={chunkItems(REGION_VERTICALS, 3).map((page) => (
-              <ul key={page.map((vertical) => vertical.slug).join("-")} className="carousel-page--trio">
-                {page.map((vertical) => (
-                  <li key={vertical.slug}>
-                    <AreaCard vertical={vertical} />
-                  </li>
-                ))}
-              </ul>
-            ))}
+            ariaLabel="Región y oportunidades"
+            reveal={false}
+            items={REGION_VERTICALS}
+            renderItem={(vertical) => (
+              <AreaCard vertical={vertical} />
+            )}
           />
-        </Reveal>
+        </div>
 
         <Reveal className="areas-cta">
           <TransitionLink href="/ecosistema" className="btn btn-ghost">

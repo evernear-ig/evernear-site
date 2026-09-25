@@ -1,16 +1,17 @@
 "use client";
 
-import { type ReactNode, useEffect } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 import {
   useCarousel,
   useReducedMotion,
   useScrollDrive,
+  useScrollPan,
   useWheelDrive,
 } from "@/hooks/useCarousel";
 import { useReveal } from "@/hooks/useReveal";
 
 export type CarouselVariant = "cards" | "panel" | "hero";
-export type CarouselDrive = "scroll" | "wheel" | "strip";
+export type CarouselDrive = "scroll" | "wheel" | "strip" | "held";
 
 type CarouselBaseProps = {
   variant: CarouselVariant;
@@ -183,18 +184,52 @@ function CarouselStrip<T>({
   ariaLabel,
   className = "",
   reveal = true,
+  drive = "strip",
 }: CarouselItemsProps<T>) {
   const revealRef = useReveal<HTMLDivElement>();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
+  const scrollPan = drive === "scroll" && !reducedMotion;
+
+  useScrollPan(rootRef, stickyRef, viewportRef, trackRef, scrollPan);
 
   const rootClass = [
     "carousel",
     `carousel--${variant}`,
-    "carousel--drive-strip",
+    scrollPan ? "carousel--pan" : "carousel--drive-strip",
     reveal ? "carousel--reveal rv" : "",
     className,
   ]
     .filter(Boolean)
     .join(" ");
+
+  const cards = items.map((item, itemIndex) => (
+    <div key={itemIndex} className="carousel__strip-item">
+      {renderItem(item, itemIndex)}
+    </div>
+  ));
+
+  if (scrollPan) {
+    return (
+      <div
+        ref={rootRef}
+        className={rootClass}
+        aria-label={ariaLabel}
+        aria-roledescription="carousel"
+      >
+        <div ref={stickyRef} className="carousel__sticky">
+          <div ref={viewportRef} className="carousel__viewport">
+            <div ref={trackRef} className="carousel__pan-track">
+              {cards}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -203,11 +238,7 @@ function CarouselStrip<T>({
       aria-label={ariaLabel}
     >
       <div className="carousel__strip" tabIndex={0}>
-        {items.map((item, itemIndex) => (
-          <div key={itemIndex} className="carousel__strip-item">
-            {renderItem(item, itemIndex)}
-          </div>
-        ))}
+        {cards}
       </div>
     </div>
   );
