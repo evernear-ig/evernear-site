@@ -10,7 +10,6 @@
 html {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
-  overflow-x: clip;
   overflow-y: auto;
   background: var(--space);
 }
@@ -18,7 +17,6 @@ html {
 body {
   font-family: var(--font-body), system-ui, sans-serif;
   min-height: 100dvh;
-  overflow-x: clip;
 }
 
 [data-sonner-toaster] {

@@ -19,14 +19,15 @@
 /* Scroll de página → pan horizontal. Sin botones, sin overflow-x, sin autoplay. */
 .carousel--pan{position:relative;height:auto;min-height:0}
 .carousel--pan .carousel__sticky{
-  position:sticky;
-  top:calc(var(--nav-h,72px) + 12px);
-  z-index:1;
+  position:relative;
+  top:auto;
+  z-index:auto;
   width:100%;
   padding:8px 0 16px;
   box-sizing:border-box;
   touch-action:pan-y;
   align-items:stretch;
+  background:transparent;
 }
 .carousel--pan .carousel__viewport{
   overflow:hidden;

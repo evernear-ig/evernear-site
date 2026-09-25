@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from "react";
 
 type UseCarouselOptions = {
   count: number;
@@ -123,7 +123,7 @@ export function useWheelDrive(
   }, [count, enabled, index, setIndex, containerRef]);
 }
 
-/** Vertical page scroll pans a horizontal track. No overflow-x, no wheel lock. */
+/** Page scroll pans the row. Height stays auto — no empty pin runway. */
 export function useScrollPan(
   rootRef: RefObject<HTMLElement | null>,
   stickyRef: RefObject<HTMLElement | null>,
@@ -131,35 +131,31 @@ export function useScrollPan(
   trackRef: RefObject<HTMLElement | null>,
   enabled = true,
 ) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!enabled) return;
     const root = rootRef.current;
-    const sticky = stickyRef.current;
     const viewport = viewportRef.current;
     const track = trackRef.current;
-    if (!root || !sticky || !viewport || !track) return;
-
-    const stickyTop = () => {
-      const raw = getComputedStyle(document.documentElement)
-        .getPropertyValue("--nav-h")
-        .trim();
-      const nav = Number.parseFloat(raw) || 72;
-      return nav + 12;
-    };
+    if (!root || !viewport || !track) return;
 
     const apply = () => {
+      root.style.height = "";
       const travel = Math.max(0, track.scrollWidth - viewport.clientWidth);
-      const stickyH = sticky.offsetHeight;
-      const nextHeight = travel > 8 ? `${stickyH + travel}px` : "auto";
-      if (root.style.height !== nextHeight) {
-        root.style.height = nextHeight;
-      }
-
-      const pin = Math.max(1, travel);
-      const start = root.getBoundingClientRect().top - stickyTop();
-      const progress = Math.min(1, Math.max(0, -start / pin));
-      track.style.transform = `translate3d(${-progress * travel}px,0,0)`;
-      root.dataset.panProgress = String(Math.round(progress * 100));
+      const rect = root.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const nav =
+        Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+        ) || 72;
+      const start = nav + 48;
+      const end = nav - vh * 0.42;
+      const raw = Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, start - end)));
+      const dwell = 0.18;
+      const span = 1 - 2 * dwell;
+      const progress =
+        raw <= dwell ? 0 : raw >= 1 - dwell ? 1 : (raw - dwell) / span;
+      track.style.transform =
+        progress <= 0 ? "none" : `translate3d(${-progress * travel}px,0,0)`;
     };
 
     let raf = 0;
@@ -181,12 +177,14 @@ export function useScrollPan(
           raf = requestAnimationFrame(loop);
         }
       },
-      { root: null, rootMargin: "30% 0px" },
+      { root: null, rootMargin: "40% 0px" },
     );
     io.observe(root);
 
     window.addEventListener("resize", apply);
     apply();
+    inView = true;
+    raf = requestAnimationFrame(loop);
 
     return () => {
       inView = false;

@@ -1057,7 +1057,7 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .qr-scan-page{max-width:480px;text-align:center;padding:40px 0}
 .scan-ok{color:var(--green-ink);font-size:1.1rem;margin:20px 0}
 .areas-sec{padding:var(--section-y) 0}
-.areas-block{margin-top:var(--block-gap)}
+.areas-block{margin-top:var(--block-gap);scroll-margin-top:calc(var(--nav-h) + 12px)}
 .areas-family{font-family:var(--font-head);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-2);margin:0 0 16px}
 .areas-cta{margin-top:var(--block-gap);text-align:center}
 .areas-carousel{margin-top:4px}
