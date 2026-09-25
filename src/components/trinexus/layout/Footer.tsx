@@ -12,13 +12,7 @@ import {
   ECOSYSTEM_NAV_LINKS,
 } from "@/lib/ecosystem/verticals";
 
-const COM_LINKS = [
-  ...COMMUNITY_NAV_LINKS.filter((l) => l.href !== "/#join"),
-  { href: "/#join", key: "foot.com" },
-  { href: "/#partners", key: "foot.partners" },
-  { href: "/terminos", key: "legal.terms" },
-  { href: "/privacidad", key: "legal.privacy" },
-] as const;
+const COM_LINKS = COMMUNITY_NAV_LINKS;
 
 const SOCIAL = [
   { href: "#", key: "a11y.soon.li", label: "LinkedIn" },
@@ -91,7 +85,7 @@ export function Footer() {
                 <li key={link.href}>
                   <TransitionLink
                     href={link.href}
-                    transition={link.href.startsWith("/#") ? "fade" : "forward"}
+                    transition={link.href.includes("#") ? "fade" : "forward"}
                   >
                     <T k={link.key} />
                   </TransitionLink>

@@ -23,8 +23,15 @@ function vtDataset(transition: NavTransition) {
   return "nav-forward";
 }
 
+function samePageHash(href: string) {
+  const hashIndex = href.indexOf("#");
+  if (hashIndex === -1) return false;
+  const path = href.slice(0, hashIndex);
+  return path === "" || path === window.location.pathname;
+}
+
 function shouldSkipTransition(href: string, target: HTMLAnchorElement) {
-  if (href.startsWith("#") || href.startsWith("http")) return true;
+  if (href.startsWith("#") || href.startsWith("http") || samePageHash(href)) return true;
   if (target.target === "_blank") return true;
   if (typeof document.startViewTransition !== "function") return true;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return true;
@@ -66,7 +73,21 @@ export function TransitionLink({
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
 
     const url = e.currentTarget.getAttribute("href");
-    if (!url || shouldSkipTransition(url, e.currentTarget)) return;
+    if (!url) return;
+
+    if (samePageHash(url)) {
+      e.preventDefault();
+      const hash = url.slice(url.indexOf("#") + 1);
+      const next = url.startsWith("#") ? `${window.location.pathname}${url}` : url;
+      window.history.pushState(null, "", next);
+      document.getElementById(decodeURIComponent(hash))?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      return;
+    }
+
+    if (shouldSkipTransition(url, e.currentTarget)) return;
 
     e.preventDefault();
     runViewTransition(transition, () => {

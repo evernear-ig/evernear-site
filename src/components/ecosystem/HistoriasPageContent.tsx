@@ -1,49 +1,69 @@
 "use client";
 
-import { useCallback } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { PulsoSemanalContent } from "@/components/ecosystem/PulsoSemanalContent";
+import { useEffect } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { StoryReelsStrip } from "@/components/ecosystem/StoryReelsStrip";
 import { StorySubmitForm } from "@/components/ecosystem/StorySubmitForm";
 import { T } from "@/components/trinexus/ui/T";
 import { CONNECTION_STORIES } from "@/data/stories";
 
-type Tab = "historias" | "pulso";
+type HistoriasPageContentProps = {
+  asChapter?: boolean;
+};
 
-export function HistoriasPageContent() {
+export function HistoriasPageContent({ asChapter = false }: HistoriasPageContentProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const tab: Tab = searchParams.get("tab") === "pulso" ? "pulso" : "historias";
 
-  const setTab = useCallback(
-    (next: Tab) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (next === "pulso") params.set("tab", "pulso");
-      else params.delete("tab");
-      const qs = params.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-    },
-    [pathname, router, searchParams]
-  );
+  useEffect(() => {
+    if (searchParams.get("tab") === "pulso") {
+      router.replace("/pulso");
+    }
+  }, [router, searchParams]);
 
-  const onPulsoFiltersChange = (filters: Record<string, string>) => {
+  const formOpen = searchParams.get("form") === "1";
+
+  const setFormOpen = (next: boolean) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set("tab", "pulso");
-    Object.entries(filters).forEach(([k, v]) => {
-      if (v && v !== "all") params.set(k, v);
-      else params.delete(k);
+    params.delete("tab");
+    if (next) params.set("form", "1");
+    else params.delete("form");
+    const qs = params.toString();
+    const hash = typeof window !== "undefined" ? window.location.hash : "";
+    router.replace(qs ? `${pathname}?${qs}${hash}` : `${pathname}${hash}`, {
+      scroll: false,
     });
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
+
+  const Heading = asChapter ? "h2" : "h1";
+
+  if (asChapter) {
+    return (
+      <section id="historias" className="light about-journey-chapter about-journey-chapter--stories">
+        <div className="wrap">
+          <header className="about-journey-chapter__head about-journey-chapter__head--stories">
+            <Heading className="h-xl">
+              <T k="stories.hero.h" />
+            </Heading>
+            <p className="lead">
+              <T k="stories.hero.lead" />
+            </p>
+          </header>
+          <StoryReelsStrip stories={CONNECTION_STORIES} />
+          <StorySubmitForm defaultOpen={formOpen} onOpenChange={setFormOpen} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
       <section className="dark historias-hero historias-hero--compact">
         <div className="wrap historias-hero__copy">
-          <h1 className="h-xl">
+          <Heading className="h-xl">
             <T k="stories.hero.h" />
-          </h1>
+          </Heading>
           <p className="lead">
             <T k="stories.hero.lead" />
           </p>
@@ -52,57 +72,8 @@ export function HistoriasPageContent() {
 
       <section className="light historias-body">
         <div className="wrap">
-          <div className="historias-tabs" role="tablist" aria-label="Secciones de historias">
-            <button
-              type="button"
-              role="tab"
-              id="tab-historias"
-              aria-selected={tab === "historias"}
-              aria-controls="panel-historias"
-              className={`historias-tab${tab === "historias" ? " is-active" : ""}`}
-              onClick={() => setTab("historias")}
-            >
-              <T k="nav.stories" />
-            </button>
-            <button
-              type="button"
-              role="tab"
-              id="tab-pulso"
-              aria-selected={tab === "pulso"}
-              aria-controls="panel-pulso"
-              className={`historias-tab${tab === "pulso" ? " is-active" : ""}`}
-              onClick={() => setTab("pulso")}
-            >
-              <T k="nav.pulso" />
-            </button>
-          </div>
-
-          {tab === "historias" ? (
-            <div
-              id="panel-historias"
-              role="tabpanel"
-              aria-labelledby="tab-historias"
-              className="historias-panel"
-            >
-              <StoryReelsStrip stories={CONNECTION_STORIES} />
-              <StorySubmitForm />
-            </div>
-          ) : (
-            <div
-              id="panel-pulso"
-              role="tabpanel"
-              aria-labelledby="tab-pulso"
-              className="historias-panel"
-            >
-              <PulsoSemanalContent
-                initialVertical={searchParams.get("vertical") ?? "all"}
-                initialCity={searchParams.get("city") ?? "all"}
-                initialCategory={searchParams.get("category") ?? "all"}
-                initialWeek={searchParams.get("week") ?? undefined}
-                onFiltersChange={onPulsoFiltersChange}
-              />
-            </div>
-          )}
+          <StoryReelsStrip stories={CONNECTION_STORIES} />
+          <StorySubmitForm defaultOpen={formOpen} onOpenChange={setFormOpen} />
         </div>
       </section>
     </>

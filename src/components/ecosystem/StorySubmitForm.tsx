@@ -11,8 +11,21 @@ type MediaMode = "video" | "photo";
 
 const MAX_MEDIA_BYTES = 20 * 1024 * 1024;
 
-export function StorySubmitForm() {
+type StorySubmitFormProps = {
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+};
+
+export function StorySubmitForm({
+  defaultOpen = false,
+  onOpenChange,
+}: StorySubmitFormProps) {
   const { t } = useI18n();
+  const [open, setOpenState] = useState(defaultOpen);
+  const setOpen = (next: boolean) => {
+    setOpenState(next);
+    onOpenChange?.(next);
+  };
   const [mediaMode, setMediaMode] = useState<MediaMode>("video");
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -76,6 +89,7 @@ export function StorySubmitForm() {
         form.reset();
         setPreviewUrl(null);
         onMediaModeChange("video");
+        setOpen(false);
       } else {
         toast.error(String(t("stories.form.error")));
       }
@@ -86,9 +100,32 @@ export function StorySubmitForm() {
     }
   }
 
+  if (!open) {
+    return (
+      <section className="historias-form panfleto-section historias-form--cta">
+        <button
+          type="button"
+          className="btn btn-green"
+          onClick={() => setOpen(true)}
+        >
+          <T k="stories.form.h" />
+        </button>
+      </section>
+    );
+  }
+
   return (
-    <section className="historias-form panfleto-section">
-      <h2><T k="stories.form.h" /></h2>
+    <section className="historias-form panfleto-section" id="conta-tu-historia">
+      <div className="historias-form__head">
+        <h2><T k="stories.form.h" /></h2>
+        <button
+          type="button"
+          className="historias-form__dismiss"
+          onClick={() => setOpen(false)}
+        >
+          <T k="stories.form.close" />
+        </button>
+      </div>
       <p><T k="stories.form.lead" /></p>
 
       <div className="historias-form__media-toggle" role="radiogroup" aria-label="Tipo de archivo">

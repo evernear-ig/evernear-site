@@ -95,6 +95,30 @@ const ABOUT_FULL_SECTIONS: ConexaSectionConfig[] = [
     tipKey: "journey.about.slideTip",
     stepKey: "journey.about.slideStep",
   },
+  {
+    key: "about-info",
+    id: "informacion",
+    pose: "globe",
+    concept: "default",
+    tipKey: "journey.about.tip",
+    stepKey: "journey.about.step",
+  },
+  {
+    key: "about-stories",
+    id: "historias",
+    pose: "peace",
+    concept: "people",
+    tipKey: "journey.stories.tip",
+    stepKey: "journey.stories.step",
+  },
+  {
+    key: "about-join",
+    id: "join",
+    pose: "peace",
+    concept: "join",
+    tipKey: "journey.join.tip",
+    stepKey: "journey.join.step",
+  },
 ];
 
 const DEFAULT_SECTIONS: ConexaSectionConfig[] = [
@@ -128,7 +152,7 @@ export function getConexaSections(pathname: string): ConexaSectionConfig[] {
   const path = pathname.split("?")[0].replace(/\/$/, "") || "/";
 
   if (path === "/") return CONEXA_HOME_SECTIONS;
-  if (path === "/que-es" || path === "/informacion") return ABOUT_FULL_SECTIONS;
+  if (path === "/que-es") return ABOUT_FULL_SECTIONS;
   if (
     path === "/ecosistema" ||
     path.startsWith("/turismo") ||

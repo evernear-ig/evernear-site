@@ -14,7 +14,6 @@ import { LangSwitch } from "@/components/trinexus/ui/LangSwitch";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
 import {
-  ABOUT_NAV_LINKS,
   COMMUNITY_NAV_LINKS,
   ECOSYSTEM_NAV_GROUPS,
 } from "@/lib/ecosystem/verticals";
@@ -112,11 +111,11 @@ export function Header() {
             <ul className="nav-links" onMouseLeave={scheduleClose}>
               <NavDropdown
                 triggerHref="/que-es"
-                triggerKey="nav.about"
-                subLinks={ABOUT_NAV_LINKS}
-                submenuAriaKey="a11y.aboutnav"
-                open={activeMenu === "about"}
-                onOpen={() => open("about")}
+                triggerKey="nav.community"
+                subLinks={COMMUNITY_NAV_LINKS}
+                submenuAriaKey="a11y.communitynav"
+                open={activeMenu === "community"}
+                onOpen={() => open("community")}
                 onCloseNow={closeNow}
               />
               <NavDropdown
@@ -129,15 +128,11 @@ export function Header() {
                 onOpen={() => open("eco")}
                 onCloseNow={closeNow}
               />
-              <NavDropdown
-                triggerHref="/historias"
-                triggerKey="nav.community"
-                subLinks={COMMUNITY_NAV_LINKS}
-                submenuAriaKey="a11y.communitynav"
-                open={activeMenu === "community"}
-                onOpen={() => open("community")}
-                onCloseNow={closeNow}
-              />
+              <li>
+                <TransitionLink href="/pulso" className="nav-plain">
+                  <T k="nav.pulso" />
+                </TransitionLink>
+              </li>
             </ul>
           </nav>
           <div className="nav-right">
@@ -161,19 +156,6 @@ export function Header() {
       </header>
       <div className={`mobile-menu${menuOpen ? " open" : ""}`} id="mobileMenu">
         <span className="mobile-menu-section">
-          <T k="nav.about" />
-        </span>
-        <div className="mobile-submenu" aria-label={String(t("a11y.aboutnav"))}>
-          {ABOUT_NAV_LINKS.map((link) => (
-            <TransitionLink key={link.href} href={link.href} onClick={onNavClick}>
-              <T k={link.key} />
-            </TransitionLink>
-          ))}
-        </div>
-        <span className="mobile-menu-section">
-          <T k="nav.eco" />
-        </span>
-        <span className="mobile-menu-section">
           <T k="nav.community" />
         </span>
         <div className="mobile-submenu" aria-label={String(t("a11y.communitynav"))}>
@@ -183,6 +165,9 @@ export function Header() {
             </TransitionLink>
           ))}
         </div>
+        <span className="mobile-menu-section">
+          <T k="nav.eco" />
+        </span>
         {ECOSYSTEM_NAV_GROUPS.map((group) => {
           const expanded = mobileEcoOpen === group.labelKey;
           return (
@@ -208,6 +193,9 @@ export function Header() {
             </div>
           );
         })}
+        <TransitionLink href="/pulso" onClick={onNavClick}>
+          <T k="nav.pulso" />
+        </TransitionLink>
         <LangSwitch />
         <JoinButton className="btn btn-green" onOpen={closeMenu} />
       </div>

@@ -292,6 +292,11 @@
   pointer-events: none;
 }
 
+.historias-form--cta{display:flex;justify-content:flex-start;padding-top:8px}
+.historias-form__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:8px}
+.historias-form__head h2{margin:0}
+.historias-form__dismiss{font-family:var(--font-head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:0;background:transparent;color:var(--ink-2);cursor:pointer;padding:8px 0;min-height:44px}
+
 .historias-form__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -562,4 +567,23 @@
   .story-reel {
     transition: none;
   }
+}
+
+.about-journey-chapter--stories .story-reels__track,
+.stories-home-sec .story-reels__track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 0.85rem;
+  overflow: visible;
+  margin-inline: 0;
+  padding: 0.25rem 0 1rem;
+  scroll-snap-type: none;
+}
+
+.about-journey-chapter--stories .story-reels__item,
+.about-journey-chapter--stories .story-reel,
+.stories-home-sec .story-reels__item,
+.stories-home-sec .story-reel {
+  width: 100%;
+  min-width: 0;
 }

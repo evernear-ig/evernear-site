@@ -1,14 +1,5 @@
-import { LegalPage } from "@/components/ecosystem/LegalPage";
+import { RedirectToCommunityHash } from "@/components/trinexus/ui/RedirectToCommunityHash";
 
 export default function PrivacidadPage() {
-  return (
-    <LegalPage
-      titleKey="legal.privacy"
-      bodyKeys={[
-        "legal.privacy.p1",
-        "legal.privacy.p2",
-        "legal.privacy.p3",
-      ]}
-    />
-  );
+  return <RedirectToCommunityHash hash="privacidad" />;
 }

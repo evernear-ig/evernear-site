@@ -1,14 +1,5 @@
-import { LegalPage } from "@/components/ecosystem/LegalPage";
+import { RedirectToCommunityHash } from "@/components/trinexus/ui/RedirectToCommunityHash";
 
 export default function TerminosPage() {
-  return (
-    <LegalPage
-      titleKey="legal.terms"
-      bodyKeys={[
-        "legal.terms.p1",
-        "legal.terms.p2",
-        "legal.terms.p3",
-      ]}
-    />
-  );
+  return <RedirectToCommunityHash hash="terminos" />;
 }
