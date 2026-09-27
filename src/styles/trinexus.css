@@ -1025,12 +1025,18 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-aud-copy p{margin:0;max-width:none;font-size:.92rem;line-height:1.45;color:rgba(246,247,251,.78)}
 .eco-aud-more{margin-top:10px;font-family:var(--font-head);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
 .eco-aud-quote{position:relative;display:flex;flex-direction:column;justify-content:space-between;height:272px;min-height:272px;border-radius:20px;padding:20px 18px 14px;background:radial-gradient(150px 150px at 0% 100%,rgba(46,229,157,.2),transparent 70%),linear-gradient(180deg,#fff 0%,#f4f7f5 100%);border:1px solid rgba(11,15,36,.08);box-shadow:0 16px 36px -28px rgba(7,11,26,.4);overflow:hidden}
-.eco-aud-quote-copy{display:flex;flex-direction:column;align-items:flex-start;gap:14px;position:relative;z-index:1;width:100%;padding-bottom:92px}
-.eco-aud-quote .quote{margin:0;max-width:16em;font-size:clamp(1.12rem,1.15vw,1.32rem);line-height:1.35;letter-spacing:-.022em;font-weight:500;color:var(--ink);text-wrap:balance}
+.eco-aud-quote-copy{display:flex;flex-direction:column;align-items:flex-start;gap:14px;position:relative;z-index:1;width:100%;padding-bottom:118px}
+.eco-aud-quote .quote{margin:0;max-width:16em;font-size:clamp(1.05rem,1.05vw,1.22rem);line-height:1.32;letter-spacing:-.022em;font-weight:500;color:var(--ink);text-wrap:balance}
 .eco-aud-quote .quote b{color:var(--green-ink);font-weight:600}
-.eco-aud-quote .btn{padding:12px 16px;font-size:.7rem;letter-spacing:.04em;white-space:normal;text-wrap:balance;max-width:15em;align-self:flex-end}
-.eco-aud-mascot{position:absolute;left:2px;bottom:-8px;width:86px;margin:0;pointer-events:none}
-.eco-aud-mascot.conexa-mascot-img{aspect-ratio:auto}
+.eco-aud-quote .btn{position:absolute;right:14px;bottom:16px;z-index:2;padding:12px 16px;font-size:.7rem;letter-spacing:.04em;white-space:normal;text-wrap:balance;max-width:11.2em}
+.eco-aud-map{position:absolute;left:-10px;bottom:-4px;width:132px;height:124px;pointer-events:none}
+.eco-aud-map-land{fill:rgba(168,196,214,.28)}
+.eco-aud-map-land--soft{fill:rgba(186,214,228,.18)}
+.eco-aud-map-contour{fill:none;stroke:rgba(120,156,176,.45);stroke-width:1.2}
+.eco-aud-map-route{fill:none;stroke:#7EE8C4;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1.5 6}
+.eco-aud-map-start{fill:var(--green)}
+.eco-aud-map-pin path{fill:var(--green)}
+.eco-aud-map-pin circle{fill:#fff}
 .eco-fold+.scroll-sec>section.eco-body.eco-catalog{padding-top:clamp(40px,6vh,72px)}
 .eco-fold+.scroll-sec>section.eco-body.eco-catalog>.wrap{max-width:1360px;padding-left:clamp(16px,2.2vw,32px);padding-right:clamp(16px,2.2vw,32px)}
 .eco-fold+.scroll-sec .eco-catalog-head{margin:0 0 6px}
@@ -1044,9 +1050,9 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
   .eco-aud{grid-template-columns:1fr 1fr}
   .eco-aud-quote{grid-column:1 / -1;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:18px;height:auto;min-height:0;padding:26px 18px 8px 26px}
   .eco-aud-quote-copy{width:auto;padding-bottom:0}
-  .eco-aud-quote .quote{max-width:18em}
-  .eco-aud-quote .btn{align-self:flex-start}
-  .eco-aud-mascot{position:relative;left:auto;bottom:auto;width:108px;margin:0}
+  .eco-aud-quote .quote{max-width:18em;font-size:clamp(1.12rem,1.15vw,1.32rem)}
+  .eco-aud-quote .btn{position:static;align-self:flex-start;max-width:15em}
+  .eco-aud-map{position:relative;left:auto;bottom:auto;width:132px;height:124px;flex:none}
 }
 @media(max-width:700px){
   .eco-stage-layout{grid-template-columns:1fr;gap:18px}
