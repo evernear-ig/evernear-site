@@ -1,9 +1,4 @@
-"use client";
-
-import { useState } from "react";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { Carousel } from "@/components/trinexus/ui/Carousel";
 import { THtml, T } from "@/components/trinexus/ui/T";
 import type { AudienceItem } from "@/lib/ecosystem/vertical-catalog";
 import type { JoinTrack } from "@/lib/join-tracks";
@@ -23,60 +18,37 @@ export function VerticalAudienceCarousel({
   ctaKey,
   joinTrack,
 }: VerticalAudienceCarouselProps) {
-  const { t } = useI18n();
-  const [index, setIndex] = useState(0);
-  const quoteIndex = items.length;
-  const audienceKey = `${prefix}.guide.audience.h`;
-
   const joinButton = joinTrack ? (
     <JoinButton className="btn btn-green" labelKey={ctaKey} prefill={{ track: joinTrack }} />
   ) : (
     <JoinButton className="btn btn-green" labelKey={ctaKey} />
   );
 
-  const slides = [
-    ...items.map((item, stepIndex) => (
-      <article
-        key={item.title}
-        id={`${prefix}-audience-panel-${stepIndex}`}
-        className="carousel-audience-slide"
-      >
-        <h4>
-          <T k={item.title} />
-        </h4>
-        <p>
-          <T k={item.sub} />
-        </p>
-      </article>
-    )),
-    <article
-      key="quote"
-      id={`${prefix}-audience-panel-${quoteIndex}`}
-      className="carousel-audience-slide carousel-audience-slide--quote"
-    >
-      <p className="quote">
-        <THtml k={quoteKey} />
-      </p>
-      {joinButton}
-    </article>,
-  ];
-
-  const liveMessage = () => {
-    if (index === quoteIndex) return String(t(quoteKey));
-    const item = items[index];
-    return item ? `${t(item.title)}. ${t(item.sub)}` : "";
-  };
-
   return (
-    <Carousel
-      variant="hero"
-      drive="scroll"
-      className="sport-audience-carousel"
-      slides={slides}
-      onIndexChange={setIndex}
-      ariaLabel={String(t(audienceKey))}
-      reveal
-      liveRegion={liveMessage()}
-    />
+    <div className="sport-audience-static" id={`${prefix}-audience`}>
+      {items.map((item, stepIndex) => (
+        <article
+          key={item.title}
+          id={`${prefix}-audience-panel-${stepIndex}`}
+          className="sport-audience-panel"
+        >
+          <h4>
+            <T k={item.title} />
+          </h4>
+          <p>
+            <T k={item.sub} />
+          </p>
+        </article>
+      ))}
+      <article
+        id={`${prefix}-audience-panel-quote`}
+        className="sport-audience-panel sport-audience-panel--quote"
+      >
+        <p className="quote">
+          <THtml k={quoteKey} />
+        </p>
+        {joinButton}
+      </article>
+    </div>
   );
 }

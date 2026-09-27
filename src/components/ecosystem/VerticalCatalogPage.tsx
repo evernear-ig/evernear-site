@@ -6,12 +6,10 @@ import type { VerticalSlug } from "@/lib/ecosystem/verticals";
 
 type VerticalCatalogPageProps = {
   verticalSlug: VerticalSlug;
-  disclaimerKey?: string;
 };
 
 export function VerticalCatalogPage({
   verticalSlug,
-  disclaimerKey,
 }: VerticalCatalogPageProps) {
   const config = getVerticalCatalog(verticalSlug);
 
@@ -21,10 +19,7 @@ export function VerticalCatalogPage({
       beforeCatalog={<VerticalGuideSection verticalSlug={verticalSlug} embedded />}
       catalogDividerKey={config.catalogDividerKey}
     >
-      <VerticalCatalogContent
-        verticalSlug={verticalSlug}
-        disclaimerKey={disclaimerKey}
-      />
+      <VerticalCatalogContent verticalSlug={verticalSlug} />
     </VerticalPageShell>
   );
 }

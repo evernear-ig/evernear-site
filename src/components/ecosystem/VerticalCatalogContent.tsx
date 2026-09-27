@@ -16,13 +16,11 @@ import type { VerticalSlug } from "@/lib/ecosystem/verticals";
 type VerticalCatalogContentProps = {
   verticalSlug: VerticalSlug;
   beforeFilters?: ReactNode;
-  disclaimerKey?: string;
 };
 
 export function VerticalCatalogContent({
   verticalSlug,
   beforeFilters,
-  disclaimerKey = "legal.vertical.disclaimer",
 }: VerticalCatalogContentProps) {
   const config = getVerticalCatalog(verticalSlug);
   const [city, setCity] = useState("all");
@@ -38,9 +36,6 @@ export function VerticalCatalogContent({
 
   return (
     <>
-      <p className="eco-disclaimer">
-        <T k={disclaimerKey} />
-      </p>
       {beforeFilters}
       <p className="sport-coming-lead">
         <T k={config.comingLeadKey} />
@@ -100,9 +95,6 @@ export function VerticalCatalogContent({
           ))}
         </ul>
       )}
-      <p className="eco-disclaimer eco-disclaimer--muted">
-        <T k={config.comingNoteKey} />
-      </p>
     </>
   );
 }

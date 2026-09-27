@@ -2,9 +2,6 @@ import { VerticalCatalogPage } from "@/components/ecosystem/VerticalCatalogPage"
 
 export default function SolidaridadPage() {
   return (
-    <VerticalCatalogPage
-      verticalSlug="solidaridad"
-      disclaimerKey="legal.solidarity.disclaimer"
-    />
+    <VerticalCatalogPage verticalSlug="solidaridad" />
   );
 }

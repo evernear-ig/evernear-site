@@ -16,7 +16,6 @@ export const SLUG_TO_PREFIX: Record<VerticalSlug, string> = {
   innovacion: "innovation",
 };
 
-export type GuideStep = { title: string; body: string };
 export type AudienceItem = { title: string; sub: string };
 
 export type VerticalCatalogConfig = {
@@ -28,14 +27,11 @@ export type VerticalCatalogConfig = {
   categoryFilterLabelKey: string;
   categoryOptions: { value: string; labelKey: string }[];
   audienceItems: readonly AudienceItem[];
-  pathSteps: readonly GuideStep[];
   quoteKey: string;
   ctaKey: string;
-  disclaimerKey: string;
   comingLeadKey: string;
   comingFilterNoteKey: string;
   comingEmptyKey: string;
-  comingNoteKey: string;
   listings: typeof VERTICAL_LISTINGS[VerticalSlug];
 };
 
@@ -45,15 +41,6 @@ const CITY_FILTER = [
   { value: "foz", labelKey: "city.foz.b" },
   { value: "cde", labelKey: "city.cde.b" },
 ] as const;
-
-function guideSteps(prefix: string): readonly GuideStep[] {
-  return [
-    { title: `${prefix}.guide.s1`, body: `${prefix}.guide.s1.p` },
-    { title: `${prefix}.guide.s2`, body: `${prefix}.guide.s2.p` },
-    { title: `${prefix}.guide.s3`, body: `${prefix}.guide.s3.p` },
-    { title: `${prefix}.guide.s4`, body: `${prefix}.guide.s4.p` },
-  ] as const;
-}
 
 function joinFocusOptions(track: JoinTrack, limit = 10) {
   return JOIN_TRACKS[track].focusAreas.slice(0, limit).map((item) => ({
@@ -372,14 +359,11 @@ function buildConfig(slug: VerticalSlug): VerticalCatalogConfig {
     categoryFilterLabelKey: category.labelKey,
     categoryOptions: category.options,
     audienceItems: AUDIENCE_BY_SLUG[slug],
-    pathSteps: guideSteps(prefix),
     quoteKey: `${prefix}.guide.q`,
     ctaKey: `${prefix}.guide.cta`,
-    disclaimerKey: `${prefix}.guide.disclaimer`,
     comingLeadKey: `${prefix}.coming.p`,
     comingFilterNoteKey: `${prefix}.coming.filter.note`,
     comingEmptyKey: `${prefix}.coming.empty`,
-    comingNoteKey: `${prefix}.coming.note`,
     listings: VERTICAL_LISTINGS[slug],
   };
 }

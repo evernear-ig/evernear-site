@@ -46,7 +46,6 @@ const OBSTACLE_SELECTOR = [
   ".eco-catalog-head",
   ".eco-filters",
   ".eco-filter",
-  ".eco-disclaimer-bar",
   ".path",
   ".list-lg",
   ".quote",

@@ -25,23 +25,16 @@ export function VerticalPageShell({
   return (
     <SiteShell>
       <main id="main" className="eco-page">
-        <VerticalHero
-          slug={vertical.slug}
-          accent={vertical.accent}
-          imageKey={vertical.imageKey}
-          titleKey={vertical.titleKey}
-          leadKey={vertical.leadKey}
-        />
-        {vertical.informational ? (
-          <section className="light eco-disclaimer-bar">
-            <div className="wrap">
-              <p className="eco-disclaimer">
-                <T k="legal.vertical.disclaimer" />
-              </p>
-            </div>
-          </section>
-        ) : null}
-        {beforeCatalog}
+        <div className={beforeCatalog ? "eco-fold" : undefined}>
+          <VerticalHero
+            slug={vertical.slug}
+            accent={vertical.accent}
+            imageKey={vertical.imageKey}
+            titleKey={vertical.titleKey}
+            leadKey={vertical.leadKey}
+          />
+          {beforeCatalog}
+        </div>
         <ScrollSection>
           <section className="light eco-body eco-catalog">
             <div className="wrap">
