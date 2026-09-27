@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CityBadge } from "./CityBadge";
 import { FilterBar } from "./FilterBar";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
@@ -33,6 +33,25 @@ export function VerticalCatalogContent({
       return true;
     });
   }, [city, category, config.listings]);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll(
+      ".eco-catalog-head, .sport-coming-lead, .eco-entity-grid > li",
+    );
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -6% 0px" },
+    );
+    nodes.forEach((node) => io.observe(node));
+    return () => io.disconnect();
+  }, [filtered]);
 
   return (
     <>

@@ -4,6 +4,7 @@ import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
 import { T } from "@/components/trinexus/ui/T";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 import { VerticalHero } from "./VerticalHero";
+import { EcoFoldMotion } from "./EcoFoldMotion";
 import { VerticalNavStrip } from "./VerticalNavStrip";
 
 type VerticalPageShellProps = {
@@ -34,6 +35,7 @@ export function VerticalPageShell({
             leadKey={vertical.leadKey}
           />
           {beforeCatalog}
+          {beforeCatalog ? <EcoFoldMotion /> : null}
         </div>
         <ScrollSection>
           <section className="light eco-body eco-catalog">
