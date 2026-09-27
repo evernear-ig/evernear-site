@@ -32,12 +32,16 @@ export function AboutSlidesPage({
   const footer =
     footerLinks && footerLinks.length > 0 ? (
       <nav className="about-full-links" aria-label="Related">
-        <ul>
+        <ul className="btns">
           {footerLinks.map((link) => (
             <li key={link.href}>
               <TransitionLink
                 href={link.href}
-                transition={link.href.startsWith("#") || link.href.startsWith("/#") ? "fade" : "forward"}
+                transition={
+                  link.href.startsWith("#") || link.href.startsWith("/#")
+                    ? "fade"
+                    : "forward"
+                }
                 className="btn btn-ghost btn-sm"
               >
                 <T k={link.key} />
@@ -58,57 +62,53 @@ export function AboutSlidesPage({
       </div>
 
       <div className="wrap eco-hero-content about-full-content">
-        <div className="about-full-stack">
-          <header className="about-full-head">
-            <h1 className="h-xl">
-              <T k={titleKey} />
-            </h1>
-            {leadKey ? (
-              <p className="lead">
-                <T k={leadKey} />
-              </p>
-            ) : null}
-            {introKey ? (
-              <p className="about-full-intro">
-                <T k={introKey} />
-              </p>
-            ) : null}
-          </header>
+        <header className="about-full-head sec-head sec-head--center">
+          <h1 className="h-xl">
+            <T k={titleKey} />
+          </h1>
+          {leadKey ? (
+            <p className="lead">
+              <T k={leadKey} />
+            </p>
+          ) : null}
+          {introKey ? (
+            <p className="about-full-intro">
+              <T k={introKey} />
+            </p>
+          ) : null}
+          {footer}
+        </header>
 
-          <div className="about-full-chapters">
-            {blocks.map((block) => (
-              <article key={block.titleKey} className="about-full-slide">
-                <h2 className="about-full-slide-title">
-                  <T k={block.titleKey} />
-                </h2>
-                {block.deckKey ? (
-                  <p className="about-full-slide-deck">
-                    <T k={block.deckKey} />
-                  </p>
-                ) : null}
-                {block.list ? (
-                  <div className="about-full-slide-body">
-                    <ul className="about-full-slide-list">
-                      {block.bodyKeys.map((key) => (
-                        <li key={key}>
-                          <T k={key} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <div className="about-full-slide-body">
-                    {block.bodyKeys.map((key) => (
-                      <p key={key}>
-                        <T k={key} />
-                      </p>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
-            {footer}
-          </div>
+        <div className="about-full-pillars">
+          {blocks.map((block) => (
+            <article key={block.titleKey} className="about-pillar">
+              <h2 className="about-pillar-title">
+                <T k={block.titleKey} />
+              </h2>
+              {block.deckKey ? (
+                <p className="about-pillar-deck">
+                  <T k={block.deckKey} />
+                </p>
+              ) : null}
+              {block.list ? (
+                <ul className="about-pillar-list">
+                  {block.bodyKeys.map((key) => (
+                    <li key={key}>
+                      <T k={key} />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="about-pillar-body">
+                  {block.bodyKeys.map((key) => (
+                    <p key={key}>
+                      <T k={key} />
+                    </p>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -293,9 +293,17 @@
 }
 
 .historias-form--cta{display:flex;justify-content:flex-start;padding-top:8px}
-.historias-form__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:8px}
-.historias-form__head h2{margin:0}
-.historias-form__dismiss{font-family:var(--font-head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:0;background:transparent;color:var(--ink-2);cursor:pointer;padding:8px 0;min-height:44px}
+.modal-box--story{max-width:820px}
+.historias-form--modal{margin-top:4px}
+.modal-box .historias-form--modal label{font-family:var(--font-head);font-size:.82rem;font-weight:500;letter-spacing:.02em;color:var(--text-on-dark)}
+.modal-box .historias-form--modal input,.modal-box .historias-form--modal select,.modal-box .historias-form--modal textarea{font:inherit;padding:13px 14px;border:1px solid var(--line);background:rgba(7,11,26,.55);color:var(--white);border-radius:6px;transition:border-color .2s,box-shadow .2s;width:100%}
+.modal-box .historias-form--modal input::placeholder,.modal-box .historias-form--modal textarea::placeholder{color:rgba(184,189,203,.72)}
+.modal-box .historias-form--modal input:focus-visible,.modal-box .historias-form--modal select:focus-visible,.modal-box .historias-form--modal textarea:focus-visible{border-color:var(--green);outline:2px solid var(--green);outline-offset:2px;box-shadow:none}
+.modal-box .historias-form--modal select option{background:var(--space-2);color:var(--white)}
+.modal-box .historias-form--modal .historias-form__upload-hint{color:var(--text-on-dark-muted)}
+.modal-box .historias-form--modal .historias-form__mode{border-color:var(--line);color:var(--text-on-dark-muted)}
+.modal-box .historias-form--modal .historias-form__mode.is-active{border-color:var(--green);color:var(--white);background:rgba(46,229,157,.12)}
+.modal-box .historias-form--modal .btn{width:100%;margin-top:8px}
 
 .historias-form__grid {
   display: grid;

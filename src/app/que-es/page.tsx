@@ -36,7 +36,6 @@ export default function QueEsPage() {
             },
           ]}
           footerLinks={[
-            { href: "#informacion", key: "nav.information" },
             { href: "#historias", key: "nav.stories" },
             { href: "#join", key: "nav.join.cta" },
           ]}

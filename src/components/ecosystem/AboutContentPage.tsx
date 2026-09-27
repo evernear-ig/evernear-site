@@ -10,6 +10,7 @@ import { T } from "@/components/trinexus/ui/T";
 type AboutContentPageProps = {
   titleKey: string;
   leadKey?: string;
+  introKey?: string;
   heroImageKey?: string;
   blocks?: readonly SlideBlock[];
   footerLinks?: readonly { href: string; key: string }[];
@@ -19,6 +20,7 @@ type AboutContentPageProps = {
 export function AboutContentPage({
   titleKey,
   leadKey,
+  introKey,
   heroImageKey = "about.vision",
   blocks = [],
   footerLinks,
@@ -31,6 +33,7 @@ export function AboutContentPage({
           <AboutSlidesPage
             titleKey={titleKey}
             leadKey={leadKey}
+            introKey={introKey}
             heroImageKey={heroImageKey}
             blocks={blocks}
             footerLinks={footerLinks}

@@ -96,14 +96,6 @@ const ABOUT_FULL_SECTIONS: ConexaSectionConfig[] = [
     stepKey: "journey.about.slideStep",
   },
   {
-    key: "about-info",
-    id: "informacion",
-    pose: "globe",
-    concept: "default",
-    tipKey: "journey.about.tip",
-    stepKey: "journey.about.step",
-  },
-  {
     key: "about-stories",
     id: "historias",
     pose: "peace",

@@ -163,15 +163,13 @@ export const ECOSYSTEM_NAV_LINKS = ECOSYSTEM_VERTICALS.map((v) => ({
 
 export const ABOUT_NAV_LINKS = [
   { href: "/que-es", key: "nav.vision" },
-  { href: "/que-es#informacion", key: "nav.information" },
   { href: "/que-es#join", key: "nav.join.cta" },
 ] as const;
 
 export const COMMUNITY_NAV_LINKS = [
   { href: "/que-es", key: "nav.about" },
-  { href: "/que-es#informacion", key: "nav.information" },
   { href: "/que-es#historias", key: "nav.stories" },
   { href: "/que-es#join", key: "nav.join.cta" },
-  { href: "/que-es#terminos", key: "legal.terms" },
-  { href: "/que-es#privacidad", key: "legal.privacy" },
+  { href: "/terminos", key: "legal.terms" },
+  { href: "/privacidad", key: "legal.privacy" },
 ] as const;
