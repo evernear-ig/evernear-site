@@ -986,7 +986,7 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-hero-photo img,.ph.eco-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.28;filter:saturate(.4) brightness(.8)}
 .eco-fold>.eco-hero:not(.eco-hero--sport) .eco-hero-photo img,.eco-fold>.eco-hero:not(.eco-hero--sport) .ph.eco-hero-photo img{opacity:.5;filter:saturate(.62) brightness(.9) contrast(1.04)}
 .eco-fold>.eco-hero:not(.eco-hero--sport) .eco-hero-veil{background:linear-gradient(180deg,rgba(7,11,26,.58) 0%,rgba(7,11,26,.66) 36%,rgba(7,11,26,.9) 78%,rgba(7,11,26,.97) 100%),linear-gradient(102deg,rgba(7,11,26,.92) 0%,rgba(7,11,26,.74) 36%,rgba(7,11,26,.28) 70%,rgba(7,11,26,.08) 100%)}
-.eco-fold>.eco-hero.eco-stage{height:424px;min-height:424px;max-height:424px;display:flex;align-items:flex-end;border-top:0}
+.eco-fold>.eco-hero.eco-stage{height:424px;min-height:424px;max-height:424px;display:flex;align-items:flex-start;border-top:0}
 .eco-fold>.eco-hero.eco-stage .eco-hero-photo img,.eco-fold>.eco-hero.eco-stage .ph.eco-hero-photo img{opacity:1;filter:saturate(1.08) contrast(1.06) brightness(1)}
 .eco-fold>.eco-hero.eco-stage .eco-hero-veil{background:linear-gradient(95deg,rgba(7,11,26,.82) 0%,rgba(7,11,26,.55) 32%,rgba(7,11,26,.12) 58%,rgba(7,11,26,.08) 100%)}
 .eco-stage-arcs{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 42%,#000 70%);mask-image:linear-gradient(90deg,transparent 0%,transparent 42%,#000 70%)}
@@ -1005,7 +1005,7 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 @media (hover:hover) and (pointer:fine){.btn-stage:hover{background:rgba(46,229,157,.12);color:var(--green);box-shadow:none}}
 .eco-stage-aside{margin:0;justify-self:end;align-self:center;max-width:13ch;font-family:var(--font-head);font-size:clamp(.78rem,.85vw,.92rem);font-weight:600;letter-spacing:.1em;line-height:1.4;text-transform:uppercase;color:var(--white);text-wrap:balance;text-shadow:0 1px 12px rgba(7,11,26,.65)}
 .eco-stage-aside::after{content:"";display:block;width:36px;height:1px;margin-top:14px;background:rgba(46,229,157,.7)}
-.eco-fold>.eco-hero.eco-stage .eco-hero-content{padding-bottom:10px}
+.eco-fold>.eco-hero.eco-stage .eco-hero-content{max-width:1360px;padding-top:calc(var(--nav-h) + 18px);padding-bottom:28px;padding-left:clamp(16px,2.2vw,32px);padding-right:clamp(16px,2.2vw,32px)}
 .eco-aud-label{display:flex;align-items:center;gap:12px;margin:0 0 8px;font-family:var(--font-head);font-size:.72rem;font-weight:600;letter-spacing:.18em;line-height:1.2;text-transform:uppercase;color:var(--ink-2)}
 .eco-aud-label::before{content:"";width:28px;height:1px;background:var(--green);flex:none}
 .eco-fold>.eco-narrative .wrap{max-width:1360px;padding-left:clamp(16px,2.2vw,32px);padding-right:clamp(16px,2.2vw,32px)}
