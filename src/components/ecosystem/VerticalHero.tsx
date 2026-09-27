@@ -2,12 +2,10 @@
 
 import type { CSSProperties } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 import { T } from "@/components/trinexus/ui/T";
 import { ecoViewTransitionName } from "@/lib/eco-vt-name";
-import type { JoinTrack } from "@/lib/join-tracks";
 
 type VerticalHeroProps = {
   slug: string;
@@ -16,12 +14,9 @@ type VerticalHeroProps = {
   titleKey: string;
   leadKey: string;
   stage?: boolean;
-  exploreKey?: string;
-  joinKey?: string;
   asideKey?: string;
   /** When true, the aside is the bold sentence inside an HTML quote. */
   asideFromQuote?: boolean;
-  joinTrack?: JoinTrack;
 };
 
 function StageTitle({ titleKey }: { titleKey: string }) {
@@ -60,11 +55,8 @@ export function VerticalHero({
   titleKey,
   leadKey,
   stage = false,
-  exploreKey,
-  joinKey,
   asideKey,
   asideFromQuote = false,
-  joinTrack,
 }: VerticalHeroProps) {
   const vtName = ecoViewTransitionName(slug);
 
@@ -107,18 +99,6 @@ export function VerticalHero({
           <p className="lead">
             <T k={leadKey} />
           </p>
-          {stage && exploreKey && joinKey ? (
-            <div className="eco-stage-actions">
-              <a className="btn btn-stage" href="#catalogo">
-                <T k={exploreKey} />
-              </a>
-              <JoinButton
-                className="btn btn-stage"
-                labelKey={joinKey}
-                prefill={joinTrack ? { track: joinTrack } : undefined}
-              />
-            </div>
-          ) : null}
         </div>
         {stage && asideKey ? (
           <StageAside asideKey={asideKey} asideFromQuote={asideFromQuote} />

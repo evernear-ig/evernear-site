@@ -36,11 +36,8 @@ export function VerticalPageShell({
             titleKey={vertical.titleKey}
             leadKey={vertical.leadKey}
             stage={Boolean(catalog)}
-            exploreKey={vertical.slug === "deporte" ? "sport.hero.explore" : "cta.fold.explore"}
-            joinKey={vertical.slug === "deporte" ? "sport.hero.join" : catalog?.ctaKey}
             asideKey={vertical.slug === "deporte" ? "sport.hero.aside" : catalog?.quoteKey}
             asideFromQuote={vertical.slug !== "deporte"}
-            joinTrack={catalog?.joinTrack}
           />
           {beforeCatalog}
           {beforeCatalog ? <EcoFoldMotion /> : null}
