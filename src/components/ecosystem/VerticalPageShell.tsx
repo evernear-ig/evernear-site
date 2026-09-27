@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import { SiteShell } from "@/components/trinexus/SiteShell";
 import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
 import { T } from "@/components/trinexus/ui/T";
-import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
+import { getVerticalCatalog } from "@/lib/ecosystem/vertical-catalog";
+import { ECOSYSTEM_VERTICALS, type VerticalSlug } from "@/lib/ecosystem/verticals";
 import { VerticalHero } from "./VerticalHero";
 import { EcoFoldMotion } from "./EcoFoldMotion";
 import { VerticalNavStrip } from "./VerticalNavStrip";
@@ -22,6 +23,7 @@ export function VerticalPageShell({
 }: VerticalPageShellProps) {
   const vertical = ECOSYSTEM_VERTICALS.find((v) => v.slug === verticalSlug);
   if (!vertical) return null;
+  const catalog = beforeCatalog ? getVerticalCatalog(vertical.slug as VerticalSlug) : null;
 
   return (
     <SiteShell>
@@ -33,12 +35,18 @@ export function VerticalPageShell({
             imageKey={vertical.imageKey}
             titleKey={vertical.titleKey}
             leadKey={vertical.leadKey}
+            stage={Boolean(catalog)}
+            exploreKey={vertical.slug === "deporte" ? "sport.hero.explore" : "cta.fold.explore"}
+            joinKey={vertical.slug === "deporte" ? "sport.hero.join" : catalog?.ctaKey}
+            asideKey={vertical.slug === "deporte" ? "sport.hero.aside" : catalog?.quoteKey}
+            asideFromQuote={vertical.slug !== "deporte"}
+            joinTrack={catalog?.joinTrack}
           />
           {beforeCatalog}
           {beforeCatalog ? <EcoFoldMotion /> : null}
         </div>
         <ScrollSection>
-          <section className="light eco-body eco-catalog">
+          <section id="catalogo" className="light eco-body eco-catalog">
             <div className="wrap">
               {catalogDividerKey ? (
                 <header className="eco-catalog-head">

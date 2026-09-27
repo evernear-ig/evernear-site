@@ -51,10 +51,10 @@ function joinFocusOptions(track: JoinTrack, limit = 10) {
 
 const AUDIENCE_BY_SLUG: Record<VerticalSlug, readonly AudienceItem[]> = {
   deporte: [
-    { title: "join.org.sport.club", sub: "sport.guide.a1.s" },
-    { title: "join.org.sport.athlete", sub: "sport.guide.a2.s" },
-    { title: "sport.guide.a3", sub: "sport.guide.a3.s" },
-    { title: "join.org.sport.sponsor", sub: "sport.guide.a4.s" },
+    { title: "sport.aud.athlete", sub: "sport.aud.athlete.s" },
+    { title: "sport.aud.club", sub: "sport.aud.club.s" },
+    { title: "sport.aud.call", sub: "sport.aud.call.s" },
+    { title: "sport.aud.support", sub: "sport.aud.support.s" },
   ],
   salud: [
     { title: "join.org.health.hospital", sub: "health.guide.a1.s" },

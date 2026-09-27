@@ -15,10 +15,10 @@ export function EcoFoldMotion() {
     let frame = 0;
     const apply = () => {
       const progress = Math.min(1, Math.max(0, window.scrollY / RANGE));
-      const scale = 1.08 + progress * 0.08;
-      const shift = -2 + progress * 9;
+      const scale = 1.03 + progress * 0.05;
+      const shift = -1 + progress * 4;
       if (photo) photo.style.transform = `scale(${scale}) translate3d(0, ${shift}%, 0)`;
-      if (copy) copy.style.transform = `translate3d(0, ${(-28 * progress).toFixed(2)}px, 0)`;
+      if (copy) copy.style.transform = `translate3d(0, ${(-12 * progress).toFixed(2)}px, 0)`;
     };
 
     const onScroll = () => {
