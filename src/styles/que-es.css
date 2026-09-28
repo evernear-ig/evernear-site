@@ -19,7 +19,7 @@ section.qes .qes-inner{
   width:100%;
   display:flex;
   flex-direction:column;
-  gap:clamp(22px,3.6vh,40px);
+  gap:clamp(32px,4.8vh,48px);
 }
 section.qes .qes-head{text-align:center;max-width:40rem;margin:0 auto}
 section.qes .qes-title{
@@ -197,7 +197,7 @@ section.qes .qes-bars rect{fill:currentColor}
 @media (max-height:820px) and (min-width:981px){
   section.qes .qes-title{font-size:clamp(1.9rem,3.4vw,2.8rem)}
   section.qes .qes-lead{font-size:1rem}
-  section.qes .qes-inner{gap:18px}
+  section.qes .qes-inner{gap:24px}
   section.qes .qes-card{padding-top:16px;padding-bottom:36px}
   section.qes .qes-float{width:78px;height:66px;top:-16px}
 }
