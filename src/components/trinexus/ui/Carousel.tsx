@@ -11,7 +11,7 @@ import { useScrollJackCarousel } from "@/hooks/useScrollJackCarousel";
 import { useReveal } from "@/hooks/useReveal";
 
 export type CarouselVariant = "cards" | "panel" | "hero";
-export type CarouselDrive = "scroll" | "wheel" | "strip" | "held";
+export type CarouselDrive = "scroll" | "wheel" | "strip" | "held" | "snap";
 
 type CarouselBaseProps = {
   variant: CarouselVariant;
@@ -197,7 +197,8 @@ function CarouselStrip<T>({
   const rootClass = [
     "carousel",
     `carousel--${variant}`,
-    scrollJack ? "carousel--jack carousel--pan" : "carousel--drive-strip",
+    `carousel--drive-${drive}`,
+    scrollJack ? "carousel--jack carousel--pan" : "",
     scrollJack && isActive ? "is-active" : "",
     reveal ? "carousel--reveal rv" : "",
     className,

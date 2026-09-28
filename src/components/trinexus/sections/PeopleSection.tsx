@@ -122,7 +122,7 @@ export function PeopleSection() {
         </Reveal>
         <Carousel
           variant="cards"
-          drive="scroll"
+          drive="snap"
           className="people-carousel"
           ariaLabel="Personas de la comunidad"
           reveal={false}

@@ -53,7 +53,7 @@ export function EcosystemSection() {
           </Reveal>
           <Carousel
             variant="cards"
-            drive="scroll"
+            drive="snap"
             className="areas-carousel"
             ariaLabel="Vida y comunidad"
             reveal={false}
@@ -72,7 +72,7 @@ export function EcosystemSection() {
           </Reveal>
           <Carousel
             variant="cards"
-            drive="scroll"
+            drive="snap"
             className="areas-carousel"
             ariaLabel="Región y oportunidades"
             reveal={false}
