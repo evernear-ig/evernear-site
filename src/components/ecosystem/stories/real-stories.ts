@@ -10,6 +10,7 @@ export type RealStory = {
   accent: StoryAccent;
   imageSrc: string;
   imageAlt: string;
+  videoSrc?: string;
 };
 
 export const REAL_STORIES: RealStory[] = [
@@ -22,6 +23,7 @@ export const REAL_STORIES: RealStory[] = [
     accent: "cyan",
     imageSrc: "/images/people/people-developer.webp",
     imageAlt: "María en un espacio de trabajo, contando su historia de innovación",
+    videoSrc: "https://videos.pexels.com/video-files/4065633/4065633-sd_540_960_30fps.mp4",
   },
   {
     id: "ana-r",
@@ -32,6 +34,7 @@ export const REAL_STORIES: RealStory[] = [
     accent: "cyan",
     imageSrc: "/images/people/people-business.webp",
     imageAlt: "Ana en un puesto comercial, contando su historia de turismo",
+    videoSrc: "https://videos.pexels.com/video-files/3195394/3195394-sd_540_960_25fps.mp4",
   },
   {
     id: "lucas-m",
@@ -42,6 +45,7 @@ export const REAL_STORIES: RealStory[] = [
     accent: "cyan",
     imageSrc: "/images/people/people-student.webp",
     imageAlt: "Lucas estudiando, contando su historia de educación",
+    videoSrc: "https://videos.pexels.com/video-files/4936283/4936283-sd_360_640_24fps.mp4",
   },
   {
     id: "camila-v",
@@ -52,6 +56,7 @@ export const REAL_STORIES: RealStory[] = [
     accent: "magenta",
     imageSrc: "/images/people/people-creator.webp",
     imageAlt: "Camila grabando, contando su historia de comunicación",
+    videoSrc: "https://videos.pexels.com/video-files/5473806/5473806-sd_360_640_30fps.mp4",
   },
   {
     id: "diego-f",

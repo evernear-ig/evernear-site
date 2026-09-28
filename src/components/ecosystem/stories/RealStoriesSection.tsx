@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { CTAButton } from "@/components/ecosystem/stories/CTAButton";
 import { StoriesCarousel } from "@/components/ecosystem/stories/StoriesCarousel";
+import { StoryViewerModal } from "@/components/ecosystem/stories/StoryViewerModal";
 import { REAL_STORIES, type RealStory } from "@/components/ecosystem/stories/real-stories";
 
 type RealStoriesSectionProps = {
@@ -118,34 +118,14 @@ function NightLatamMap() {
 export function RealStoriesSection({ titleAs = "h2", onTellStory }: RealStoriesSectionProps) {
   const { t } = useI18n();
   const Title = titleAs;
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const lastFocus = useRef<HTMLElement | null>(null);
-  const wasOpen = useRef(false);
-  const [active, setActive] = useState<RealStory | null>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (active && !dialog.open) {
-      dialog.showModal();
-      closeRef.current?.focus();
-      wasOpen.current = true;
-      return;
-    }
-    if (!active && wasOpen.current) {
-      wasOpen.current = false;
-      if (dialog.open) dialog.close();
-      lastFocus.current?.focus();
-    }
-  }, [active]);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const openStory = (story: RealStory) => {
-    lastFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    setActive(story);
+    const index = REAL_STORIES.findIndex((item) => item.id === story.id);
+    setActiveIndex(index >= 0 ? index : 0);
   };
 
-  const closeStory = () => setActive(null);
+  const closeStory = () => setActiveIndex(null);
 
   return (
     <div className="rs">
@@ -171,6 +151,9 @@ export function RealStoriesSection({ titleAs = "h2", onTellStory }: RealStoriesS
           <Equalizer tone="magenta" />
         </span>
         <div className="rs-cta-slot">
+          <button type="button" className="rs-cta" onClick={() => setActiveIndex(0)}>
+            <span>{String(t("stories.reel.watch"))}</span>
+          </button>
           <CTAButton
             onClick={() => {
               closeStory();
@@ -180,48 +163,12 @@ export function RealStoriesSection({ titleAs = "h2", onTellStory }: RealStoriesS
         </div>
       </div>
 
-      <dialog
-        ref={dialogRef}
-        className="rs-dialog"
-        aria-labelledby={active ? "rs-dialog-title" : undefined}
+      <StoryViewerModal
+        stories={REAL_STORIES}
+        index={activeIndex}
         onClose={closeStory}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) closeStory();
-        }}
-      >
-        {active ? (
-          <div className="rs-dialog__box">
-            <button
-              ref={closeRef}
-              type="button"
-              className="rs-dialog__close"
-              onClick={closeStory}
-              aria-label={String(t("a11y.close"))}
-            >
-              ×
-            </button>
-            <div className={`rs-dialog__stage rs-dialog__stage--${active.accent}`}>
-              <Image
-                src={active.imageSrc}
-                alt={active.imageAlt}
-                fill
-                sizes="420px"
-                className="rs-dialog__img"
-              />
-              <div className="rs-dialog__hold">
-                <p>{String(t(active.kind === "video" ? "stories.media.video" : "stories.media.photo"))}</p>
-              </div>
-            </div>
-            <h3 id="rs-dialog-title" className="rs-dialog__name">
-              {active.name}
-            </h3>
-            <p className="rs-dialog__summary">{active.summary}</p>
-            <p className={`rs-dialog__category rs-dialog__category--${active.accent}`}>
-              {String(t(active.categoryKey))}
-            </p>
-          </div>
-        ) : null}
-      </dialog>
+        onIndexChange={setActiveIndex}
+      />
     </div>
   );
 }

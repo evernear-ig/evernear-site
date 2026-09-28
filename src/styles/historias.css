@@ -868,6 +868,11 @@ main.eco-page.about-page.about-page--journey > section.about-journey-chapter.abo
   left: 50%;
   bottom: 0;
   z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: max-content;
   transform: translate(-50%, 50%);
   max-width: calc(100% - 28px);
 }
@@ -906,50 +911,31 @@ main.eco-page.about-page.about-page--journey > section.about-journey-chapter.abo
 
 .rs-card:focus-visible,
 .rs-cta:focus-visible,
-.rs-dialog__close:focus-visible {
+.rs-viewer__nav:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
 }
 
-.rs-dialog {
-  width: min(420px, calc(100vw - 32px));
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--rs-text);
+#storyViewerModal.modal {
+  align-items: safe center;
+  padding: calc(var(--nav-h) + 20px) 16px 20px;
+  box-sizing: border-box;
 }
 
-.rs-dialog::backdrop {
-  background: rgba(4, 8, 16, 0.78);
+.modal-box--viewer {
+  max-width: 480px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 68px;
 }
 
-.rs-dialog__box {
-  position: relative;
-  padding: 16px 16px 20px;
-  border-radius: 22px;
-  border: 1px solid rgba(25, 230, 200, 0.55);
-  background: #0a0f1a;
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45), 0 0 24px rgba(25, 230, 200, 0.22);
-}
-
-.rs-dialog__close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 2;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  background: rgba(10, 15, 26, 0.72);
-  color: #fff;
-  font-size: 1.4rem;
-  line-height: 1;
-}
-
-.rs-dialog__stage {
+.rs-viewer__stage {
   position: relative;
   aspect-ratio: 3 / 4;
-  max-height: min(52vh, 420px);
+  width: min(100%, 320px);
+  max-height: min(46dvh, 400px);
   margin-inline: auto;
   border-radius: 16px;
   overflow: hidden;
@@ -957,59 +943,73 @@ main.eco-page.about-page.about-page--journey > section.about-journey-chapter.abo
   background: #101826;
 }
 
-.rs-dialog__stage--magenta {
+.rs-viewer__stage--magenta {
   border-color: var(--rs-magenta);
 }
 
-.rs-dialog__img {
+.rs-viewer__img,
+.rs-viewer__video {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.rs-dialog__hold {
+.rs-viewer__img {
+  object-fit: cover;
+}
+
+.rs-viewer__nav {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
-  left: 10px;
-  z-index: 1;
-  margin: 0;
-  padding: 8px 10px;
-  border-radius: 12px;
+  top: 50%;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  transform: translateY(-50%);
   background: rgba(10, 15, 26, 0.72);
-  color: var(--rs-muted);
-  font-size: 0.82rem;
-  line-height: 1.35;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
 }
 
-.rs-dialog__hold p {
+.rs-viewer__nav--prev { left: 10px; }
+.rs-viewer__nav--next { right: 10px; }
+
+.rs-viewer__count {
+  margin: 10px 0 0;
+  color: var(--rs-muted, #b8c0cc);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.modal-box--viewer .rs-viewer__name {
   margin: 0;
-}
-
-.rs-dialog__name {
-  margin: 14px 0 0;
-  font-size: 1.15rem;
+  padding-right: 36px;
+  font-size: 1.35rem;
   letter-spacing: 0;
   text-transform: none;
+  color: var(--white);
 }
 
-.rs-dialog__summary {
-  margin: 6px 0 0;
-  color: var(--rs-muted);
-  font-size: 0.92rem;
-  line-height: 1.45;
+.rs-viewer__summary {
+  margin: 0;
+  color: var(--text-on-dark-muted, #b8c0cc);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.rs-dialog__category {
-  margin: 8px 0 0;
+.rs-viewer__category {
+  margin: 4px 0 0;
   font-family: var(--font-head);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--rs-cyan);
+  color: var(--rs-cyan, #19e6c8);
 }
 
-.rs-dialog__category--magenta {
-  color: var(--rs-magenta);
+.rs-viewer__category--magenta {
+  color: var(--rs-magenta, #d63cf0);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1073,10 +1073,36 @@ main.eco-page.about-page.about-page--journey > section.about-journey-chapter.abo
   .rs-eq--tl,
   .rs-eq--tr { top: 10px; }
 
+  .rs-panel {
+    padding-bottom: 20px;
+  }
+
+  .rs-rule,
+  .rs-eq--bl,
+  .rs-eq--br {
+    display: none;
+  }
+
+  .rs-cta-slot {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    margin-top: 16px;
+    transform: none;
+  }
+
   .rs-cta {
     padding: 12px 14px;
     letter-spacing: 0.04em;
     gap: 6px;
+  }
+
+  .rs {
+    padding-bottom: 28px;
   }
 }
 
