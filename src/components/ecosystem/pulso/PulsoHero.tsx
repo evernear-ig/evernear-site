@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { T } from "@/components/trinexus/ui/T";
 import type { PulsoEdition } from "@/lib/ecosystem/types";
+import { ConexaBitacoraModal } from "./ConexaBitacoraModal";
 
 type PulsoHeroProps = {
   edition: PulsoEdition;
@@ -14,6 +15,27 @@ type PulsoHeroProps = {
 export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
   const { lang } = useI18n();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: false });
+  const [isBitacoraOpen, setIsBitacoraOpen] = useState(false);
+  const [activeNoteIndex, setActiveNoteIndex] = useState(0);
+
+  const notes =
+    edition.mascotNotes && edition.mascotNotes.length > 0
+      ? edition.mascotNotes
+      : edition.mascotQuote
+        ? [edition.mascotQuote]
+        : [];
+
+  const currentNote = notes[activeNoteIndex] ?? notes[0] ?? "";
+
+  const handlePrevNote = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveNoteIndex((prev) => (prev > 0 ? prev - 1 : notes.length - 1));
+  };
+
+  const handleNextNote = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveNoteIndex((prev) => (prev < notes.length - 1 ? prev + 1 : 0));
+  };
 
   useEffect(() => {
     if (!nextPublishAt) return;
@@ -167,27 +189,149 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
               )}
             </div>
 
-            {/* Cápsula de Conexa con quote editorial */}
-            {edition.mascotQuote && (
-              <div className="pulso-mascot-card">
-                <div className="pulso-mascot-card__avatar">
-                  <Image
-                    src="/images/mascot/conexa-think.webp"
-                    alt="Conexa"
-                    width={56}
-                    height={56}
-                    className="pulso-mascot-card__img"
-                  />
+            {/* Cápsula de Conexa con quote editorial y acceso a la bitácora */}
+            {notes.length > 0 && (
+              <div
+                className="pulso-mascot-card pulso-mascot-card--interactive"
+                onClick={() => setIsBitacoraOpen(true)}
+                role="region"
+                aria-label="Apuntes de Conexa para esta edición"
+              >
+                <div className="pulso-mascot-card__top">
+                  <div className="pulso-mascot-card__avatar-area">
+                    <div className="pulso-mascot-card__avatar">
+                      <Image
+                        src="/images/mascot/conexa-think.webp"
+                        alt="Conexa"
+                        width={48}
+                        height={48}
+                        className="pulso-mascot-card__img"
+                      />
+                    </div>
+                    <span className="pulso-mascot-card__dot" aria-hidden="true" />
+                  </div>
+
+                  <div className="pulso-mascot-card__header-info">
+                    <span className="pulso-mascot-card__badge">NOTA DE CONEXA</span>
+                    {notes.length > 1 && (
+                      <span className="pulso-mascot-card__counter">
+                        {activeNoteIndex + 1} de {notes.length}
+                      </span>
+                    )}
+                  </div>
+
+                  {notes.length > 1 && (
+                    <div
+                      className="pulso-mascot-card__nav"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <button
+                        type="button"
+                        className="pulso-mascot-card__nav-btn"
+                        onClick={handlePrevNote}
+                        aria-label="Nota anterior de Conexa"
+                      >
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        className="pulso-mascot-card__nav-btn"
+                        onClick={handleNextNote}
+                        aria-label="Siguiente nota de Conexa"
+                      >
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
                 </div>
+
                 <div className="pulso-mascot-card__balloon">
-                  <span className="pulso-mascot-card__badge">NOTA DE CONEXA</span>
-                  <p>{edition.mascotQuote}</p>
+                  <p className="pulso-mascot-card__quote">“{currentNote}”</p>
+                </div>
+
+                <div className="pulso-mascot-card__action">
+                  <button
+                    type="button"
+                    className="pulso-mascot-card__read-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsBitacoraOpen(true);
+                    }}
+                  >
+                    <span>Leer bitácora completa</span>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             )}
           </div>
         </div>
+
+        {/* Scroll cue / enlace al reproductor de stream */}
+        <div className="pulso-hero__bottom">
+          <a href="#pulso-stream" className="pulso-hero__scroll-cue" aria-label="Ir a la transmisión en directo">
+            <span>Ir a la transmisión en directo</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 5v14" />
+              <path d="m19 12-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
       </div>
+
+      {/* Modal editorial de lectura completa */}
+      <ConexaBitacoraModal
+        isOpen={isBitacoraOpen}
+        onClose={() => setIsBitacoraOpen(false)}
+        edition={edition}
+      />
     </header>
   );
 }

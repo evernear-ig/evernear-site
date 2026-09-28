@@ -53,7 +53,7 @@ export function PulsoStreamPlayer({
   }, [reactions]);
 
   return (
-    <section className="pulso-stream-stage" aria-label="Transmisión en vivo">
+    <section id="pulso-stream" className="pulso-stream-stage" aria-label="Transmisión en vivo">
       <div className="wrap">
         <div className="pulso-stream-frame">
           {/* Top stream header bar */}

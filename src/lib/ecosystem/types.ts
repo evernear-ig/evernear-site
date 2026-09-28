@@ -159,6 +159,19 @@ export type PulsoRundownSegment = {
   itemId?: string;
 };
 
+export type ConexaMascotEditorial = {
+  title: string;
+  dateLabel?: string;
+  intro: string;
+  paragraphs: string[];
+  keyTakeaways?: {
+    cityId?: CityId;
+    topic: string;
+    description: string;
+  }[];
+  signOff?: string;
+};
+
 export type PulsoEdition = {
   weekKey: string;
   editionNumber?: number;
@@ -166,6 +179,8 @@ export type PulsoEdition = {
   headline: string;
   lead: string;
   mascotQuote?: string;
+  mascotNotes?: string[];
+  mascotEditorial?: ConexaMascotEditorial;
   coverItemId?: string;
   streamStatus?: PulsoStreamStatus;
   streamUrl?: string;

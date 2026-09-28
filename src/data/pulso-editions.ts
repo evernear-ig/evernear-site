@@ -8,6 +8,39 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
     headline: "Pulso Live #40: Especial innovación transfronteriza, ferias gastronómicas y nuevas becas de IA",
     lead: "La transmisión semanal en directo donde repasamos todo lo que está pasando en Puerto Iguazú (AR), Foz do Iguaçu (BR) y Ciudad del Este (PY). Tres ciudades, una sola comunidad.",
     mascotQuote: "¡Bienvenidos al streaming de la frontera! Conectate y explorá cada novedad con nosotros.",
+    mascotNotes: [
+      "¡Bienvenidos al streaming de la frontera! Conectate y explorá cada novedad con nosotros.",
+      "El puente Tancredo Neves registra cruce ágil hoy; ideal si vas al meetup de builders en Iguazú.",
+      "Semana clave para estudiantes: abrieron 40 becas en IA en Foz con postulación tripartita.",
+    ],
+    mascotEditorial: {
+      title: "Bitácora de Conexa · Edición #40",
+      dateLabel: "Viernes 2 de Octubre, 2026",
+      intro: "Esta semana sentí la energía de la Triple Frontera más viva que nunca. Los puentes no son solo cemento sobre el río: son arterias por donde fluye curiosidad, proyectos conjuntos y un talento que desborda las fronteras tradicionales.",
+      paragraphs: [
+        "En Puerto Iguazú me encontré con la comunidad tecnológica preparando el primer encuentro abierto de builders. Es emocionante ver cómo programadores locales y guías turísticos se están uniendo para crear recorridos nocturnos con mapas interactivos.",
+        "Cruzando hacia Ciudad del Este, el pulso comercial dio un paso adelante: pequeños comerciantes y feriantes están testeando soluciones de cobro simplificado para que cruzar de país no signifique perder tiempo calculando tres divisas distintas.",
+        "Y en Foz do Iguaçu, la apertura de las becas en Inteligencia Artificial aplicada a la biodiversidad demuestra que acá no esperamos que las oportunidades vengan de afuera: las estamos diseñando entre todos.",
+      ],
+      keyTakeaways: [
+        {
+          cityId: "pi",
+          topic: "Selva tech y comunidad",
+          description: "Meetup abierto de creadores y nuevo circuito nocturno sustentable.",
+        },
+        {
+          cityId: "cde",
+          topic: "Economía ágil y cercanía",
+          description: "Hackathon de micro-remesas y feria gastronómica comunitaria.",
+        },
+        {
+          cityId: "foz",
+          topic: "Formación de vanguardia",
+          description: "Bootcamp binacional de IA y fixtures de la Copa Frontera de Futsal.",
+        },
+      ],
+      signOff: "Conexa · Guardiana del pulso trinacional",
+    },
     coverItemId: "pulso-1",
     streamStatus: "live",
     streamDuration: "36:45",
@@ -74,6 +107,33 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
     headline: "Pulso Live #39: Startups del Parque Itaipú y Maratón de las Tres Ciudades",
     lead: "Reviví el programa de la semana pasada con la cobertura del Demo Day de startups y la ruta de artesanos originarios.",
     mascotQuote: "Si te perdiste el vivo, acá tenés la grabación completa capítulo por capítulo.",
+    mascotNotes: [
+      "Reviví las presentaciones del Demo Day de startups limpias en Foz do Iguaçu.",
+      "Gran iniciativa en Puerto Iguazú: circuitos guiados respetando a las comunidades originarias.",
+      "La maratón binacional ya abrió los primeros cupos con kit de remera sustentable.",
+    ],
+    mascotEditorial: {
+      title: "Bitácora de Conexa · Edición #39",
+      dateLabel: "Viernes 25 de Septiembre, 2026",
+      intro: "La semana #39 demostró que el deporte y la tecnología tienen el mismo poder: romper distancias y unir a personas con ganas de transformar su realidad.",
+      paragraphs: [
+        "Acompañé a los 8 equipos del Parque Tecnológico Itaipú durante sus demostraciones finales. Proyectos de energía solar distribuida y análisis satelital de la selva mostraron un nivel de ingeniería asombroso.",
+        "Además, la apertura de inscripciones para la carrera de los puentes conectará simbólicamente a miles de corredores cruzando fronteras a pie.",
+      ],
+      keyTakeaways: [
+        {
+          cityId: "foz",
+          topic: "Energía del futuro",
+          description: "Nuevas patentes y prototipos incubados en el Parque Tecnológico.",
+        },
+        {
+          cityId: "pi",
+          topic: "Raíces y turismo",
+          description: "Circuitos de comercio justo con artesanos locales.",
+        },
+      ],
+      signOff: "Conexa · Siempre mirando al horizonte",
+    },
     coverItemId: "pulso-w39-1",
     streamStatus: "replay",
     streamDuration: "31:20",
