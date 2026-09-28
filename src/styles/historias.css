@@ -303,13 +303,17 @@
 .modal-box .historias-form--modal .historias-form__upload-hint{color:var(--text-on-dark-muted)}
 .modal-box .historias-form--modal .historias-form__mode{border-color:var(--line);color:var(--text-on-dark-muted)}
 .modal-box .historias-form--modal .historias-form__mode.is-active{border-color:var(--green);color:var(--white);background:rgba(46,229,157,.12)}
-.modal-box .historias-form--modal .btn{width:100%;margin-top:8px}
+.modal-box .historias-form--modal .form-wizard__actions .btn{width:auto;margin-top:0;flex:1}
 
+.historias-form .eco-form{max-width:none}
 .historias-form__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
+.form-wizard__panel .historias-form__grid{margin-top:0}
+.form-wizard__panel label+label{margin-top:1rem}
+.form-wizard__panel .historias-form__grid label+label{margin-top:0}
 
 .historias-form__full {
   grid-column: 1 / -1;

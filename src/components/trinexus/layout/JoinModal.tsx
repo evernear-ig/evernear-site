@@ -10,10 +10,22 @@ import {
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
 import { JOIN_CITY_OPTIONS, JOIN_TRACKS } from "@/lib/join-tracks";
-import { ConexaMascotFallback } from "@/components/trinexus/ui/ConexaMascotFallback";
+import { FormWizard, reportStepValidity } from "@/components/trinexus/ui/FormWizard";
 import { T, THtml } from "@/components/trinexus/ui/T";
-import type { MascotPose } from "@/lib/mascot-poses";
 import { toast } from "sonner";
+
+const JOIN_PERSON_STEPS = [
+  { id: "you", titleKey: "join.wizard.you" },
+  { id: "profile", titleKey: "join.wizard.profile" },
+  { id: "more", titleKey: "join.wizard.more" },
+] as const;
+
+const JOIN_TRACK_STEPS = [
+  { id: "org", titleKey: "join.wizard.org" },
+  { id: "you", titleKey: "join.wizard.you" },
+  { id: "collab", titleKey: "join.wizard.collab" },
+  { id: "more", titleKey: "join.wizard.more" },
+] as const;
 
 const INTERESTS = [
   { value: "blockchain", label: "Blockchain" },
@@ -37,7 +49,10 @@ export function JoinModal() {
   const trackConfig = track ? JOIN_TRACKS[track] : null;
 
   const [success, setSuccess] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [step, setStep] = useState(0);
   const [errorKey, setErrorKey] = useState<string | null>(null);
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [orgName, setOrgName] = useState("");
   const [orgType, setOrgType] = useState("");
   const [cityZone, setCityZone] = useState("");
@@ -56,6 +71,8 @@ export function JoinModal() {
     if (!open) return;
 
     setSuccess(false);
+    setSending(false);
+    setStep(0);
     setErrorKey(null);
     setOrgName("");
     setOrgType("");
@@ -147,6 +164,19 @@ export function JoinModal() {
     }
   };
 
+  const wizardSteps = track ? JOIN_TRACK_STEPS : JOIN_PERSON_STEPS;
+
+  const goNext = () => {
+    if (!reportStepValidity(panelRefs.current[step])) return;
+    if (track && step === 2 && !collaboration.length) {
+      setErrorKey("err.required");
+      toast.error(String(t("err.required")));
+      return;
+    }
+    setErrorKey(null);
+    setStep((current) => Math.min(wizardSteps.length - 1, current + 1));
+  };
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorKey(null);
@@ -181,16 +211,23 @@ export function JoinModal() {
       const key = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? "err.email" : "err.required";
       setErrorKey(key);
       toast.error(String(t(key)));
-      if (!name) document.getElementById("fname")?.focus();
-      else if (!email) document.getElementById("femail")?.focus();
-      else if (track && !orgName.trim()) document.getElementById("forg")?.focus();
-      else if (track && !orgType) document.getElementById("forgtype")?.focus();
-      else if (!country) document.getElementById("fcountry")?.focus();
-      else if (!city) document.getElementById(track ? "fcitydetail" : "fcity")?.focus();
-      else if (!role) document.getElementById("frole")?.focus();
+      if (track && (!orgName.trim() || !orgType || !cityZone || (cityZone === "other" && !cityDetail.trim()))) setStep(0);
+      else if (!name || !email || !country || !city) setStep(track ? 1 : 0);
+      else if (!role) setStep(track ? 1 : 1);
+      else if (track && !collaboration.length) setStep(2);
+      window.setTimeout(() => {
+        if (!name) document.getElementById("fname")?.focus();
+        else if (!email) document.getElementById("femail")?.focus();
+        else if (track && !orgName.trim()) document.getElementById("forg")?.focus();
+        else if (track && !orgType) document.getElementById("forgtype")?.focus();
+        else if (!country) document.getElementById("fcountry")?.focus();
+        else if (!city) document.getElementById(track ? "fcitydetail" : "fcity")?.focus();
+        else if (!role) document.getElementById("frole")?.focus();
+      }, 50);
       return;
     }
 
+    setSending(true);
     const payload: Record<string, unknown> = {
       name,
       email,
@@ -226,7 +263,6 @@ export function JoinModal() {
 
   const titleKey = trackConfig ? trackConfig.titleKey : "form.h";
   const subKey = trackConfig ? trackConfig.subKey : "form.sub";
-  const modalPose: MascotPose = success ? "globe" : track ? "think" : "welcome";
 
   return (
     <div
@@ -240,7 +276,15 @@ export function JoinModal() {
     >
       <div className="modal-bg" onClick={closeJoin} aria-hidden="true" />
       <div className="modal-box" ref={modalBoxRef}>
-        <ConexaMascotFallback pose={modalPose} className="modal-mascot" alt="CONEXA" />
+        <span className="join-mark" aria-hidden="true">
+          <svg viewBox="0 0 120 88" fill="none">
+            <path d="M60 10 L106 78 H14 Z" stroke="currentColor" className="join-mark__line" strokeWidth="1.4" />
+            <circle cx="60" cy="52" r="7" className="join-mark__core" />
+            <circle cx="60" cy="10" r="3.2" className="join-mark__node" />
+            <circle cx="106" cy="78" r="3.2" className="join-mark__node" />
+            <circle cx="14" cy="78" r="3.2" className="join-mark__node" />
+          </svg>
+        </span>
         <button
           type="button"
           className="modal-close"
@@ -263,9 +307,20 @@ export function JoinModal() {
           </p>
           <form id="joinForm" ref={formRef} noValidate onSubmit={onSubmit}>
             {track ? <input type="hidden" name="partner_track" value={track} /> : null}
-            <div className="form-grid">
+            <FormWizard
+              steps={[...wizardSteps]}
+              step={step}
+              onStepSelect={setStep}
+              onBack={() => setStep((current) => Math.max(0, current - 1))}
+              onNext={goNext}
+              submitControl={
+                <button className="btn btn-ink" type="submit" disabled={sending}>
+                  <T k={sending ? "form.sending" : "cta.join"} />
+                </button>
+              }
+            >
               {track ? (
-                <>
+                <div ref={(el) => { panelRefs.current[0] = el; }} className="form-grid">
                   <div className="field full">
                     <label htmlFor="forg">
                       <T k="form.org" />
@@ -299,34 +354,6 @@ export function JoinModal() {
                       ))}
                     </select>
                   </div>
-                </>
-              ) : null}
-              <div className="field">
-                <label htmlFor="fname">
-                  <T k={track ? "form.contact" : "form.name"} />
-                </label>
-                <input id="fname" name="name" type="text" required autoComplete="name" />
-              </div>
-              <div className="field">
-                <label htmlFor="femail">
-                  <T k="form.email" />
-                </label>
-                <input id="femail" name="email" type="email" required autoComplete="email" />
-              </div>
-              <div className="field">
-                <label htmlFor="fcountry">
-                  <T k="form.country" />
-                </label>
-                <select id="fcountry" name="country" required defaultValue="">
-                  <option value="">{String(t("form.select"))}</option>
-                  <option value="AR">Argentina</option>
-                  <option value="BR">{String(t("c.br"))}</option>
-                  <option value="PY">Paraguay</option>
-                  <option value="other">{String(t("form.other"))}</option>
-                </select>
-              </div>
-              {track ? (
-                <>
                   <div className="field">
                     <label htmlFor="fcityzone">
                       <T k="form.city_zone" />
@@ -362,40 +389,135 @@ export function JoinModal() {
                       />
                     </div>
                   ) : null}
-                </>
+                </div>
               ) : (
-                <div className="field">
-                  <label htmlFor="fcity">
-                    <T k="form.city" />
-                  </label>
-                  <input id="fcity" name="city" type="text" required autoComplete="address-level2" />
+                <div ref={(el) => { panelRefs.current[0] = el; }} className="form-grid">
+                  <div className="field">
+                    <label htmlFor="fname">
+                      <T k="form.name" />
+                    </label>
+                    <input id="fname" name="name" type="text" required autoComplete="name" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="femail">
+                      <T k="form.email" />
+                    </label>
+                    <input id="femail" name="email" type="email" required autoComplete="email" spellCheck={false} inputMode="email" placeholder="tu@email.com…" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="fcountry">
+                      <T k="form.country" />
+                    </label>
+                    <select id="fcountry" name="country" required defaultValue="">
+                      <option value="">{String(t("form.select"))}</option>
+                      <option value="AR">Argentina</option>
+                      <option value="BR">{String(t("c.br"))}</option>
+                      <option value="PY">Paraguay</option>
+                      <option value="other">{String(t("form.other"))}</option>
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="fcity">
+                      <T k="form.city" />
+                    </label>
+                    <input id="fcity" name="city" type="text" required autoComplete="address-level2" />
+                  </div>
                 </div>
               )}
-              <div className="field full">
-                <label htmlFor="frole">
-                  <T k="form.role" />
-                </label>
-                <select
-                  id="frole"
-                  name="role"
-                  required
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                >
-                  <option value="">{String(t("form.select"))}</option>
-                  <option value="student">{String(t("r.student"))}</option>
-                  <option value="developer">{String(t("r.dev"))}</option>
-                  <option value="entrepreneur">{String(t("r.ent"))}</option>
-                  <option value="business">{String(t("r.biz"))}</option>
-                  <option value="company">{String(t("r.company"))}</option>
-                  <option value="university">{String(t("r.uni"))}</option>
-                  <option value="organization">{String(t("r.org"))}</option>
-                  <option value="community">{String(t("r.com"))}</option>
-                  <option value="other">{String(t("form.other"))}</option>
-                </select>
-              </div>
+
+              {track ? (
+                <div ref={(el) => { panelRefs.current[1] = el; }} className="form-grid">
+                  <div className="field">
+                    <label htmlFor="fname">
+                      <T k="form.contact" />
+                    </label>
+                    <input id="fname" name="name" type="text" required autoComplete="name" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="femail">
+                      <T k="form.email" />
+                    </label>
+                    <input id="femail" name="email" type="email" required autoComplete="email" spellCheck={false} inputMode="email" placeholder="tu@email.com…" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="fcountry">
+                      <T k="form.country" />
+                    </label>
+                    <select id="fcountry" name="country" required defaultValue="">
+                      <option value="">{String(t("form.select"))}</option>
+                      <option value="AR">Argentina</option>
+                      <option value="BR">{String(t("c.br"))}</option>
+                      <option value="PY">Paraguay</option>
+                      <option value="other">{String(t("form.other"))}</option>
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="frole">
+                      <T k="form.role" />
+                    </label>
+                    <select
+                      id="frole"
+                      name="role"
+                      required
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="">{String(t("form.select"))}</option>
+                      <option value="student">{String(t("r.student"))}</option>
+                      <option value="developer">{String(t("r.dev"))}</option>
+                      <option value="entrepreneur">{String(t("r.ent"))}</option>
+                      <option value="business">{String(t("r.biz"))}</option>
+                      <option value="company">{String(t("r.company"))}</option>
+                      <option value="university">{String(t("r.uni"))}</option>
+                      <option value="organization">{String(t("r.org"))}</option>
+                      <option value="community">{String(t("r.com"))}</option>
+                      <option value="other">{String(t("form.other"))}</option>
+                    </select>
+                  </div>
+                </div>
+              ) : (
+                <div ref={(el) => { panelRefs.current[1] = el; }} className="form-grid">
+                  <div className="field full">
+                    <label htmlFor="frole">
+                      <T k="form.role" />
+                    </label>
+                    <select
+                      id="frole"
+                      name="role"
+                      required
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="">{String(t("form.select"))}</option>
+                      <option value="student">{String(t("r.student"))}</option>
+                      <option value="developer">{String(t("r.dev"))}</option>
+                      <option value="entrepreneur">{String(t("r.ent"))}</option>
+                      <option value="business">{String(t("r.biz"))}</option>
+                      <option value="company">{String(t("r.company"))}</option>
+                      <option value="university">{String(t("r.uni"))}</option>
+                      <option value="organization">{String(t("r.org"))}</option>
+                      <option value="community">{String(t("r.com"))}</option>
+                      <option value="other">{String(t("form.other"))}</option>
+                    </select>
+                  </div>
+                  <div className="field full">
+                    <label>
+                      <THtml k="form.interests" />
+                    </label>
+                    <div className="check-grid">
+                      {INTERESTS.map((item) => (
+                        <label key={item.value}>
+                          <input type="checkbox" name="interests" value={item.value} />
+                          {"labelKey" in item ? <T k={item.labelKey} /> : item.label}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {track && trackConfig ? (
-                <>
+                <div ref={(el) => { panelRefs.current[2] = el; }} className="form-grid">
                   <div className="field full">
                     <label>
                       <THtml k="form.focus_areas" />
@@ -438,49 +560,63 @@ export function JoinModal() {
                       ))}
                     </div>
                   </div>
-                </>
+                </div>
               ) : (
-                <div className="field full">
-                  <label>
-                    <THtml k="form.interests" />
-                  </label>
-                  <div className="check-grid">
-                    {INTERESTS.map((item) => (
-                      <label key={item.value}>
-                        <input type="checkbox" name="interests" value={item.value} />
-                        {"labelKey" in item ? <T k={item.labelKey} /> : item.label}
-                      </label>
-                    ))}
+                <div ref={(el) => { panelRefs.current[2] = el; }} className="form-grid">
+                  <div className="field">
+                    <label htmlFor="flinkedin">
+                      <THtml k="form.linkedin" />
+                    </label>
+                    <input id="flinkedin" name="linkedin" type="url" placeholder="https://" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="fsite">
+                      <THtml k="form.site" />
+                    </label>
+                    <input id="fsite" name="website" type="url" placeholder="https://" />
+                  </div>
+                  <div className="field full">
+                    <label htmlFor="fq">
+                      <T k="form.q" />
+                    </label>
+                    <textarea
+                      id="fq"
+                      name="question"
+                      value={question}
+                      onChange={(e) => setQuestion(e.target.value)}
+                    />
                   </div>
                 </div>
               )}
-              <div className="field">
-                <label htmlFor="flinkedin">
-                  <THtml k="form.linkedin" />
-                </label>
-                <input id="flinkedin" name="linkedin" type="url" placeholder="https://" />
-              </div>
-              <div className="field">
-                <label htmlFor="fsite">
-                  <THtml k="form.site" />
-                </label>
-                <input id="fsite" name="website" type="url" placeholder="https://" />
-              </div>
-              <div className="field full">
-                <label htmlFor="fq">
-                  <T k="form.q" />
-                </label>
-                <textarea
-                  id="fq"
-                  name="question"
-                  value={question}
-                  onChange={(e) => setQuestion(e.target.value)}
-                />
-              </div>
-            </div>
-            <button className="btn btn-ink" type="submit">
-              <T k="cta.join" />
-            </button>
+
+              {track ? (
+                <div ref={(el) => { panelRefs.current[3] = el; }} className="form-grid">
+                  <div className="field">
+                    <label htmlFor="flinkedin">
+                      <THtml k="form.linkedin" />
+                    </label>
+                    <input id="flinkedin" name="linkedin" type="url" placeholder="https://" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="fsite">
+                      <THtml k="form.site" />
+                    </label>
+                    <input id="fsite" name="website" type="url" placeholder="https://" />
+                  </div>
+                  <div className="field full">
+                    <label htmlFor="fq">
+                      <T k="form.q" />
+                    </label>
+                    <textarea
+                      id="fq"
+                      name="question"
+                      value={question}
+                      onChange={(e) => setQuestion(e.target.value)}
+                    />
+                  </div>
+                </div>
+              ) : null}
+            </FormWizard>
             <p className="form-note" id="formError" role="alert" hidden={!errorKey}>
               {errorKey ? String(t(errorKey)) : ""}
             </p>

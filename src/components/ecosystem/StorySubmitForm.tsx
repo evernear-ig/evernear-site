@@ -7,6 +7,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { FormWizard, reportStepValidity } from "@/components/trinexus/ui/FormWizard";
 import { T } from "@/components/trinexus/ui/T";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 import { CITY_FILTER_OPTIONS } from "@/lib/ecosystem/vertical-catalog";
@@ -15,6 +16,12 @@ import { toast } from "sonner";
 type MediaMode = "video" | "photo";
 
 const MAX_MEDIA_BYTES = 20 * 1024 * 1024;
+
+const STORY_STEPS = [
+  { id: "media", titleKey: "stories.wizard.media" },
+  { id: "story", titleKey: "stories.wizard.story" },
+  { id: "you", titleKey: "stories.wizard.you" },
+] as const;
 
 type StorySubmitFormProps = {
   defaultOpen?: boolean;
@@ -33,17 +40,23 @@ export function StorySubmitForm({
     setOpenState(next);
     onOpenChange?.(next);
   };
+  const [step, setStep] = useState(0);
   const [mediaMode, setMediaMode] = useState<MediaMode>("video");
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const modalBoxRef = useRef<HTMLDivElement>(null);
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lastFocus = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setOpenState(defaultOpen);
   }, [defaultOpen]);
+
+  useEffect(() => {
+    if (!open) setStep(0);
+  }, [open]);
 
   useEffect(() => {
     return () => {
@@ -57,11 +70,6 @@ export function StorySubmitForm({
       document.body.style.overflow = "hidden";
       document.body.classList.add("join-modal-open");
       window.dispatchEvent(new Event("conexa:scroll-lock"));
-      window.setTimeout(() => {
-        modalBoxRef.current
-          ?.querySelector<HTMLElement>("input,textarea,select,button")
-          ?.focus();
-      }, 50);
     } else {
       document.body.style.overflow = "";
       document.body.classList.remove("join-modal-open");
@@ -162,8 +170,14 @@ export function StorySubmitForm({
     setPreviewUrl(URL.createObjectURL(file));
   }
 
+  function goNext() {
+    if (!reportStepValidity(panelRefs.current[step])) return;
+    setStep((current) => Math.min(STORY_STEPS.length - 1, current + 1));
+  }
+
   async function submitStory(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!reportStepValidity(panelRefs.current[step])) return;
     setSubmitting(true);
     const form = e.currentTarget;
     const fd = new FormData(form);
@@ -180,6 +194,7 @@ export function StorySubmitForm({
         form.reset();
         setPreviewUrl(null);
         onMediaModeChange("video");
+        setStep(0);
         setOpen(false);
       } else {
         toast.error(String(t("stories.form.error")));
@@ -239,139 +254,151 @@ export function StorySubmitForm({
             className="historias-form historias-form--modal"
             id="conta-tu-historia"
           >
-            <div
-              className="historias-form__media-toggle"
-              role="radiogroup"
-              aria-label="Tipo de archivo"
-            >
-              <button
-                type="button"
-                role="radio"
-                aria-checked={mediaMode === "video"}
-                className={`historias-form__mode${mediaMode === "video" ? " is-active" : ""}`}
-                onClick={() => onMediaModeChange("video")}
+            <form className="eco-form" noValidate onSubmit={submitStory}>
+              <FormWizard
+                steps={[...STORY_STEPS]}
+                step={step}
+                onStepSelect={setStep}
+                onBack={() => setStep((current) => Math.max(0, current - 1))}
+                onNext={goNext}
+                submitControl={
+                  <button type="submit" className="btn btn-green" disabled={submitting}>
+                    <T k={submitting ? "stories.form.sending" : "stories.form.submit"} />
+                  </button>
+                }
               >
-                <T k="stories.form.media.video" />
-              </button>
-              <button
-                type="button"
-                role="radio"
-                aria-checked={mediaMode === "photo"}
-                className={`historias-form__mode${mediaMode === "photo" ? " is-active" : ""}`}
-                onClick={() => onMediaModeChange("photo")}
-              >
-                <T k="stories.form.media.photo" />
-              </button>
-            </div>
+                <div ref={(el) => { panelRefs.current[0] = el; }}>
+                  <div
+                    className="historias-form__media-toggle"
+                    role="radiogroup"
+                    aria-label="Tipo de archivo"
+                  >
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={mediaMode === "video"}
+                      className={`historias-form__mode${mediaMode === "video" ? " is-active" : ""}`}
+                      onClick={() => onMediaModeChange("video")}
+                    >
+                      <T k="stories.form.media.video" />
+                    </button>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={mediaMode === "photo"}
+                      className={`historias-form__mode${mediaMode === "photo" ? " is-active" : ""}`}
+                      onClick={() => onMediaModeChange("photo")}
+                    >
+                      <T k="stories.form.media.photo" />
+                    </button>
+                  </div>
 
-            <form className="eco-form historias-form__grid" onSubmit={submitStory}>
-              <label className="historias-form__full historias-form__upload">
-                <T
-                  k={
-                    mediaMode === "video"
-                      ? "stories.form.media.uploadVideo"
-                      : "stories.form.media.uploadPhoto"
-                  }
-                />
-                <input
-                  ref={fileRef}
-                  name="media"
-                  type="file"
-                  accept={mediaMode === "video" ? "video/*" : "image/*"}
-                />
-                <span className="historias-form__upload-hint">
-                  <T k="stories.form.media.optional" />
-                </span>
-              </label>
+                  <label className="historias-form__upload">
+                    <T
+                      k={
+                        mediaMode === "video"
+                          ? "stories.form.media.uploadVideo"
+                          : "stories.form.media.uploadPhoto"
+                      }
+                    />
+                    <input
+                      ref={fileRef}
+                      name="media"
+                      type="file"
+                      accept={mediaMode === "video" ? "video/*" : "image/*"}
+                      onChange={onFileChange}
+                    />
+                    <span className="historias-form__upload-hint">
+                      <T k="stories.form.media.optional" />
+                    </span>
+                  </label>
 
-              {previewUrl ? (
-                <div className="historias-form__preview historias-form__full">
-                  {mediaMode === "video" ? (
-                    <video
-                      src={previewUrl}
-                      muted
-                      playsInline
-                      controls
-                      className="historias-form__preview-media"
-                    />
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={previewUrl}
-                      alt=""
-                      className="historias-form__preview-media"
-                    />
-                  )}
+                  {previewUrl ? (
+                    <div className="historias-form__preview">
+                      {mediaMode === "video" ? (
+                        <video
+                          src={previewUrl}
+                          muted
+                          playsInline
+                          controls
+                          className="historias-form__preview-media"
+                        />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={previewUrl}
+                          alt=""
+                          className="historias-form__preview-media"
+                        />
+                      )}
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
 
-              <label>
-                <T k="stories.form.name" />
-                <input name="name" autoComplete="name" required />
-              </label>
-              <label>
-                <T k="panfleto.email" />
-                <input
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  spellCheck={false}
-                  required
-                  placeholder="tu@email.com…"
-                />
-              </label>
-              <label className="historias-form__full">
-                <T k="stories.form.connection" />
-                <textarea
-                  name="story"
-                  rows={3}
-                  required
-                  placeholder={String(t("stories.form.connection.placeholder"))}
-                />
-              </label>
-              <label>
-                <T k="stories.form.connected" />
-                <input
-                  name="connectedWith"
-                  required
-                  placeholder={String(t("stories.form.connected.placeholder"))}
-                />
-              </label>
-              <label>
-                <T k="stories.form.achievement" />
-                <input name="achievement" required />
-              </label>
-              <label>
-                <T k="pulso.filters.vertical" />
-                <select name="verticalSlug" defaultValue="descubrimiento">
-                  {ECOSYSTEM_VERTICALS.map((v) => (
-                    <option key={v.slug} value={v.slug}>
-                      {String(t(v.navKey))}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                <T k="filter.city" />
-                <select name="cityId" defaultValue="pi">
-                  {CITY_FILTER_OPTIONS.filter((c) => c.value !== "all").map(
-                    (c) => (
-                      <option key={c.value} value={c.value}>
-                        {String(t(c.labelKey))}
-                      </option>
-                    )
-                  )}
-                </select>
-              </label>
-              <div className="historias-form__full">
-                <button
-                  type="submit"
-                  className="btn btn-green"
-                  disabled={submitting}
-                >
-                  <T k={submitting ? "stories.form.sending" : "stories.form.submit"} />
-                </button>
-              </div>
+                <div ref={(el) => { panelRefs.current[1] = el; }}>
+                  <label className="historias-form__full">
+                    <T k="stories.form.connection" />
+                    <textarea
+                      name="story"
+                      rows={4}
+                      required
+                      placeholder={String(t("stories.form.connection.placeholder"))}
+                    />
+                  </label>
+                  <label>
+                    <T k="stories.form.connected" />
+                    <input
+                      name="connectedWith"
+                      required
+                      placeholder={String(t("stories.form.connected.placeholder"))}
+                    />
+                  </label>
+                  <label>
+                    <T k="stories.form.achievement" />
+                    <input name="achievement" required />
+                  </label>
+                </div>
+
+                <div ref={(el) => { panelRefs.current[2] = el; }} className="historias-form__grid">
+                  <label>
+                    <T k="stories.form.name" />
+                    <input name="name" autoComplete="name" required />
+                  </label>
+                  <label>
+                    <T k="panfleto.email" />
+                    <input
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      spellCheck={false}
+                      required
+                      placeholder="tu@email.com…"
+                    />
+                  </label>
+                  <label>
+                    <T k="pulso.filters.vertical" />
+                    <select name="verticalSlug" defaultValue="descubrimiento">
+                      {ECOSYSTEM_VERTICALS.map((v) => (
+                        <option key={v.slug} value={v.slug}>
+                          {String(t(v.navKey))}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    <T k="filter.city" />
+                    <select name="cityId" defaultValue="pi">
+                      {CITY_FILTER_OPTIONS.filter((c) => c.value !== "all").map(
+                        (c) => (
+                          <option key={c.value} value={c.value}>
+                            {String(t(c.labelKey))}
+                          </option>
+                        )
+                      )}
+                    </select>
+                  </label>
+                </div>
+              </FormWizard>
             </form>
           </div>
         </div>
