@@ -1,21 +1,24 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { FilterBar } from "@/components/ecosystem/FilterBar";
-import { PulsoTicker } from "@/components/ecosystem/PulsoTicker";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { T } from "@/components/trinexus/ui/T";
-import { getCategoryOptionsForVertical } from "@/lib/ecosystem/pulso";
-import { CITY_FILTER_OPTIONS } from "@/lib/ecosystem/vertical-catalog";
-import type { PulsoItem } from "@/lib/ecosystem/types";
-import { SLUG_TO_PREFIX } from "@/lib/ecosystem/vertical-catalog";
-import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
-import { toast } from "sonner";
+import { useCallback, useEffect, useState } from "react";
+import { PulsoBentoGrid } from "@/components/ecosystem/pulso/PulsoBentoGrid";
+import { PulsoCityRadar } from "@/components/ecosystem/pulso/PulsoCityRadar";
+import { PulsoHero } from "@/components/ecosystem/pulso/PulsoHero";
+import { PulsoPassport } from "@/components/ecosystem/pulso/PulsoPassport";
+import { PulsoRundown } from "@/components/ecosystem/pulso/PulsoRundown";
+import { PulsoSpotlight } from "@/components/ecosystem/pulso/PulsoSpotlight";
+import { PulsoStreamPlayer } from "@/components/ecosystem/pulso/PulsoStreamPlayer";
+import { PulsoTicker } from "@/components/ecosystem/pulso/PulsoTicker";
+import { PulsoVods } from "@/components/ecosystem/pulso/PulsoVods";
+import { getPulsoEdition } from "@/lib/ecosystem/pulso";
+import type { PulsoEdition, PulsoItem, PulsoRundownSegment } from "@/lib/ecosystem/types";
 
 type PreviewResponse = {
   items: PulsoItem[];
+  edition?: PulsoEdition;
   nextPublishAt: string;
   liveSessionAt: string | null;
+  liveEmbedUrl: string | null;
   weekKeys: string[];
 };
 
@@ -30,206 +33,141 @@ type PulsoSemanalContentProps = {
 export function PulsoSemanalContent({
   initialVertical = "all",
   initialCity = "all",
-  initialCategory = "all",
   initialWeek,
   onFiltersChange,
 }: PulsoSemanalContentProps) {
-  const { t, lang } = useI18n();
   const [vertical, setVertical] = useState(initialVertical);
   const [city, setCity] = useState(initialCity);
-  const [category, setCategory] = useState(initialCategory);
   const [week, setWeek] = useState(initialWeek ?? "");
   const [preview, setPreview] = useState<PreviewResponse | null>(null);
-  const [countdown, setCountdown] = useState("");
+  const [activeSegment, setActiveSegment] = useState<PulsoRundownSegment | null>(null);
 
   const fetchPreview = useCallback(async () => {
     const params = new URLSearchParams({
       vertical,
       city,
-      category,
     });
     if (week) params.set("week", week);
     const res = await fetch(`/api/pulso/preview?${params}`);
-    const data = await res.json();
+    const data: PreviewResponse = await res.json();
     setPreview(data);
     if (!week && data.weekKeys?.[0]) setWeek(data.weekKeys[0]);
-  }, [vertical, city, category, week]);
+  }, [vertical, city, week]);
 
   useEffect(() => {
     fetchPreview().catch(() => {});
   }, [fetchPreview]);
 
-  useEffect(() => {
-    if (!preview?.nextPublishAt) return;
-    const tick = () => {
-      const diff = new Date(preview.nextPublishAt).getTime() - Date.now();
-      if (diff <= 0) {
-        setCountdown(String(t("pulso.schedule.now")));
-        return;
-      }
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      setCountdown(`${h}h ${m}m ${s}s`);
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [preview?.nextPublishAt, t]);
+  const handleFilterChange = (next: { city?: string; vertical?: string; week?: string }) => {
+    const nextCity = next.city !== undefined ? next.city : city;
+    const nextVertical = next.vertical !== undefined ? next.vertical : vertical;
+    const nextWeek = next.week !== undefined ? next.week : week;
 
-  const categoryOptions = useMemo(() => {
-    const opts = getCategoryOptionsForVertical(vertical);
-    return opts.map((o) => ({
-      value: o.value,
-      labelKey: o.value === "all" ? "filter.all" : "",
-      label: o.value === "all" ? undefined : o.label,
-    }));
-  }, [vertical]);
+    if (next.city !== undefined) setCity(next.city);
+    if (next.vertical !== undefined) setVertical(next.vertical);
+    if (next.week !== undefined) setWeek(next.week);
 
-  const syncFilters = (next: Record<string, string>) => {
-    onFiltersChange?.(next);
+    onFiltersChange?.({
+      city: nextCity,
+      vertical: nextVertical,
+      week: nextWeek,
+    });
   };
 
-  const nextPublishLabel = preview?.nextPublishAt
-    ? new Intl.DateTimeFormat(lang === "pt" ? "pt-BR" : lang === "en" ? "en" : "es", {
-        dateStyle: "full",
-        timeStyle: "short",
-        timeZone: "America/Argentina/Buenos_Aires",
-      }).format(new Date(preview.nextPublishAt))
-    : "";
-
-  async function subscribe(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const res = await fetch("/api/pulso/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: fd.get("email"),
-        notifyLive: fd.get("notifyLive") === "on",
-      }),
-    });
-    const data = await res.json();
-    if (data.ok) {
-      toast.success(String(t(data.created ? "pulso.subscribed" : "pulso.exists")));
-      e.currentTarget.reset();
-    } else {
-      toast.error(String(t("err.email")));
+  const handleSelectSegment = (segment: PulsoRundownSegment) => {
+    setActiveSegment(segment);
+    if (segment.itemId) {
+      const el = document.getElementById(`news-${segment.itemId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
-  }
+  };
+
+  const edition = preview?.edition ?? getPulsoEdition(week);
+  const items = preview?.items ?? [];
+
+  // Portada destacada: busca por coverItemId, o toma el primer elemento con imagen
+  const coverItem =
+    items.find((i) => i.id === edition.coverItemId) ??
+    items.find((i) => Boolean(i.image)) ??
+    items[0];
 
   return (
-    <div className="pulso-panel">
-      <div className="pulso-schedule">
-        <div className="pulso-schedule__block">
-          <h3><T k="pulso.schedule.web" /></h3>
-          <p className="pulso-schedule__when">{nextPublishLabel}</p>
-          <p className="pulso-schedule__countdown" aria-live="polite">
-            <T k="pulso.schedule.countdown" />: <strong>{countdown}</strong>
-          </p>
-        </div>
-        <div className="pulso-schedule__block pulso-schedule__block--live">
-          <h3><T k="pulso.live.soon" /></h3>
-          <p><T k="pulso.live.lead" /></p>
-        </div>
-      </div>
-
-      <FilterBar
-        filters={[
-          {
-            id: "week",
-            labelKey: "pulso.filters.week",
-            value: week,
-            onChange: (v) => {
-              setWeek(v);
-              syncFilters({ vertical, city, category, week: v });
-            },
-            options: (preview?.weekKeys ?? []).map((k) => ({
-              value: k,
-              labelKey: "filter.all",
-              label: k,
-            })),
-          },
-          {
-            id: "vertical",
-            labelKey: "pulso.filters.vertical",
-            value: vertical,
-            onChange: (v) => {
-              setVertical(v);
-              setCategory("all");
-              syncFilters({ vertical: v, city, category: "all", week });
-            },
-            options: [
-              { value: "all", labelKey: "filter.all" },
-              ...ECOSYSTEM_VERTICALS.map((v) => ({
-                value: v.slug,
-                labelKey: v.navKey,
-              })),
-            ],
-          },
-          {
-            id: "city",
-            labelKey: "filter.city",
-            value: city,
-            onChange: (v) => {
-              setCity(v);
-              syncFilters({ vertical, city: v, category, week });
-            },
-            options: [...CITY_FILTER_OPTIONS],
-          },
-          {
-            id: "category",
-            labelKey: "filter.category",
-            value: category,
-            onChange: (v) => {
-              setCategory(v);
-              syncFilters({ vertical, city, category: v, week });
-            },
-            options: categoryOptions,
-          },
-        ]}
+    <div className="pulso-container">
+      {/* 1. Hero con información y cuenta regresiva de la transmisión */}
+      <PulsoHero
+        edition={edition}
+        nextPublishAt={preview?.nextPublishAt ?? ""}
       />
 
-      {preview ? <PulsoTicker items={preview.items} /> : null}
+      {/* 2. Reproductor Central de Streaming (En vivo o Replay) */}
+      <PulsoStreamPlayer
+        edition={edition}
+        activeSegment={activeSegment}
+        onSelectSegment={handleSelectSegment}
+      />
 
-      <ul className="pulso-feed" aria-label="Novedades de la semana">
-        {preview?.items.map((item) => (
-          <li key={item.id} className="pulso-feed__item">
-            <span className="pulso-feed__kind">{item.kind}</span>
-            <strong>{item.title}</strong>
-            <span className="pulso-feed__meta">
-              <T k={`nav.${SLUG_TO_PREFIX[item.verticalSlug]}`} />
-              {" · "}
-              <T k={`city.${item.cityId}.b`} />
-            </span>
-          </li>
-        ))}
-      </ul>
+      {/* 3. Breaking Ticker continuo */}
+      <PulsoTicker items={items} />
 
-      <section className="pulso-subscribe panfleto-section">
-        <h3><T k="pulso.subscribe.h" /></h3>
-        <p><T k="pulso.subscribe.lead" /></p>
-        <form className="eco-form" onSubmit={subscribe}>
-          <label>
-            <T k="panfleto.email" />
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              spellCheck={false}
-              required
-              placeholder="tu@email.com…"
+      {/* 4. Escaleta del Stream y Tema de Portada */}
+      <section className="pulso-rundown-section">
+        <div className="wrap">
+          <div className="pulso-stream-breakdown-grid">
+            <PulsoRundown
+              rundown={edition.rundown}
+              activeSegment={activeSegment}
+              onSelectSegment={handleSelectSegment}
             />
-          </label>
-          <label className="pulso-subscribe__live">
-            <input name="notifyLive" type="checkbox" />
-            <T k="pulso.subscribe.live" />
-          </label>
-          <button type="submit" className="btn btn-green btn-sm">
-            <T k="pulso.subscribe.btn" />
-          </button>
-        </form>
+
+            {coverItem && (
+              <div className="pulso-rundown-spotlight-col">
+                <span className="pulso-rundown-spotlight-label">TEMA CENTRAL DE LA TRANSMISIÓN</span>
+                <PulsoSpotlight item={coverItem} />
+              </div>
+            )}
+          </div>
+        </div>
       </section>
+
+      {/* 5. Novedades completas tratadas en la emisión con radar de ciudades */}
+      <section className="pulso-feed-section" aria-label="Novedades tratadas en la emisión">
+        <div className="wrap">
+          <div className="pulso-feed-header">
+            <h2 className="pulso-feed-title">
+              Novedades revisadas en esta emisión
+            </h2>
+            <p className="pulso-feed-lead">
+              Explorá las oportunidades, eventos y proyectos mencionados durante la transmisión semanal.
+            </p>
+          </div>
+
+          <PulsoCityRadar
+            currentCity={city}
+            currentVertical={vertical}
+            currentWeek={week}
+            weekKeys={preview?.weekKeys ?? []}
+            totalItemsCount={items.length}
+            onFilterChange={handleFilterChange}
+          />
+
+          <PulsoBentoGrid
+            items={items}
+            coverItemId={coverItem?.id}
+            activeItemId={activeSegment?.itemId}
+          />
+
+          {/* 6. Repeticiones y VODs de programas pasados */}
+          <PulsoVods
+            currentWeek={week}
+            onSelectWeek={(selectedWeek) => handleFilterChange({ week: selectedWeek })}
+          />
+        </div>
+      </section>
+
+      {/* 7. Pasaporte y alerta para el próximo stream */}
+      <PulsoPassport />
     </div>
   );
 }

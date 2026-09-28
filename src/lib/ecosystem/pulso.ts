@@ -1,5 +1,6 @@
 import { PULSO_SEED_ITEMS } from "@/data/pulso-items";
-import type { PulsoItem } from "@/lib/ecosystem/types";
+import { getPulsoEdition, PULSO_EDITIONS } from "@/data/pulso-editions";
+import type { PulsoEdition, PulsoItem } from "@/lib/ecosystem/types";
 import {
   getIsoWeekKey,
   getWeekStart,
@@ -7,6 +8,8 @@ import {
 } from "@/lib/ecosystem/pulso-config";
 import type { VerticalSlug } from "@/lib/ecosystem/verticals";
 import { getPulsoItemsFromStore } from "@/lib/storage/store";
+
+export { getPulsoEdition, PULSO_EDITIONS };
 
 export type PulsoFilters = {
   vertical?: string;

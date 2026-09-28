@@ -139,8 +139,45 @@ export type PulsoItem = {
   cityId: CityId;
   category: string;
   title: string;
+  summary?: string;
   kind: string;
+  badge?: string;
+  image?: string;
+  href?: string;
   addedAt: string;
+  readTime?: string;
+};
+
+export type PulsoStreamStatus = "live" | "upcoming" | "replay";
+
+export type PulsoRundownSegment = {
+  timestamp: string;
+  title: string;
+  cityId: CityId;
+  verticalSlug: VerticalSlug;
+  summary?: string;
+  itemId?: string;
+};
+
+export type PulsoEdition = {
+  weekKey: string;
+  editionNumber?: number;
+  publishDate?: string;
+  headline: string;
+  lead: string;
+  mascotQuote?: string;
+  coverItemId?: string;
+  streamStatus?: PulsoStreamStatus;
+  streamUrl?: string;
+  streamDuration?: string;
+  streamThumbnail?: string;
+  viewersPeak?: number;
+  rundown?: PulsoRundownSegment[];
+  stats?: {
+    totalUpdates?: number;
+    citiesCount?: number;
+    featuredCount?: number;
+  };
 };
 
 export type StorySubmission = {
@@ -160,5 +197,6 @@ export type StorySubmission = {
 export type PulsoSubscriber = {
   email: string;
   notifyLive: boolean;
+  interests?: string[];
   subscribedAt: string;
 };

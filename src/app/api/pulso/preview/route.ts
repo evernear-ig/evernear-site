@@ -3,7 +3,11 @@ import {
   getNextPulsoDate,
   PULSO_CONFIG,
 } from "@/lib/ecosystem/pulso-config";
-import { getPulsoItems, getRecentWeekKeys } from "@/lib/ecosystem/pulso";
+import {
+  getPulsoEdition,
+  getPulsoItems,
+  getRecentWeekKeys,
+} from "@/lib/ecosystem/pulso";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 
 export async function GET(request: Request) {
@@ -14,10 +18,12 @@ export async function GET(request: Request) {
   const week = searchParams.get("week") ?? undefined;
 
   const items = getPulsoItems({ vertical, city, category, week });
+  const edition = getPulsoEdition(week);
   const nextPublishAt = getNextPulsoDate().toISOString();
 
   return NextResponse.json({
     items,
+    edition,
     nextPublishAt,
     liveSessionAt: PULSO_CONFIG.liveSessionAt,
     liveEmbedUrl: PULSO_CONFIG.liveEmbedUrl,

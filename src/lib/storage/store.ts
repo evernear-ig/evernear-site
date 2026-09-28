@@ -83,15 +83,17 @@ export function getStorySubmissions() {
   return [...storySubmissions];
 }
 
-export function subscribePulso(email: string, notifyLive = false) {
+export function subscribePulso(email: string, notifyLive = false, interests?: string[]) {
   const existing = pulsoSubscribers.find((s) => s.email === email);
   if (existing) {
     if (notifyLive) existing.notifyLive = true;
+    if (interests && interests.length > 0) existing.interests = interests;
     return false;
   }
   pulsoSubscribers.push({
     email,
     notifyLive,
+    interests,
     subscribedAt: new Date().toISOString(),
   });
   return true;
