@@ -1,6 +1,4 @@
-import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { T } from "@/components/trinexus/ui/T";
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 
 type ItemIconName = "search" | "hands" | "link" | "beam" | "rocket" | "megaphone";
 
@@ -267,12 +265,6 @@ export function QueEsHero() {
           <p className="lead">
             <T k="about.show.lead" />
           </p>
-          <div className="btns">
-            <JoinButton />
-            <TransitionLink href="#historias" className="btn btn-ghost">
-              <T k="nav.stories" />
-            </TransitionLink>
-          </div>
         </div>
         <div className="qes-grid" id="que-es-cards">
           {CARDS.map((card) => (

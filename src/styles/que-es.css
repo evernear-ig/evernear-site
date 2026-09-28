@@ -12,6 +12,8 @@
   justify-content:space-between;
   align-items:stretch;
   gap:clamp(20px,3.2vh,40px);
+  padding-top:clamp(36px,8vh,96px);
+  padding-bottom:clamp(28px,6vh,80px);
   min-height:calc(100dvh - var(--hero-pad-top) - clamp(16px,2.4vh,28px));
 }
 .about-page--journey .qes-hero .hero-content{
@@ -127,6 +129,8 @@
   .about-page--journey .qes-hero .wrap{
     min-height:0;
     gap:28px;
+    padding-top:12px;
+    padding-bottom:8px;
   }
   .qes-hero .qes-grid{grid-template-columns:1fr}
 }
