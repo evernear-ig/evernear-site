@@ -1019,18 +1019,18 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .eco-stage-arcs{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 42%,#000 70%);mask-image:linear-gradient(90deg,transparent 0%,transparent 42%,#000 70%)}
 .eco-stage-arcs path{fill:none;stroke:var(--green);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.28}
 .eco-stage-arcs circle{fill:var(--green);opacity:.4}
-.eco-stage-layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(120px,.32fr);gap:clamp(28px,4vw,64px);align-items:center;width:100%}
+.eco-stage-layout{display:block;position:relative;width:100%}
 .eco-stage-copy{min-width:0;max-width:40rem}
 .eco-stage .eco-breadcrumb{margin-bottom:12px}
 .eco-stage .eco-stage-title{margin:0;font-weight:700;font-size:clamp(2.45rem,4.8vw,4.2rem);line-height:.9;letter-spacing:-.038em;text-transform:uppercase;text-wrap:balance;text-shadow:0 2px 28px rgba(7,11,26,.55)}
 .eco-stage-title-lead,.eco-stage-title-accent{display:block}
 .eco-stage-title-accent{margin-top:.04em;color:#5CF0B4;font-size:1.08em;letter-spacing:-.042em;text-shadow:0 0 32px rgba(46,229,157,.42),0 2px 18px rgba(7,11,26,.35)}
 .eco-stage .lead,.eco-stage p.lead{max-width:32em;margin-top:.62em;font-size:clamp(1.02rem,.2vw + .92rem,1.16rem);line-height:1.45;font-weight:500;color:var(--white)!important;text-shadow:0 1px 14px rgba(7,11,26,.7)}
-.eco-stage-aside{margin:0;justify-self:end;align-self:center;max-width:13ch;font-family:var(--font-head);font-size:clamp(.78rem,.85vw,.92rem);font-weight:600;letter-spacing:.1em;line-height:1.4;text-transform:uppercase;color:var(--white);text-wrap:balance;text-shadow:0 1px 12px rgba(7,11,26,.65)}
-.eco-stage-aside::after{content:"";display:block;width:36px;height:1px;margin-top:14px;background:rgba(46,229,157,.7)}
+.eco-hero.eco-stage .eco-stage-aside{position:absolute;right:clamp(18px,2.6vw,40px);bottom:clamp(22px,4vh,40px);z-index:3;margin:0;max-width:13ch;text-align:right;font-family:var(--font-head);font-size:clamp(.78rem,.85vw,.92rem);font-weight:600;letter-spacing:.1em;line-height:1.4;text-transform:uppercase;color:var(--white);text-wrap:balance;text-shadow:0 1px 12px rgba(7,11,26,.65)}
+.eco-stage-aside::after{content:"";display:block;width:36px;height:1px;margin-top:14px;margin-left:auto;background:rgba(46,229,157,.7)}
 .eco-fold>.eco-hero.eco-stage .eco-hero-content{max-width:1360px;padding-top:calc(var(--nav-h) + 18px);padding-bottom:28px;padding-left:clamp(16px,2.2vw,32px);padding-right:clamp(16px,2.2vw,32px)}
-.eco-aud-label{display:flex;align-items:center;gap:12px;margin:0 0 8px;font-family:var(--font-head);font-size:.72rem;font-weight:600;letter-spacing:.18em;line-height:1.2;text-transform:uppercase;color:var(--ink-2)}
-.eco-aud-label::before{content:"";width:28px;height:1px;background:var(--green);flex:none}
+.eco-aud-label{display:flex;align-items:center;gap:12px;margin:0 0 44px;font-family:var(--font-head);font-size:clamp(1.05rem,1.4vw,1.28rem);font-weight:800;letter-spacing:.14em;line-height:1.2;text-transform:uppercase;color:var(--ink)}
+.eco-aud-label::before{content:"";width:36px;height:2px;background:var(--green);flex:none}
 .eco-fold>.eco-narrative .wrap{max-width:1360px;padding-left:clamp(16px,2.2vw,32px);padding-right:clamp(16px,2.2vw,32px)}
 .eco-aud{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;align-items:stretch}
 .eco-aud-card{position:relative;display:flex;flex-direction:column;height:272px;min-height:272px;border-radius:20px;overflow:hidden;color:var(--white);isolation:isolate;box-shadow:0 16px 36px -28px rgba(7,11,26,.55);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
@@ -1078,9 +1078,10 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
   .eco-aud-map{position:relative;left:auto;bottom:auto;width:132px;height:124px;flex:none}
 }
 @media(max-width:700px){
-  .eco-stage-layout{grid-template-columns:1fr;gap:18px}
+  .eco-stage-layout{display:block;gap:18px}
   .eco-stage-arcs{-webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 72%,#000 94%);mask-image:linear-gradient(90deg,transparent 0%,transparent 72%,#000 94%)}
-  .eco-stage-aside{justify-self:start;max-width:22ch;margin-top:4px}
+  .eco-stage-aside{position:static;text-align:left;max-width:22ch;margin-top:18px}
+  .eco-stage-aside::after{margin-left:0}
   .eco-aud{grid-template-columns:1fr}
   .eco-fold>.eco-hero.eco-stage{height:auto;min-height:0;max-height:none;align-items:stretch}
   .eco-fold{min-height:0}

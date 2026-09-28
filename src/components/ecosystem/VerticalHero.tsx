@@ -100,10 +100,10 @@ export function VerticalHero({
             <T k={leadKey} />
           </p>
         </div>
-        {stage && asideKey ? (
-          <StageAside asideKey={asideKey} asideFromQuote={asideFromQuote} />
-        ) : null}
       </div>
+      {stage && asideKey ? (
+        <StageAside asideKey={asideKey} asideFromQuote={asideFromQuote} />
+      ) : null}
     </section>
   );
 }
