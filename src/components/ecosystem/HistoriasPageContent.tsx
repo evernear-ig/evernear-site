@@ -2,10 +2,8 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { StoryReelsStrip } from "@/components/ecosystem/StoryReelsStrip";
+import { RealStoriesSection } from "@/components/ecosystem/stories/RealStoriesSection";
 import { StorySubmitForm } from "@/components/ecosystem/StorySubmitForm";
-import { T } from "@/components/trinexus/ui/T";
-import { CONNECTION_STORIES } from "@/data/stories";
 
 type HistoriasPageContentProps = {
   asChapter?: boolean;
@@ -36,46 +34,20 @@ export function HistoriasPageContent({ asChapter = false }: HistoriasPageContent
     });
   };
 
-  const Heading = asChapter ? "h2" : "h1";
-
-  if (asChapter) {
-    return (
-      <section id="historias" className="light about-journey-chapter about-journey-chapter--stories">
-        <div className="wrap">
-          <header className="about-journey-chapter__head about-journey-chapter__head--stories">
-            <Heading className="h-xl">
-              <T k="stories.hero.h" />
-            </Heading>
-            <p className="lead">
-              <T k="stories.hero.lead" />
-            </p>
-          </header>
-          <StoryReelsStrip stories={CONNECTION_STORIES} />
-          <StorySubmitForm defaultOpen={formOpen} onOpenChange={setFormOpen} />
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <>
-      <section className="dark historias-hero historias-hero--compact">
-        <div className="wrap historias-hero__copy">
-          <Heading className="h-xl">
-            <T k="stories.hero.h" />
-          </Heading>
-          <p className="lead">
-            <T k="stories.hero.lead" />
-          </p>
-        </div>
-      </section>
-
-      <section className="light historias-body">
-        <div className="wrap">
-          <StoryReelsStrip stories={CONNECTION_STORIES} />
-          <StorySubmitForm defaultOpen={formOpen} onOpenChange={setFormOpen} />
-        </div>
-      </section>
-    </>
+    <section
+      id="historias"
+      className={
+        asChapter
+          ? "dark about-journey-chapter about-journey-chapter--stories rs-chapter"
+          : "dark rs-chapter rs-chapter--page"
+      }
+      aria-labelledby="historias-title"
+    >
+      <div className="wrap">
+        <RealStoriesSection titleAs={asChapter ? "h2" : "h1"} onTellStory={() => setFormOpen(true)} />
+        <StorySubmitForm hideTrigger defaultOpen={formOpen} onOpenChange={setFormOpen} />
+      </div>
+    </section>
   );
 }

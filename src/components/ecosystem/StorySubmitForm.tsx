@@ -19,11 +19,13 @@ const MAX_MEDIA_BYTES = 20 * 1024 * 1024;
 type StorySubmitFormProps = {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  hideTrigger?: boolean;
 };
 
 export function StorySubmitForm({
   defaultOpen = false,
   onOpenChange,
+  hideTrigger = false,
 }: StorySubmitFormProps) {
   const { t } = useI18n();
   const [open, setOpenState] = useState(defaultOpen);
@@ -191,15 +193,17 @@ export function StorySubmitForm({
 
   return (
     <>
-      <section className="historias-form panfleto-section historias-form--cta">
-        <button
-          type="button"
-          className="btn btn-green"
-          onClick={() => setOpen(true)}
-        >
-          <T k="stories.form.h" />
-        </button>
-      </section>
+      {hideTrigger ? null : (
+        <section className="historias-form panfleto-section historias-form--cta">
+          <button
+            type="button"
+            className="btn btn-green"
+            onClick={() => setOpen(true)}
+          >
+            <T k="stories.form.h" />
+          </button>
+        </section>
+      )}
 
       <div
         ref={modalRef}
