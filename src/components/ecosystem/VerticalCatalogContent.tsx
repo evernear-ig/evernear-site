@@ -12,6 +12,7 @@ import {
   listingBadgeKey,
 } from "@/lib/ecosystem/vertical-catalog";
 import type { VerticalSlug } from "@/lib/ecosystem/verticals";
+import { resolveVigencia } from "@/lib/ecosystem/vigencia";
 
 type VerticalCatalogContentProps = {
   verticalSlug: VerticalSlug;
@@ -25,14 +26,16 @@ export function VerticalCatalogContent({
   const config = getVerticalCatalog(verticalSlug);
   const [city, setCity] = useState("all");
   const [category, setCategory] = useState("all");
+  const [vigencia, setVigencia] = useState("all");
 
   const filtered = useMemo(() => {
     return config.listings.filter((item) => {
       if (city !== "all" && item.cityId !== city) return false;
       if (category !== "all" && item.category !== category) return false;
+      if (vigencia !== "all" && resolveVigencia(item) !== vigencia) return false;
       return true;
     });
-  }, [city, category, config.listings]);
+  }, [city, category, vigencia, config.listings]);
 
   useEffect(() => {
     const nodes = document.querySelectorAll(
@@ -76,6 +79,19 @@ export function VerticalCatalogContent({
             options: [
               { value: "all", labelKey: "filter.all" },
               ...config.categoryOptions,
+            ],
+          },
+          {
+            id: "vigencia",
+            labelKey: "filter.vigencia",
+            value: vigencia,
+            onChange: setVigencia,
+            options: [
+              { value: "all", labelKey: "filter.all" },
+              { value: "permanente", labelKey: "filter.vigencia.permanente" },
+              { value: "ahora", labelKey: "filter.vigencia.ahora" },
+              { value: "proximo", labelKey: "filter.vigencia.proximo" },
+              { value: "pasado", labelKey: "filter.vigencia.pasado" },
             ],
           },
         ]}

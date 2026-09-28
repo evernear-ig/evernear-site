@@ -91,6 +91,8 @@ export type VerticalListing = {
   description: string;
   imageKey: string;
   meta?: string;
+  startsOn?: string;
+  endsOn?: string;
 };
 
 export type SportListingKind = "club" | "athlete" | "call" | "team";

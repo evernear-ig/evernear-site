@@ -1,3 +1,4 @@
+import { applyDemoWindow } from "@/lib/ecosystem/vigencia";
 import type { SportListing, VerticalListing } from "@/lib/ecosystem/types";
 import type { VerticalSlug } from "@/lib/ecosystem/verticals";
 import { SPORT_LISTINGS } from "@/data/sport";
@@ -26,16 +27,20 @@ function mapSportListing(listing: SportListing): VerticalListing {
   };
 }
 
+function withVigencia(listings: VerticalListing[]): VerticalListing[] {
+  return listings.map(applyDemoWindow);
+}
+
 export const VERTICAL_LISTINGS: Record<VerticalSlug, VerticalListing[]> = {
-  deporte: SPORT_LISTINGS.map(mapSportListing),
-  salud: HEALTH_LISTINGS,
-  bienestar: WELLNESS_LISTINGS,
-  comunicacion: COMMUNICATION_LISTINGS,
-  solidaridad: SOLIDARITY_LISTINGS,
-  turismo: TOURISM_LISTINGS,
-  comercios: COMMERCE_LISTINGS,
-  educacion: EDUCATION_LISTINGS,
-  eventos: EVENTS_LISTINGS,
-  descubrimiento: DISCOVERY_LISTINGS,
-  innovacion: INNOVATION_LISTINGS,
+  deporte: withVigencia(SPORT_LISTINGS.map(mapSportListing)),
+  salud: withVigencia(HEALTH_LISTINGS),
+  bienestar: withVigencia(WELLNESS_LISTINGS),
+  comunicacion: withVigencia(COMMUNICATION_LISTINGS),
+  solidaridad: withVigencia(SOLIDARITY_LISTINGS),
+  turismo: withVigencia(TOURISM_LISTINGS),
+  comercios: withVigencia(COMMERCE_LISTINGS),
+  educacion: withVigencia(EDUCATION_LISTINGS),
+  eventos: withVigencia(EVENTS_LISTINGS),
+  descubrimiento: withVigencia(DISCOVERY_LISTINGS),
+  innovacion: withVigencia(INNOVATION_LISTINGS),
 };
