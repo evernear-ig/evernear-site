@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { T } from "@/components/trinexus/ui/T";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
@@ -260,19 +259,6 @@ function FloatMark({ kind }: { kind: "map" | "handshake" | "target" }) {
 export function QueEsShowcase() {
   return (
     <section className="qes dark" id="que-es" aria-labelledby="que-es-title">
-      <div className="qes-scene" aria-hidden="true">
-        <Image
-          src="/images/ecosystem/que-es-satellite.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="qes-photo"
-        />
-        <div className="qes-bloom" />
-        <div className="qes-veil" />
-      </div>
-
       <div className="wrap qes-inner">
         <header className="qes-head">
           <h1 id="que-es-title" className="qes-title">
