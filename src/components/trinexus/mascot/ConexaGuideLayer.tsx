@@ -278,7 +278,11 @@ export function ConexaGuideLayer() {
           }}
         >
           {mode === "menu" ? (
-            <div className="conexa-guide__menu" role="menu" aria-label={String(t("journey.menu.label"))}>
+            <div
+              className="conexa-guide__menu"
+              role="menu"
+              aria-label={String(t("journey.menu.label"))}
+            >
               <button
                 type="button"
                 role="menuitem"

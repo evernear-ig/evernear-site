@@ -110,15 +110,6 @@ export function Header() {
           <nav ref={navRef} aria-label={String(t("a11y.mainnav"))}>
             <ul className="nav-links" onMouseLeave={scheduleClose}>
               <NavDropdown
-                triggerHref="/que-es"
-                triggerKey="nav.community"
-                subLinks={COMMUNITY_NAV_LINKS}
-                submenuAriaKey="a11y.communitynav"
-                open={activeMenu === "community"}
-                onOpen={() => open("community")}
-                onCloseNow={closeNow}
-              />
-              <NavDropdown
                 triggerHref="/ecosistema"
                 triggerKey="nav.eco"
                 subGroups={ECOSYSTEM_NAV_GROUPS}
@@ -126,6 +117,15 @@ export function Header() {
                 submenuAriaKey="a11y.ecosystemnav"
                 open={activeMenu === "eco"}
                 onOpen={() => open("eco")}
+                onCloseNow={closeNow}
+              />
+              <NavDropdown
+                triggerHref="/que-es"
+                triggerKey="nav.community"
+                subLinks={COMMUNITY_NAV_LINKS}
+                submenuAriaKey="a11y.communitynav"
+                open={activeMenu === "community"}
+                onOpen={() => open("community")}
                 onCloseNow={closeNow}
               />
               <li>
@@ -156,16 +156,6 @@ export function Header() {
       </header>
       <div className={`mobile-menu${menuOpen ? " open" : ""}`} id="mobileMenu">
         <span className="mobile-menu-section">
-          <T k="nav.community" />
-        </span>
-        <div className="mobile-submenu" aria-label={String(t("a11y.communitynav"))}>
-          {COMMUNITY_NAV_LINKS.map((link) => (
-            <TransitionLink key={link.href} href={link.href} onClick={onNavClick}>
-              <T k={link.key} />
-            </TransitionLink>
-          ))}
-        </div>
-        <span className="mobile-menu-section">
           <T k="nav.eco" />
         </span>
         {ECOSYSTEM_NAV_GROUPS.map((group) => {
@@ -193,6 +183,16 @@ export function Header() {
             </div>
           );
         })}
+        <span className="mobile-menu-section">
+          <T k="nav.community" />
+        </span>
+        <div className="mobile-submenu" aria-label={String(t("a11y.communitynav"))}>
+          {COMMUNITY_NAV_LINKS.map((link) => (
+            <TransitionLink key={link.href} href={link.href} onClick={onNavClick}>
+              <T k={link.key} />
+            </TransitionLink>
+          ))}
+        </div>
         <TransitionLink href="/pulso" onClick={onNavClick}>
           <T k="nav.pulso" />
         </TransitionLink>

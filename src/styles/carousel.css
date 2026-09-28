@@ -111,6 +111,27 @@
     width:calc((100% - 28px) / 3.15);
   }
 }
+
+/* Home people/areas: keep the original 3-up card size, snap only the overflow */
+.people-carousel.carousel--drive-snap .carousel__strip,
+.areas-carousel.carousel--drive-snap .carousel__strip{
+  gap:18px;
+  margin-inline:0;
+  padding:8px 1px 12px;
+  scroll-padding-inline:1px;
+}
+.people-carousel.carousel--drive-snap .carousel__strip-item,
+.areas-carousel.carousel--drive-snap .carousel__strip-item{
+  flex:0 0 calc((100% - 36px) / 3);
+  width:calc((100% - 36px) / 3);
+}
+@media (max-width:900px){
+  .people-carousel.carousel--drive-snap .carousel__strip-item,
+  .areas-carousel.carousel--drive-snap .carousel__strip-item{
+    flex:0 0 min(86%,360px);
+    width:min(86%,360px);
+  }
+}
 .carousel--cards .carousel__viewport{width:100%}
 .carousel--cards:not(.carousel--pan):not(.carousel--drive-snap) .carousel__strip-item{height:100%}
 .carousel--pan.carousel--cards .carousel__strip-item{height:auto}

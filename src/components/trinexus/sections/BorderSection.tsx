@@ -100,9 +100,6 @@ export function BorderSection() {
             <p className="lead">
               <T k="border.lead" />
             </p>
-            <p>
-              <T k="border.p1" />
-            </p>
           </Reveal>
         </div>
         <div className="border-right">

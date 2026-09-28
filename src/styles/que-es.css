@@ -36,8 +36,10 @@
 }
 .qes-hero .qes-card{
   position:relative;
-  min-height:0;
-  padding:22px 16px 52px 16px;
+  display:flex;
+  flex-direction:column;
+  min-height:clamp(320px,42vh,460px);
+  padding:26px 18px 64px 18px;
   border-radius:18px;
   background:linear-gradient(180deg,rgba(10,28,40,.62),rgba(6,14,24,.48));
   border:1px solid rgba(94,245,220,.62);
@@ -83,9 +85,11 @@
 .qes-hero .qes-items{
   list-style:none;
   margin:0;
-  padding:0;
+  padding:clamp(8px,1.6vh,18px) 0 8px;
   display:grid;
-  gap:14px;
+  align-content:space-evenly;
+  gap:clamp(18px,3vh,36px);
+  flex:1;
 }
 .qes-hero .qes-item{
   display:grid;
@@ -137,4 +141,5 @@
     padding-bottom:8px;
   }
   .qes-hero .qes-grid{grid-template-columns:1fr}
+  .qes-hero .qes-card{min-height:280px}
 }
