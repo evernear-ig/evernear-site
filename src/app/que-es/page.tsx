@@ -1,7 +1,8 @@
 import { AboutJourneyChapters } from "@/components/ecosystem/AboutJourneyChapters";
 import { CommunityScrollMap } from "@/components/ecosystem/CommunityScrollMap";
-import { QueEsShowcase } from "@/components/ecosystem/QueEsShowcase";
+import { QueEsHero } from "@/components/ecosystem/QueEsShowcase";
 import { SiteShell } from "@/components/trinexus/SiteShell";
+import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
 import { ScrollToHash } from "@/components/trinexus/ui/ScrollToHash";
 import "@/styles/community-map.css";
 import "@/styles/historias.css";
@@ -13,7 +14,10 @@ export default function QueEsPage() {
       <ScrollToHash />
       <CommunityScrollMap />
       <main id="main" className="eco-page about-page about-page--journey">
-        <QueEsShowcase />
+        <span id="top" />
+        <ScrollSection>
+          <QueEsHero />
+        </ScrollSection>
         <AboutJourneyChapters />
       </main>
     </SiteShell>

@@ -256,34 +256,33 @@ function FloatMark({ kind }: { kind: "map" | "handshake" | "target" }) {
   );
 }
 
-export function QueEsShowcase() {
+export function QueEsHero() {
   return (
-    <section className="qes dark" id="que-es" aria-labelledby="que-es-title">
-      <div className="wrap qes-inner">
-        <header className="qes-head">
-          <h1 id="que-es-title" className="qes-title">
+    <section className="hero hero--cinema qes-hero" id="que-es" aria-labelledby="que-es-title">
+      <div className="wrap">
+        <div className="hero-content">
+          <h1 className="h-display" id="que-es-title">
             <T k="about.page.h" />
           </h1>
-          <p className="qes-lead">
+          <p className="lead">
             <T k="about.show.lead" />
           </p>
-          <div className="qes-actions">
-            <JoinButton className="btn qes-join" labelKey="nav.join.cta" />
-            <TransitionLink href="#historias" transition="fade" className="btn qes-stories">
+          <div className="btns">
+            <JoinButton />
+            <TransitionLink href="#historias" className="btn btn-ghost">
               <T k="nav.stories" />
             </TransitionLink>
           </div>
-        </header>
-
-        <div className="qes-grid">
+        </div>
+        <div className="qes-grid" id="que-es-cards">
           {CARDS.map((card) => (
             <article key={card.titleKey} className="qes-card">
               <div className="qes-float">
                 <FloatMark kind={card.mark} />
               </div>
-              <h2 className="qes-card-title">
+              <h3 className="qes-card-title">
                 <T k={card.titleKey} />
-              </h2>
+              </h3>
               <ul className="qes-items">
                 {card.items.map((item) => (
                   <li key={item.labelKey} className="qes-item">

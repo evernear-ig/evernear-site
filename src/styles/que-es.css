@@ -1,107 +1,37 @@
-section.qes.dark{
+.about-page--journey .qes-hero{
   --qes-cyan:#3ef0d4;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-  min-height:100dvh;
-  display:flex;
-  align-items:flex-start;
-  padding:calc(var(--nav-h) + clamp(48px,6vh,68px)) 0 clamp(28px,4vh,48px);
   background:transparent;
-  color:var(--white);
+  padding:var(--hero-pad-top) 0 clamp(16px,2.4vh,28px);
+  align-items:stretch;
+  overflow:visible;
 }
-section.qes.dark::before{z-index:1;opacity:.06}
-section.qes ::selection{background:rgba(62,240,212,.34);color:#04140f}
-
-section.qes .qes-inner{
-  position:relative;
-  z-index:1;
-  width:100%;
+.about-page--journey .qes-hero::after{display:none}
+.about-page--journey .qes-hero .wrap{
   display:flex;
   flex-direction:column;
-  gap:clamp(64px,8vh,92px);
+  justify-content:space-between;
+  align-items:stretch;
+  gap:clamp(20px,3.2vh,40px);
+  min-height:calc(100dvh - var(--hero-pad-top) - clamp(16px,2.4vh,28px));
 }
-section.qes .qes-head{text-align:center;max-width:40rem;margin:0 auto}
-section.qes .qes-title{
-  margin:0;
-  font-family:var(--font-head);
-  font-weight:600;
-  font-size:clamp(2.15rem,4.6vw,3.7rem);
-  line-height:.98;
-  letter-spacing:.045em;
-  text-transform:uppercase;
-  color:#fff;
-  text-wrap:balance;
+.about-page--journey .qes-hero .hero-content{
+  padding-bottom:0;
+  flex:0 0 auto;
 }
-section.qes .qes-lead{
-  margin:clamp(12px,1.8vh,18px) auto 0;
-  max-width:22em;
-  text-align:center;
-  font-size:clamp(1.02rem,1.15vw,1.22rem);
-  line-height:1.45;
-  font-weight:500;
-  color:rgba(246,247,251,.92);
-}
-section.qes .qes-actions{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  margin-top:clamp(16px,2.4vh,24px);
-}
+.qes-hero ::selection{background:rgba(62,240,212,.34);color:#04140f}
 
-section.qes .qes-join{
-  min-width:min(100%,240px);
-  padding:14px 34px;
-  background:var(--qes-cyan);
-  color:#062018;
-  border-radius:999px;
-  box-shadow:
-    0 0 0 1px rgba(62,240,212,.45),
-    0 0 22px rgba(62,240,212,.55),
-    0 0 54px rgba(62,240,212,.28),
-    0 10px 24px rgba(0,0,0,.28);
-  animation:qes-glow 3.8s var(--ease-in-out) infinite;
-}
-section.qes .qes-stories{
-  min-width:148px;
-  padding:10px 26px;
-  border:1.5px solid rgba(246,247,251,.72);
-  background:transparent;
-  color:#fff;
-  border-radius:999px;
-  font-size:.76rem;
-}
-@media (hover:hover) and (pointer:fine){
-  section.qes .qes-join:hover{
-    background:#6ff7e4;
-    color:#04140f;
-    box-shadow:
-      0 0 0 1px rgba(140,255,236,.7),
-      0 0 28px rgba(62,240,212,.7),
-      0 14px 28px rgba(0,0,0,.3);
-  }
-  section.qes .qes-stories:hover{
-    border-color:var(--qes-cyan);
-    color:var(--qes-cyan);
-    background:rgba(62,240,212,.08);
-  }
-}
-@keyframes qes-glow{
-  0%,100%{box-shadow:0 0 0 1px rgba(62,240,212,.4),0 0 18px rgba(62,240,212,.42),0 0 42px rgba(62,240,212,.2),0 10px 24px rgba(0,0,0,.28)}
-  50%{box-shadow:0 0 0 1px rgba(62,240,212,.7),0 0 28px rgba(62,240,212,.7),0 0 64px rgba(62,240,212,.34),0 10px 24px rgba(0,0,0,.28)}
-}
-
-section.qes .qes-grid{
+.qes-hero .qes-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(12px,1.5vw,18px);
   align-items:stretch;
+  width:100%;
+  flex:0 0 auto;
 }
-section.qes .qes-card{
+.qes-hero .qes-card{
   position:relative;
-  min-height:340px;
-  padding:22px 16px 64px 16px;
+  min-height:0;
+  padding:22px 16px 52px 16px;
   border-radius:18px;
   background:linear-gradient(180deg,rgba(10,28,40,.62),rgba(6,14,24,.48));
   border:1px solid rgba(94,245,220,.62);
@@ -115,7 +45,7 @@ section.qes .qes-card{
   transition:transform 180ms var(--ease-out),border-color 180ms,box-shadow 180ms;
 }
 @media (hover:hover) and (pointer:fine){
-  section.qes .qes-card:hover{
+  .qes-hero .qes-card:hover{
     transform:translateY(-3px);
     border-color:rgba(150,255,236,.9);
     box-shadow:
@@ -124,7 +54,7 @@ section.qes .qes-card{
       0 18px 36px rgba(0,0,0,.32);
   }
 }
-section.qes .qes-float{
+.qes-hero .qes-float{
   position:absolute;
   top:-22px;
   right:8px;
@@ -133,8 +63,8 @@ section.qes .qes-float{
   pointer-events:none;
   filter:drop-shadow(0 10px 12px rgba(0,0,0,.35));
 }
-section.qes .qes-mark{width:100%;height:100%;overflow:visible}
-section.qes .qes-card-title{
+.qes-hero .qes-mark{width:100%;height:100%;overflow:visible}
+.qes-hero .qes-card-title{
   margin:0 88px 14px 0;
   font-family:var(--font-head);
   font-size:clamp(.78rem,.35vw + .7rem,.92rem);
@@ -144,32 +74,32 @@ section.qes .qes-card-title{
   line-height:1.25;
   color:#fff;
 }
-section.qes .qes-items{
+.qes-hero .qes-items{
   list-style:none;
   margin:0;
   padding:0;
   display:grid;
   gap:14px;
 }
-section.qes .qes-item{
+.qes-hero .qes-item{
   display:grid;
   grid-template-columns:18px minmax(0,1fr);
   gap:8px;
   align-items:start;
 }
-section.qes .qes-item-icon{
+.qes-hero .qes-item-icon{
   color:#8ef6e4;
   margin-top:1px;
 }
-section.qes .qes-item-icon svg{width:18px;height:18px;display:block}
-section.qes .qes-item p{
+.qes-hero .qes-item-icon svg{width:18px;height:18px;display:block}
+.qes-hero .qes-item p{
   margin:0;
   max-width:none;
   font-size:clamp(.74rem,.2vw + .7rem,.84rem);
   line-height:1.4;
   color:#d7e0ea;
 }
-section.qes .qes-item strong{
+.qes-hero .qes-item strong{
   color:#f7f8fb;
   font-family:var(--font-head);
   font-weight:650;
@@ -177,7 +107,7 @@ section.qes .qes-item strong{
   text-transform:uppercase;
   font-size:.92em;
 }
-section.qes .qes-bars{
+.qes-hero .qes-bars{
   position:absolute;
   left:14px;
   bottom:10px;
@@ -187,16 +117,16 @@ section.qes .qes-bars{
   opacity:.85;
   filter:drop-shadow(0 0 6px rgba(62,240,212,.45));
 }
-section.qes .qes-bars rect{fill:currentColor}
+.qes-hero .qes-bars rect{fill:currentColor}
 
 @media (max-width:980px){
-  section.qes .qes-grid{grid-template-columns:1fr}
-  section.qes.dark{align-items:flex-start;min-height:0}
-  section.qes .qes-card{min-height:0}
-}
-@media (max-height:820px) and (min-width:981px){
-  section.qes .qes-title{font-size:clamp(2rem,3.6vw,3.1rem)}
-  section.qes .qes-lead{font-size:1.05rem}
-  section.qes .qes-inner{gap:clamp(48px,6vh,68px)}
-  section.qes .qes-card{min-height:280px;padding-bottom:56px}
+  .about-page--journey .qes-hero{
+    padding-top:calc(var(--nav-h) + 12px);
+    min-height:0;
+  }
+  .about-page--journey .qes-hero .wrap{
+    min-height:0;
+    gap:28px;
+  }
+  .qes-hero .qes-grid{grid-template-columns:1fr}
 }

@@ -1350,8 +1350,6 @@ html:has(.about-page--journey) .nav{background:rgba(7,11,26,.9);backdrop-filter:
   .about-pillar-body p,.about-pillar-list li{font-size:clamp(.72rem,.3vw + .68rem,.8rem);line-height:1.42}
   .about-pillar{padding:14px 16px}
 }
-.about-journey-chapter{scroll-margin-top:0}
-.about-page--journey #join,.about-page--journey #que-es{scroll-margin-top:0}
 .about-journey-chapter--stories{background:transparent;color:#fff}
 .about-journey-chapter__head--stories{position:relative;top:auto;margin-bottom:clamp(16px,2.4vh,28px)}
 .about-journey-chapter__head--stories .h-xl{max-width:14em}
@@ -1362,10 +1360,6 @@ html:has(.about-page--journey) .nav{background:rgba(7,11,26,.9);backdrop-filter:
 .about-journey-chapter__body{display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.6vh,32px)}
 .about-journey-block h2,.about-journey-block h3{font-family:var(--font-head);font-size:clamp(.92rem,.2vw + .82rem,1.05rem);letter-spacing:.14em;text-transform:uppercase;margin:0 0 .7em;padding-bottom:.55em;border-bottom:2px solid var(--green);display:inline-block}
 .about-journey-block p{margin:.65em 0 0;max-width:52ch;line-height:1.55;color:var(--text-on-light-muted)}
-main.eco-page.about-page.about-page--journey>section.about-journey-chapter.about-journey-chapter--stories,
-main.eco-page.about-page.about-page--journey>section#join.founding{min-height:100dvh;box-sizing:border-box;scroll-snap-align:start;scroll-snap-stop:normal}
-main.eco-page.about-page.about-page--journey>section.about-journey-chapter.about-journey-chapter--stories{display:flex;align-items:center;padding:calc(var(--nav-h) + 16px) 0 20px}
-main.eco-page.about-page.about-page--journey>section.about-journey-chapter.about-journey-chapter--stories>.wrap{display:block;width:min(1180px,100%)}
 .about-page--journey .about-journey-chapter__head--stories{grid-area:head;margin:0;align-self:center}
 .about-page--journey .about-journey-chapter--stories .story-reels{grid-area:reels;min-width:0}
 .about-page--journey .about-journey-chapter--stories .historias-form--cta{grid-area:form;padding-top:0;margin:0}
@@ -1373,13 +1367,9 @@ main.eco-page.about-page.about-page--journey>section.about-journey-chapter.about
 .about-page--journey .about-journey-chapter--stories .story-reels__track{grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:.4rem}
 .about-page--journey .about-journey-chapter--stories .story-reel__media-wrap{aspect-ratio:3/4;max-height:26vh}
 .about-page--journey .about-journey-chapter--stories .story-reels__detail{margin-top:.65rem;padding:.8rem 1rem}
-main.eco-page.about-page.about-page--journey>section#join.founding{display:flex;align-items:center;padding:calc(var(--nav-h) + 24px) 0 32px;background:transparent}
 @media(max-width:900px){
   .about-journey-chapter__grid{grid-template-columns:1fr}
   .about-journey-chapter__head{position:relative;top:auto}
-  main.eco-page.about-page.about-page--journey>section.about-journey-chapter.about-journey-chapter--stories,
-  main.eco-page.about-page.about-page--journey>section#join.founding{min-height:0;height:auto;max-height:none;overflow:visible;scroll-snap-align:none}
-  main.eco-page.about-page.about-page--journey>section.about-journey-chapter.about-journey-chapter--stories>.wrap{display:block}
   .about-page--journey .about-journey-chapter--stories .story-reels__track{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
   .about-page--journey .about-journey-chapter--stories .story-reel__media-wrap{max-height:none;aspect-ratio:3/4}
 }

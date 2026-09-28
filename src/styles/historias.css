@@ -621,14 +621,8 @@
   padding: calc(var(--nav-h) + 28px) 0 72px;
 }
 
-main.eco-page.about-page.about-page--journey > section.about-journey-chapter.about-journey-chapter--stories.rs-chapter {
+.about-page--journey section.about-journey-chapter.about-journey-chapter--stories.rs-chapter {
   background: transparent;
-}
-
-main.eco-page.about-page.about-page--journey > section.about-journey-chapter.about-journey-chapter--stories.rs-chapter > .wrap {
-  display: block;
-  grid-template-columns: none;
-  width: min(1180px, 100%);
 }
 
 .rs {
