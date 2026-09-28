@@ -17,20 +17,30 @@ type VerticalHeroProps = {
   asideKey?: string;
   /** When true, the aside is the bold sentence inside an HTML quote. */
   asideFromQuote?: boolean;
+  hideBreadcrumb?: boolean;
+  /** Trailing words painted as the green second line. Default 1. */
+  stageAccentWords?: number;
 };
 
-function StageTitle({ titleKey }: { titleKey: string }) {
+function StageTitle({
+  titleKey,
+  accentWords = 1,
+}: {
+  titleKey: string;
+  accentWords?: number;
+}) {
   const { t } = useI18n();
   const value = String(t(titleKey) ?? "");
   const words = value.trim().split(/\s+/).filter(Boolean);
   if (words.length < 2) {
     return <span className="eco-stage-title-lead">{value}</span>;
   }
-  const accent = words.pop();
+  const take = Math.min(Math.max(accentWords, 1), words.length - 1);
+  const accent = words.splice(-take);
   return (
     <>
       <span className="eco-stage-title-lead">{words.join(" ")}</span>{" "}
-      <span className="eco-stage-title-accent">{accent}</span>
+      <span className="eco-stage-title-accent">{accent.join(" ")}</span>
     </>
   );
 }
@@ -57,6 +67,8 @@ export function VerticalHero({
   stage = false,
   asideKey,
   asideFromQuote = false,
+  hideBreadcrumb = false,
+  stageAccentWords = 1,
 }: VerticalHeroProps) {
   const vtName = ecoViewTransitionName(slug);
 
@@ -84,17 +96,23 @@ export function VerticalHero({
       </div>
       <div className={`wrap eco-hero-content${stage ? " eco-stage-layout" : ""}`}>
         <div className="eco-stage-copy">
-          <nav className="eco-breadcrumb" aria-label="Breadcrumb">
-            <TransitionLink href="/ecosistema" transition="back">
-              <T k="nav.eco" />
-            </TransitionLink>
-            <span aria-hidden="true">/</span>
-            <span>
-              <T k={titleKey} />
-            </span>
-          </nav>
+          {hideBreadcrumb ? null : (
+            <nav className="eco-breadcrumb" aria-label="Breadcrumb">
+              <TransitionLink href="/ecosistema" transition="back">
+                <T k="nav.eco" />
+              </TransitionLink>
+              <span aria-hidden="true">/</span>
+              <span>
+                <T k={titleKey} />
+              </span>
+            </nav>
+          )}
           <h1 className={stage ? "eco-stage-title" : "h-xl"}>
-            {stage ? <StageTitle titleKey={titleKey} /> : <T k={titleKey} />}
+            {stage ? (
+              <StageTitle titleKey={titleKey} accentWords={stageAccentWords} />
+            ) : (
+              <T k={titleKey} />
+            )}
           </h1>
           <p className="lead">
             <T k={leadKey} />

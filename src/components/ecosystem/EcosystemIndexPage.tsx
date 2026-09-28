@@ -1,8 +1,8 @@
 import { EcoCardLink } from "@/components/ecosystem/EcoCardLink";
+import { VerticalHero } from "@/components/ecosystem/VerticalHero";
 import { SiteShell } from "@/components/trinexus/SiteShell";
 import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
 import { T } from "@/components/trinexus/ui/T";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
 import {
   COMMUNITY_VERTICALS,
   REGION_VERTICALS,
@@ -42,26 +42,20 @@ export function EcosystemIndexPage() {
   return (
     <SiteShell>
       <main id="main" className="eco-page">
-        <section className="dark eco-hero eco-hero--index">
-          <div className="eco-hero-bg">
-            <TrinexusPhoto
-              imageKey="ecosystem.heroIndex"
-              className="eco-hero-photo"
-              priority
-            />
-            <div className="eco-hero-veil" />
-          </div>
-          <div className="wrap sec-head sec-head--center eco-hero-content">
-            <h1 className="h-xl">
-              <T k="eco.index.h" />
-            </h1>
-            <p className="lead">
-              <T k="eco.index.lead" />
-            </p>
-          </div>
-        </section>
+        <div className="eco-fold">
+          <VerticalHero
+            slug="ecosistema"
+            accent="index"
+            imageKey="ecosystem.heroIndex"
+            titleKey="eco.index.h"
+            leadKey="eco.index.lead"
+            stage
+            hideBreadcrumb
+            stageAccentWords={3}
+          />
+        </div>
         <ScrollSection>
-          <section className="light eco-body">
+          <section className="light eco-body eco-catalog">
             <div className="wrap">
               <header className="eco-catalog-head" id="comunidad">
                 <h2 className="eco-catalog-title">
