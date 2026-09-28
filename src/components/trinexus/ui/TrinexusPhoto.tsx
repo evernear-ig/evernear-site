@@ -63,7 +63,11 @@ export function TrinexusPhoto({
           decoding="async"
           referrerPolicy="no-referrer"
           className={show ? "show" : undefined}
-          style={spec.pos ? { objectPosition: spec.pos } : undefined}
+          style={
+            spec.pos && !className.includes("eco-hero-photo")
+              ? { objectPosition: spec.pos }
+              : undefined
+          }
           onError={() => setFailed(true)}
           onLoad={() => setFailed(false)}
         />
