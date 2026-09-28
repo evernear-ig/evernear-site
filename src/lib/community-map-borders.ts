@@ -106,11 +106,11 @@ export function linkPath(fromId: string, toId: string): string {
   return `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`;
 }
 
-/** Pan waypoints (vw/vh): sur → centro → norte del continente. */
+/** Pan waypoints (vw/vh) centrados en Sudamérica. */
 export const MAP_WAYPOINTS = [
-  { x: 0, y: -12 },
-  { x: 2, y: 6 },
-  { x: 5, y: 32 },
+  { x: -14, y: -84 },
+  { x: -16, y: -92 },
+  { x: -12, y: -76 },
 ] as const;
 
 export function groupOpacities(progress: number): Record<BorderGroup, number> {

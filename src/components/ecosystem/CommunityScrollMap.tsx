@@ -51,8 +51,8 @@ export function CommunityScrollMap() {
       const progress = mainScrollProgress(main);
       const fade = mapFooterFade();
       const opacities = groupOpacities(progress);
-      const pan = reducedMotion ? { x: 0, y: -12 } : interpolateWaypoint(progress);
-      const scale = window.innerWidth < 768 ? 1.38 : 1.58;
+      const pan = reducedMotion ? interpolateWaypoint(0) : interpolateWaypoint(progress);
+      const scale = window.innerWidth < 768 ? 1.04 : 1.08;
 
       root.style.opacity = String(fade);
       stage.style.transform = `translate3d(${pan.x}vw, ${pan.y}vh, 0) scale(${scale})`;
