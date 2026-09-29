@@ -1228,7 +1228,7 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .areas-sec .eco-card-badge{background:rgba(46,229,157,.14);color:var(--green)}
 .nav-dropdown--wide .nav-dropdown-menu{min-width:280px;padding:8px 0}
 .nav-dropdown--mega{z-index:70}
-.nav-dropdown--mega .nav-dropdown-menu{min-width:0;display:flex;gap:0;padding:8px 0;position:absolute;top:calc(100% + 12px);left:100%;right:auto;transform:none;margin:0 0 0 16px;z-index:70}
+.nav-dropdown--mega .nav-dropdown-menu{min-width:0;display:flex;gap:0;padding:8px 0;position:absolute;top:calc(100% + 12px);left:0;right:auto;transform:none;margin:0;z-index:70}
 .nav-mega-col{min-width:196px;padding:6px 0;border-right:1px solid var(--line)}
 .nav-mega-col:last-child{border-right:0}
 .nav-mega-family{display:block;padding:8px 18px 6px;font-family:var(--font-head);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);font-weight:700}
@@ -1237,7 +1237,6 @@ figcaption.ph-meta{margin-top:10px;color:var(--text-on-light-muted)}
 .nav-mega-links{list-style:none;margin:0;padding:0}
 .nav-mega-links a{display:block;padding:10px 18px;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--white);transition:background .2s,color .2s;white-space:nowrap}
 @media (hover:hover) and (pointer:fine){.nav-mega-links a:hover{background:rgba(255,255,255,.06);color:var(--green)}}
-@media(max-width:1320px){.nav-dropdown--mega .nav-dropdown-menu{margin-left:0}}
 .nav-dropdown-group{padding:6px 0}
 .nav-dropdown-group-label{display:block;padding:8px 16px 6px;font-family:var(--font-head);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);font-weight:700}
 .nav-dropdown-group ul{list-style:none;margin:0;padding:0}
