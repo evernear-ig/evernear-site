@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { PulsoBentoGrid } from "@/components/ecosystem/pulso/PulsoBentoGrid";
 import { PulsoCityRadar } from "@/components/ecosystem/pulso/PulsoCityRadar";
 import { PulsoHero } from "@/components/ecosystem/pulso/PulsoHero";
 import { PulsoPassport } from "@/components/ecosystem/pulso/PulsoPassport";
@@ -38,7 +37,7 @@ export function PulsoSemanalContent({
 }: PulsoSemanalContentProps) {
   const [vertical, setVertical] = useState(initialVertical);
   const [city, setCity] = useState(initialCity);
-  const [week, setWeek] = useState(initialWeek ?? "");
+  const [week, setWeek] = useState(initialWeek ?? "2026-W40");
   const [preview, setPreview] = useState<PreviewResponse | null>(null);
   const [activeSegment, setActiveSegment] = useState<PulsoRundownSegment | null>(null);
 
@@ -76,19 +75,18 @@ export function PulsoSemanalContent({
 
   const handleSelectSegment = (segment: PulsoRundownSegment) => {
     setActiveSegment(segment);
-    if (segment.itemId) {
-      const el = document.getElementById(`news-${segment.itemId}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }
   };
 
   const edition = preview?.edition ?? getPulsoEdition(week);
   const items = preview?.items ?? [];
 
-  // Portada destacada: busca por coverItemId, o toma el primer elemento con imagen
+  // Portada destacada: si hay un segmento activo con itemId, prioriza ese item; de lo contrario coverItemId o primer item
+  const selectedSegmentItem = activeSegment?.itemId
+    ? items.find((i) => i.id === activeSegment.itemId)
+    : null;
+
   const coverItem =
+    selectedSegmentItem ??
     items.find((i) => i.id === edition.coverItemId) ??
     items.find((i) => Boolean(i.image)) ??
     items[0];
@@ -111,38 +109,24 @@ export function PulsoSemanalContent({
       {/* 3. Breaking Ticker continuo */}
       <PulsoTicker items={items} />
 
-      {/* 4. Escaleta del Stream y Tema de Portada */}
-      <section className="pulso-rundown-section">
+      {/* 4. Cobertura unificada: Radar de ciudades, Escaleta del stream, Tema Central y Novedades */}
+      <section id="pulso-radar" className="pulso-feed-section" aria-label="Cobertura y capítulos de la emisión">
         <div className="wrap">
-          <div className="pulso-stream-breakdown-grid">
-            <PulsoRundown
-              rundown={edition.rundown}
-              activeSegment={activeSegment}
-              onSelectSegment={handleSelectSegment}
-            />
-
-            {coverItem && (
-              <div className="pulso-rundown-spotlight-col">
-                <span className="pulso-rundown-spotlight-label">TEMA CENTRAL DE LA TRANSMISIÓN</span>
-                <PulsoSpotlight item={coverItem} />
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Novedades completas tratadas en la emisión con radar de ciudades */}
-      <section className="pulso-feed-section" aria-label="Novedades tratadas en la emisión">
-        <div className="wrap">
+          {/* Cabecera unificada de la sección */}
           <div className="pulso-feed-header">
+            <div className="pulso-badge-status">
+              <span className="pulso-badge-status__dot" />
+              <span>COBERTURA DE LA EMISIÓN · RADAR & CAPÍTULOS</span>
+            </div>
             <h2 className="pulso-feed-title">
-              Novedades revisadas en esta emisión
+              Cobertura y temas de la emisión
             </h2>
             <p className="pulso-feed-lead">
-              Explorá las oportunidades, eventos y proyectos mencionados durante la transmisión semanal.
+              Seguí los temas del streaming por capítulos con sus marcas de tiempo y explorá el foco de cada discusión en la Triple Frontera.
             </p>
           </div>
 
+          {/* Barra de radar y filtros por ciudad */}
           <PulsoCityRadar
             currentCity={city}
             currentVertical={vertical}
@@ -152,13 +136,40 @@ export function PulsoSemanalContent({
             onFilterChange={handleFilterChange}
           />
 
-          <PulsoBentoGrid
-            items={items}
-            coverItemId={coverItem?.id}
-            activeItemId={activeSegment?.itemId}
-          />
+          {/* Bloque superior integrado: Escaleta del programa + Tema Central */}
+          <div className="pulso-feed-lead-block">
+            <div className="pulso-stream-breakdown-grid">
+              <div className="pulso-breakdown-col-header">
+                <div className="pulso-rundown-badge">
+                  <span className="pulso-rundown-dot" />
+                  <span>ESCALETA DEL PROGRAMA · CAPÍTULOS</span>
+                </div>
+                <span className="pulso-rundown-hint">Hacé clic en un bloque para saltar al tema</span>
+              </div>
 
-          {/* 6. Repeticiones y VODs de programas pasados */}
+              <span className="pulso-breakdown-col-header pulso-breakdown-col-header--spotlight">
+                {activeSegment
+                  ? `TEMA SELECCIONADO · ${activeSegment.timestamp}`
+                  : "TEMA CENTRAL DE LA TRANSMISIÓN"}
+              </span>
+
+              <PulsoRundown
+                rundown={edition.rundown}
+                activeSegment={activeSegment}
+                onSelectSegment={handleSelectSegment}
+                filterCity={city}
+                showHeader={false}
+              />
+
+              {coverItem && (
+                <div className="pulso-rundown-spotlight-col">
+                  <PulsoSpotlight item={coverItem} segment={activeSegment} compact />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Repeticiones y VODs de programas pasados */}
           <PulsoVods
             currentWeek={week}
             onSelectWeek={(selectedWeek) => handleFilterChange({ week: selectedWeek })}

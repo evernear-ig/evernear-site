@@ -70,34 +70,43 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
 
   return (
     <header className="pulso-hero">
-      {/* Fondo ambiental con cuadrícula y sismógrafo */}
+      {/* Fondo ambiental: brillo suave y ondas de transmisión */}
       <div className="pulso-hero__ambient" aria-hidden="true">
         <div className="pulso-hero__glow" />
         <svg
-          className="pulso-hero__ekg"
+          className="pulso-hero__signal"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
           fill="none"
         >
           <defs>
-            <linearGradient id="ekg-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="pulso-signal-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#2EE59D" stopOpacity="0" />
-              <stop offset="25%" stopColor="#2EE59D" stopOpacity="0.4" />
-              <stop offset="48%" stopColor="#3EF0D4" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="#2EE59D" stopOpacity="1" />
-              <stop offset="52%" stopColor="#3EF0D4" stopOpacity="0.8" />
-              <stop offset="75%" stopColor="#2EE59D" stopOpacity="0.4" />
+              <stop offset="18%" stopColor="#2EE59D" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="#3EF0D4" stopOpacity="0.55" />
+              <stop offset="82%" stopColor="#2EE59D" stopOpacity="0.25" />
               <stop offset="100%" stopColor="#2EE59D" stopOpacity="0" />
             </linearGradient>
           </defs>
-          <path
-            className="pulso-hero__ekg-line"
-            d="M0,60 L280,60 L295,30 L305,95 L315,15 L325,100 L335,60 L540,60 L555,20 L565,105 L575,10 L585,110 L595,60 L850,60 L865,25 L875,100 L885,15 L895,105 L905,60 L1200,60"
-            stroke="url(#ekg-gradient)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <g className="pulso-hero__signal-track pulso-hero__signal-track--a">
+            <path
+              className="pulso-hero__signal-line"
+              d="M-120,58 C0,58 60,44 180,44 S300,58 420,58 S540,44 660,44 S780,58 900,58 S1020,44 1140,44 S1260,58 1320,58"
+              stroke="url(#pulso-signal-gradient)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </g>
+          <g className="pulso-hero__signal-track pulso-hero__signal-track--b">
+            <path
+              className="pulso-hero__signal-line"
+              d="M-120,78 C30,78 90,92 210,92 S330,78 450,78 S570,92 690,92 S810,78 930,78 S1050,92 1170,92 S1290,78 1320,78"
+              stroke="url(#pulso-signal-gradient)"
+              strokeWidth="1"
+              strokeLinecap="round"
+              opacity="0.55"
+            />
+          </g>
         </svg>
       </div>
 

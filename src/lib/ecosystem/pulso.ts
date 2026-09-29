@@ -23,7 +23,8 @@ function allPulsoItems(): PulsoItem[] {
 }
 
 export function getPulsoItems(filters: PulsoFilters = {}): PulsoItem[] {
-  const weekKey = filters.week ?? getIsoWeekKey();
+  const currentIso = getIsoWeekKey();
+  const weekKey = filters.week ?? (PULSO_EDITIONS[currentIso] ? currentIso : "2026-W40");
   const weekStart = parseIsoWeekKey(weekKey) ?? getWeekStart();
   const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekEnd.getDate() + 7);
@@ -48,6 +49,8 @@ export function getPulsoItems(filters: PulsoFilters = {}): PulsoItem[] {
 }
 
 export function getRecentWeekKeys(count = 8): string[] {
+  const predefined = Object.keys(PULSO_EDITIONS);
+  if (predefined.length > 0) return predefined;
   const keys: string[] = [];
   const cursor = new Date();
   for (let i = 0; i < count; i++) {

@@ -8,12 +8,16 @@ type PulsoRundownProps = {
   rundown?: PulsoRundownSegment[];
   activeSegment?: PulsoRundownSegment | null;
   onSelectSegment: (segment: PulsoRundownSegment) => void;
+  filterCity?: string;
+  showHeader?: boolean;
 };
 
 export function PulsoRundown({
   rundown = [],
   activeSegment,
   onSelectSegment,
+  filterCity,
+  showHeader = true,
 }: PulsoRundownProps) {
   if (rundown.length === 0) return null;
 
@@ -32,24 +36,29 @@ export function PulsoRundown({
 
   return (
     <div className="pulso-rundown-box" aria-label="Escaleta del programa">
-      <div className="pulso-rundown-box__header">
-        <div className="pulso-rundown-badge">
-          <span className="pulso-rundown-dot" />
-          <span>ESCALETA DEL PROGRAMA · CAPÍTULOS</span>
+      {showHeader && (
+        <div className="pulso-rundown-box__header">
+          <div className="pulso-rundown-badge">
+            <span className="pulso-rundown-dot" />
+            <span>ESCALETA DEL PROGRAMA · CAPÍTULOS</span>
+          </div>
+          <span className="pulso-rundown-hint">Hacé clic en un bloque para saltar al tema</span>
         </div>
-        <span className="pulso-rundown-hint">Hacé clic en un bloque para saltar al tema</span>
-      </div>
+      )}
 
       <div className="pulso-rundown-list">
         {rundown.map((seg, idx) => {
           const isActive = activeSegment?.timestamp === seg.timestamp;
+          const isCityMatch = !filterCity || filterCity === "all" || seg.cityId === filterCity;
           const verticalKey = SLUG_TO_PREFIX[seg.verticalSlug];
 
           return (
             <button
               key={`${seg.timestamp}-${idx}`}
               type="button"
-              className={`pulso-rundown-item ${isActive ? "is-active" : ""}`}
+              className={`pulso-rundown-item ${isActive ? "is-active" : ""} ${
+                isCityMatch ? "is-city-match" : "is-city-dimmed"
+              }`}
               onClick={() => onSelectSegment(seg)}
             >
               <span className="pulso-rundown-time">{seg.timestamp}</span>

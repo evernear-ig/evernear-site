@@ -84,7 +84,7 @@ export function PulsoCityRadar({
         )}
 
         <div className="pulso-radar-count">
-          <span>{totalItemsCount}</span> {totalItemsCount === 1 ? "novedad" : "novedades"}
+          <span>{totalItemsCount}</span> {totalItemsCount === 1 ? "tema en el radar" : "temas en el radar"}
         </div>
       </div>
     </div>

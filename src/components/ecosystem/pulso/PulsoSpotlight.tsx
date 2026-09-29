@@ -3,15 +3,21 @@
 import Image from "next/image";
 import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
 import { T } from "@/components/trinexus/ui/T";
-import type { PulsoItem } from "@/lib/ecosystem/types";
+import type { PulsoItem, PulsoRundownSegment } from "@/lib/ecosystem/types";
 import { SLUG_TO_PREFIX } from "@/lib/ecosystem/vertical-catalog";
 
 type PulsoSpotlightProps = {
   item: PulsoItem;
+  segment?: PulsoRundownSegment | null;
+  compact?: boolean;
 };
 
-export function PulsoSpotlight({ item }: PulsoSpotlightProps) {
-  const verticalKey = SLUG_TO_PREFIX[item.verticalSlug];
+export function PulsoSpotlight({ item, segment, compact = false }: PulsoSpotlightProps) {
+  const displayTitle = segment?.title ?? item.title;
+  const displaySummary = segment?.summary ?? item.summary;
+  const displayCityId = segment?.cityId ?? item.cityId;
+  const displayVerticalSlug = segment?.verticalSlug ?? item.verticalSlug;
+  const displayVerticalKey = SLUG_TO_PREFIX[displayVerticalSlug];
 
   const getCityName = (cityId: string) => {
     switch (cityId) {
@@ -27,7 +33,10 @@ export function PulsoSpotlight({ item }: PulsoSpotlightProps) {
   };
 
   return (
-    <div className="pulso-spotlight-card" aria-labelledby="pulso-spotlight-title">
+    <div
+      className={`pulso-spotlight-card${compact ? " is-compact" : ""}`}
+      aria-labelledby="pulso-spotlight-title"
+    >
       {/* Background image & gradient overlay */}
       <div className="pulso-spotlight-card__media">
         <Image
@@ -48,17 +57,17 @@ export function PulsoSpotlight({ item }: PulsoSpotlightProps) {
             {item.badge ?? "RADAR DE LA SEMANA"}
           </span>
 
-          <span className={`pulso-city-pill pulso-city-pill--${item.cityId}`}>
-            {getCityName(item.cityId)}
+          <span className={`pulso-city-pill pulso-city-pill--${displayCityId}`}>
+            {getCityName(displayCityId)}
           </span>
 
-          {verticalKey && (
+          {displayVerticalKey && (
             <span className="pulso-vertical-pill">
-              <T k={`nav.${verticalKey}`} />
+              <T k={`nav.${displayVerticalKey}`} />
             </span>
           )}
 
-          {item.readTime && (
+          {!compact && item.readTime && (
             <span className="pulso-readtime-pill">
               {item.readTime}
             </span>
@@ -66,12 +75,12 @@ export function PulsoSpotlight({ item }: PulsoSpotlightProps) {
         </div>
 
         <h2 id="pulso-spotlight-title" className="pulso-spotlight-card__title">
-          {item.title}
+          {displayTitle}
         </h2>
 
-        {item.summary && (
+        {displaySummary && (
           <p className="pulso-spotlight-card__summary">
-            {item.summary}
+            {displaySummary}
           </p>
         )}
 
@@ -80,7 +89,7 @@ export function PulsoSpotlight({ item }: PulsoSpotlightProps) {
             href={item.href ?? `/${item.verticalSlug}`}
             className="btn btn-green btn-pulse"
           >
-            <span>Explorar en detalle</span>
+            <span>{segment ? "Ver tema del capítulo" : "Explorar en detalle"}</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />

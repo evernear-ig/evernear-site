@@ -80,11 +80,11 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
       },
       {
         timestamp: "28:50",
-        title: "Radar Rápido: Podcast de frontera, yoga al amanecer y útiles escolares",
+        title: "Radar rápido: podcast, yoga y colecta escolar",
         cityId: "cde",
         verticalSlug: "solidaridad",
         itemId: "pulso-10",
-        summary: "Flash de convocatorias comunitarias y actividades de bienestar.",
+        summary: "Tres convocatorias en un minuto: voces de la frontera, bienestar al amanecer y útiles para escuelas rurales.",
       },
       {
         timestamp: "34:00",
