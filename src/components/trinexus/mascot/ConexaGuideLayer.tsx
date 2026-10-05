@@ -10,6 +10,7 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { ConexaChatPanel } from "@/components/trinexus/mascot/ConexaChatPanel";
 import { ConexaGuideActionsProvider } from "@/components/trinexus/mascot/ConexaGuideActionsContext";
 import { ConexaMascotImage } from "@/components/trinexus/mascot/ConexaMascotImage";
 import { ConexaSpotlight } from "@/components/trinexus/mascot/ConexaSpotlight";
@@ -336,33 +337,7 @@ export function ConexaGuideLayer() {
           </div>
         ) : null}
 
-        {mode === "chat" ? (
-          <div
-            className="conexa-guide__chat"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="conexa-chat-title"
-          >
-            <p id="conexa-chat-title" className="conexa-guide__chat-title">
-              <T k="journey.chat.title" />
-            </p>
-            <p className="conexa-guide__chat-body">
-              <T k="journey.chat.body" />
-            </p>
-            <input
-              className="conexa-guide__chat-input"
-              disabled
-              placeholder={String(t("journey.chat.placeholder"))}
-            />
-            <button
-              type="button"
-              className="conexa-guide__prompt-btn conexa-guide__prompt-btn--primary"
-              onClick={() => setMode("idle")}
-            >
-              <T k="journey.btn.close" />
-            </button>
-          </div>
-        ) : null}
+        {mode === "chat" ? <ConexaChatPanel onClose={() => setMode("idle")} /> : null}
       </div>
     </ConexaGuideActionsProvider>
   );

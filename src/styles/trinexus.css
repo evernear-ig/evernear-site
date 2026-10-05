@@ -651,11 +651,23 @@ body.join-modal-open{overflow:hidden}
 .conexa-guide__prompt-btn{padding:8px 14px;border-radius:999px;font-family:var(--font-head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid transparent}
 .conexa-guide__prompt-btn--ghost{background:transparent;border-color:rgba(255,255,255,.2);color:var(--text-on-dark-muted)}
 .conexa-guide__prompt-btn--primary{background:var(--green);color:var(--ink)}
-.conexa-guide__chat{position:fixed;right:24px;bottom:120px;z-index:50;width:min(320px,calc(100vw - 32px));padding:18px 18px 16px;border-radius:16px;background:rgba(7,11,26,.96);border:1px solid rgba(46,229,157,.4);box-shadow:0 20px 48px rgba(7,11,26,.55);pointer-events:auto;display:flex;flex-direction:column;gap:12px}
+.conexa-guide__chat{position:fixed;right:24px;bottom:120px;z-index:50;width:min(380px,calc(100vw - 32px));max-height:min(520px,calc(100dvh - 160px));padding:16px;border-radius:16px;background:rgba(7,11,26,.96);border:1px solid rgba(46,229,157,.4);box-shadow:0 20px 48px rgba(7,11,26,.55);pointer-events:auto;display:flex;flex-direction:column;gap:12px}
+.conexa-guide__chat-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .conexa-guide__chat-title{margin:0;font-family:var(--font-head);font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.conexa-guide__chat-close{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--text-on-dark-muted);font-family:var(--font-head);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.conexa-guide__chat-log{display:flex;flex-direction:column;gap:8px;min-height:140px;overflow-y:auto;padding-right:2px}
 .conexa-guide__chat-body{margin:0;font-size:.88rem;line-height:1.5;color:var(--text-on-dark)}
-.conexa-guide__chat-input{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--text-on-dark-muted);font-size:.85rem}
-.conexa-guide__chat .conexa-guide__prompt-btn{align-self:flex-end}
+.conexa-guide__chat-msg{margin:0;max-width:92%;padding:8px 10px;border-radius:12px;font-size:.86rem;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.conexa-guide__chat-msg--user{align-self:flex-end;background:rgba(46,229,157,.16);color:var(--text-on-dark)}
+.conexa-guide__chat-msg--assistant{align-self:flex-start;background:rgba(255,255,255,.06);color:var(--text-on-dark)}
+.conexa-guide__chat-msg--pending{opacity:.7}
+.conexa-guide__chat-error{margin:0;font-size:.8rem;line-height:1.4;color:#ffb4a8}
+.conexa-guide__chat-form{display:flex;align-items:flex-end;gap:8px}
+.conexa-guide__chat-input{flex:1;width:auto;min-height:44px;max-height:96px;resize:none;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);color:var(--text-on-dark);font:inherit;font-size:.85rem;line-height:1.4}
+.conexa-guide__chat-input::placeholder{color:var(--text-on-dark-muted)}
+.conexa-guide__chat-input:focus{outline:none;border-color:rgba(46,229,157,.7)}
+.conexa-guide__chat-form .conexa-guide__prompt-btn{flex:0 0 auto}
+.conexa-guide__chat-form .conexa-guide__prompt-btn:disabled{opacity:.45;cursor:default}
 .conexa-guide__tour-panel{position:fixed;right:96px;bottom:24px;z-index:50;width:min(320px,calc(100vw - 112px));pointer-events:auto}
 .conexa-tour-card{padding:16px 18px;border-radius:16px;background:rgba(7,11,26,.94);border:1px solid rgba(46,229,157,.38);box-shadow:0 20px 48px rgba(7,11,26,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .conexa-tour-card__head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
