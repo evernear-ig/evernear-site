@@ -2,7 +2,7 @@ import { Reveal } from "@/components/trinexus/ui/Reveal";
 import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 
-const MANIFESTO_LINES = ["mani.1", "mani.2", "mani.3", "mani.4", "mani.5"] as const;
+const MANIFESTO_LINES = ["mani.1", "mani.2"] as const;
 
 export function ManifestoSection() {
   return (
@@ -21,11 +21,11 @@ export function ManifestoSection() {
       </div>
       <div className="wrap" style={{ position: "relative" }}>
         <Reveal>
-          <h2 className="h-xl">
+          <h2 className="mani-head">
             <THtml k="mani.h" />
           </h2>
         </Reveal>
-        <Reveal className="mani-text" style={{ marginTop: "56px" }}>
+        <Reveal className="mani-text">
           {MANIFESTO_LINES.map((key, index) => (
             <span key={key} className={index > 0 ? "beat" : undefined}>
               <T k={key} />
@@ -33,7 +33,7 @@ export function ManifestoSection() {
           ))}
         </Reveal>
         <Reveal className="mani-final">
-          <THtml k="mani.final" />
+          <T k="mani.final" />
         </Reveal>
       </div>
     </section>

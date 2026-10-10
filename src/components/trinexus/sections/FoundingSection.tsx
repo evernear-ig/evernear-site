@@ -1,20 +1,27 @@
+"use client";
+
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { T, THtml } from "@/components/trinexus/ui/T";
+import { T } from "@/components/trinexus/ui/T";
+import { useJoinModal } from "@/components/trinexus/providers/JoinModalProvider";
+import type { JoinTrack } from "@/lib/join-tracks";
 
-const WHO = [
-  { key: "w.students" },
-  { key: "w.devs" },
-  { key: "w.ents" },
-  { key: "w.biz" },
-  { key: "w.unis" },
-  { key: "w.orgs" },
-  { text: "Builders" },
-] as const;
+const PARTNERS: {
+  track: JoinTrack;
+  title: "part.1" | "part.2" | "part.3" | "part.4";
+  body: "part.1.p" | "part.2.p" | "part.3.p" | "part.4.p";
+}[] = [
+  { track: "sport", title: "part.1", body: "part.1.p" },
+  { track: "health", title: "part.2", body: "part.2.p" },
+  { track: "solidarity", title: "part.3", body: "part.3.p" },
+  { track: "innovation", title: "part.4", body: "part.4.p" },
+];
 
 export function FoundingSection() {
+  const { openJoin } = useJoinModal();
+
   return (
-    <section className="founding" id="join">
+    <section className="founding dark" id="join">
       <svg className="deco" viewBox="0 0 500 460" aria-hidden="true">
         <path d="M250 40 L460 420 L40 420 Z" />
         <line x1="250" y1="40" x2="250" y2="293" />
@@ -28,38 +35,39 @@ export function FoundingSection() {
         </g>
       </svg>
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
-        <Reveal style={{ maxWidth: "42em" }}>
-          <div className="observer">
-            <span>
-              <T k="found.from" />
-            </span>
-            <i />
-            <b>
-              <T k="found.to" />
-            </b>
-          </div>
+        <Reveal className="founding-intro sec-head sec-head--center">
           <h2 className="h-xl">
             <T k="found.h" />
           </h2>
-          <p className="lead" style={{ marginTop: "22px" }}>
-            <T k="found.sub" />
+          <p className="lead founding-lead">
+            <T k="found.lead" />
           </p>
-          <p style={{ marginTop: "18px" }}>
-            <T k="found.p" />
-          </p>
-          <div className="who">
-            {WHO.map((item, index) => (
-              <span key={index}>
-                {"key" in item && item.key ? <T k={item.key} /> : item.text}
-              </span>
-            ))}
-          </div>
           <div className="btns">
             <JoinButton className="btn btn-green" />
           </div>
-          <p className="quote" style={{ marginTop: "56px", color: "var(--white)" }}>
-            <THtml k="found.q" />
-          </p>
+        </Reveal>
+        <Reveal className="founding-partners" id="partners">
+          <div className="partners">
+            {PARTNERS.map((partner) => (
+              <div key={partner.track} className="partner">
+                <div>
+                  <h3>
+                    <T k={partner.title} />
+                  </h3>
+                  <p>
+                    <T k={partner.body} />
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="partner-cta"
+                  onClick={() => openJoin({ track: partner.track })}
+                >
+                  <T k="part.cta" />
+                </button>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>

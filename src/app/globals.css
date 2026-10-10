@@ -1,11 +1,89 @@
 @import "tailwindcss";
 @import "../styles/trinexus.css";
+@import "../styles/carousel.css";
+@import "../styles/view-transitions.css";
 
 @theme inline {
   --font-sans: var(--font-body);
 }
 
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overflow-y: auto;
+  background: var(--space);
+}
+
 body {
   font-family: var(--font-body), system-ui, sans-serif;
+  min-height: 100dvh;
+}
+
+[data-sonner-toaster] {
+  z-index: 85 !important;
+  pointer-events: none;
+}
+
+/* Live region de toasts: si queda en el flujo, deja un hueco blanco bajo la página */
+section[aria-label="Notifications alt+T"],
+[data-react-aria-top-layer="true"] {
+  position: fixed !important;
+  inset: auto 0 0 0;
+  width: 100%;
+  z-index: 85;
+  pointer-events: none;
+}
+
+[data-sonner-toast].conexa-toast {
+  pointer-events: auto;
+  width: min(420px, calc(100vw - 2rem)) !important;
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: var(--font-body), system-ui, sans-serif;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+.conexa-toast__title {
+  font-family: var(--font-head), system-ui, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+.conexa-toast__desc {
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+}
+
+.conexa-toast__close {
+  pointer-events: auto;
+}
+
+@media (max-width: 520px) {
+  [data-sonner-toaster][data-x-position="center"] {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    width: min(420px, calc(100vw - 1.5rem));
+  }
+
+  [data-sonner-toast].conexa-toast {
+    width: 100% !important;
+  }
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+button,
+a,
+[role="button"] {
   touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }

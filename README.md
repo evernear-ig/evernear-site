@@ -1,16 +1,16 @@
-# Trinexus
+# CONEXA
 
-Plataforma de descubrimiento de personas, empresas, eventos y oportunidades en la **triple frontera de Argentina** (Misiones, Paraguay y Brasil).
+**Descubrí tu región** — plataforma de descubrimiento e información para conectar deporte, salud, solidaridad, comercio, turismo, educación, eventos e innovación.
 
-## Visión
+Primera región de lanzamiento: **Triple Frontera** (Puerto Iguazú · Foz do Iguaçu · Ciudad del Este).
 
-Conectar a la comunidad regional con un mapa vivo de talento, negocios, actividades y oportunidades — facilitando el networking, la colaboración y el crecimiento económico local.
+CONEXA es solo informativa: no procesa pagos, donaciones ni rifas; las acciones concretas ocurren con cada organizador.
 
 ## Stack
 
 - **Next.js** (App Router)
 - **TypeScript**
-- **Tailwind CSS**
+- **Tailwind CSS** + estilos en `src/styles/trinexus.css`
 
 ## Desarrollo local
 
@@ -19,15 +19,13 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+Abre [http://localhost:3000](http://localhost:3000).
 
-## Estructura prevista
+## Estructura
 
-- Directorio de personas y perfiles profesionales
-- Directorio de empresas y organizaciones
-- Calendario de eventos regionales
-- Feed de oportunidades (empleo, inversión, colaboración)
-- Búsqueda y filtros por ubicación, categoría e intereses
+- Landing con mapa regional, personas y áreas del ecosistema
+- Verticales: deporte, salud, bienestar, comunicación, solidaridad, turismo, comercios, educación, eventos, descubrimiento, innovación
+- Catálogos demo (eventos, comercios, solidaridad, etc.)
 
 ## Licencia
 

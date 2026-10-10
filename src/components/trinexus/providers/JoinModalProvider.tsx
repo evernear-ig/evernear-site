@@ -1,5 +1,6 @@
 "use client";
 
+import type { JoinPrefill } from "@/lib/join-tracks";
 import {
   createContext,
   useCallback,
@@ -11,7 +12,8 @@ import {
 
 type JoinModalContextValue = {
   open: boolean;
-  openJoin: () => void;
+  prefill: JoinPrefill | null;
+  openJoin: (prefill?: JoinPrefill) => void;
   closeJoin: () => void;
 };
 
@@ -19,13 +21,21 @@ const JoinModalContext = createContext<JoinModalContextValue | null>(null);
 
 export function JoinModalProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [prefill, setPrefill] = useState<JoinPrefill | null>(null);
 
-  const openJoin = useCallback(() => setOpen(true), []);
-  const closeJoin = useCallback(() => setOpen(false), []);
+  const openJoin = useCallback((next?: JoinPrefill) => {
+    setPrefill(next ?? null);
+    setOpen(true);
+  }, []);
+
+  const closeJoin = useCallback(() => {
+    setOpen(false);
+    setPrefill(null);
+  }, []);
 
   const value = useMemo(
-    () => ({ open, openJoin, closeJoin }),
-    [open, openJoin, closeJoin]
+    () => ({ open, prefill, openJoin, closeJoin }),
+    [open, prefill, openJoin, closeJoin]
   );
 
   return (

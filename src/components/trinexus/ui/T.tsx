@@ -1,7 +1,9 @@
 "use client";
 
-import type { ElementType } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+
+/** HTML tags only: the WebGL layers add three.js elements to the JSX namespace. */
+type HtmlTag = keyof React.JSX.IntrinsicElements & keyof HTMLElementTagNameMap;
 
 export function T({
   k,
@@ -10,7 +12,7 @@ export function T({
 }: {
   k: string;
   className?: string;
-  as?: ElementType;
+  as?: HtmlTag;
 }) {
   const { t, isFallback, lang } = useI18n();
   const value = t(k);

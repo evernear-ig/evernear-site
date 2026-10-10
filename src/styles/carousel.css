@@ -1,0 +1,192 @@
+/* Unified carousel — scroll-driven, sin controles */
+.carousel{--carousel-duration:var(--duration-panel);--carousel-ease:var(--ease-out);width:100%}
+.carousel__viewport{overflow:hidden;width:100%}
+.carousel__track{display:flex;flex-wrap:nowrap;transition:transform var(--carousel-duration) var(--carousel-ease)}
+.carousel__slide{flex:0 0 auto;box-sizing:border-box}
+.carousel__fade-stage{position:relative;width:100%}
+.carousel__fade-slide{opacity:0;transform:translateY(14px);transition:opacity var(--carousel-duration) var(--carousel-ease),transform var(--carousel-duration) var(--carousel-ease);pointer-events:none;position:absolute;inset:0;width:100%}
+.carousel__fade-slide[data-active="true"]{opacity:1;transform:none;pointer-events:auto;position:relative}
+.carousel--fade .carousel__viewport{min-height:1px}
+
+/* Scroll: el avance lo calcula el hook según el paso por el viewport (sin pista vacía) */
+.carousel--drive-scroll{position:relative;height:auto;min-height:0}
+.carousel__sticky{position:relative;top:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:0;padding:clamp(8px,1.5vh,16px) 0;box-sizing:border-box}
+.carousel--panel .carousel__sticky{justify-content:flex-start;padding-top:0}
+.carousel--drive-wheel .carousel__sticky{position:relative;top:auto;min-height:0;padding:0}
+.carousel--hero .carousel__viewport{max-width:36rem;margin-inline:auto;width:100%}
+.carousel--hero .carousel__slide{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;min-height:min(24vh,200px)}
+
+/* Scroll-jack: bloquea la página y avanza por ítem con wheel/touch. */
+.carousel--jack .carousel__sticky{
+  position:sticky;
+  top:calc(var(--nav-h) + 8px);
+  z-index:2;
+  width:100%;
+  padding:8px 0 16px;
+  box-sizing:border-box;
+  touch-action:pan-y;
+  align-items:stretch;
+  background:transparent;
+}
+.carousel--jack.is-active .carousel__pan-track{
+  transition:transform var(--carousel-duration) var(--ease-out);
+}
+.carousel--pan{position:relative;height:auto;min-height:0}
+.carousel--pan:not(.carousel--jack) .carousel__sticky{
+  position:relative;
+  top:auto;
+  z-index:auto;
+  width:100%;
+  padding:8px 0 16px;
+  box-sizing:border-box;
+  touch-action:pan-y;
+  align-items:stretch;
+  background:transparent;
+}
+.carousel--pan .carousel__viewport{
+  overflow:hidden;
+  width:100%;
+  container-type:inline-size;
+  container-name:carousel-pan;
+}
+.carousel--pan .carousel__pan-track{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:18px;
+  width:max-content;
+  will-change:transform;
+  transition:none;
+}
+.carousel--pan .carousel__strip-item{
+  display:flex;
+  flex:0 0 min(78cqi,320px);
+  width:min(78cqi,320px);
+  min-width:0;
+  height:auto;
+}
+.carousel--pan .carousel__strip-item>*{flex:1;width:100%;min-width:0}
+@media (min-width:901px){
+  .carousel--pan .carousel__strip-item{
+    flex:0 0 calc((100cqi - 36px) / 3.2);
+    width:calc((100cqi - 36px) / 3.2);
+  }
+}
+
+/* Fallback grilla (reduced motion / drive strip) */
+.carousel--drive-strip .carousel__strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:18px;overflow:visible;padding:2px 0;touch-action:pan-y}
+.carousel--drive-strip .carousel__strip-item{display:flex;min-width:0;height:100%}
+.carousel--drive-strip .carousel__strip-item>*{flex:1;width:100%;min-width:0;height:100%}
+.carousel--drive-strip .carousel-hero-slide,.carousel--drive-strip .carousel-audience-slide{min-height:0;height:100%;text-align:left;align-items:flex-start;justify-content:flex-start;padding:0}
+
+/* Snap: same native horizontal scroll as historias */
+.carousel--drive-snap .carousel__strip{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:2px;
+  margin-inline:calc(-1 * var(--pad));
+  padding:8px var(--pad) 12px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(25,230,200,.55) transparent;
+}
+.carousel--drive-snap .carousel__strip::-webkit-scrollbar{height:6px}
+.carousel--drive-snap .carousel__strip::-webkit-scrollbar-thumb{
+  background:linear-gradient(90deg,#19e6c8,#d63cf0);
+  border-radius:999px;
+}
+.carousel--drive-snap .carousel__strip-item{
+  display:flex;
+  flex:0 0 min(78%,320px);
+  width:min(78%,320px);
+  min-width:0;
+  scroll-snap-align:start;
+}
+.carousel--drive-snap .carousel__strip-item>*{flex:1;width:100%;min-width:0}
+@media (min-width:901px){
+  .carousel--drive-snap .carousel__strip-item{
+    flex:0 0 calc((100% - 28px) / 3.15);
+    width:calc((100% - 28px) / 3.15);
+  }
+}
+
+/* Home people/areas: keep the original 3-up card size, snap only the overflow */
+.people-carousel.carousel--drive-snap .carousel__strip,
+.areas-carousel.carousel--drive-snap .carousel__strip{
+  gap:18px;
+  margin-inline:0;
+  padding:8px 1px 12px;
+  scroll-padding-inline:1px;
+}
+.people-carousel.carousel--drive-snap .carousel__strip-item,
+.areas-carousel.carousel--drive-snap .carousel__strip-item{
+  flex:0 0 calc((100% - 36px) / 3);
+  width:calc((100% - 36px) / 3);
+}
+@media (max-width:900px){
+  .people-carousel.carousel--drive-snap .carousel__strip-item,
+  .areas-carousel.carousel--drive-snap .carousel__strip-item{
+    flex:0 0 min(86%,360px);
+    width:min(86%,360px);
+  }
+}
+.carousel--cards .carousel__viewport{width:100%}
+.carousel--cards:not(.carousel--pan):not(.carousel--drive-snap) .carousel__strip-item{height:100%}
+.carousel--pan.carousel--cards .carousel__strip-item{height:auto}
+.carousel--cards .carousel-page--trio .pcard{height:100%}
+
+/* Progress bar sutil (no botones) */
+.carousel__progress{width:min(120px,28vw);height:2px;margin-top:clamp(16px,2.5vh,24px);background:var(--line-dark);border-radius:999px;overflow:hidden}
+.dark .carousel__progress{background:rgba(246,247,251,.15)}
+.carousel__progress-bar{display:block;height:100%;background:var(--green);border-radius:999px;transition:width var(--carousel-duration) var(--carousel-ease)}
+
+/* Hero / audience slide content */
+.carousel-hero-slide{font-family:var(--font-head);display:flex;flex-direction:column;align-items:center;width:100%}
+.carousel-hero-slide b{display:block;font-size:clamp(1.05rem,1.6vw,1.35rem);text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.carousel-hero-slide span{display:block;font-family:var(--font-body);font-size:clamp(.88rem,1.1vw,.95rem);color:var(--text-on-light-muted);margin-top:8px;line-height:1.55;max-width:42ch}
+.carousel-audience-slide{text-align:center;display:flex;flex-direction:column;align-items:center;width:100%;padding:0 12px}
+.carousel-audience-slide h4{margin:0 0 10px;font-family:var(--font-head);font-size:clamp(1.15rem,2.2vw,1.55rem);letter-spacing:.02em;line-height:1.15;color:var(--ink)}
+.carousel-audience-slide p{margin:0;max-width:34ch;font-size:clamp(.95rem,1.2vw,1.05rem);line-height:1.55;color:var(--text-on-light-muted)}
+.carousel-audience-slide--quote{gap:20px;padding-top:clamp(4px,1vh,8px)}
+.carousel-audience-slide--quote .quote{margin:0;max-width:22em;font-family:var(--font-head);font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.35;color:var(--ink)}
+.carousel-page--trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 1px;margin:0;list-style:none;width:100%}
+.carousel-page--trio>li{min-width:0;height:100%}
+@media(max-width:900px){.carousel-page--trio{grid-template-columns:1fr;gap:14px;max-width:min(100%,360px);margin-inline:auto}}
+
+/* Panel (qué es CONEXA) */
+.about-full-carousel{width:100%;max-width:none}
+.about-full-carousel.carousel--drive-wheel,.about-full-carousel.carousel--drive-held{height:auto;min-height:0}
+.about-full-carousel.carousel--drive-wheel .carousel__sticky,.about-full-carousel.carousel--drive-held .carousel__sticky{position:relative;top:auto;min-height:0;padding:0;align-items:flex-start}
+.about-full-carousel .about-full-slide{margin-top:0;animation:none}
+.about-full-carousel .carousel__fade-stage{min-height:min(42vh,380px)}
+.about-full-carousel .carousel__progress{margin-top:clamp(22px,3.5vh,32px);margin-inline:0}
+@media(max-width:720px){.about-full-carousel .carousel__fade-stage{min-height:min(36vh,300px)}}
+
+/* Static fallback */
+.carousel--static{display:grid;gap:20px;width:100%;max-width:36rem;margin-inline:auto}
+.carousel--static .carousel-hero-slide,.carousel--static .carousel-audience-slide{text-align:center;padding:12px 0;border-bottom:1px solid var(--line-dark)}
+.carousel--static .carousel-hero-slide:last-child,.carousel--static .carousel-audience-slide:last-child{border-bottom:0}
+
+/* Scroll reveal */
+.carousel--reveal.carousel:not(.in){opacity:0;transform:translateY(20px)}
+.carousel--reveal.carousel.in{opacity:1;transform:none;transition:opacity var(--carousel-duration) var(--carousel-ease),transform var(--carousel-duration) var(--carousel-ease)}
+
+@media(prefers-reduced-motion:reduce){
+  .carousel__track,.carousel__fade-slide,.carousel__progress-bar,.carousel--reveal.carousel{transition:none}
+  .carousel--drive-scroll,.carousel--pan{height:auto}
+  .carousel--pan .carousel__sticky{position:relative;top:auto}
+  .carousel--drive-strip .carousel__strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));
+    overflow:visible;
+    scroll-snap-type:none;
+    flex-wrap:unset;
+  }
+  .carousel--drive-strip .carousel__strip-item{
+    flex:unset;
+    width:auto;
+  }
+  .carousel--drive-snap .carousel__strip{scroll-snap-type:none}
+}

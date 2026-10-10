@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -17,21 +17,37 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TRINEXUS — El Hub de Innovación de la Triple Frontera",
+  title: "CONEXA — Descubrí tu región",
   description:
-    "TRINEXUS es el hub de innovación que conecta personas, tecnología y oportunidades en la Triple Frontera de Argentina, Brasil y Paraguay.",
-  authors: [{ name: "TRINEXUS" }],
-  metadataBase: new URL("https://trinexus.org"),
+    "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+  authors: [{ name: "CONEXA" }],
+  metadataBase: new URL("https://conexa.org"),
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "TRINEXUS",
-    title: "TRINEXUS — El Hub de Innovación de la Triple Frontera",
+    siteName: "CONEXA",
+    title: "CONEXA — Descubrí tu región",
     description:
-      "TRINEXUS es el hub de innovación que conecta personas, tecnología y oportunidades en la Triple Frontera de Argentina, Brasil y Paraguay.",
+      "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+    locale: "es_AR",
   },
-  twitter: { card: "summary_large_image" },
-  other: { "theme-color": "#070B1A" },
+  twitter: {
+    card: "summary_large_image",
+    title: "CONEXA — Descubrí tu región",
+    description:
+      "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#070B1A" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -41,7 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${inter.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-dvh flex flex-col">{children}</body>
     </html>
   );
 }

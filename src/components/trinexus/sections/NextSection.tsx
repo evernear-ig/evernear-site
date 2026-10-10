@@ -1,13 +1,11 @@
+import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
 import { JoinButton } from "@/components/trinexus/ui/JoinButton";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T } from "@/components/trinexus/ui/T";
 
-export function NextSection() {
+export function NextSection({ embedded = false }: { embedded?: boolean }) {
   return (
-    <section className="dark" id="next">
-      <Seam />
-      <div className="wrap">
+    <EcoSectionFrame embedded={embedded} className="dark" id="next">
         <Reveal>
           <h2 className="h-xl">
             <T k="next.h" />
@@ -36,7 +34,6 @@ export function NextSection() {
             </div>
           </div>
         </Reveal>
-      </div>
-    </section>
+    </EcoSectionFrame>
   );
 }

@@ -1,7 +1,10 @@
 "use client";
 
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+
+/** HTML tags only: the WebGL layers add three.js elements to the JSX namespace. */
+type HtmlTag = keyof React.JSX.IntrinsicElements & keyof HTMLElementTagNameMap;
 
 export function I18nAria({
   k,
@@ -10,7 +13,7 @@ export function I18nAria({
   ...rest
 }: {
   k: string;
-  as?: ElementType;
+  as?: HtmlTag;
   children?: ReactNode;
 } & Record<string, unknown>) {
   const { t } = useI18n();

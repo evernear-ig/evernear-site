@@ -1,15 +1,20 @@
 import { ConnectNetwork } from "@/components/trinexus/sections/ConnectNetwork";
+import { Scene3D } from "@/components/trinexus/three/Scene3D";
+import { EcoSectionFrame } from "@/components/trinexus/ui/EcoSectionFrame";
 import { Reveal } from "@/components/trinexus/ui/Reveal";
-import { Seam } from "@/components/trinexus/ui/Seam";
 import { T, THtml } from "@/components/trinexus/ui/T";
 
 const ROLES = ["con.r1", "con.r2", "con.r3", "con.r4", "con.r5", "con.r6"] as const;
 
-export function ConnectSection() {
+export function ConnectSection({ embedded = false }: { embedded?: boolean }) {
   return (
-    <section className="dark" id="connect">
-      <Seam />
-      <div className="wrap grid g-7-5">
+    <EcoSectionFrame
+      embedded={embedded}
+      className="dark"
+      id="connect"
+      backdrop={<Scene3D variant="network" className="scene3d--right" />}
+    >
+      <div className="grid g-7-5">
         <Reveal>
           <ConnectNetwork />
         </Reveal>
@@ -17,7 +22,7 @@ export function ConnectSection() {
           <h2 className="h-xl">
             <T k="con.h" />
           </h2>
-          <p className="lead dim">
+          <p className="lead">
             <T k="con.lead" />
           </p>
           <div className="roles">
@@ -32,6 +37,6 @@ export function ConnectSection() {
           </p>
         </Reveal>
       </div>
-    </section>
+    </EcoSectionFrame>
   );
 }

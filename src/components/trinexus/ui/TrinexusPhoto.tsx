@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/components/trinexus/providers/I18nProvider";
 import { ARTWORK } from "@/lib/artwork";
-import { IMAGES, getImageSpec, imageAlt } from "@/lib/images";
+import { IMAGES, getImageSpec, imageAlt, resolveImageSrc } from "@/lib/images";
 import { useState } from "react";
 
 type TrinexusPhotoProps = {
@@ -31,20 +31,19 @@ export function TrinexusPhoto({
   if (!spec && !artwork) return null;
 
   const alt = spec ? imageAlt(spec, lang) : "";
-  const src = spec
-    ? spec.file && IMAGES.localBase
-      ? `${IMAGES.localBase}${spec.file}`
-      : IMAGES.base(spec.u, 1000)
-    : undefined;
-  const srcSet = spec
-    ? IMAGES.widths.map((w) => `${IMAGES.base(spec.u, w)} ${w}w`).join(", ")
-    : undefined;
+  const src = spec ? resolveImageSrc(imageKey, 1000) : undefined;
+  const usesLocalFile = Boolean(spec?.file);
+  const srcSet =
+    spec && !usesLocalFile
+      ? IMAGES.widths.map((w) => `${IMAGES.base(spec.u, w)} ${w}w`).join(", ")
+      : undefined;
 
-  const showPhoto = IMAGES.mode !== "artwork" && spec && !failed;
+  const showPhoto = IMAGES.mode !== "artwork" && spec && !failed && Boolean(src);
+  const showArt = Boolean(artwork) && (!showPhoto || failed);
 
   const layers = (
     <>
-      {artwork ? (
+      {showArt ? (
         <div
           className={`art${show ? " show" : ""}`}
           aria-hidden="true"
@@ -64,7 +63,11 @@ export function TrinexusPhoto({
           decoding="async"
           referrerPolicy="no-referrer"
           className={show ? "show" : undefined}
-          style={spec.pos ? { objectPosition: spec.pos } : undefined}
+          style={
+            spec.pos && !className.includes("eco-hero-photo")
+              ? { objectPosition: spec.pos }
+              : undefined
+          }
           onError={() => setFailed(true)}
           onLoad={() => setFailed(false)}
         />
