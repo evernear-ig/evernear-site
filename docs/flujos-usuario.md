@@ -154,6 +154,8 @@ sequenceDiagram
 
 Traducciones: `src/lib/i18n/translations.ts` (generado/acompañado por `scripts/build-translations.mjs`).
 
+Mapas de decisión **por ruta** (todas las verticales, subrutas y transversales): **[mapas-decision-rutas.md](./mapas-decision-rutas.md)**.
+
 ## Mapa de decisión rápido (usuario nuevo)
 
 ```mermaid

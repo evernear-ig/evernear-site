@@ -9,6 +9,7 @@ CONEXA es una plataforma **informativa** de descubrimiento regional para la Trip
 | [Visión y producto](./vision-producto.md) | Qué es CONEXA, audiencias, verticales, límites del MVP |
 | [Arquitectura](./arquitectura.md) | Stack, capas, providers, integraciones externas |
 | [Flujos de usuario](./flujos-usuario.md) | Recorridos por persona, interacciones y estados |
+| [Mapas de decisión por ruta](./mapas-decision-rutas.md) | Diagramas Mermaid para **cada ruta** del ecosistema |
 | [Rutas y páginas](./rutas-paginas.md) | Mapa del App Router y patrones de layout |
 | [Datos y APIs](./datos-apis.md) | Catálogos estáticos, store en memoria, endpoints |
 | [Frontend y componentes](./frontend-componentes.md) | Carpetas `trinexus` vs `ecosystem`, UI compartida |
