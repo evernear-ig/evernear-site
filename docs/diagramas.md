@@ -121,6 +121,10 @@ Al acercarse a producción real: autenticación para publicadores, rate limiting
 
 ---
 
+## 8. Enlace a mapas por ruta
+
+Todos los diagramas de decisión del ecosistema (home, 11 verticales, pulso, QR, legal, etc.) están en **[mapas-decision-rutas.md](./mapas-decision-rutas.md)**.
+
 Diagramas relacionados con más detalle narrativo:
 
 - [Arquitectura](./arquitectura.md)
