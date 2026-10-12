@@ -21,6 +21,10 @@ npm run dev
 
 Abre [http://localhost:3000](http://localhost:3000).
 
+## Documentación
+
+Guía completa para el equipo (arquitectura, flujos de usuario, APIs y onboarding): **[docs/README.md](./docs/README.md)**.
+
 ## Estructura
 
 - Landing con mapa regional, personas y áreas del ecosistema
