@@ -18,6 +18,7 @@ import {
 import type { LangCode, TranslationValue } from "@/lib/i18n/types";
 
 const STORAGE_KEY = "evernear.lang.v1";
+const LEGACY_LANG_KEYS = ["trinexus.lang.v1"];
 
 type I18nContextValue = {
   lang: LangCode;
@@ -30,8 +31,15 @@ const I18nContext = createContext<I18nContextValue | null>(null);
 
 function readStoredLang(): LangCode {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY) as LangCode | null;
-    if (saved && saved in I18N.langs) return saved;
+    for (const key of [STORAGE_KEY, ...LEGACY_LANG_KEYS]) {
+      const saved = localStorage.getItem(key) as LangCode | null;
+      if (saved && saved in I18N.langs) {
+        if (key !== STORAGE_KEY) {
+          localStorage.setItem(STORAGE_KEY, saved);
+        }
+        return saved;
+      }
+    }
   } catch {
     /* ignore */
   }

@@ -99,7 +99,7 @@ export function PanfletoPageContent() {
           <h2><T k="panfleto.preview.h" /></h2>
           <div className="panfleto-email">
             <header>
-              <strong>TRINEXUS Panfleto Semanal</strong>
+              <strong>Evernear Panfleto Semanal</strong>
               <span>Triple Frontera</span>
             </header>
             <h3><T k="panfleto.preview.events" /></h3>

@@ -10,11 +10,11 @@ import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 import { EcosystemQrDemo } from "./EcosystemQrDemo";
 
 const LAYERS = [
-  { title: "TRINEXUS ID", body: "fut.id", kind: "id" as const },
-  { title: "TRINEXUS QR", body: "fut.qr", kind: "qr" as const },
-  { title: "TRINEXUS MAP", body: "fut.map", kind: "map" as const },
-  { title: "TRINEXUS HUB", body: "fut.hub", kind: "hub" as const },
-  { title: "TRINEXUS EVENTOS", body: "fut.summit", kind: "events" as const },
+  { title: "Evernear ID", body: "fut.id", kind: "id" as const },
+  { title: "Evernear QR", body: "fut.qr", kind: "qr" as const },
+  { title: "Evernear MAP", body: "fut.map", kind: "map" as const },
+  { title: "Evernear HUB", body: "fut.hub", kind: "hub" as const },
+  { title: "Evernear EVENTOS", body: "fut.summit", kind: "events" as const },
 ] as const;
 
 type EcosystemLayersPanelProps = {

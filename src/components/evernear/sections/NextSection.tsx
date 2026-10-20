@@ -25,7 +25,7 @@ export function NextSection({ embedded = false }: { embedded?: boolean }) {
                 <T k="next.status" />
               </span>
             </div>
-            <h3>TRINEXUS 001</h3>
+            <h3>Evernear 001</h3>
             <p>
               <T k="next.p" />
             </p>

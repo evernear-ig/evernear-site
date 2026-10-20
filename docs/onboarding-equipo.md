@@ -12,7 +12,8 @@ Guía para desarrolladores, diseño y producto que incorporan al repositorio **e
 ### Pasos
 
 ```bash
-cd evernear
+git clone https://github.com/evernear-ig/evernear-site.git
+cd evernear-site
 npm install
 cp .env.example .env.local
 npm run dev

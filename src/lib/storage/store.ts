@@ -14,6 +14,14 @@ type PanfletoEntry = {
 };
 type QrScan = { token: string; count: number; lastScan: string };
 
+const LEGACY_QR_TOKENS: Record<string, string> = {
+  "evt-trinexus-001": "evt-evernear-001",
+};
+
+export function normalizeQrToken(token: string) {
+  return LEGACY_QR_TOKENS[token] ?? token;
+}
+
 const events: EventItem[] = [...SEED_EVENTS];
 const panfletoSubscribers: PanfletoSubscriber[] = [];
 const panfletoEntries: PanfletoEntry[] = [];
@@ -59,6 +67,7 @@ export function getPanfletoEntries() {
 }
 
 export function recordQrScan(token: string) {
+  token = normalizeQrToken(token);
   const existing = qrScans.get(token);
   const now = new Date().toISOString();
   if (existing) {
@@ -71,7 +80,7 @@ export function recordQrScan(token: string) {
 }
 
 export function getQrScanCount(token: string) {
-  return qrScans.get(token)?.count ?? 0;
+  return qrScans.get(normalizeQrToken(token))?.count ?? 0;
 }
 
 export function submitStory(data: Omit<StorySubmission, "submittedAt">) {

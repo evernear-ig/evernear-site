@@ -12,6 +12,13 @@ Evernear es solo informativa: no procesa pagos, donaciones ni rifas; las accione
 - **TypeScript**
 - **Tailwind CSS** + estilos en `src/styles/evernear.css`
 
+## Repositorio
+
+```bash
+git clone https://github.com/evernear-ig/evernear-site.git
+cd evernear-site
+```
+
 ## Desarrollo local
 
 ```bash
