@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { SiteShell } from "@/components/trinexus/SiteShell";
-import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
-import { T } from "@/components/trinexus/ui/T";
+import { SiteShell } from "@/components/evernear/SiteShell";
+import { ScrollSection } from "@/components/evernear/ui/ScrollSection";
+import { T } from "@/components/evernear/ui/T";
 import { getVerticalCatalog } from "@/lib/ecosystem/vertical-catalog";
 import { ECOSYSTEM_VERTICALS, type VerticalSlug } from "@/lib/ecosystem/verticals";
 import { VerticalHero } from "./VerticalHero";

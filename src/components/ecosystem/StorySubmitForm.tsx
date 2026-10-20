@@ -6,9 +6,9 @@ import {
   useState,
   type KeyboardEvent,
 } from "react";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { FormWizard, reportStepValidity } from "@/components/trinexus/ui/FormWizard";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { FormWizard, reportStepValidity } from "@/components/evernear/ui/FormWizard";
+import { T } from "@/components/evernear/ui/T";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 import { CITY_FILTER_OPTIONS } from "@/lib/ecosystem/vertical-catalog";
 import { toast } from "sonner";
@@ -69,18 +69,18 @@ export function StorySubmitForm({
       lastFocus.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = "hidden";
       document.body.classList.add("join-modal-open");
-      window.dispatchEvent(new Event("conexa:scroll-lock"));
+      window.dispatchEvent(new Event("evernear:scroll-lock"));
     } else {
       document.body.style.overflow = "";
       document.body.classList.remove("join-modal-open");
-      window.dispatchEvent(new Event("conexa:scroll-unlock"));
+      window.dispatchEvent(new Event("evernear:scroll-unlock"));
       lastFocus.current?.focus();
     }
 
     return () => {
       document.body.style.overflow = "";
       document.body.classList.remove("join-modal-open");
-      window.dispatchEvent(new Event("conexa:scroll-unlock"));
+      window.dispatchEvent(new Event("evernear:scroll-unlock"));
     };
   }, [open]);
 

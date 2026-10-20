@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { T } from "@/components/trinexus/ui/T";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { T } from "@/components/evernear/ui/T";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
 
 type EcoCardLinkProps = {
   href: string;
@@ -36,7 +36,7 @@ export function EcoCardLink({
         className="eco-card-img"
         style={{ viewTransitionName: vtName } satisfies CSSProperties}
       >
-        <TrinexusPhoto imageKey={imageKey} />
+        <EvernearPhoto imageKey={imageKey} />
       </div>
       <div className="eco-card-body">
         {badge ??

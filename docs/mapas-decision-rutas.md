@@ -1,6 +1,6 @@
 # Mapas de decisión por ruta
 
-Cada diagrama describe **qué puede hacer el usuario** en esa ruta y hacia dónde suele ir después. Rutas del ecosistema CONEXA alineadas con `src/app/` (octubre 2026).
+Cada diagrama describe **qué puede hacer el usuario** en esa ruta y hacia dónde suele ir después. Rutas del ecosistema Evernear alineadas con `src/app/` (octubre 2026).
 
 **Leyenda común en verticales catálogo**
 
@@ -151,7 +151,7 @@ flowchart TD
   Shared --> Info["Contenido solo informativo — sin transacciones"]
   Cat["Filtro foco: hospitales, clínicas, prevención…"] --> Read["Leer ficha y CityBadge"]
   Shared --> Join["CTA → Unirse track health"]
-  Read --> Ext["Acción real: contacto fuera de CONEXA"]
+  Read --> Ext["Acción real: contacto fuera de Evernear"]
 ```
 
 ---
@@ -207,7 +207,7 @@ flowchart TD
   City -->|Todas| Regional["Comparar triple frontera"]
   Local --> Plan["Planificar viaje (info en ficha)"]
   Regional --> Plan
-  Plan --> Ext["Reservar / comprar fuera de CONEXA"]
+  Plan --> Ext["Reservar / comprar fuera de Evernear"]
 ```
 
 ---
@@ -369,7 +369,7 @@ flowchart TD
   Found -->|No| NF["404"]
   Found -->|Sí| Read["Tipo, institución, modalidad, país"]
   Read --> Apply{¿Quiere inscribirse?}
-  Apply -->|Sí| Ext["Proceso en institución (fuera de CONEXA)"]
+  Apply -->|Sí| Ext["Proceso en institución (fuera de Evernear)"]
   Apply -->|No| Back["Volver /educacion"]
 ```
 
@@ -476,14 +476,14 @@ flowchart TD
   OK -->|Sí| Success["Vista éxito — payload solo console.log"]
 ```
 
-### Mascota Conexa (`ConexaGuideLayer`)
+### Mascota Evernear (`EvernearGuideLayer`)
 
 ```mermaid
 flowchart TD
   Dock["Icono flotante"] --> Mode{¿Modo?}
   Mode -->|idle/menu| Menu["Tour o Chat"]
   Mode -->|tour| Steps["OnboardJS: pasos por sección de página"]
-  Mode -->|chat| Chat["ConexaChatPanel → /api/chat"]
+  Mode -->|chat| Chat["EvernearChatPanel → /api/chat"]
   Steps --> Anchor["Scroll a #hero, #border, guía vertical…"]
   Chat --> Lang["Usa lang + pathname en prompt"]
   Dock --> Drag["Arrastrar → guardar posición localStorage"]

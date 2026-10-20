@@ -640,7 +640,7 @@ function serializeDict(dict) {
 const keyCount = Object.keys(VERTICAL_GUIDES.es).length;
 
 const file = `/**
- * Vertical guide translations for CONEXA ecosystem pages.
+ * Vertical guide translations for Evernear ecosystem pages.
  * Slugs: deporte→sport, salud→health, bienestar→wellness, comunicacion→communication,
  * solidaridad→solidarity, turismo→tourism, comercios→commerce, educacion→education,
  * eventos→events, descubrimiento→discovery, innovacion→innovation.

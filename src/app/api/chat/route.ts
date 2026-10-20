@@ -7,11 +7,11 @@ import {
 } from "ai";
 import { chatProvider, resolveChatModel } from "@/lib/ai/chat-model";
 import {
-  conexaInstructions,
+  evernearInstructions,
   isChatLang,
   safePathname,
   type ChatLang,
-} from "@/lib/ai/conexa-prompt";
+} from "@/lib/ai/evernear-prompt";
 
 export const maxDuration = 30;
 const MAX_MESSAGES = 16;
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
   try {
     const result = streamText({
       model: resolveChatModel(),
-      instructions: conexaInstructions(lang, safePathname(payload.pathname)),
+      instructions: evernearInstructions(lang, safePathname(payload.pathname)),
       messages: await convertToModelMessages(messages),
     });
 

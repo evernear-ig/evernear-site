@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { PROFILES } from "@/data/discovery";
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
 import { CityBadge } from "@/components/ecosystem/CityBadge";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
-import { T } from "@/components/trinexus/ui/T";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
+import { T } from "@/components/evernear/ui/T";
 
 export function generateStaticParams() {
   return PROFILES.map((p) => ({ id: p.id }));
@@ -23,7 +23,7 @@ export default async function ProfilePage({
     <VerticalPageShell verticalSlug="descubrimiento">
       <article className="eco-detail">
         <div className="eco-detail-photo">
-          <TrinexusPhoto imageKey={profile.imageKey} />
+          <EvernearPhoto imageKey={profile.imageKey} />
         </div>
         <h2 className="h-xl" style={{ fontSize: "clamp(1.6rem,3.5vw,2.4rem)" }}>
           {profile.name}

@@ -28,7 +28,7 @@ export const IMAGES = {
       u: "photo-1758270705317-3ef6142d306f",
       file: "/images/people/people-student.webp",
       pos: "48% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Estudiantes colaborando en un aula con laptops y pizarra",
         pt: "Estudantes colaborando em uma sala com laptops e quadro",
@@ -39,7 +39,7 @@ export const IMAGES = {
       u: "photo-1602992708529-c9fdb12905c9",
       file: "/images/people/people-developer.webp",
       pos: "52% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Equipo de innovación trabajando con impresora 3D y laptops",
         pt: "Equipe de inovação trabalhando com impressora 3D e laptops",
@@ -60,7 +60,7 @@ export const IMAGES = {
       u: "photo-1687293233211-6b0cc3beba70",
       file: "/images/people/people-business.webp",
       pos: "42% 45%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Comerciante local organizando frutas en un mercado callejero",
         pt: "Comerciante local organizando frutas em um mercado de rua",
@@ -71,7 +71,7 @@ export const IMAGES = {
       u: "photo-1649252504196-4aca12ecc644",
       file: "/images/people/people-creator.webp",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Creadores grabando un podcast en un estudio colaborativo",
         pt: "Criadores gravando um podcast em um estúdio colaborativo",
@@ -82,7 +82,7 @@ export const IMAGES = {
       u: "photo-1574629810360-7d2ba7029f8d",
       file: "/images/people/people-athlete.webp",
       pos: "50% 45%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Jóvenes jugando fútbol en una cancha comunitaria al atardecer",
         pt: "Jovens jogando futebol em um campo comunitário ao entardecer",
@@ -93,7 +93,7 @@ export const IMAGES = {
       u: "photo-1593113598332-cd288d649433",
       file: "/images/people/people-foundation.webp",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Voluntarios repartiendo alimentos frescos en un evento solidario",
         pt: "Voluntários distribuindo alimentos frescos em um evento solidário",
@@ -170,12 +170,12 @@ export const IMAGES = {
     },
     discovery: {
       u: "photo-1529156069898-49953e39b3ac",
-      file: "about-conexa-discovery.webp",
+      file: "about-evernear-discovery.webp",
       pos: "50% 45%",
       alt: {
-        es: "Persona explorando lugares de la región con el mapa de CONEXA en el teléfono",
-        pt: "Pessoa explorando lugares da região com o mapa CONEXA no celular",
-        en: "Person exploring regional places with the CONEXA map on their phone",
+        es: "Persona explorando lugares de la región con el mapa de Evernear en el teléfono",
+        pt: "Pessoa explorando lugares da região com o mapa Evernear no celular",
+        en: "Person exploring regional places with the Evernear map on their phone",
       },
     },
     vision: {
@@ -478,7 +478,7 @@ export const IMAGES = {
       u: "/images/sport/sport-football-victoria.png",
       file: "/images/sport/sport-football-victoria.png",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Equipo juvenil de fútbol entrenando en cancha comunitaria de Puerto Iguazú",
         pt: "Equipe juvenil de futebol treinando em campo comunitário de Puerto Iguazú",
@@ -489,7 +489,7 @@ export const IMAGES = {
       u: "/images/sport/sport-football-liga-barrial.png",
       file: "/images/sport/sport-football-liga-barrial.png",
       pos: "50% 45%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Partido de fútbol amateur en torneo barrial al atardecer",
         pt: "Partida de futebol amador em torneio de bairro ao entardecer",
@@ -500,7 +500,7 @@ export const IMAGES = {
       u: "/images/sport/sport-futsal-foz.png",
       file: "/images/sport/sport-futsal-foz.png",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Partido de futsal en ginásio cubierto de Foz do Iguaçu",
         pt: "Partida de futsal em ginásio coberto de Foz do Iguaçu",
@@ -511,7 +511,7 @@ export const IMAGES = {
       u: "/images/sport/sport-futsal-copa.png",
       file: "/images/sport/sport-futsal-copa.png",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Selección escolar de futsal en cancha antes de copa fronteriza",
         pt: "Seleção escolar de futsal em quadra antes de copa fronteiriça",
@@ -522,7 +522,7 @@ export const IMAGES = {
       u: "/images/sport/sport-basket-iguazu.png",
       file: "/images/sport/sport-basket-iguazu.png",
       pos: "50% 38%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Jugadores de básquet en cancha cubierta comunitaria",
         pt: "Jogadores de basquete em quadra coberta comunitária",
@@ -533,7 +533,7 @@ export const IMAGES = {
       u: "/images/sport/sport-basket-foz-escuela.png",
       file: "/images/sport/sport-basket-foz-escuela.png",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Niños en clase de básquet en escuela pública de Foz",
         pt: "Crianças em aula de basquete em escola pública de Foz",
@@ -544,7 +544,7 @@ export const IMAGES = {
       u: "/images/sport/sport-volley-iguazu.png",
       file: "/images/sport/sport-volley-iguazu.png",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Equipo femenino de vóley en partido local",
         pt: "Equipe feminina de vôlei em partida local",
@@ -555,7 +555,7 @@ export const IMAGES = {
       u: "/images/sport/sport-volley-cde.png",
       file: "/images/sport/sport-volley-cde.png",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Partido de vóley en cancha de Ciudad del Este",
         pt: "Partida de vôlei em quadra de Ciudad del Este",
@@ -566,7 +566,7 @@ export const IMAGES = {
       u: "/images/sport/sport-handball-pi.png",
       file: "/images/sport/sport-handball-pi.png",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Equipo escolar de handball en polideportivo de Puerto Iguazú",
         pt: "Equipe escolar de handebol em poliesportivo de Puerto Iguazú",
@@ -577,7 +577,7 @@ export const IMAGES = {
       u: "/images/sport/sport-handball-foz.png",
       file: "/images/sport/sport-handball-foz.png",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Partido universitario de handball en campus de Foz",
         pt: "Partida universitária de handebol no campus de Foz",
@@ -588,7 +588,7 @@ export const IMAGES = {
       u: "/images/sport/sport-martial-foz.png",
       file: "/images/sport/sport-martial-foz.png",
       pos: "50% 38%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Clase de artes marciales en dojo de Foz do Iguaçu",
         pt: "Aula de artes marciais em dojo de Foz do Iguaçu",
@@ -599,7 +599,7 @@ export const IMAGES = {
       u: "/images/sport/sport-martial-cde.png",
       file: "/images/sport/sport-martial-cde.png",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Judoka entrenando en tatami de Ciudad del Este",
         pt: "Judoca treinando em tatame de Ciudad del Este",
@@ -610,7 +610,7 @@ export const IMAGES = {
       u: "/images/sport/sport-athletics-maraton.png",
       file: "/images/sport/sport-athletics-maraton.png",
       pos: "50% 45%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Corredores en carrera de ruta fronteriza al amanecer",
         pt: "Corredores em prova de rua fronteiriça ao amanhecer",
@@ -621,7 +621,7 @@ export const IMAGES = {
       u: "/images/sport/sport-athletics-pi.png",
       file: "/images/sport/sport-athletics-pi.png",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Atletas entrenando en pista municipal de Puerto Iguazú",
         pt: "Atletas treinando em pista municipal de Puerto Iguazú",
@@ -632,7 +632,7 @@ export const IMAGES = {
       u: "/images/sport/sport-swim-foz.png",
       file: "/images/sport/sport-swim-foz.png",
       pos: "50% 40%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Natación en pileta olímpica municipal de Foz",
         pt: "Natação em piscina olímpica municipal de Foz",
@@ -643,7 +643,7 @@ export const IMAGES = {
       u: "/images/sport/sport-swim-pi.png",
       file: "/images/sport/sport-swim-pi.png",
       pos: "50% 42%",
-      credit: "CONEXA",
+      credit: "Evernear",
       alt: {
         es: "Clase de natación infantil en pileta climatizada",
         pt: "Aula de natação infantil em piscina aquecida",
@@ -1150,13 +1150,13 @@ export const IMAGES = {
     },
   } satisfies ImageGroup,
   events: {
-    conexa001: {
+    evernear001: {
       u: "photo-1649252504348-235b14c9cdb5",
       pos: "50% 45%",
       alt: {
-        es: "Primer encuentro CONEXA de innovación en Puerto Iguazú",
-        pt: "Primeiro encontro CONEXA de inovação em Puerto Iguazú",
-        en: "First CONEXA innovation gathering in Puerto Iguazú",
+        es: "Primer encuentro Evernear de innovación en Puerto Iguazú",
+        pt: "Primeiro encontro Evernear de inovação em Puerto Iguazú",
+        en: "First Evernear innovation gathering in Puerto Iguazú",
       },
     },
     blockchainFoz: {

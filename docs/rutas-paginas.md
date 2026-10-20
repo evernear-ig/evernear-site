@@ -80,7 +80,7 @@ Definida en `src/lib/ecosystem/verticals.ts`:
 - `COMMUNITY_NAV_LINKS`: enlaces institucionales (qué es, historias, términos).
 - `ABOUT_NAV_LINKS`: visión y CTA unirse.
 
-Header: `src/components/trinexus/layout/Header.tsx`.
+Header: `src/components/evernear/layout/Header.tsx`.
 
 ## Metadata y SEO
 
@@ -94,4 +94,4 @@ Header: `src/components/trinexus/layout/Header.tsx`.
 2. Crear listings en `src/data/listings/<vertical>.ts` y registrar en `listings/index.ts`.
 3. Extender `getVerticalCatalog` en `vertical-catalog.ts` (audiencia, filtros, claves i18n).
 4. Crear `src/app/<slug>/page.tsx` con `VerticalCatalogPage` o contenido custom.
-5. Añadir claves de traducción y, si aplica, secciones de tour en `conexa-sections.ts`.
+5. Añadir claves de traducción y, si aplica, secciones de tour en `evernear-sections.ts`.

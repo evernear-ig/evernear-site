@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const html = fs.readFileSync("public/trinexus.html", "utf8");
+const html = fs.readFileSync("public/evernear.html", "utf8");
 const i18nSrc = fs.readFileSync("src/lib/i18n/translations-data.js", "utf8");
 const I18N = eval(i18nSrc + "; I18N");
 

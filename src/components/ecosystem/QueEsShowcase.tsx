@@ -1,4 +1,4 @@
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 type ItemIconName = "search" | "hands" | "link" | "beam" | "rocket" | "megaphone";
 

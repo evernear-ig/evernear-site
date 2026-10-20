@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { T } from "@/components/evernear/ui/T";
 
 const INTEREST_OPTIONS = [
   { id: "eventos", label: "Eventos & Festivales" },

@@ -1,10 +1,10 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
+import { T } from "@/components/evernear/ui/T";
 import { ecoViewTransitionName } from "@/lib/eco-vt-name";
 
 type VerticalHeroProps = {
@@ -79,7 +79,7 @@ export function VerticalHero({
           className="eco-hero-photo-wrap"
           style={{ viewTransitionName: vtName } satisfies CSSProperties}
         >
-          <TrinexusPhoto imageKey={imageKey} className="eco-hero-photo" priority />
+          <EvernearPhoto imageKey={imageKey} className="eco-hero-photo" priority />
         </div>
         <div className="eco-hero-veil" />
         {stage ? (

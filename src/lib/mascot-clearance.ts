@@ -57,10 +57,10 @@ const OBSTACLE_SELECTOR = [
   ".b-map-wrap",
   ".border-city-panel",
   ".about-full-slide-list",
-  ".conexa-guide__prompt",
-  ".conexa-guide__menu",
-  ".conexa-guide__chat",
-  ".conexa-guide__tour-panel",
+  ".evernear-guide__prompt",
+  ".evernear-guide__menu",
+  ".evernear-guide__chat",
+  ".evernear-guide__tour-panel",
 ].join(",");
 
 const MAP_OBSTACLE_INSET = 32;
@@ -114,7 +114,7 @@ function collectObstacles(viewport: { width: number; height: number }) {
 
   nodes.forEach((node) => {
     if (!(node instanceof HTMLElement)) return;
-    if (node.closest(".conexa-guide") && !node.closest(".conexa-guide__prompt, .conexa-guide__tour-panel")) {
+    if (node.closest(".evernear-guide") && !node.closest(".evernear-guide__prompt, .evernear-guide__tour-panel")) {
       return;
     }
     const rect = node.getBoundingClientRect();

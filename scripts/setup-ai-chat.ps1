@@ -1,4 +1,4 @@
-# Configura credenciales para el chat de CONEXA.
+# Configura credenciales para el chat de Evernear.
 # Opción recomendada en local: clave gratis de Google AI Studio.
 
 param(
@@ -40,5 +40,5 @@ Write-Host "  2. Ejecutá: .\scripts\setup-ai-chat.ps1 -GoogleApiKey TU_CLAVE"
 Write-Host ""
 Write-Host "Opción B: Vercel AI Gateway (requiere tarjeta para créditos)"
 Write-Host "  npx vercel login"
-Write-Host "  npx vercel ai-gateway api-keys create --name conexa-local --non-interactive"
+Write-Host "  npx vercel ai-gateway api-keys create --name evernear-local --non-interactive"
 Write-Host "  Pegá la clave vck_... en .env.local como AI_GATEWAY_API_KEY"

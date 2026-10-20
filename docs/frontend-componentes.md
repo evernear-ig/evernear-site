@@ -4,10 +4,10 @@
 
 ```mermaid
 flowchart TB
-  subgraph trinexus["components/trinexus"]
+  subgraph evernear["components/evernear"]
     Layout["layout/\nHeader, Footer, JoinModal"]
     Sections["sections/\nLanding, guías"]
-    Mascot["mascot/\nConexa, tour, chat"]
+    Mascot["mascot/\nEvernear, tour, chat"]
     Three["three/\nWebGL, escenas"]
     UI["ui/\nT, Carousel, FormWizard"]
     Providers["providers/\nI18n, Join, Journey"]
@@ -20,14 +20,14 @@ flowchart TB
     Stories["stories/*"]
   end
 
-  SiteShell["SiteShell"] --> trinexus
+  SiteShell["SiteShell"] --> evernear
   Vertical --> SiteShell
   Domain --> Vertical
 ```
 
 | Carpeta | Cuándo usar |
 |---------|-------------|
-| `trinexus` | Marca CONEXA, shell global, landing, utilidades UI, mascota, 3D |
+| `evernear` | Marca Evernear, shell global, landing, utilidades UI, mascota, 3D |
 | `ecosystem` | Páginas de verticales, catálogos, formularios de dominio |
 
 ## Componentes clave
@@ -50,7 +50,7 @@ flowchart TB
 
 ### Imágenes
 
-- `TrinexusPhoto`, `ConexaMascotImage`: rutas bajo `public/images/`.
+- `EvernearPhoto`, `EvernearMascotImage`: rutas bajo `public/images/`.
 - Registro central en `src/lib/images.ts` y `listing-images.ts`.
 
 ## Estilos
@@ -58,7 +58,7 @@ flowchart TB
 | Archivo | Alcance |
 |---------|---------|
 | `src/app/globals.css` | Tailwind + imports base |
-| `src/styles/trinexus.css` | Sistema visual principal |
+| `src/styles/evernear.css` | Sistema visual principal |
 | `src/styles/community-map.css` | Mapa comunitario |
 | `src/styles/pulso.css` | Pulso semanal |
 | `src/styles/que-es.css` | Página qué es |
@@ -73,13 +73,13 @@ Acentos por vertical: clases derivadas de `accent` en `EcosystemVertical` (sport
 | `useNavSolid` | Header sólido al scroll |
 | `useReveal` | Animaciones de entrada |
 | `useCarousel` / `useCarouselPanOffset` | Carruseles |
-| `useConexaScrollScrub` | Mascota reacciona al scroll |
+| `useEvernearScrollScrub` | Mascota reacciona al scroll |
 
 ## Three.js
 
-Escenas en `components/trinexus/three/`:
+Escenas en `components/evernear/three/`:
 
-- Landing / companion: `ConexaScrollCompanion`, `BridgeScene`, etc.
+- Landing / companion: `EvernearScrollCompanion`, `BridgeScene`, etc.
 - Carga diferida vía `Scene3DCanvas` donde aplica.
 
 Respetar `prefers-reduced-motion` (patrón usado en mascota y 3D).

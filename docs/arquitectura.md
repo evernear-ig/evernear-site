@@ -19,8 +19,8 @@ flowchart TB
     Pages["App Router pages\nsrc/app/**/page.tsx"]
     Shell["SiteShell\nproviders + header/footer"]
     EcoUI["Componentes ecosystem\nverticales, catálogos"]
-    TriUI["Componentes trinexus\nlanding, layout, 3D"]
-    Mascot["ConexaGuideLayer\n tour + chat"]
+    TriUI["Componentes evernear\nlanding, layout, 3D"]
+    Mascot["EvernearGuideLayer\n tour + chat"]
   end
 
   subgraph Servidor["Next.js Server"]
@@ -56,18 +56,18 @@ Todo lo que usa navegación global envuelve el contenido con esta jerarquía:
 flowchart TD
   I18n["I18nProvider\nlang en localStorage"]
   Join["JoinModalProvider\nestado modal + prefill"]
-  Journey["ConexaJourneyProvider\nOnboardingProvider"]
+  Journey["EvernearJourneyProvider\nOnboardingProvider"]
   Scroll["SmoothScroll\nLenis"]
   I18n --> Join --> Journey --> Scroll
   Scroll --> Header
   Scroll --> Main["children / #main"]
   Scroll --> Footer
   Scroll --> JoinModal
-  Scroll --> ConexaGuideLayer
+  Scroll --> EvernearGuideLayer
   Scroll --> AppToaster
 ```
 
-Archivo: `src/components/trinexus/SiteShell.tsx`.
+Archivo: `src/components/evernear/SiteShell.tsx`.
 
 ## Patrones de página
 
@@ -85,15 +85,15 @@ Archivo: `src/components/trinexus/SiteShell.tsx`.
 | `ecosystem/cities.ts` | IDs y etiquetas de ciudades |
 | `ecosystem/vigencia.ts` | Ventanas demo para mostrar/ocultar ítems |
 | `join-tracks.ts` | Tracks del wizard “Unirse” (sport, health, solidarity, innovation) |
-| `conexa-sections.ts` | Secciones del tour según `pathname` |
+| `evernear-sections.ts` | Secciones del tour según `pathname` |
 | `storage/store.ts` | Persistencia temporal servidor |
-| `ai/chat-model.ts` + `conexa-prompt.ts` | Modelo y system prompt del chat |
+| `ai/chat-model.ts` + `evernear-prompt.ts` | Modelo y system prompt del chat |
 
 ## Integraciones externas
 
 ```mermaid
 flowchart LR
-  App["CONEXA"]
+  App["Evernear"]
   Unsplash["images.unsplash.com\nnext/image remotePatterns"]
   Google["Google Generative AI\nGOOGLE_GENERATIVE_AI_API_KEY"]
   Gateway["Vercel AI Gateway\nopcional"]

@@ -1,6 +1,6 @@
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
 import { PublishEventForm } from "@/components/ecosystem/PublishEventForm";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export default function PublicarEventoPage() {
   return (

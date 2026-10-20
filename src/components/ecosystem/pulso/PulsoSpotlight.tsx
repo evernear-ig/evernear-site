@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { T } from "@/components/trinexus/ui/T";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { T } from "@/components/evernear/ui/T";
 import type { PulsoItem, PulsoRundownSegment } from "@/lib/ecosystem/types";
 import { SLUG_TO_PREFIX } from "@/lib/ecosystem/vertical-catalog";
 

@@ -14,7 +14,7 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
       "Semana clave para estudiantes: abrieron 40 becas en IA en Foz con postulación tripartita.",
     ],
     mascotEditorial: {
-      title: "Bitácora de Conexa · Edición #40",
+      title: "Bitácora de Evernear · Edición #40",
       dateLabel: "Viernes 2 de Octubre, 2026",
       intro: "Esta semana sentí la energía de la Triple Frontera más viva que nunca. Los puentes no son solo cemento sobre el río: son arterias por donde fluye curiosidad, proyectos conjuntos y un talento que desborda las fronteras tradicionales.",
       paragraphs: [
@@ -39,7 +39,7 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
           description: "Bootcamp binacional de IA y fixtures de la Copa Frontera de Futsal.",
         },
       ],
-      signOff: "Conexa · Guardiana del pulso trinacional",
+      signOff: "Evernear · Guardiana del pulso trinacional",
     },
     coverItemId: "pulso-1",
     streamStatus: "live",
@@ -113,7 +113,7 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
       "La maratón binacional ya abrió los primeros cupos con kit de remera sustentable.",
     ],
     mascotEditorial: {
-      title: "Bitácora de Conexa · Edición #39",
+      title: "Bitácora de Evernear · Edición #39",
       dateLabel: "Viernes 25 de Septiembre, 2026",
       intro: "La semana #39 demostró que el deporte y la tecnología tienen el mismo poder: romper distancias y unir a personas con ganas de transformar su realidad.",
       paragraphs: [
@@ -132,7 +132,7 @@ export const PULSO_EDITIONS: Record<string, PulsoEdition> = {
           description: "Circuitos de comercio justo con artesanos locales.",
         },
       ],
-      signOff: "Conexa · Siempre mirando al horizonte",
+      signOff: "Evernear · Siempre mirando al horizonte",
     },
     coverItemId: "pulso-w39-1",
     streamStatus: "replay",

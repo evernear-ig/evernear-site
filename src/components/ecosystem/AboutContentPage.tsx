@@ -3,9 +3,9 @@ import {
   AboutSlidesPage,
   type SlideBlock,
 } from "@/components/ecosystem/AboutSlidesPage";
-import { SiteShell } from "@/components/trinexus/SiteShell";
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { T } from "@/components/trinexus/ui/T";
+import { SiteShell } from "@/components/evernear/SiteShell";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { T } from "@/components/evernear/ui/T";
 
 type AboutContentPageProps = {
   titleKey: string;

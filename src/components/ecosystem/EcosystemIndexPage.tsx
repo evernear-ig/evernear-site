@@ -1,8 +1,8 @@
 import { EcoCardLink } from "@/components/ecosystem/EcoCardLink";
 import { VerticalHero } from "@/components/ecosystem/VerticalHero";
-import { SiteShell } from "@/components/trinexus/SiteShell";
-import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
-import { T } from "@/components/trinexus/ui/T";
+import { SiteShell } from "@/components/evernear/SiteShell";
+import { ScrollSection } from "@/components/evernear/ui/ScrollSection";
+import { T } from "@/components/evernear/ui/T";
 import {
   COMMUNITY_VERTICALS,
   REGION_VERTICALS,

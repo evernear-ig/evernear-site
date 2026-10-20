@@ -1,7 +1,7 @@
 "use client";
 
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { T } from "@/components/evernear/ui/T";
 
 type PulsoLiveStudioProps = {
   liveSessionAt: string | null;

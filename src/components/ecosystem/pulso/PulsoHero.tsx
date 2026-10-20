@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { T } from "@/components/evernear/ui/T";
 import type { PulsoEdition } from "@/lib/ecosystem/types";
-import { ConexaBitacoraModal } from "./ConexaBitacoraModal";
+import { EvernearBitacoraModal } from "./EvernearBitacoraModal";
 
 type PulsoHeroProps = {
   edition: PulsoEdition;
@@ -157,7 +157,7 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
             )}
           </div>
 
-          {/* Columna derecha: Reloj de Cuenta Regresiva & Cápsula Conexa */}
+          {/* Columna derecha: Reloj de Cuenta Regresiva & Cápsula Evernear */}
           <div className="pulso-hero__dashboard-col">
             {/* Reloj Digital de Precisión */}
             <div className="pulso-clock-card">
@@ -198,20 +198,20 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
               )}
             </div>
 
-            {/* Cápsula de Conexa con quote editorial y acceso a la bitácora */}
+            {/* Cápsula de Evernear con quote editorial y acceso a la bitácora */}
             {notes.length > 0 && (
               <div
                 className="pulso-mascot-card pulso-mascot-card--interactive"
                 onClick={() => setIsBitacoraOpen(true)}
                 role="region"
-                aria-label="Apuntes de Conexa para esta edición"
+                aria-label="Apuntes de Evernear para esta edición"
               >
                 <div className="pulso-mascot-card__top">
                   <div className="pulso-mascot-card__avatar-area">
                     <div className="pulso-mascot-card__avatar">
                       <Image
-                        src="/images/mascot/conexa-think.webp"
-                        alt="Conexa"
+                        src="/images/mascot/evernear-think.webp"
+                        alt="Evernear"
                         width={48}
                         height={48}
                         className="pulso-mascot-card__img"
@@ -221,7 +221,7 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
                   </div>
 
                   <div className="pulso-mascot-card__header-info">
-                    <span className="pulso-mascot-card__badge">NOTA DE CONEXA</span>
+                    <span className="pulso-mascot-card__badge">NOTA DE Evernear</span>
                     {notes.length > 1 && (
                       <span className="pulso-mascot-card__counter">
                         {activeNoteIndex + 1} de {notes.length}
@@ -238,7 +238,7 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
                         type="button"
                         className="pulso-mascot-card__nav-btn"
                         onClick={handlePrevNote}
-                        aria-label="Nota anterior de Conexa"
+                        aria-label="Nota anterior de Evernear"
                       >
                         <svg
                           width="12"
@@ -258,7 +258,7 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
                         type="button"
                         className="pulso-mascot-card__nav-btn"
                         onClick={handleNextNote}
-                        aria-label="Siguiente nota de Conexa"
+                        aria-label="Siguiente nota de Evernear"
                       >
                         <svg
                           width="12"
@@ -336,7 +336,7 @@ export function PulsoHero({ edition, nextPublishAt }: PulsoHeroProps) {
       </div>
 
       {/* Modal editorial de lectura completa */}
-      <ConexaBitacoraModal
+      <EvernearBitacoraModal
         isOpen={isBitacoraOpen}
         onClose={() => setIsBitacoraOpen(false)}
         edition={edition}

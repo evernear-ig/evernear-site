@@ -180,7 +180,7 @@ export const PULSO_SEED_ITEMS: PulsoItem[] = [
     cityId: "pi",
     category: "gastronomia",
     title: "Circuito de cafeterías de especialidad y pastelería artesanal",
-    summary: "Promociones con código QR de fidelización CONEXA en 8 locales adheridos de Puerto Iguazú.",
+    summary: "Promociones con código QR de fidelización Evernear en 8 locales adheridos de Puerto Iguazú.",
     kind: "promo",
     badge: "QR Descuento",
     image: "/images/ecosystem/ecosystem-comercios.webp",

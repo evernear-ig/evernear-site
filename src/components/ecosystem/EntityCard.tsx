@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
 import { CityBadge } from "./CityBadge";
 import type { CityId } from "@/lib/ecosystem/cities";
 
@@ -30,7 +30,7 @@ export function EntityCard({
     <Link href={href} className={`eco-entity-card eco-entity-card--${accent}`}>
       {imageKey && (
         <div className="eco-entity-card-img">
-          <TrinexusPhoto imageKey={imageKey} />
+          <EvernearPhoto imageKey={imageKey} />
         </div>
       )}
       <div className="eco-entity-card-body">

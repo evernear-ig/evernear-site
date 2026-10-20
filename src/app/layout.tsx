@@ -17,25 +17,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CONEXA — Descubrí tu región",
+  title: "Evernear — Descubrí tu región",
   description:
-    "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
-  authors: [{ name: "CONEXA" }],
-  metadataBase: new URL("https://conexa.org"),
+    "Evernear es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+  authors: [{ name: "Evernear" }],
+  metadataBase: new URL("https://evernear.io"),
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "CONEXA",
-    title: "CONEXA — Descubrí tu región",
+    siteName: "Evernear",
+    title: "Evernear — Descubrí tu región",
     description:
-      "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+      "Evernear es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
     locale: "es_AR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CONEXA — Descubrí tu región",
+    title: "Evernear — Descubrí tu región",
     description:
-      "CONEXA es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
+      "Evernear es la plataforma para descubrir deporte, salud, solidaridad, comercio, turismo e innovación en tu región. Empezamos en la Triple Frontera.",
   },
 };
 

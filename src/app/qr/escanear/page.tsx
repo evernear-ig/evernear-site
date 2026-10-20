@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { SiteShell } from "@/components/trinexus/SiteShell";
+import { SiteShell } from "@/components/evernear/SiteShell";
 import { QrScanContent } from "@/components/ecosystem/QrScanContent";
 
 export default function QrEscanearPage() {

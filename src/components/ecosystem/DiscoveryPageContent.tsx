@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { OPPORTUNITIES, PROFILES } from "@/data/discovery";
 import { EntityCard } from "./EntityCard";
 import { FilterBar } from "./FilterBar";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export function DiscoveryPageContent() {
   const searchParams = useSearchParams();

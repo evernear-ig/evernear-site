@@ -1,8 +1,8 @@
 "use client";
 
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { T } from "@/components/trinexus/ui/T";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { T } from "@/components/evernear/ui/T";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
 
 export type SlideBlock = {
   titleKey: string;
@@ -56,7 +56,7 @@ export function AboutSlidesPage({
     <section id="que-es" className="dark eco-hero eco-hero--about-full">
       <div className="eco-hero-bg" aria-hidden="true">
         <div className="about-full-photo-layer">
-          <TrinexusPhoto imageKey={heroImageKey} className="eco-hero-photo" priority />
+          <EvernearPhoto imageKey={heroImageKey} className="eco-hero-photo" priority />
         </div>
         <div className="eco-hero-veil" />
       </div>

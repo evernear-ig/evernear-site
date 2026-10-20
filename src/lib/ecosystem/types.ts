@@ -159,7 +159,7 @@ export type PulsoRundownSegment = {
   itemId?: string;
 };
 
-export type ConexaMascotEditorial = {
+export type EvernearMascotEditorial = {
   title: string;
   dateLabel?: string;
   intro: string;
@@ -180,7 +180,7 @@ export type PulsoEdition = {
   lead: string;
   mascotQuote?: string;
   mascotNotes?: string[];
-  mascotEditorial?: ConexaMascotEditorial;
+  mascotEditorial?: EvernearMascotEditorial;
   coverItemId?: string;
   streamStatus?: PulsoStreamStatus;
   streamUrl?: string;

@@ -175,7 +175,7 @@ export function conceptFromPathname(pathname: string): MascotConcept {
   return "default";
 }
 
-export type ConexaJourneyStepPayload = {
+export type EvernearJourneyStepPayload = {
   pose: MascotPose;
   concept: MascotConcept;
   sectionKey: string;

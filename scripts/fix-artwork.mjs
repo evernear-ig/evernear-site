@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const html = fs.readFileSync("public/trinexus.html", "utf8");
+const html = fs.readFileSync("public/evernear.html", "utf8");
 const script = html.match(/<script>\n([\s\S]*?)<\/script>/)[1];
 const start = script.indexOf("const ARTWORK = ");
 const end = script.indexOf("\nconst IMAGES = ");

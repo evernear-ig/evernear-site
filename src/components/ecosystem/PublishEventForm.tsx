@@ -2,9 +2,9 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { FormWizard, reportStepValidity } from "@/components/trinexus/ui/FormWizard";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { FormWizard, reportStepValidity } from "@/components/evernear/ui/FormWizard";
+import { T } from "@/components/evernear/ui/T";
 import { toast } from "sonner";
 
 const EVENT_STEPS = [

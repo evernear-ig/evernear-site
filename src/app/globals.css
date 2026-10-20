@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "../styles/trinexus.css";
+@import "../styles/evernear.css";
 @import "../styles/carousel.css";
 @import "../styles/view-transitions.css";
 
@@ -34,7 +34,7 @@ section[aria-label="Notifications alt+T"],
   pointer-events: none;
 }
 
-[data-sonner-toast].conexa-toast {
+[data-sonner-toast].evernear-toast {
   pointer-events: auto;
   width: min(420px, calc(100vw - 2rem)) !important;
   max-width: 100%;
@@ -45,19 +45,19 @@ section[aria-label="Notifications alt+T"],
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
 }
 
-.conexa-toast__title {
+.evernear-toast__title {
   font-family: var(--font-head), system-ui, sans-serif !important;
   font-size: 0.9rem !important;
   font-weight: 600 !important;
   line-height: 1.35 !important;
 }
 
-.conexa-toast__desc {
+.evernear-toast__desc {
   font-size: 0.85rem !important;
   line-height: 1.4 !important;
 }
 
-.conexa-toast__close {
+.evernear-toast__close {
   pointer-events: auto;
 }
 
@@ -69,7 +69,7 @@ section[aria-label="Notifications alt+T"],
     width: min(420px, calc(100vw - 1.5rem));
   }
 
-  [data-sonner-toast].conexa-toast {
+  [data-sonner-toast].evernear-toast {
     width: 100% !important;
   }
 }

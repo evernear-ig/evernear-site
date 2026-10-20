@@ -1,6 +1,6 @@
 "use client";
 
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
 import { StoryCard } from "@/components/ecosystem/stories/StoryCard";
 import type { RealStory } from "@/components/ecosystem/stories/real-stories";
 

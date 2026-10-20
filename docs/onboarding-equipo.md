@@ -1,6 +1,6 @@
 # Onboarding del equipo
 
-Guía para desarrolladores, diseño y producto que incorporan al repositorio **trinexus** (producto **CONEXA**).
+Guía para desarrolladores, diseño y producto que incorporan al repositorio **evernear** (producto **Evernear**).
 
 ## Día 1: entorno local
 
@@ -12,7 +12,7 @@ Guía para desarrolladores, diseño y producto que incorporan al repositorio **t
 ### Pasos
 
 ```bash
-cd trinexus
+cd evernear
 npm install
 cp .env.example .env.local
 npm run dev
@@ -25,7 +25,7 @@ Abrir [http://localhost:3000](http://localhost:3000).
 | Variable | Para qué |
 |----------|----------|
 | `NEXT_PUBLIC_APP_URL` | URLs absolutas en desarrollo |
-| `GOOGLE_GENERATIVE_AI_API_KEY` | Chat de Conexa en local |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | Chat de Evernear en local |
 | `GOOGLE_GENERATIVE_AI_MODEL` | Override del modelo (default `gemini-2.5-flash`) |
 
 En Windows existe `scripts/setup-ai-chat.ps1` para automatizar parte del setup de chat.
@@ -52,7 +52,7 @@ flowchart LR
 ### Archivos “north star”
 
 1. `src/lib/ecosystem/verticals.ts` — mapa del producto.
-2. `src/components/trinexus/SiteShell.tsx` — envoltorio global.
+2. `src/components/evernear/SiteShell.tsx` — envoltorio global.
 3. `src/data/listings/index.ts` — datos de catálogo.
 4. `src/lib/storage/store.ts` — qué persiste hoy en servidor.
 
@@ -66,9 +66,9 @@ El proyecto usa **Next.js 16** con convenciones que pueden diferir de versiones 
 |-------|----------------|
 | Nueva tarjeta en catálogo | `src/data/listings/<vertical>.ts`, imágenes en `listing-images.ts` |
 | Copy en tres idiomas | claves en fuentes i18n + `scripts/build-translations.mjs` si aplica |
-| Nueva sección en landing | `src/app/page.tsx` + `components/trinexus/sections/` |
+| Nueva sección en landing | `src/app/page.tsx` + `components/evernear/sections/` |
 | Endpoint que guarda datos | `src/app/api/...` + funciones en `store.ts` (o futuro DB) |
-| Ajustar tour mascota | `src/lib/conexa-sections.ts`, `conexa-journey-steps.ts` |
+| Ajustar tour mascota | `src/lib/evernear-sections.ts`, `evernear-journey-steps.ts` |
 | Pulso / editorial | `src/data/pulso-*.ts`, `components/ecosystem/pulso/` |
 
 ## Scripts de mantenimiento (`scripts/`)
@@ -79,7 +79,7 @@ El proyecto usa **Next.js 16** con convenciones que pueden diferir de versiones 
 | `build-images.mjs` | Pipeline de imágenes |
 | `gen-vertical-guides.mjs` / `vertical-guides-i18n.mjs` | Guías por vertical |
 | `validate-unsplash-ids.mjs` | Validar IDs Unsplash |
-| `patch-nav-i18n.mjs`, `patch-conexa-i18n.mjs` | Parches masivos de claves |
+| `patch-nav-i18n.mjs`, `patch-evernear-i18n.mjs` | Parches masivos de claves |
 
 Ejecutar con `node scripts/<nombre>.mjs` desde la raíz del repo.
 
@@ -113,7 +113,7 @@ No; es prototipo (`console.log` en `JoinModal.tsx`).
 API key gratuita de Google AI Studio (`GOOGLE_GENERATIVE_AI_API_KEY`).
 
 **¿Dónde está el diseño legacy?**  
-`public/trinexus.html` es referencia histórica; la app vive en Next.js bajo `src/`.
+`public/evernear.html` es referencia histórica; la app vive en Next.js bajo `src/`.
 
 ## Checklist de primera contribución
 

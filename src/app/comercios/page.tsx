@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { VerticalCatalogContent } from "@/components/ecosystem/VerticalCatalogContent";
-import { VerticalGuideSection } from "@/components/trinexus/sections/VerticalGuideSection";
+import { VerticalGuideSection } from "@/components/evernear/sections/VerticalGuideSection";
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export default function ComerciosPage() {
   return (

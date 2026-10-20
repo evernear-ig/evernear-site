@@ -5,7 +5,7 @@ import { getEventBySlug } from "@/lib/storage/store";
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
 import { CityBadge } from "@/components/ecosystem/CityBadge";
 import { EventQrBlock } from "@/components/ecosystem/EventQrBlock";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export const dynamic = "force-dynamic";
 

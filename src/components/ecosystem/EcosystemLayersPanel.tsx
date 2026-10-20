@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { EventItem } from "@/lib/ecosystem/types";
 import { PROFILES } from "@/data/discovery";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 import { CITY_LIST } from "@/lib/ecosystem/cities";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 import { EcosystemQrDemo } from "./EcosystemQrDemo";

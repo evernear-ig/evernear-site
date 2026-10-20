@@ -83,7 +83,7 @@ export function PulsoStreamPlayer({
             </div>
 
             <div className="pulso-stream-frame__channel">
-              <span className="pulso-stream-tag">CONEXA TV</span>
+              <span className="pulso-stream-tag">Evernear TV</span>
               <span className="pulso-stream-hd">1080p 60FPS</span>
             </div>
           </div>
@@ -148,8 +148,8 @@ export function PulsoStreamPlayer({
               >
                 <div className="pulso-stream-lower-third__avatar">
                   <Image
-                    src="/images/mascot/conexa-point.webp"
-                    alt="Host Conexa"
+                    src="/images/mascot/evernear-point.webp"
+                    alt="Host Evernear"
                     width={44}
                     height={44}
                     className="pulso-host-avatar"

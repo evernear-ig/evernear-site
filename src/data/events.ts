@@ -2,15 +2,15 @@ import type { EventItem } from "@/lib/ecosystem/types";
 
 export const SEED_EVENTS: EventItem[] = [
   {
-    slug: "trinexus-001",
-    title: "CONEXA 001 — Primer Encuentro",
+    slug: "evernear-001",
+    title: "Evernear 001 — Primer Encuentro",
     date: "2026-06-15",
     cityId: "pi",
-    organizer: "CONEXA",
+    organizer: "Evernear",
     tags: ["innovación", "comunidad", "networking"],
     description:
       "El primer encuentro de personas interesadas en tecnología, innovación y el futuro de la Triple Frontera.",
-    qrToken: "evt-trinexus-001",
+    qrToken: "evt-evernear-001",
   },
   {
     slug: "meetup-blockchain-foz",
@@ -39,7 +39,7 @@ export const SEED_EVENTS: EventItem[] = [
     title: "Activación Turística — Más allá de las Cataratas",
     date: "2026-07-01",
     cityId: "pi",
-    organizer: "CONEXA + Aliados",
+    organizer: "Evernear + Aliados",
     tags: ["turismo", "región"],
     description:
       "Recorrido guiado mostrando que hay más región para explorar más allá de las Cataratas.",

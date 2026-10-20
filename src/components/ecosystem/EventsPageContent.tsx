@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { EventItem } from "@/lib/ecosystem/types";
 import { EntityCard } from "./EntityCard";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export function EventsPageContent() {
   const [events, setEvents] = useState<EventItem[]>([]);

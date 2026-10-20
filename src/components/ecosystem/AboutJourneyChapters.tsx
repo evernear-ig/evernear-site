@@ -1,5 +1,5 @@
-import { FoundingSection } from "@/components/trinexus/sections/FoundingSection";
-import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
+import { FoundingSection } from "@/components/evernear/sections/FoundingSection";
+import { ScrollSection } from "@/components/evernear/ui/ScrollSection";
 import { Suspense } from "react";
 import { HistoriasPageContent } from "@/components/ecosystem/HistoriasPageContent";
 

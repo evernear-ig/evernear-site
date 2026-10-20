@@ -2,9 +2,9 @@
 
 ## Propósito
 
-CONEXA conecta a personas y organizaciones con **deporte, salud, bienestar, comunicación, solidaridad, turismo, comercios, educación, eventos, descubrimiento e innovación** en una misma experiencia regional.
+Evernear conecta a personas y organizaciones con **deporte, salud, bienestar, comunicación, solidaridad, turismo, comercios, educación, eventos, descubrimiento e innovación** en una misma experiencia regional.
 
-La plataforma es **solo informativa**: no procesa pagos, donaciones ni rifas. Las acciones concretas (inscripciones, compras, donaciones) ocurren fuera de CONEXA, con cada organizador.
+La plataforma es **solo informativa**: no procesa pagos, donaciones ni rifas. Las acciones concretas (inscripciones, compras, donaciones) ocurren fuera de Evernear, con cada organizador.
 
 ## Región de lanzamiento
 
@@ -25,7 +25,7 @@ Algunas verticales están marcadas como `informational: true` (contenido orienta
 
 ```mermaid
 mindmap
-  root((CONEXA))
+  root((Evernear))
     Residente
       Explorar verticales
       Filtrar por ciudad
@@ -50,7 +50,7 @@ mindmap
 | Índice ecosistema | `/ecosistema` | Grid de todas las verticales |
 | ¿Qué es? | `/que-es` | Visión, historias, CTA unirse |
 | Pulso semanal | `/pulso` | Radar editorial / suscripción demo |
-| Mascota Conexa | Flotante en `SiteShell` | Tour guiado, chat IA, atajos |
+| Mascota Evernear | Flotante en `SiteShell` | Tour guiado, chat IA, atajos |
 | Modal “Unirse” | Global | Wizard persona u organización (prototipo) |
 | i18n | `es` / `pt` / `en` | Textos vía claves en `src/lib/i18n/` |
 

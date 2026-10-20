@@ -26,7 +26,7 @@ export const SOLIDARITY_CAUSES: SolidarityCause[] = [
     kind: "sponsorship",
     cityId: "pi",
     organizer: "Club Deportivo Iguazú",
-    contactEmail: "hello@conexa.org",
+    contactEmail: "hello@evernear.io",
     status: "Busca auspiciantes",
     featured: true,
   },
@@ -51,7 +51,7 @@ export const SOLIDARITY_CAUSES: SolidarityCause[] = [
     kind: "foundation",
     cityId: "cde",
     organizer: "Red Solidaria CDE",
-    contactEmail: "hello@conexa.org",
+    contactEmail: "hello@evernear.io",
     status: "Fundación aliada",
   },
 ];

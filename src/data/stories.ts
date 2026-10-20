@@ -32,7 +32,7 @@ export const CONNECTION_STORIES: ConnectionStory[] = [
     mediaType: "video",
     videoSrc: REEL_VIDEOS.collab,
     posterSrc: "/images/people/people-developer.webp",
-    mediaAlt: "María cuenta cómo conectó con João en CONEXA",
+    mediaAlt: "María cuenta cómo conectó con João en Evernear",
     profileId: "maria-dev",
   },
   {

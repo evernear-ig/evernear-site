@@ -155,7 +155,7 @@
 .carousel-page--trio>li{min-width:0;height:100%}
 @media(max-width:900px){.carousel-page--trio{grid-template-columns:1fr;gap:14px;max-width:min(100%,360px);margin-inline:auto}}
 
-/* Panel (qué es CONEXA) */
+/* Panel (qué es Evernear) */
 .about-full-carousel{width:100%;max-width:none}
 .about-full-carousel.carousel--drive-wheel,.about-full-carousel.carousel--drive-held{height:auto;min-height:0}
 .about-full-carousel.carousel--drive-wheel .carousel__sticky,.about-full-carousel.carousel--drive-held .carousel__sticky{position:relative;top:auto;min-height:0;padding:0;align-items:flex-start}

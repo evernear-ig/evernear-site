@@ -1,5 +1,5 @@
-import { SiteShell } from "@/components/trinexus/SiteShell";
-import { T } from "@/components/trinexus/ui/T";
+import { SiteShell } from "@/components/evernear/SiteShell";
+import { T } from "@/components/evernear/ui/T";
 
 type LegalPageProps = {
   titleKey: string;

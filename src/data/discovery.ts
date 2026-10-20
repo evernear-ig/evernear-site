@@ -67,7 +67,7 @@ export const OPPORTUNITIES: Opportunity[] = [
   {
     id: "colaboracion-blockchain",
     title: "Colaboración — Meetup Blockchain",
-    company: "Comunidad CONEXA",
+    company: "Comunidad Evernear",
     cityId: "foz",
     type: "colaboracion",
     modality: "presencial",

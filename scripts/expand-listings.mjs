@@ -314,7 +314,7 @@ const META_POOL = [
   "Gratuito para vecinos",
   "Derivaciones regionales",
   "Alianza UNILA",
-  "Red CONEXA",
+  "Red Evernear",
 ];
 
 function slugify(value) {
@@ -404,7 +404,7 @@ function buildDescription(group, category, cityId, index) {
     `Servicio de ${label} en ${city} orientado a familias de la Triple Frontera, con derivaciones cruzadas y atención en español y portugués.`,
     `Iniciativa comunitaria de ${label} en ${city} que conecta vecinos de Argentina, Brasil y Paraguay sin intermediarios.`,
     `Propuesta regional de ${label} con sede en ${city}, pensada para residentes y visitantes del corredor Iguazú–Foz–CDE.`,
-    `Organización local de ${label} en ${city} con trayectoria en la región trifronteriza y red de aliados CONEXA.`,
+    `Organización local de ${label} en ${city} con trayectoria en la región trifronteriza y red de aliados Evernear.`,
     `Espacio de ${label} en ${city} con turnos presenciales y coordinación binacional para casos que cruzan la frontera.`,
     `Referente de ${label} en ${city}: información verificada, contacto directo y foco en la comunidad del Paraná.`,
   ];
@@ -425,7 +425,7 @@ function buildSportDescription(discipline, cityId, kind, index) {
   const variants = [
     `${kindEs.charAt(0).toUpperCase() + kindEs.slice(1)} de ${label} en ${city} con entrenamientos regulares y participación en torneos locales y fronterizos.`,
     `Propuesta de ${label} en ${city} para jóvenes y adultos de la Triple Frontera. ${kind === "call" ? "Inscripciones abiertas para la temporada 2026." : "Contacto directo con la institución."}`,
-    `Actividad de ${label} en ${city} integrada a la red deportiva regional CONEXA, con canchas y horarios actualizados.`,
+    `Actividad de ${label} en ${city} integrada a la red deportiva regional Evernear, con canchas y horarios actualizados.`,
     `${label.charAt(0).toUpperCase() + label.slice(1)} en ${city}: ${kindEs} con enfoque comunitario y posibilidad de intercambio con clubes vecinos.`,
     `Referente de ${label} en ${city} para quienes buscan practicar cerca del Puente de la Amistad y la zona del Iguazú.`,
     `Espacio de ${label} en ${city} con categorías formativas, acompañamiento técnico y convocatorias periódicas.`,

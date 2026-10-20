@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Business } from "@/lib/ecosystem/types";
 import { CityBadge } from "./CityBadge";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export function BusinessDetailContent({ business }: { business: Business }) {
   const [scanCount, setScanCount] = useState(0);

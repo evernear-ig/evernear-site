@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
 import type { RealStory } from "@/components/ecosystem/stories/real-stories";
 
 type StoryCardProps = {

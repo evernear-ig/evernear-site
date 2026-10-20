@@ -1,16 +1,16 @@
-# CONEXA
+# Evernear
 
 **Descubrí tu región** — plataforma de descubrimiento e información para conectar deporte, salud, solidaridad, comercio, turismo, educación, eventos e innovación.
 
 Primera región de lanzamiento: **Triple Frontera** (Puerto Iguazú · Foz do Iguaçu · Ciudad del Este).
 
-CONEXA es solo informativa: no procesa pagos, donaciones ni rifas; las acciones concretas ocurren con cada organizador.
+Evernear es solo informativa: no procesa pagos, donaciones ni rifas; las acciones concretas ocurren con cada organizador.
 
 ## Stack
 
 - **Next.js** (App Router)
 - **TypeScript**
-- **Tailwind CSS** + estilos en `src/styles/trinexus.css`
+- **Tailwind CSS** + estilos en `src/styles/evernear.css`
 
 ## Desarrollo local
 

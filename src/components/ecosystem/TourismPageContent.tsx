@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { T } from "@/components/trinexus/ui/T";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
+import { T } from "@/components/evernear/ui/T";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
 import { CITY_LIST, type CityId } from "@/lib/ecosystem/cities";
 import { REGIONAL_ROUTES, TOURISM_SOURCES } from "@/data/tourism";
 import { SourceAttribution } from "./SourceAttribution";
@@ -28,7 +28,7 @@ export function TourismPageContent() {
 
       <div className="city-panel">
         <div className="city-panel-photo">
-          <TrinexusPhoto imageKey={`cities.${city}`} />
+          <EvernearPhoto imageKey={`cities.${city}`} />
         </div>
         <SourceAttribution
           status={source.status}

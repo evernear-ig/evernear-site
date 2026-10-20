@@ -6,17 +6,17 @@ Copia estos bloques en GitHub, GitLab, Notion o cualquier visor compatible con M
 
 ```mermaid
 C4Context
-  title CONEXA - Contexto
+  title Evernear - Contexto
   Person(residente, "Residente / visitante", "Explora la región")
   Person(org, "Organización", "Quiere visibilidad y colaborar")
-  System(conexa, "CONEXA Web", "Next.js - información regional")
+  System(evernear, "Evernear Web", "Next.js - información regional")
   System_Ext(google, "Google Gemini", "Chat asistido")
   System_Ext(orgs, "Sitios de terceros", "Pagos, donaciones, reservas")
 
-  Rel(residente, conexa, "Navega, filtra, suscribe demo")
-  Rel(org, conexa, "Unirse, publicar evento demo")
-  Rel(conexa, google, "POST /api/chat")
-  Rel(residente, orgs, "Acciones reales fuera de CONEXA")
+  Rel(residente, evernear, "Navega, filtra, suscribe demo")
+  Rel(org, evernear, "Unirse, publicar evento demo")
+  Rel(evernear, google, "POST /api/chat")
+  Rel(residente, orgs, "Acciones reales fuera de Evernear")
 ```
 
 > Nota: el diagrama C4 requiere extensión Mermaid con soporte `C4Context`. Si no renderiza, usa el diagrama flowchart de `arquitectura.md`.
@@ -32,7 +32,7 @@ flowchart TB
     S --> H["Header / Footer"]
     S --> M["#main pages"]
     S --> J["JoinModal"]
-    S --> G["ConexaGuideLayer"]
+    S --> G["EvernearGuideLayer"]
   end
 
   M --> V["Vertical pages"]
@@ -54,7 +54,7 @@ flowchart LR
   GVC --> VL["VERTICAL_LISTINGS"]
 ```
 
-## 4. Estados de la mascota Conexa
+## 4. Estados de la mascota Evernear
 
 ```mermaid
 stateDiagram-v2

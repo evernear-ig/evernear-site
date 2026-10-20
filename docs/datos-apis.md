@@ -98,12 +98,12 @@ flowchart LR
 | POST | `/api/panfleto/entry` | Alta negocio en panfleto |
 | GET | `/api/pulso/preview` | Preview contenido Pulso (query params) |
 | POST | `/api/pulso/subscribe` | Suscripción Pulso (+ intereses / live) |
-| POST | `/api/chat` | Stream de chat Conexa (UI messages) |
+| POST | `/api/chat` | Stream de chat Evernear (UI messages) |
 
 ### Chat (`/api/chat`)
 
 - Sanitiza mensajes (máx. 16, texto recortado).
-- System prompt: `conexaInstructions` con idioma y pathname.
+- System prompt: `evernearInstructions` con idioma y pathname.
 - Proveedor: `chatProvider()` → Google API key o AI Gateway (`chat-model.ts`).
 
 Variables: ver `.env.example` y `scripts/setup-ai-chat.ps1`.

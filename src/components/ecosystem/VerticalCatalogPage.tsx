@@ -1,5 +1,5 @@
 import { VerticalCatalogContent } from "@/components/ecosystem/VerticalCatalogContent";
-import { VerticalGuideSection } from "@/components/trinexus/sections/VerticalGuideSection";
+import { VerticalGuideSection } from "@/components/evernear/sections/VerticalGuideSection";
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
 import { getVerticalCatalog } from "@/lib/ecosystem/vertical-catalog";
 import type { VerticalSlug } from "@/lib/ecosystem/verticals";

@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 const DEMOS = [
-  { token: "evt-trinexus-001", labelKey: "fut.qr.event", href: "/eventos/trinexus-001" },
+  { token: "evt-evernear-001", labelKey: "fut.qr.event", href: "/eventos/evernear-001" },
   { token: "biz-cafe-frontera", labelKey: "fut.qr.business", href: "/comercios/cafe-frontera" },
   { token: "biz-verduleria-si", labelKey: "fut.qr.store", href: "/comercios/verduleria-san-ignacio" },
 ] as const;

@@ -1,15 +1,15 @@
 export type MascotPose = "welcome" | "globe" | "peace" | "think" | "point";
 
 export const MASCOT_POSE_SRC: Record<MascotPose, string> = {
-  welcome: "/images/mascot/conexa-welcome.webp",
-  globe: "/images/mascot/conexa-globe.webp",
-  peace: "/images/mascot/conexa-peace.webp",
-  think: "/images/mascot/conexa-thinker.png?v=3",
-  point: "/images/mascot/conexa-point.webp",
+  welcome: "/images/mascot/evernear-welcome.webp",
+  globe: "/images/mascot/evernear-globe.webp",
+  peace: "/images/mascot/evernear-peace.webp",
+  think: "/images/mascot/evernear-thinker.png?v=3",
+  point: "/images/mascot/evernear-point.webp",
 };
 
 /** @deprecated Use MASCOT_POSE_SRC */
-export const MASCOT_SHEET = "/images/mascot/conexa-sheet.jpg";
+export const MASCOT_SHEET = "/images/mascot/evernear-sheet.jpg";
 
 export type MascotPoseUv = {
   offset: [number, number];

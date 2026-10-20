@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
 import type { RealStory } from "@/components/ecosystem/stories/real-stories";
 
 type StoryViewerModalProps = {
@@ -52,19 +52,19 @@ export function StoryViewerModal({
       }
       document.body.style.overflow = "hidden";
       document.body.classList.add("join-modal-open");
-      window.dispatchEvent(new Event("conexa:scroll-lock"));
+      window.dispatchEvent(new Event("evernear:scroll-lock"));
       closeRef.current?.focus();
     } else {
       document.body.style.overflow = "";
       document.body.classList.remove("join-modal-open");
-      window.dispatchEvent(new Event("conexa:scroll-unlock"));
+      window.dispatchEvent(new Event("evernear:scroll-unlock"));
       lastFocus.current?.focus();
     }
 
     return () => {
       document.body.style.overflow = "";
       document.body.classList.remove("join-modal-open");
-      window.dispatchEvent(new Event("conexa:scroll-unlock"));
+      window.dispatchEvent(new Event("evernear:scroll-unlock"));
     };
   }, [open]);
 

@@ -32,8 +32,8 @@ async function removeWhiteBg(inputPath, outputPath) {
 }
 
 for (const pose of POSES) {
-  const png = path.join(DIR, `conexa-${pose}.png`);
-  const webp = path.join(DIR, `conexa-${pose}.webp`);
+  const png = path.join(DIR, `evernear-${pose}.png`);
+  const webp = path.join(DIR, `evernear-${pose}.webp`);
   if (!fs.existsSync(png)) {
     console.warn(`skip ${pose}: ${png} not found`);
     continue;

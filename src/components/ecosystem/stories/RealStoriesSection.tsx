@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
 import { CTAButton } from "@/components/ecosystem/stories/CTAButton";
 import { StoriesCarousel } from "@/components/ecosystem/stories/StoriesCarousel";
 import { StoryViewerModal } from "@/components/ecosystem/stories/StoryViewerModal";

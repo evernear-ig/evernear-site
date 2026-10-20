@@ -4,7 +4,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const mascotPath = join(root, "public/images/mascot/conexa-welcome.webp");
+const mascotPath = join(root, "public/images/mascot/evernear-welcome.webp");
 const appDir = join(root, "src/app");
 const brandBg = { r: 7, g: 11, b: 26, alpha: 1 };
 
@@ -47,7 +47,7 @@ async function writeShareImage(outPath) {
         </linearGradient>
       </defs>
       <rect width="${width}" height="${height}" fill="url(#bg)"/>
-      <text x="520" y="270" fill="#F6F7FB" font-size="72" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="10">CONEXA</text>
+      <text x="520" y="270" fill="#F6F7FB" font-size="72" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="10">Evernear</text>
       <text x="520" y="340" fill="#94A3B8" font-size="30" font-family="Arial, Helvetica, sans-serif">Descubrí deporte, comercio, turismo</text>
       <text x="520" y="382" fill="#94A3B8" font-size="30" font-family="Arial, Helvetica, sans-serif">e innovación en tu región.</text>
     </svg>

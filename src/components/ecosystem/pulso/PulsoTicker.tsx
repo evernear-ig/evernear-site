@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { T } from "@/components/trinexus/ui/T";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { T } from "@/components/evernear/ui/T";
 import type { PulsoItem } from "@/lib/ecosystem/types";
 import { SLUG_TO_PREFIX } from "@/lib/ecosystem/vertical-catalog";
 

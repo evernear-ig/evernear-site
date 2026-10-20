@@ -38,7 +38,7 @@ flowchart LR
 
 `EcosystemIndexPage` reutiliza `COMMUNITY_VERTICALS` y `REGION_VERTICALS` de `verticals.ts`.
 
-## Flujo 3: Unirse a CONEXA (organización o persona)
+## Flujo 3: Unirse a Evernear (organización o persona)
 
 ```mermaid
 stateDiagram-v2
@@ -63,22 +63,22 @@ stateDiagram-v2
 
 **Implementación**: `JoinModal.tsx` + `JoinModalProvider.tsx`.
 
-## Flujo 4: Tour y chat con Conexa (mascota)
+## Flujo 4: Tour y chat con Evernear (mascota)
 
 ```mermaid
 flowchart TB
-  Dock["Mascota acoplada\nConexaGuideLayer"]
+  Dock["Mascota acoplada\nEvernearGuideLayer"]
   Dock --> Menu["Menú idle"]
   Menu --> Tour["Modo tour\nOnboardJS steps"]
-  Menu --> Chat["Modo chat\nConexaChatPanel"]
-  Tour --> Spotlight["ConexaSpotlight\nanclas #hero, #border..."]
+  Menu --> Chat["Modo chat\nEvernearChatPanel"]
+  Tour --> Spotlight["EvernearSpotlight\nanclas #hero, #border..."]
   Chat --> API["POST /api/chat"]
   API --> Model["Gemini vía AI SDK"]
 ```
 
-- Pasos del tour: `buildConexaJourneySteps` + `getConexaSections(pathname)`.
-- Posición de la mascota: `localStorage` (`conexa-mascot-pos-v1`).
-- El chat envía `pathname` y `lang` para contextualizar respuestas (`conexa-prompt.ts`).
+- Pasos del tour: `buildEvernearJourneySteps` + `getEvernearSections(pathname)`.
+- Posición de la mascota: `localStorage` (`evernear-mascot-pos-v1`).
+- El chat envía `pathname` y `lang` para contextualizar respuestas (`evernear-prompt.ts`).
 
 ## Flujo 5: Eventos (listado + publicar + detalle)
 
@@ -147,7 +147,7 @@ sequenceDiagram
   participant T as Componente T
 
   LS->>I18n: setLang(es|pt|en)
-  I18n->>I18n: localStorage trinexus.lang.v1
+  I18n->>I18n: localStorage evernear.lang.v1
   I18n->>T: translate(key)
   T-->>LS: Texto actualizado
 ```
@@ -160,11 +160,11 @@ Mapas de decisión **por ruta** (todas las verticales, subrutas y transversales)
 
 ```mermaid
 flowchart TD
-  Start((Llega a CONEXA)) --> Q1{¿Busca info regional?}
+  Start((Llega a Evernear)) --> Q1{¿Busca info regional?}
   Q1 -->|Sí| Eco["/ecosistema o vertical"]
   Q1 -->|No| Q2{¿Quiere participar?}
   Q2 -->|Sí| Join["Modal Unirse"]
   Q2 -->|No| Q3{¿Necesita guía?}
-  Q3 -->|Sí| Mascot["Tour o Chat Conexa"]
+  Q3 -->|Sí| Mascot["Tour o Chat Evernear"]
   Q3 -->|No| Pulso["/pulso o /que-es"]
 ```

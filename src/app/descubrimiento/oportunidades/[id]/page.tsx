@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { OPPORTUNITIES } from "@/data/discovery";
 import { VerticalPageShell } from "@/components/ecosystem/VerticalPageShell";
 import { CityBadge } from "@/components/ecosystem/CityBadge";
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export function generateStaticParams() {
   return OPPORTUNITIES.map((o) => ({ id: o.id }));

@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useI18n } from "@/components/trinexus/providers/I18nProvider";
-import { T } from "@/components/trinexus/ui/T";
+import { useI18n } from "@/components/evernear/providers/I18nProvider";
+import { T } from "@/components/evernear/ui/T";
 import { toast } from "sonner";
 
 const DEMOS = [
   {
-    token: "evt-trinexus-001",
+    token: "evt-evernear-001",
     labelKey: "fut.qr.event",
-    href: "/eventos/trinexus-001",
+    href: "/eventos/evernear-001",
   },
   {
     token: "biz-cafe-frontera",

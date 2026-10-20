@@ -1,5 +1,5 @@
-import { TransitionLink } from "@/components/trinexus/ui/TransitionLink";
-import { T } from "@/components/trinexus/ui/T";
+import { TransitionLink } from "@/components/evernear/ui/TransitionLink";
+import { T } from "@/components/evernear/ui/T";
 import { ECOSYSTEM_VERTICALS } from "@/lib/ecosystem/verticals";
 
 export function VerticalNavStrip({ activeSlug }: { activeSlug: string }) {

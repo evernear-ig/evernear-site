@@ -1,6 +1,6 @@
 "use client";
 
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 
 export function EventQrBlock({ token }: { token: string }) {
   const scanUrl = `/qr/escanear?token=${encodeURIComponent(token)}`;

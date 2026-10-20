@@ -1,6 +1,6 @@
 "use client";
 
-import { T } from "@/components/trinexus/ui/T";
+import { T } from "@/components/evernear/ui/T";
 import type { PulsoRundownSegment } from "@/lib/ecosystem/types";
 import { SLUG_TO_PREFIX } from "@/lib/ecosystem/vertical-catalog";
 

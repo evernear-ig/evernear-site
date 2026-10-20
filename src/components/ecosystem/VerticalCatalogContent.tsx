@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { CityBadge } from "./CityBadge";
 import { FilterBar } from "./FilterBar";
-import { TrinexusPhoto } from "@/components/trinexus/ui/TrinexusPhoto";
-import { T } from "@/components/trinexus/ui/T";
+import { EvernearPhoto } from "@/components/evernear/ui/EvernearPhoto";
+import { T } from "@/components/evernear/ui/T";
 import {
   CITY_FILTER_OPTIONS,
   getVerticalCatalog,
@@ -109,7 +109,7 @@ export function VerticalCatalogContent({
             <li key={item.id}>
               <article className={`eco-entity-card eco-entity-card--${config.accent}`}>
                 <div className="eco-entity-card-img">
-                  <TrinexusPhoto imageKey={item.imageKey} />
+                  <EvernearPhoto imageKey={item.imageKey} />
                 </div>
                 <div className="eco-entity-card-body">
                   <span className="eco-entity-badge">

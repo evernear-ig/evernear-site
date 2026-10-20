@@ -1,10 +1,10 @@
-import { SiteShell } from "@/components/trinexus/SiteShell";
-import { BorderSection } from "@/components/trinexus/sections/BorderSection";
-import { EcosystemSection } from "@/components/trinexus/sections/EcosystemSection";
-import { FoundingSection } from "@/components/trinexus/sections/FoundingSection";
-import { HeroSection } from "@/components/trinexus/sections/HeroSection";
-import { PeopleSection } from "@/components/trinexus/sections/PeopleSection";
-import { ScrollSection } from "@/components/trinexus/ui/ScrollSection";
+import { SiteShell } from "@/components/evernear/SiteShell";
+import { BorderSection } from "@/components/evernear/sections/BorderSection";
+import { EcosystemSection } from "@/components/evernear/sections/EcosystemSection";
+import { FoundingSection } from "@/components/evernear/sections/FoundingSection";
+import { HeroSection } from "@/components/evernear/sections/HeroSection";
+import { PeopleSection } from "@/components/evernear/sections/PeopleSection";
+import { ScrollSection } from "@/components/evernear/ui/ScrollSection";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 /* ==========================================================================
    PULSO SEMANAL — EL LATIDO DE LA TRIPLE FRONTERA
-   Estilos dedicados para la revista/radar semanal de CONEXA
+   Estilos dedicados para la revista/radar semanal de Evernear
    ========================================================================== */
 
 :root {
@@ -488,7 +488,7 @@ html:has(.pulso-page) .nav {
 }
 
 /* --------------------------------------------------------------------------
-   MODAL BITÁCORA EDITORIAL DE CONEXA
+   MODAL BITÁCORA EDITORIAL DE Evernear
    -------------------------------------------------------------------------- */
 .pulso-bitacora-modal-layer {
   position: fixed;
